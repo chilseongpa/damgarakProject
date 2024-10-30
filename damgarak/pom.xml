@@ -29,6 +29,7 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
+		<org.aspectj-version>1.9.9</org.aspectj-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -95,6 +96,18 @@
 			<artifactId>spring-security-test</artifactId>
 			 <version>5.8.1</version>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		<!-- aspectjweaver : aspectj에 joinpoint를 추가하기 위한 라이브러리 -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
 		</dependency>
 		
 	</dependencies>
