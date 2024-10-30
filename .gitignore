@@ -1,4 +1,4 @@
-/.metadata/
+**/.metadata/
 HELP.md
 
 target/
@@ -58,4 +58,4 @@ Thumbs.db
 
 application-*.yml
 application-*.properties
-local.properties 이거 
+local.properties 
