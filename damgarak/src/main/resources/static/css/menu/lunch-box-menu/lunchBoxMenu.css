@@ -4,10 +4,6 @@ body{
     height: 2000px;
     margin: 0px;
     padding: 0px;
-    
-    
-    
-    
 }
 /*view-menu-section css*/
 .view-menu-section{
@@ -16,28 +12,29 @@ body{
 }
 /*search section css*/
 .search.section{
+   width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    padding: 10px 0;
+    height: 10%;
 }
+
 .first-text{
 	color: #FF5400;
 	margin: 0px;
 	padding: 0px;
 }
-
 .search-container button{
-    background-color: white;
-    color: tomato;
+  background-color: black;
+    color: white;
     font-weight: bold;
     font-size: 1.2em;
     cursor: pointer;
-    background-color: transparent;
-    border-radius: 10px;
-    padding: 8px 16px;
-    border: 0.1px solid black;
-	margin-right: 10px;
+ 	margin-right: 20px;
+    border-radius: 5px;
+    padding: 16px 30px;
+	
 }
 .search-container button:hover{
     transform: scale(0.95);
@@ -50,7 +47,7 @@ body{
     background-image: url("../../../img/menu/lunch-box-background-img/menu_session_backgroundimg.jpg");
     background-attachment: fixed;
     background-size: cover;
-    /*fixed 넣기 지금 안되는 이유?*/
+    margin-bottom: 30px;
 }
 
 .packed.lunch img{
@@ -161,10 +158,8 @@ body{
     
     display: flex;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;   
 }
-
 .lunch-box-comment{
     position: absolute;
     top: 20%;
@@ -258,12 +253,10 @@ body{
     --swiper-pagination-color:rgb(255, 69, 0);
    }
     /* swiper */
-    
-    
+ 
     .search.section {
     width: 100%;
-    height: 50px; /* 높이 조정 */
- 
+    height: 10%; /* 높이 조정 */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -281,28 +274,36 @@ body{
         gap: 15px;
     }
     .separator {
-        height: 20px;
+        height: 50px;
         width: 1px;
-        background-color: black;
+        background-color: #e6e6e6;
         margin: 0 20px;
     }
     
     .search-container{
-    display: flex;
-    align-items:center;
-    margin-top:10px;
-	justify-content: center;
-	padding: 8px, 16px;
-	width: 60%;
-	height: 90px;
+  	display: flex;
+	justify-content:center;
+	align-items: center;
 	
+	padding: 8px, 16px;
+	width: 40%;
+	height: 50%;
+    border: 1px solid #e6e6e6;
+    background-color: #fafafa;
+	border-radius: 10px;
+	box-sizing: border-box;	
 }
-    form{
+ 
+     form{
         display: flex;
+        justify-content:center;
         align-items: center;
-    	justify-content: center; 
+        width: 100%; 
+        height: 50%;
     	}
-    	
+    form label{
+    font-size: 1.2em;
+    }
 
 
   /* 메뉴 리스트 */

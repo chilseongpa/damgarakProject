@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.kh.damgarak.menu.menusearch.model.dto.MenuSearchDTO;
 import com.kh.damgarak.menu.model.vo.Menu;
-import com.kh.damgarak.menusearch.model.dto.MenuSearchDTO;
 
 @Mapper
 public interface MenuMapper {

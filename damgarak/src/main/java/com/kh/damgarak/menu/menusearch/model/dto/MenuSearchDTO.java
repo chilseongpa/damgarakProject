@@ -1,4 +1,4 @@
-package com.kh.damgarak.menusearch.model.dto;
+package com.kh.damgarak.menu.menusearch.model.dto;
 
 import com.kh.damgarak.menu.model.vo.Menu;
 import com.kh.damgarak.menucategory.model.vo.MenuCategory;

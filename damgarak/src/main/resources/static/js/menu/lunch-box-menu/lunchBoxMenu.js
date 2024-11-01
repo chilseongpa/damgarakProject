@@ -84,8 +84,8 @@ onload = function () {
                                 </div>
                                 <div class="info">
                                     <div class="ko-name">${menu.menuName}</div>
+                                   <div class="en-name">${menu.calorie} Kcal</div>
                                     <div class="txt">${menu.menuDescription}</div>
-                                    <div class="txt">${menu.calorie} Calorie</div>
                                 </div>
                                 <div class="name">
                                     <div class="ko-name">${menu.menuName}</div>

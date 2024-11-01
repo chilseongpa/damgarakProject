@@ -93,81 +93,19 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 			  <div class="row">
 			    <div class="col">
 			        <ul class="menu-board-list">
-                <li>
+                <li th:each="menu: ${session.menuTop}">
                     <div class="img">
-                        <img src="#" alt="메뉴 이미지">
+                        <img th:src="${'static/img/menu/menu-all-image/'+ menu.menuImage}" alt="메뉴 이미지">
                     </div>
-                    <div class="icon">
-                        <span class="best"></span>
-                        <span class="new"></span>
-                        <span class="hot"></span>
-                    </div>
+                 
                     <div class="info">
-                        <div class="ko-name">제육 볶음1</div>
-                        <div class="en-name">Menu Name</div>
-                        <div class="txt">메뉴에 대한 간단한 설명이 들어갑니다.</div>
+                        <div class="ko-name" th:text="${menu.menuName}"></div>
+                        <div class="en-name" th:text="${menu.calorie} + kacl"></div>
+                        <div class="txt" th:text="${menu.menuDescription}"></div>
                     </div>
                     <div class="name">
-                        <div class="ko-name">제육볶음</div>
-                        <div class="en-name">Menu Name</div>
-                    </div>
-                </li>
-                    <li>
-                    <div class="img">
-                        <img src="#" alt="메뉴 이미지">
-                    </div>
-                    <div class="icon">
-                        <span class="best"></span>
-                        <span class="new"></span>
-                        <span class="hot"></span>
-                    </div>
-                    <div class="info">
-                        <div class="ko-name">제육 볶음2</div>
-                        <div class="en-name">Menu Name</div>
-                        <div class="txt">메뉴에 대한 간단한 설명이 들어갑니다.</div>
-                    </div>
-                    <div class="name">
-                        <div class="ko-name">제육볶음</div>
-                        <div class="en-name">Menu Name</div>
-                    </div>
-                </li>
-                    <li>
-                    <div class="img">
-                        <img src="#" alt="메뉴 이미지">
-                    </div>
-                    <div class="icon">
-                        <span class="best"></span>
-                        <span class="new"></span>
-                        <span class="hot"></span>
-                    </div>
-                    <div class="info">
-                        <div class="ko-name">제육 볶음3</div>
-                        <div class="en-name">Menu Name</div>
-                        <div class="txt">메뉴에 대한 간단한 설명이 들어갑니다.</div>
-                    </div>
-                    <div class="name">
-                        <div class="ko-name">제육볶음</div>
-                        <div class="en-name">Menu Name</div>
-                    </div>
-                </li>
-                
-                  <li>
-                    <div class="img">
-                        <img src="#" alt="메뉴 이미지">
-                    </div>
-                    <div class="icon">
-                        <span class="best"></span>
-                        <span class="new"></span>
-                        <span class="hot"></span>
-                    </div>
-                    <div class="info">
-                        <div class="ko-name">제육 볶음4</div>
-                        <div class="en-name">Menu Name</div>
-                        <div class="txt">메뉴에 대한 간단한 설명이 들어갑니다.</div>
-                    </div>
-                    <div class="name">
-                        <div class="ko-name">제육볶음</div>
-                        <div class="en-name">Menu Name</div>
+                        <div class="ko-name" th:text="${menu.menuName}"></div>
+                        <div class="en-name" th:text="${menu.price} + 원"></div>
                     </div>
                 </li>
             </ul>
