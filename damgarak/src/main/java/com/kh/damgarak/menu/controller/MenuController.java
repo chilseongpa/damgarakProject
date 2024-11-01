@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.damgarak.menu.model.vo.Menu;
 import com.kh.damgarak.menu.service.MenuService;
+import com.kh.damgarak.menusearch.model.dto.MenuSearchDTO;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,17 +22,36 @@ public class MenuController {
 	
 	
 	@GetMapping("/lunchMenu")
-	public String lunchMenuPage(Menu menu, HttpSession session){
+	public String lunchMenuPage(HttpSession session){
 		
 		List<Menu> list = mService.lunchBoxTopMenu(); 
-		System.out.println("menuTop: " + list);
+		// System.out.println("menuTop: " + list);
 		if(list != null){
 			session.setAttribute("menuTop", list);	
 		}
-		
 		return"menu/lunchBoxMenu";
 	}
 	
+	@GetMapping("/restaurantMenu")
+	public String restaurantMenuPage(HttpSession session){
+		
+		List<Menu> list = mService.restaurantTopMenu(); 
+		// System.out.println("menuTop: " + list);
+		if(list != null){
+			session.setAttribute("menuTop", list);	
+		}
+		return"menu/restaurantMenu";
+	}
+	@GetMapping("/restaurantMenuSelect")
+	@ResponseBody
+	public List<MenuSearchDTO> getRestaurantMenuList(
+			@RequestParam(value = "selectMenu", required = false) List<String> categories,
+	        @RequestParam(value = "suggestStatus", required = false) String suggestStatus
+			){
+		List<MenuSearchDTO> menuList = mService.getRestaurantMenu(categories, suggestStatus);
+		System.out.println(menuList);
+		return menuList;
+	}
 	
 	@GetMapping("/menuList")
 	@ResponseBody
@@ -39,9 +59,12 @@ public class MenuController {
 			  @RequestParam(value = "selectMenu", required = false) List<String> categories,
 	          @RequestParam(value = "suggestStatus", required = false) String suggestStatus)
 			{
+		
+		// System.out.println("suggestStatus 확인용" + suggestStatus);
+		// System.out.println("categories 확인용 " + categories);
 		List<Menu> menuList = mService.getFilterMenu(categories, suggestStatus);
 				
+	    System.out.println("menuList 확인용" + menuList);
 		return menuList;
 	}
-
 }

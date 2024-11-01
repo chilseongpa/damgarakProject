@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class MenuCategory {
-	   private String menuCategoryCode;
-	   private String menuCategoryName;
+	   private String categoryCode;
+	   private String categoryName;
 
 }

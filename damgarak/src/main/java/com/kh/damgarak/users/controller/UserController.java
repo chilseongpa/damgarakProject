@@ -22,7 +22,7 @@ public class UserController {
 	@GetMapping("/loginPage")
 	public String UserLoginPage(){
 		
-		return "login/loginOrSingup";
+		return "users/loginOrSingup";
 	}
 	
 	@PostMapping("/inrollform")
