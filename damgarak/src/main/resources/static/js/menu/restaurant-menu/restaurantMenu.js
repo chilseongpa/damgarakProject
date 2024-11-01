@@ -64,7 +64,7 @@ onload = function () {
             console.log("Selected values:", menuList);
 
             $.ajax({
-                url: '/menuList',
+                url: '/restaurantMenuSelect',
                 type: 'GET',
                 data: {
                     selectMenu: menuList,
@@ -76,9 +76,10 @@ onload = function () {
                     menuContainer.innerHTML = ''; 
                     
                     let liItems = '';
-                    result.forEach(menu => { 
+                    result.forEach(item => { 
+                        const menu = item.menu;
                         liItems += `                          
-                            <li>
+                               <li>
                                 <div class="img">
                                     <img src="static/img/menu/menu-all-image/${menu.menuImage}" alt="${menu.menuName}">
                                 </div>
@@ -95,18 +96,16 @@ onload = function () {
                         `;
                     });
                 
-                    const item = `                          
-                        <div class="container text-center">
-                            <div class="row">
-                                <div class="col">
-                                    <ul class="menu-board-list">
-                                        ${liItems}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                const item = `                          
+				<div class="container text-center">
+					  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+					    <div class="col">
+                            <ul class="menu-board-list">
+									${liItems}
+						</div>
+					  </div>
+					</div>
                     `;
-                
                     // 최종 HTML을 menuContainer에 삽입
                     menuContainer.insertAdjacentHTML('beforeend', item);
                 },

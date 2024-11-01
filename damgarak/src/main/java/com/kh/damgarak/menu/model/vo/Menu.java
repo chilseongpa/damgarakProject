@@ -12,7 +12,6 @@ public class Menu {
 	private String menuImage;
 	private String menuDescription;
 	private int calorie;
-	private String menuCategoryCode;
+	private String categoryCode;
 	private int menuCount;
-	
 }
