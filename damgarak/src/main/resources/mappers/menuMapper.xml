@@ -29,17 +29,30 @@
 	
 
     <select id="lunchBoxTopMenu" resultType="Menu">
-    SELECT MENU_IMAGE
-    	FROM MENU
-    WHERE ROWNUM &lt;= 10 AND (MENU_TYPE = 'l' OR MENU_TYPE = 'a')   
-    ORDER BY MENU_COUNT DESC
+    SELECT MENU_IMAGE , MENU_NAME, CALORIE,MENU_DESCRIPTION,
+		  PRICE
+		FROM (
+		    SELECT MENU_IMAGE, MENU_NAME, CALORIE, PRICE, MENU_COUNT
+		    ,
+		    MENU_DESCRIPTION
+		    FROM MENU
+		    WHERE MENU_TYPE = 'l' OR MENU_TYPE = 'a'
+		    ORDER BY MENU_COUNT DESC
+		)
+		WHERE ROWNUM &lt;= 10
 	</select>
 	
 	<select id="restaurantTopMenu" resultType="Menu">
-    SELECT MENU_IMAGE
-    	FROM MENU
-    WHERE ROWNUM &lt;= 10 AND (MENU_TYPE = 'r' OR MENU_TYPE = 'a')   
-    ORDER BY MENU_COUNT DESC
+				    SELECT MENU_IMAGE, MENU_NAME, CALORIE,PRICE,
+				    MENU_DESCRIPTION
+		FROM (
+		    SELECT MENU_IMAGE,  MENU_NAME, CALORIE, PRICE, MENU_COUNT,
+		    MENU_DESCRIPTION
+		    FROM MENU
+		    WHERE MENU_TYPE = 'r' OR MENU_TYPE = 'a'
+		    ORDER BY MENU_COUNT DESC
+		)
+		WHERE ROWNUM &lt;= 10
 	</select>
  	
  	<!-- 도시락 베스트 메뉴 목록을 카테고리에 따라 가져오는 쿼리 -->

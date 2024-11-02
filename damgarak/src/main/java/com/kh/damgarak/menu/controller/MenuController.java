@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.damgarak.menu.menusearch.model.dto.MenuSearchDTO;
 import com.kh.damgarak.menu.model.vo.Menu;
 import com.kh.damgarak.menu.service.MenuService;
-import com.kh.damgarak.menusearch.model.dto.MenuSearchDTO;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +21,11 @@ public class MenuController {
 	
 	
 	
+	@GetMapping("/UsersMyPage")
+    public String userMyPage(){
+    	return "users/usersMyPage";
+    }	
+    
 	@GetMapping("/lunchMenu")
 	public String lunchMenuPage(HttpSession session){
 		
