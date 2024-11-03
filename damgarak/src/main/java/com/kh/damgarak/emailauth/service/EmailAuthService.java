@@ -64,9 +64,7 @@ public class EmailAuthService {
 				sendHTMLMail(subject, text, to);
 				// 이메일 전송
 	}
-	
 	private String makeRandom(String code) {
-
 		// code 길이가 6이면 그대로 반환
 		if (code.length() == 6) {
 			return code;
@@ -112,4 +110,31 @@ public class EmailAuthService {
 			}
 			return result;
 		}
+	public String generateTemporaryPassword() {
+		return makeRandom("");
+	}
+	public void sendTemporaryPassword(String email, String tempPassword) throws MessagingException {
+		String subject = "[Damgarak] 임시 비밀번호 안내";
+
+		String text = "<div style=\"font-family: Arial, sans-serif; color: #333; padding: 20px; border: 1px solid #ddd; border-radius: 8px;\">"
+		            + "  <h2 style=\"color: #4CAF50; text-align: center;\">임시 비밀번호 안내</h2>"
+		            + "  <p style=\"font-size: 16px; line-height: 1.5;\">안녕하세요! Damgarak 서비스를 이용해 주셔서 감사합니다.</p>"
+		            + "  <p style=\"font-size: 16px; line-height: 1.5;\">"
+		            + "    요청하신 임시 비밀번호는 아래와 같습니다. 로그인 후 반드시 비밀번호를 변경해 주세요."
+		            + "  </p>"
+		            + "  <div style=\"text-align: center; margin: 20px 0;\">"
+		            + "    <span style=\"font-size: 24px; font-weight: bold; color: #4CAF50; background-color: #f4f4f4; padding: 10px 20px; "
+		            + "                 border: 1px solid #4CAF50; border-radius: 5px;\">"
+		            +        tempPassword
+		            + "    </span>"
+		            + "  </div>"
+		            + "  <p style=\"font-size: 14px; color: #777; text-align: center;\">본 이메일은 요청에 따라 자동 발송되었습니다. "
+		            + "    비밀번호를 요청하지 않으셨다면, 이 메시지를 무시하셔도 됩니다.</p>"
+		            + "  <hr style=\"border: none; border-top: 1px solid #ddd; margin: 20px 0;\">"
+		            + "  <p style=\"font-size: 12px; color: #999; text-align: center;\">© Damgarak. All rights reserved.</p>"
+		            + "</div>";
+	        String[] to = { email };
+
+	        sendHTMLMail(subject, text, to);
+	    }
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.damgarak.users.model.mapper.UserMapper">
+	<select id="loginUser" resultType="Users">
+		select * 
+		from USERS
+		where USERS_ID = #{usersId} AND USERS_PASSWORD = #{usersPassword} AND USERS_STATE = 'n'
+ 	</select>	
+ 	
+		<insert id="logupUser" parameterType="Users">
+		    INSERT INTO USERS (USERS_ID, USERS_NAME, USERS_PASSWORD, EMAIL, JOIN_DATE, USERS_STATE, USERS_TYPE)
+		    VALUES (#{usersId}, #{usersName}, #{usersPassword}, #{email}, SYSDATE, 'n', #{usersType})
+		</insert>
+
+	 <select id="idCheck" resultType="_int">
+	 	SELECT COUNT(*) COUNT
+	 	FROM USERS
+	 	WHERE USERS_ID = #{usersId}
+	 </select>
+	 	
+ 	
+</mapper>
+
+

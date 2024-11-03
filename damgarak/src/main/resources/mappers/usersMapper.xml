@@ -19,8 +19,32 @@
 	 	FROM USERS
 	 	WHERE USERS_ID = #{usersId}
 	 </select>
-	 	
- 	
+	
+	<select id="findUserId" resultType="String">
+		SELECT SUBSTR(USERS_ID, 1, LENGTH(USERS_ID) - 3) || '***'
+		FROM USERS
+		WHERE USERS_NAME = #{userName} AND EMAIL = #{userMail}
+	</select> 	
+	
+	<select id="findUserPwd" resultType="Users">
+		SELECT * 
+		FROM USERS
+		WHERE USERS_NAME = #{userName} AND 
+		USERS_ID = #{userId} AND EMAIL = #{userMail}
+	</select>
+	
+	<update id="updateUserPassword">
+    UPDATE USERS
+    SET USERS_PASSWORD = #{tempPassword}
+    WHERE USERS_ID = #{userId}
+	</update>
+	
+	<select id="emailCheck" resultType="Users">
+		select EMAIL 
+		FROM USERS
+		WHERE EMAIL = #{email}
+	</select>
+	
 </mapper>
 
 

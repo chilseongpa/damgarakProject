@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>담가락 도시락 메뉴 페이지</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="static/css/menu/lunch-box-menu/lunchBoxMenu.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+<script src="static/js/menu/lunch-box-menu/lunchBoxMenu.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <!--헤더 영역-->
+
+    <!--헤더 영역-->
+    <section class="packed lunch" id="packed lunch">
+        <img src="static/img/menu/lunch-box-background-img/lunch-box-lmg.jpg" alt="">
+        <h1 class="lunch-h1">Damgarak 도시락 고르기</h1>
+        <div class="order-lunch-box">
+            <a id="lunch-a-order" href="">도시락 주문하기</a>
+        </div>
+        <div class="lunch-box-comment">
+            <p>먹고싶은 반찬들로만 고르는 담가락 도시락</p>
+            <p>경기도 광주 <u>양민욱 쉐프</u>께서</p>
+            <p>엄선된 재료들과 당일 직접 만드는 반찬들</p>
+        </div>
+        <!--링크 삽입 고민[링크는 민욱형님 도시락 주문 페이지로]-->
+    </section>
+
+    <!--식당 메뉴 보기 섹션구상 : 슬라이드 기능 REACT 공부하기-->
+    <section class="view-menu-section">
+        <h1>담가락 도시락 Best Top 10</h1>
+        <!-- Slider main container -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <!-- session 객체로 받아온 변수는 session객체로 불러온다. -->
+                <div class="swiper-slide" th:each="menu: ${session.menuTop}">
+                    <img th:src="${'static/img/menu/menu-all-image/'+ menu.menuImage}" alt="${menu.menuName}">
+                </div>
+            </div>
+
+            <!-- Swiper Navigation Buttons -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+    <!--식당 메뉴 보기 섹션-->
+
+    <!--검색 관련 섹션-->
+    <section class="search section" id="search section">
+        <div class="search-container" id="search container">
+            <form action="">
+                <div class="all-menu-btn-div">
+                    <button class="all-menu-btn" type="reset">초기화</button>
+                    <!--best일 경우 판매량 순으로  나오고-->
+                    <label class="form-check-label" for="flexRadioDefault1"><input type="radio" class="select-menu-list form-check-input" name="type-choice"  value="best" onclick='checkBoxList()'>&nbsp;베스트 메뉴</label>
+                    <label class="form-check-label" for="flexRadioDefault1"><input type="radio" class="select-menu-list form-check-input" name="type-choice"  value="suggest" onclick='checkBoxList()'>&nbsp;추천 메뉴</label>
+                    
+                                    <!--suggest일 경우 추천된 메뉴가 나오고-->
+                                    
+                                    <!--동시에 둘 다 중복이 된다.-->
+                </div>
+                <div class="separator"></div>
+
+                <div class="menu-category">
+                    <div class="menu-category-first">
+                        <label><input type="checkbox" class="select-menu-list form-check-input" value="01" onclick="checkBoxList()">&nbsp;구이류</label>
+                        <label><input type="checkbox" class="select-menu-list form-check-input" value="02" onclick="checkBoxList()">&nbsp;국물류</label>
+                        <label><input type="checkbox" class="select-menu-list form-check-input" value="03" onclick="checkBoxList()">&nbsp;찜류</label>
+                    </div>
+                    <div class="menu-category-second">
+                        <label><input type="checkbox" class="select-menu-list form-check-input" value="04" onclick="checkBoxList()">&nbsp;볶음류</label>
+                        <label><input type="checkbox" class="select-menu-list form-check-input" value="06" onclick="checkBoxList()">&nbsp;반찬류</label>
+                        <label><input type="checkbox" class="select-menu-list form-check-input" value="05" onclick="checkBoxList()">&nbsp;후식</label>
+                    </div>
+                </div>
+            </form>
+        </div> 
+    </section>
+    <!--검색 관련 섹션-->
+    <section class="menu-list-area-section">
+        <!--menu-board-list-->
+        <!--menu-board-list-->
+     <div class="menu-con">
+        <div class="container text-center">
+			  <div class="row">
+			    <div class="col">
+			        <ul class="menu-board-list">
+                <li th:each="menu: ${session.menuTop}">
+                    <div class="img">
+                        <img th:src="${'static/img/menu/menu-all-image/'+ menu.menuImage}" alt="메뉴 이미지">
+                    </div>
+                 
+                    <div class="info">
+                        <div class="ko-name" th:text="${menu.menuName}"></div>
+                        <div class="en-name" th:text="${menu.calorie} + kacl"></div>
+                        <div class="txt" th:text="${menu.menuDescription}"></div>
+                    </div>
+                    <div class="name">
+                        <div class="ko-name" th:text="${menu.menuName}"></div>
+                        <div class="en-name" th:text="${menu.price} + 원"></div>
+                    </div>
+                </li>
+            </ul>
+	</div>
+			   
+			  </div>
+			</div> 
+		</div>   
+    </section>
+
+</body>
+
+</html>
