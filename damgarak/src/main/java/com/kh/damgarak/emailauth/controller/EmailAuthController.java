@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class emailAuthController {
+public class EmailAuthController {
 	
 	private final EmailAuthService emailAuthService;
 	
@@ -28,6 +28,7 @@ public class emailAuthController {
 		}
 	       return "인증번호 발송되었습니다";
 	    }
+	
 	@PostMapping("/check")
 	public String checkCode(@RequestBody MailRequest request ) throws Exception {
 		String email = request.getEmail();

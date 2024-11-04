@@ -34,21 +34,33 @@ onload = function () {
 
 
     document.querySelector('.email-btn').onclick = () => {
-        const UsersEmail = document.getElementById('usersEmail').value;
-
-        $.ajax({
-            url: 'mail',   // 요청 방식(type:method)
-            type: 'post',  //요청 주소(url)
-            data: {         // 요청 시 전달 데이터(파라미터) (data)
-                email: UsersEmail
-            },
-            success: (result) => {
-                alert(result);
-            },
-            error: (err) => {
-                console.log(err);
-            }
-        });
+        const usersEmail = document.getElementById('usersEmail').value;
+	
+            $.ajax({
+                url: '/checkEmail',   
+                type: 'GET',
+                data: { email: usersEmail },
+                success: (response) => {
+                    if (response === "사용불가") {
+                        alert('이미 사용 중인 이메일입니다.');
+                    } else {
+                        $.ajax({
+                            url: '/mail',   // 인증 번호 발송 엔드포인트
+                            type: 'POST',
+                            data: { email: usersEmail },
+                            success: (result) => {
+                                alert('인증 번호가 발송되었습니다.');
+                            },
+                            error: (err) => {
+                                console.log(err);
+                            }
+                        });
+                    }
+                },
+                error: (err) => {
+                    console.log(err);
+                }
+            });
     };
 
     document.querySelector('.auth-email-btn').onclick = () => {
@@ -72,13 +84,12 @@ onload = function () {
 
 }
 
-
 function pwdCheck() {
     const pwd = document.getElementById('usersPassword').value;
     const pwdCheck = document.getElementById('passwordCheck').value;
 
     if (pwd !== pwdCheck) {
-        alert('비밀번호가 다릅니다');
+        alert('비밀번호가 다릅니다 다시 입력해주세요');
         return false;
     }
 }
