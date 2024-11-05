@@ -1,0 +1,133 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+#header {
+    width: 100%;
+    border-bottom: 1px solid black;
+    height: 160px;
+    position: relative;
+    text-align: center;
+    /*li태그 점 없에기*/
+    color: black;
+    text-decoration: none;
+    min-width: 1200px;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.171);
+    z-index: 2;
+}
+
+#navigator {
+    display: flex;
+    justify-content: space-around;
+    height: 100px;
+    overflow: hidden;
+    transition: height 0.55s;
+}
+
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0;
+    margin: 0px;
+    line-height: 50px;
+    padding-top: 50px;
+    font-size: 23px;
+    font-family: 'GowunBatang';
+
+}
+
+.nav>li {
+    width: 130px;
+
+}
+
+
+.nav>li>ul {
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    line-height: 50px;
+    font-size: 18px;
+}
+
+.headerText {
+    color: black;
+    text-decoration: none;
+}
+
+.nav>li>ul>li>a {
+    color: black;
+    text-decoration: none;
+
+    
+    transition: display 2s;
+}
+
+
+
+#logoText {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+}
+
+#logoImg {
+    width: 115px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(-10px);
+}
+
+#space {
+    width: 260px;
+}
+
+#header:hover {
+    border-bottom: none;
+    background-color: none !important;
+    z-index: 2;
+    #navigator {
+        background-color: rgba(0, 0, 0, 0.863);
+
+        height: 250px;
+    }
+
+    .nav>li>a {
+        color: white;
+    }
+
+    .nav>li>ul>li>a {
+        display: block;
+        color: white;
+    }
+
+    #logoText {
+        color: white;
+    }
+
+    #logoImg {
+        filter: grayscale(90);
+    }
+    #singUpUl{
+        color: white;
+    }
+    
+
+}
+#singUpUl{
+    list-style-type: none;
+    display: flex;
+    position: absolute;
+    right: 4%;
+    top: 39%;
+}
