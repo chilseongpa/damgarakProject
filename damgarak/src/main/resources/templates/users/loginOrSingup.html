@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,15 @@
         <script src="static/js/users/login-page/findUserIdOrPassword.js"></script>   
 </head>
 <body>
+
+   <div th:if="${errorMsg}">
+        <script th:inline="javascript">
+            alert([[${errorMsg}]]);
+        </script>
+    </div>
+    
+    
+    
     <section class="head-img-login-section">
     </section>
     <h1 class="title-h1-controll">계정 생성하기</h1>
@@ -37,12 +46,12 @@
            </div>
             <div class="log-up-div">
                 <input type="email" name="email" id="usersEmail" placeholder="email을 입력해주셔요" required>
-                <button class="email-btn check-btn" type="button" onclick="" >확인</button>
-            </div>
+                <button class="email-btn check-btn" type="button"  id="emailCheckBtn" >확인</button>
+            </div> 
 
             <div class="log-up-div">
                 <input type="text" name="authCode" id="authCode" placeholder="인증번호를 입력해주세요" required>
-                <button type="button" class="auth-email-btn check-btn">인증</button>
+                <button type="button" class="auth-email-btn check-btn" id="authButton">인증</button>
             </div>
 
             <div class="input-radio-role">

@@ -6,4 +6,5 @@ import lombok.Data;
 public class MailRequest {
 		private String email;
 		private String code;
+		
 }
