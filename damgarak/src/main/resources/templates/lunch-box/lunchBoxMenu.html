@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도시락 POS 시스템</title>
+        <link rel="stylesheet" href="static/css/lunch-box/lunchBoxMenu.css">
+   <script src="static/js/lunch-box/lunchBoxMenu.js"></script>
+</head>
+<body>
+    <div class="pos-container">
+        <!-- 사이드바 -->
+        <div class="sidebar" id="sidebar">
+            <div class="logo-section">
+                <span class="logo">도시락 POS</span>
+                <button class="menu-toggle" id="toggleButton">☰</button>
+            </div>
+            <div class="menu">
+              
+                <button class="menu-item" onclick="location.href='choiceLunchBox'">도시락 선택</button>
+                <button class="menu-item active" onclick="location.href='lunchBoxMenu'">주문하기</button>
+            </div>
+            <div class="user-section">
+                <div class="user">
+                    <div class="user-initial">홍</div>
+                    <span>홍길동</span>
+                </div>
+                <button class="logout">로그아웃</button>
+            </div>
+        </div>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="main-content">
+            <!-- 검색바 -->
+            <div class="search-bar-wrapper">
+                <input type="text" class="search-bar" placeholder="상품을 검색하세요...">
+                <button class="search-button">검색</button>
+            </div>
+            
+            <!-- 상단 카테고리 바 -->
+            <div class="top-bar">
+                <div class="categories">
+                    <button class="category active" onclick="filterCategory('all')">전체</button>
+                    <button class="category" onclick="filterCategory('main')">메인메뉴</button>
+                    <button class="category" onclick="filterCategory('soup')">국물요리</button>
+                    <button class="category" onclick="filterCategory('side')">반찬</button>
+                </div>
+            </div>
+
+            <!-- 메뉴 리스트 -->
+            <div class="menu-list" id="menuList">
+                <!-- JavaScript로 메뉴 항목 생성 -->
+            </div>
+
+            <!-- 페이지네이션 -->
+            <div class="pagination-controls">
+                <button id="prevButton" onclick="prevPage()">이전</button>
+                <button id="nextButton" onclick="nextPage()">다음</button>
+            </div>
+        </div>
+
+        <!-- 주문 요약 -->
+        <div class="order-summary">
+            <h3>주문 요약</h3>
+            <div id="orderList">
+                <!-- JavaScript로 주문 항목 추가 -->
+            </div>
+            <div class="order-total">
+                <p>총 칼로리: <span id="totalCalories">0 kcal</span></p>
+                <p><strong>총액: <span id="total">₩0</span></strong></p>
+            </div>
+            <!-- 도시락 별 선택한 메뉴 요약 -->
+            <div id="bentoSummary">
+                <!-- JavaScript로 도시락별 메뉴 요약 표시 -->
+            </div>
+            <!-- 초기화 버튼 추가 -->
+            <button class="reset-order-btn" onclick="resetOrder()">초기화</button>
+            <button class="place-order-btn" onclick="location.href='/payment'">주문하기</button>
+        </div>
+    </div>
+
+    <script>
+        function proceedToCheckout() {
+            const totalWithoutTax = orderList.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // 최종 금액을 localStorage에 저장
+            localStorage.setItem("finalPrice", totalWithoutTax);
+            
+            // lunchBoxMenu.html로 이동
+            window.location.href = "/payment";
+        }
+    </script>
+</body>
+</html>
