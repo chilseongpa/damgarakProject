@@ -72,8 +72,6 @@ public class UserController {
 	
 	@GetMapping("/loginPage")
 	public String userLoginPage(){
-		
-		
 		return "users/loginOrSingup";
 	}
 	

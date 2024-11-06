@@ -2,10 +2,10 @@
 <html lang="ko"xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Damgarak</title>
+
 </head>
 <body>
-		
 		<div>
 			<a href="/loginPage">로그인 페이지 이동</a>
 			<span th:if="${session.userLogin != null}"
@@ -24,8 +24,11 @@
 		</div>	
 		<div>
 		<a href="/UsersMyPage">도시락 메뉴 페이지</a>
+		<a href="/reservationTableTimeChoice">예약페이지 식당</a>
 		</div>
 		
+		
+		<a href="/tableChoicePage">테이블 페이지 확인용</a>
 		
 </body>
 </html>
