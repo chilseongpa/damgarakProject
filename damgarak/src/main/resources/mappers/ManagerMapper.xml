@@ -4,7 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.damgarak.menu.model.mapper.MenuMapper">
 	<!-- 건의함 조회 -->
+<<<<<<< HEAD
 	<select id="selSuggests" resultType="int">
+=======
+	<select id="selSuggest" resultType="int">
+>>>>>>> eee683fbf49f945f1e2901ee7707ed0d0547107f
 		SELECT P.POST_NO, U.USERS_NAME, P.TITLE, P.CREATION_DATE
 		FROM POST P
 		JOIN USERS U ON P.USERS_ID = U.USERS_ID;
