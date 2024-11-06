@@ -33,11 +33,11 @@
                 </tr>
               </thead>
               <tbody>
-	            <tr th:each="post : ${Post}">
-				    <td th:text="${Post.post_No}">순번</td>
-				    <td th:text="${Post.user_Id}">작성자</td>
+	            <tr th:each="post : ${post}">
+				    <td th:text="${post.post_No}">순번</td>
+				    <td th:text="${post.user_Id}">작성자</td>
 				    <td>
-				        <a th:href="@{'/postDetail/' + ${Post.post_No}}" th:text="${Post.title}">제목</a>
+				        <a th:href="@{'/postDetail/' + ${post.post_No}}" th:text="${post.title}">제목</a>
 				    </td>
 				    <td th:text="${#dates.format(post.creation_Date, 'yyyy-MM-dd')}">작성일</td>
 				</tr>

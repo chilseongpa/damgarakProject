@@ -20,7 +20,10 @@ public class ManagerService {
 
     public List<Post> getSuggestedPosts(Post post) {
         // selectSuggest 메서드를 사용하여 추천 포스트 가져오기
-        int result = managerMapper.selectSuggest(post);
-        return null; // 실제 구현에 맞게 반환할 데이터 설정
+        return managerMapper.selSuggest(post); // 실제 구현에 맞게 반환할 데이터 설정
     }
+
+	public List<Post> selSuggest(Post post) {
+		return managerMapper.selSuggest(post);
+	}
 }

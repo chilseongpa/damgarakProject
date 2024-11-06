@@ -21,11 +21,11 @@ public class ManagerController {
 	private final ManagerService mService;
 
     @GetMapping("/suggestDe")
-    public String adminPage(Model model) {
+    public String adminPage(Model model,Post post) {
         // ManagerService를 통해 추천된 포스트 목록 가져오기
-
+    	List<Post> p = mService.selSuggest(post);
         // 모델에 가져온 포스트 목록 추가
-        model.addAttribute("post", "post");
+        model.addAttribute("post", p);
 
         return "post/board/manager/suggestDe";
     }
