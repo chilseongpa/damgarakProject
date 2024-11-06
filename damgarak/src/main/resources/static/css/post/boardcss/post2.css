@@ -7,11 +7,11 @@
   }
   p {
     font-size: 20px;
-    margin: 0 auto; /* 수평 중앙 정렬 */
+    margin: 0 auto; /* �닔�룊 以묒븰 �젙�젹 */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* 부모의 높이를 가득 채우도록 설정 */
+    height: 100%; /* 遺�紐⑥쓽 �넂�씠瑜� 媛��뱷 梨꾩슦�룄濡� �꽕�젙 */
   }
   a {
     text-decoration: none;
@@ -23,6 +23,7 @@
     padding:15px;
     border:none;
     outline: none;
+    background-color: black;
     color:white;    
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
@@ -63,19 +64,9 @@
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    justify-content: center; /* 가로 중앙 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
-    height: 800px;
+    justify-content: center; /* 媛�濡� 以묒븰 �젙�젹 */
+    align-items: center; /* �꽭濡� 以묒븰 �젙�젹 */
     width: 750px;
-    background-color: #E1E1E1;
-    border: 1px solid white;
-  }
-  .title {
-    height: 700px;
-    width: 650px;
-    background-color: white;
-    text-align: center;
-    border: 1px solid;
   }
   .real{
     font-size: 16px;
@@ -104,6 +95,8 @@
     margin-top: 10px;
     margin-bottom: 10px;
     display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
   #num{
     width: 80px;
@@ -135,52 +128,7 @@
     margin-left: auto;
     margin-right: auto;
   }
+  table{
+    box-shadow: 1px 1px 10px 3px #555555;
   
-/* From Uiverse.io by vinodjangid07 */ 
-.setting-btn {
-  width: 45px;
-  height: 45px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  background-color: rgb(8, 8, 8);
-  border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0px 0px 0px 2px rgb(43, 40, 82);
-}
-.bar {
-  width: 50%;
-  height: 2px;
-  background-color: rgb(229, 229, 229);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  border-radius: 2px;
-}
-.bar::before {
-  content: "";
-  width: 2px;
-  height: 2px;
-  background-color: rgb(126, 117, 255);
-  position: absolute;
-  border-radius: 50%;
-  border: 2px solid white;
-  transition: all 0.3s;
-  box-shadow: 0px 0px 5px white;
-}
-.bar1::before {
-  transform: translateX(-4px);
-}
-.bar2::before {
-  transform: translateX(4px);
-}
-.setting-btn:hover .bar1::before {
-  transform: translateX(4px);
-}
-.setting-btn:hover .bar2::before {
-  transform: translateX(-4px);
-}
+  }
