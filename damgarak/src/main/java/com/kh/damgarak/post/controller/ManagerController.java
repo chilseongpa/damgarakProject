@@ -23,10 +23,13 @@ public class ManagerController {
     @GetMapping("/suggestDe")
     public String adminPage(Model model) {
         // ManagerService를 통해 추천된 포스트 목록 가져오기
+
         // 모델에 가져온 포스트 목록 추가
         model.addAttribute("post", "post");
+
         return "post/board/manager/suggestDe";
     }
+
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";
