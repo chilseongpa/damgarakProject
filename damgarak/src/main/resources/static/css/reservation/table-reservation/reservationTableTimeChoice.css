@@ -1,0 +1,255 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.main-content {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.time-div-btns {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.btns-div {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns-div button {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    background-color: white;
+    border: solid 1px;
+}
+button {
+    transform: scale(1);
+    transition: transform 0.1s ease;
+}
+button:active {
+    transform: scale(0.95);
+}
+hr {
+    border: 1px rgba(70, 76, 82, 0.068) solid;
+    width: 100%;
+}
+.selected-day {
+    font-weight: bold;
+    color: #ee790b;
+}
+@media (max-width: 768px) {
+    .btns-div button {
+        font-size: 1.2em;
+        width: 80%;
+        height: 80%;
+    }
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.arrow-button.left-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reservation {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 90%;
+}
+.reservation h2 {
+    font-size: 2.4em;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+#calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; 
+}
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.arrow-button {
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+.choice-timer-div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.arrow-button:hover {
+    color: var(--highlight-color);
+}
+
+@media (max-width: 768px) {
+    .calendar-day {
+        font-size: 1.2em;
+        width: 80%;
+        height: 80%;
+    }
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(15px, 1fr));
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-day-name {
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 16px;
+}
+.calendar-empty {
+    padding: 20px;
+}
+.calendar-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: background-color 0.3s ease;
+    width: 30%;
+    height: 30%;
+}
+
+.calendar-day:hover {
+    color: white;
+}
+
+.disabled-day {
+    background-color: #e0e0e0;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.date-time-picker {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 30px; 
+    width: 100%; 
+}
+
+.date-time-picker label {
+    display: block;
+    margin: 12px 0 6px;
+    font-size: 1.4em;
+}
+input[type="date"], select {
+    width: 100%;
+    padding: 15px; 
+    font-size: 1.4em;
+    margin-bottom: 18px; 
+    border-radius: 6px; 
+    border: 1px solid #ccc; 
+    text-align: center; 
+}
+.selected-date-time {
+    margin-bottom: 30px; 
+}
+.selected-date-time p {
+    font-size: 1.5em;
+    color: var(--primary-color);
+    margin-top: 20px;
+}
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    width: 100%;
+}
+button {
+    padding: 8px 16px;
+    font-size: 1.3em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#cancelBtn {
+    background-color: #eb0606;
+    color: #fff;
+}
+#reserveBtn {
+    background-color: #e97529;
+    color: #fff;
+}
+.selected-time{
+    background-color: #e97529; 
+    color: #e97529;
+    font-weight: bold;
+    border: 1px solid #e97529;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: relative;
+}
+
+.calendar-header h3{
+    flex-grow: 1;
+    font-size: 1.5em;
+    margin: 0 auto;
+}
+.arrow-button {
+    font-size: 1.5em;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
