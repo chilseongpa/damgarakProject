@@ -8,6 +8,6 @@ import com.kh.damgarak.post.model.vo.Post;
 public interface ManagerMapper {
 	// 예시
 	// int updateUserInfo(User user);
-	int selectSuggest(Post post);
+	int selSuggest(Post post);
 	
 }
