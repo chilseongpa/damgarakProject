@@ -1,11 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let btn = document.querySelector("#bttn");
-  let menu = document.querySelector("#nav");
+  // 메뉴 파일 불러오기
+  fetch("menu.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("menu-container").innerHTML = data;
 
-  btn.addEventListener("click", () => {
-      btn.classList.toggle("active");
-      menu.classList.toggle("active");
-  });
+      // 메뉴 파일이 로드된 후 버튼과 메뉴 선택자 설정
+      let btn = document.querySelector("#bttn");
+      let menu = document.querySelector("#nav");
+
+      // 버튼 클릭 이벤트 설정
+      btn.addEventListener("click", () => {
+        btn.classList.toggle("active");
+        menu.classList.toggle("active");
+      });
+    });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -147,5 +156,18 @@ document.querySelectorAll('table.fff tr').forEach((row, index) => {
       });
     }
   });
+});
+})
+
+document.addEventListener("DOMContentLoaded",()=>{
+  document.addEventListener("scroll", function() {
+    const sections = document.querySelectorAll("section div");
+    
+    sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            section.classList.add("section-visible");
+        }
+    });
 });
 })
