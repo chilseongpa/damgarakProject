@@ -2,39 +2,197 @@
 <html lang="ko"xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메인 페이지</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script src="static/js/main/main.js"></script>
+<link rel="stylesheet" href="/static/css/main/main.css">
+<link rel="stylesheet" href="/static/css/common/header.css">
+<link rel="stylesheet" href="/static/css/common/footer.css">
 </head>
 <body>
-		
-		<div>
-			<a href="/loginPage">로그인 페이지 이동</a>
-			<span th:if="${session.userLogin != null}"
-			 th:text="${session.userLogin.usersName}"></span>
-			 
-		<span th:if="${session.userLogin == null}">Guest</span>
-		
-		<h1>[[${session.userLogin != null ? session.userLogin.usersName : 'Guest'}]]님, 환영합니다!</h1>
+<!-- 헤더 부분 -->
+	<div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
+
+<!-- 메인페이지 부분 -->
+	<div style="position: relative; z-index: 1;">
+		<div
+			class="row vh-100 section1 d-flex justify-content-center align-items-center section">
+			<img src="/static/img/main/good.png" alt=""
+				class="d-block w-100 rounded mx-auto d-block img-fluid">
+			<p class="lead">“담가락, 담은 재료에 더한 정성, 최고의 맛을 담~가락.”</p>
 		</div>
 
-		<div>
-		<a href="/lunchMenu">도시락 메뉴 페이지</a>
+		<div
+			class="row vh-100 section2 d-flex justify-content-center align-items-center section">
+			<div id="carouselExampleCaptions"
+				class="carousel slide carousel-fade">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleCaptions"
+						data-bs-slide-to="0" class="active" aria-current="true"
+						aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleCaptions"
+						data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleCaptions"
+						data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+				</div>
+				<div class="carousel-inner text-center">
+					<div class="carousel-item active">
+						<img src="/static/img/main/bibim.png"
+							class="d-block w-100 rounded mx-auto d-block img-fluid" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<p class="lead">“담가락의 도시락 먹으면 기분좋을 락”</p>
+							<a type="button" class="btn btn-outline-secondary">도시락 메뉴
+								보러가기</a>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="/static/img/main/soondooboo.png"
+							class="d-block w-100 rounded mx-auto d-block img-fluid" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<p class="lead">“침 고이네 ...”</p>
+							<a type="button" class="btn btn-outline-secondary">담가락 전체메뉴
+								보기</a>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="/static/img/main/map.png"
+							class="d-block w-100 rounded mx-auto d-block img-fluid" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<p class="lead">"세계 곳곳에 담가락"</p>
+							<a type="button" class="btn btn-outline-secondary">지도 보러가기</a>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button"
+					data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button"
+					data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+
+
 		</div>
-		
-		
-		<div>
-		<a href="/restaurantMenu">식당 메뉴페이지이동</a>
-		</div>	
-		<div>
-		<a href="/UsersMyPage">도시락 메뉴 페이지</a>
+
+		<div
+			class="row vh-100 section3 d-flex justify-content-center align-items-center section">
+
+			<div class="container text-center">
+				<div class="row">
+					<div class="col">
+						<img src="/static/img/main/potato.svg" alt=""
+							class="img-fluid">
+						<p class="lead">
+							담가락의 주방장<br> Mr.Potato
+						</p>
+					</div>
+					<div class="col-6">
+						<p class="lead">
+							담가락의 주방장, Mr. Potato는 선한 마음으로 요리를 창조하는 진정한 요리사입니다.<br> 그의
+							주방에서 만들어지는 음식들은 정성스럽게 담겨, 고객들에게 따뜻함과 건강함을 선사합니다.<br> 매일 새로운
+							도전 속에서도 그는 최고의 맛을 위해 노력하며, 늘 웃음과 함께 요리를 완성합니다.<br> Mr.
+							Potato의 손끝에서 탄생한 음식들은 맛뿐만 아니라 마음까지 채워주는 선한 요리입니다.
+						</p>
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+			<div class="container text-center">
+				<div class="row">
+					<div class="col"></div>
+					<div class="col-6">
+						<p class="lead">
+							담가락의 부주방장, 고든 램지는 소심한 성격과는 달리 요리에서는 누구보다 강렬한 열정을 자랑합니다.<br>
+
+							그의 손길이 닿는 음식들은 세심한 디테일과 대담한 맛의 조화를 이룹니다.<br> 평소에는 조용하고
+							겸손하지만, 주방에서만큼은 누구보다 자신감 넘치는 요리를 선보입니다.<br> 소심한 성격과는 정반대인 그
+							대담한 요리들은, 담가락을 찾는 모든 손님들에게 놀라운 맛을 선사합니다.<br>
+						</p>
+					</div>
+					<div class="col">
+						<img src="/static/img/main/gorden.png" alt="" class="img-fluid">
+						<p class="lead">
+							담가락의 부주방장<br> 고든램지
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
+
+		<div
+			class="row vh-100 section4 d-flex justify-content-center align-items-center section">
+			<div class="container text-center">
+				<div class="row">
+					<p class="lead">
+						DAMGARAK<br> SNS
+					</p>
+				</div>
+				<div class="row row-cols-4">
+					<div class="col">
+						<div class="card" style="width: 18rem;">
+							<img src="/static/img/main/tistoryLogo.png"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">원숭이 블로그</h5>
+								<p class="card-text">우끼끼</p>
+								<a href="#" class="btn btn-primary">블로그 바로가기</a>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card" style="width: 18rem;">
+							<img src="/static/img/main/tistoryLogo.png"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">Mr.Potato Blog</h5>
+								<p class="card-text">Hello !</p>
+								<a href="#" class="btn btn-primary">Let's go</a>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card" style="width: 18rem;">
+							<img src="/static/img/main/tistoryLogo.png"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">김창식 블로그</h5>
+								<p class="card-text">사당. 김창식.</p>
+								<a href="#" class="btn btn-primary">블로그 바로가기</a>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card" style="width: 18rem;">
+							<img src="/static/img/main/tistoryLogo.pngs"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">BlobFish Blog</h5>
+								<p class="card-text">...</p>
+								<a href="#" class="btn btn-primary">Let's go</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<a href="/choiceLunchBox">도시락 창 이동</a>
-		<div>
-		<a href="/lunchBoxMenu">도시락 메뉴 이동</a>
+
+		<div
+			class="section section5">
+			<!-- 푸터 부분 -->
+			<div th:replace="common/footer :: footer"></div>
 		</div>
-		<div>
-		<a href="/payment">도시락 결제 이동</a>
-		</div>
-		
+	</div>
 </body>
 </html>
