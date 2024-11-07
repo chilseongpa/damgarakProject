@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,15 @@
         <script src="static/js/users/login-page/findUserIdOrPassword.js"></script>   
 </head>
 <body>
+
+   <div th:if="${errorMsg}">
+        <script th:inline="javascript">
+            alert([[${errorMsg}]]);
+        </script>
+    </div>
+    
+    
+    
     <section class="head-img-login-section">
     </section>
     <h1 class="title-h1-controll">계정 생성하기</h1>
@@ -23,42 +32,38 @@
             <form action="/signupForm"  id="signupForm" onsubmit="return pwdCheck()" method="post">
                 <span>계정을 생성해주세요.</span>
             <div class="log-up-div">
-                <input type="text" name="usersId" id="usersId" placeholder="ID를 입력해주세요." required>
+                <input type="text" class="input userId" name="usersId" id="usersId" placeholder="ID를 입력해주세요." required>
                 <button class="check-btn" type="button" onclick="idCheck()" >중복확인</button>
             </div>
 
             <div class="input-margin-controll">
-                <input type="text" name="usersName" id="usersName" placeholder="이름을 입력해주세요" required>
-                <input type="password" name="usersPassword" id="usersPassword" placeholder="password를 입력해주세요." required>
+                <input type="text" class="input userName" name="usersName" id="usersName" placeholder="이름을 입력해주세요" required>
+                <input type="password" name="usersPassword" class="input pwd" id="usersPassword" placeholder="password를 입력해주세요." required>
             </div>
           <div class="input-margin-controll">
-                <input type="password" name="passwordCheck" id="passwordCheck" placeholder="password check" required>
+                <input type="password" class="input userPwd" name="passwordCheck" id="passwordCheck" placeholder="password check" required>
             <button class="pwd-double-btn check-btn" type="button" onclick="pwdCheck()" >확인</button>
            </div>
             <div class="log-up-div">
-                <input type="email" name="email" id="usersEmail" placeholder="email을 입력해주셔요" required>
-                <button class="email-btn check-btn" type="button" onclick="" >확인</button>
-            </div>
+                <input type="email"  class="input email" name="email" id="usersEmail" placeholder="email을 입력해주셔요" required>
+                <button class="email-btn check-btn" type="button"  id="emailCheckBtn" >확인</button>
+            </div> 
 
             <div class="log-up-div">
-                <input type="text" name="authCode" id="authCode" placeholder="인증번호를 입력해주세요" required>
-                <button type="button" class="auth-email-btn check-btn">인증</button>
+                <input type="text" class="input authCode" name="authCode" id="authCode" placeholder="인증번호를 입력해주세요" required>
+                <button type="button" class="auth-email-btn check-btn" id="authButton">인증</button>
             </div>
 
             <div class="input-radio-role">
                <p>가입 유형 : </p>
-      <label for=""><input type="radio" name="usersType" value="직원">직원</label>
-                <label for=""><input type="radio" name="usersType" value="고객">고객</label>
+      <label for=""><input type="radio" class="role" name="usersType" value="직원">직원</label>
+                <label for=""><input type="radio" class="role" name="usersType" value="고객">고객</label>
   
-            </div>
-                    
+            </div>      
                 <button type="submit" class="sign-sum-btn">Sign Up</button>
   
-
-
             </form>
         </div>
-        
         <div class="form-container sign-in-container">
             <form action="/inrollform" id="inrollform" method="post">
                 <h1>로그인</h1>
@@ -72,7 +77,6 @@
                     <span class="info-icon" data-bs-toggle="modal" data-bs-target="#find-pawword-modal"><small>&nbsp; 비밀번호 찾기</small></span>
                
                 </div>
-
                 <button>로그인</button>    
             </form>
         </div>
@@ -119,11 +123,9 @@
     </div>
 </div>
 
-
-
     <!--비밀번호 찾기 모달-->
 <div class="modal fade" id="find-pawword-modal" tabindex="-1" aria-labelledby="findIdModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"> <!-- 여기에 modal-dialog-centered 추가 -->
+    <div class="modal-dialog modal-dialog-centered"> 
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="findpwsModalLabel">비밀번호 찾기</h5>
@@ -134,9 +136,8 @@
                     <div class="id-moal-email-search">
                         <form action="" class="find-id-form">
                             <input type="text" placeholder="이름을 입력해주세요" id="find-pwd-name" class="user-name-chk" required>
-                            <input type="text" placeholder="이름을 입력해주세요" class="user-id-chk" required>
-                            <input type="text" placeholder="가입한 이메일을 입력해주세요" id="find-pwd-mail" class="user-mail-chk">
-                            <!-- <button type="button" onclick="findIdPwd()" class="btn-confirm">확인</button>  -->
+                            <input type="text" placeholder="아이디를 입력해주세요" class="user-id-chk" required>
+                            <input type="email" placeholder="가입한 이메일을 입력해주세요" id="find-pwd-mail" class="user-mail-chk">
                         </form>
                     </div>
                 </div>
@@ -147,28 +148,6 @@
         </div>
     </div>
 </div>
-
-    
-    <script>
-        function validatePasswordMatch() {
-            // 비밀번호와 비밀번호 확인 필드의 값을 가져옴
-            const password = document.getElementById('usersPassword').value;
-            const passwordCheck = document.getElementById('passwordCheck').value;
-            const message = document.getElementById('passwordMismatchMessage');
-            
-            // 비밀번호가 서로 일치하는지 확인
-            if (password !== passwordCheck) {
-                // 일치하지 않으면 에러 메시지 표시 및 제출 막기
-                message.style.display = 'block';
-                return false;
-            } else {
-                // 일치하면 메시지 숨기고 제출 허용
-                message.style.display = 'none';
-                return true;
-            }
-        }
-    </script>
-  
-    
+      
 </body>
 </html>

@@ -21,10 +21,7 @@ public class MenuController {
 	
 	
 	
-	@GetMapping("/UsersMyPage")
-    public String userMyPage(){
-    	return "users/usersMyPage";
-    }	
+		
     
 	@GetMapping("/lunchMenu")
 	public String lunchMenuPage(HttpSession session){
