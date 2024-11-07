@@ -82,14 +82,29 @@ input {
     flex-direction: column ;
     height: 100% ;
     text-align: center ;
-    
 }
-#signupForm input {
+#signupForm .input {
     background-color: #eee ;
     border: none ;
-    padding: 12px 15px !important ;
-    margin: 5px 0 !important;
-    width: 74% !important; 
+    padding: 12px 15px;
+    margin: 5px 0 ;
+    width: 74% ; 
+}
+#signupForm .role{
+	width: 20%;
+	padding: 8px 16px;
+	margin-left: 5px;
+	margin-top: -10px !important;
+}
+#signupForm .role label{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content:center;
+	gap:10px !important;
+	padding:5px;
+	margin-top: -20px; 
+	
 }
 /*     form   */ 
 .container {
@@ -194,7 +209,6 @@ input {
 .container.right-panel-active .overlay-right {
     transform: translateX(20%);
 }
-/* input 추가된 것들 */
 .check-btn{
     padding: 0px;
     width: 60px;
@@ -207,23 +221,18 @@ input {
 display:flex;
 justify-content: center;
 align-items: center;
-margin-top: -5%;
 margin-left: -20%;
+margin-bottom: -8%;
+margin-top: -20px;
 width: 100%;
-padding: 0px;
 }
-
-.input-radio-role label {
-margin-top: 15px;
-}
-
-.input-radio-role label p {
-margin: 0; 
-display: inline;
+.input-radio-role  p {
+	display: block;
+	margin-top: 26px;
+	margin-right: 5px;
 }
         
 .input-margin-controll input{
-    
  float: left;
  width: 70;
 }
@@ -234,11 +243,6 @@ display: inline;
 #signupForm button{
 	margin-top: 15px;
 }
-
-    <!--
-    background-image: url('resources/20241025_142346.png');
-    -->
-
 
 .head-img-login-section{
     position: absolute;
@@ -260,7 +264,7 @@ display: inline;
     margin-bottom: 5%;
 }
 
-    input::placeholder {
+ input::placeholder {
        font-size: 0.8em !important; 
         color: #999; 
         opacity: 1; 

@@ -119,4 +119,9 @@ public class UserController {
 			return ResponseEntity.ok("true");
 		}				
 	}
+	@GetMapping("/UsersMyPage")
+    public String userMyPage(){
+    	return "users/usersMyPage";
+    }
+	
 }
