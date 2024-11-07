@@ -3,15 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.damgarak.post.model.mapper.ManagerMapper">
-	<!-- 건의함 조회 -->
-<<<<<<< HEAD
-	<select id="selSuggest" resultType="Post">
-=======
-	<select id="selSuggest" resultType="int">
->>>>>>> damgarak
-		SELECT P.POST_NO, U.USERS_NAME, P.TITLE, P.CREATION_DATE
-		FROM POST P
-		JOIN USERS U ON P.USERS_ID = U.USERS_ID
+	
+	<select id="selSuggest" resultType="SuggestionDTO">
+	    SELECT P.POST_NO, P.TITLE, P.CREATION_DATE, U.USERS_ID, U.USERS_NAME, U.EMAIL
+	    FROM POST P
+	    JOIN USERS U ON P.USERS_ID = U.USERS_ID
 	</select>
 
+
+	<select id="selEmp" resultType="SuggestionDTO">
+	    SELECT U.USERS_ID, U.USERS_NAME, U.EMAIL, J.JOB_CODE, J.JOB_NAME
+	    FROM USERS U
+	    JOIN EMPLOYEE E ON E.USERS_ID = U.USERS_ID
+	    JOIN JOB_CODE J ON J.JOB_CODE = E.JOB_CODE
+	</select>
+	
 </mapper>

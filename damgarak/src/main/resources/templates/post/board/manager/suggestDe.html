@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,35 +13,33 @@
     <p style="text-align: center;">직원 건의함</p>
     <br>
     
-    <button class="btn" id="bttn">
-      &#9776;
-    </button>
+    <button class="btn" id="bttn">&#9776;</button>
     <div id="menu-container">
-    	<th:block th:insert="~{post/board/manager/menu2 :: nav}"></th:block>
+        <th:block th:insert="~{post/board/manager/menu2 :: nav}"></th:block>
     </div>
 
-      <div class="title-1">
+    <div class="title-1">
         <div class="title">
-          <br>
+            <br>
             <table class="table">
-              <thead class="table-light">
-                <tr>
-                  <th id="num">순번</th>
-                  <th id="client">직원 이름</th>
-                  <th id="titleName">제목</th>
-                  <th id="date">날짜</th>
-                </tr>
-              </thead>
-              <tbody>
-	            <tr th:each="post : ${post}">
-				    <td th:text="${post.post_No}">순번</td>
-				    <td th:text="${post.user_Id}">작성자</td>
-				    <td>
-				        <a th:href="@{'/postDetail/' + ${post.post_No}}" th:text="${post.title}">제목</a>
-				    </td>
-				    <td th:text="${#dates.format(post.creation_Date, 'yyyy-MM-dd')}">작성일</td>
-				</tr>
-              </tbody>
+                <thead class="table-light">
+                    <tr>
+                        <th id="num">순번</th>
+                        <th id="client">직원 아이디</th>
+                        <th id="titleName">제목</th>
+                        <th id="date">날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="post : ${postList}">
+                        <td th:text="${post.postNo}"></td>
+                        <td th:text="${post.usersName != null ? post.usersName : '사용자 정보 없음'}"></td>
+                        <td>
+                            <a th:href="@{/postDetail/{postNo}(postNo=${post.postNo})}" th:text="${post.title}">제목</a>
+                        </td>
+                        <td th:text="${#dates.format(post.creationDate, 'yyyy-MM-dd')}"></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>

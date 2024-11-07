@@ -1,7 +1,6 @@
 package com.kh.damgarak.users.model.vo;
 
 import java.sql.Date;
-
 import lombok.Data;
 
 @Data
