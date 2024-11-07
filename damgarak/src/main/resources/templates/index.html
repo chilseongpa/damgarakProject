@@ -194,5 +194,13 @@
          <div th:replace="common/footer :: footer"></div>
       </div>
    </div>
+    
+     <div th:if="${successMsg}">
+        <script th:inline="javascript">
+            alert([[${successMsg}]]);
+        </script>
+    </div>
+   
+   
 </body>
 </html>

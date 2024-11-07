@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.damgarak.emailauth.service.EmailAuthService;
 import com.kh.damgarak.users.model.vo.Users;
@@ -68,29 +69,30 @@ public class UserController {
 			return ResponseEntity.ok(userId); 
 		}		
 	} 
-	
-	
 	@GetMapping("/loginPage")
-	public String userLoginPage(){
+	public String userLoginPage(HttpSession session){
 		return "users/loginOrSingup";
 	}
 	
 	@PostMapping("/inrollform")
-	public String userLogin(Users user, HttpSession session, Model model){
-			
+	public String userLogin(Users user, HttpSession session, Model model, 
+			RedirectAttributes redirectAttributes){
+		
 		Users userLogin = userService.userLogin(user);
 		
 		if(userLogin != null && passwordEncoder.matches(user.getUsersPassword(), userLogin.getUsersPassword())) {
 			session.setAttribute("userLogin", userLogin);
+			redirectAttributes.addFlashAttribute("successMsg", user.getUsersId() + "님 환영합니다.");
 			return "redirect:/";
 		}else{
-			model.addAttribute("loginError", "아이디 또는 비밀번호가 틀렸습니다");	
+	        redirectAttributes.addFlashAttribute("errorMsg", "아이디 또는 비밀번호가 틀렸습니다");
+			return "redirect:/loginPage"; 
 		}
-		return "redirect:/loginOrSingup";
 	}
-	
+
 	@PostMapping("/signupForm")	// Model : org.springframework.ui.Model; import하기! 
-	public String userSingup(Users user, Model model ){
+	public String userSignp(Users user, Model model,
+			RedirectAttributes redirectAttributes){
 		
 		String encoderPassword = passwordEncoder.encode(user.getUsersPassword());
 		user.setUsersPassword(encoderPassword);
@@ -98,32 +100,14 @@ public class UserController {
 		int singup =  userService.userSingup(user);
 		
 		if(singup > 0) {
-			model.addAttribute("message", "회원가입이 완료 되었습니다" );
-			return "redirect:/login/loginOrSingup";
+			redirectAttributes.addFlashAttribute("successMsg", "회원가입에 성공했습니다");	
+			return "redirect:/loginPage";
 		}else {
-			model.addAttribute("errMessage", "회원가입이 실패했습니다" );
-			return "redirect:/"; 
+			redirectAttributes.addFlashAttribute("errorMsg", "회원가입에 실패했습니다");
+			return "redirect:/loginPage"; 
 		}
-		/*
-		 * 리다이렉트(redirect) vs 뷰 이름 반환:
-		return "redirect:/login/loginOrLogup";: 
-		리다이렉트는 서버에 새로운 요청을 보내서 URL을 변경하고, 
-		모델에 추가된 데이터(message, errMessage)는 리다이렉트 이후의 뷰에 전달되지 않습니다.
-		
-		return "login/loginOrLogup";: 뷰 이름을 직접 반환하는 경우, 
-		리다이렉트 없이 현재 요청에서 뷰를 렌더링합니다. 이때,
-		모델에 추가된 데이터가 그대로 전달되어 에러 메시지와 같은 정보가 뷰에서 유지됩니다.
-		실패 시 메시지 유지 여부:
-
-		redirect:/login/loginOrLogup을 사용하면 실패 시 모델에 추가된 errMessage가 뷰에 전달되지 않아서,
-		 회원가입 실패 메시지를 표시할 수 없습니다.
-		login/loginOrLogup로 뷰 이름을 반환하면, 
-		실패 메시지가 뷰에 전달되어 사용자가 회원가입 실패 이유를 확인할 수 있습니다.
-		즉, 리다이렉트를 사용하면 URL이 새로고침되지만 모델 속성(message, errMessage)이 유지되지 않고,
-		 뷰 이름을 반환하면 모델 속성이 그대로 유지됩니다.
-		 * 
-		 * */	
 	}
+	
 	@GetMapping("/idCheck.me")
 	public ResponseEntity<String> UserIdCheck(String usersId){
 		
@@ -135,4 +119,9 @@ public class UserController {
 			return ResponseEntity.ok("true");
 		}				
 	}
+	@GetMapping("/UsersMyPage")
+    public String userMyPage(){
+    	return "users/usersMyPage";
+    }
+	
 }

@@ -6,7 +6,7 @@
 	<select id="loginUser" resultType="Users">
 		select * 
 		from USERS
-		where USERS_ID = #{usersId} AND USERS_PASSWORD = #{usersPassword} AND USERS_STATE = 'n'
+		where USERS_ID = #{usersId}  AND USERS_STATE = 'n'
  	</select>	
  	
 		<insert id="logupUser" parameterType="Users">
