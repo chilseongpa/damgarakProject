@@ -69,7 +69,10 @@ public class ManagerController {
 	public String recommendPage() {
 		return "post/board/manager/recommend";
 	}
-
+	@GetMapping("/suggestDetail")
+	public String suggestDetailPage() {
+		return "post/board/manager/suggestDetail";
+	}
 	@GetMapping("/notice")
 	public String noticePage() {
 		return "post/board/manager/notice";

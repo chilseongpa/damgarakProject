@@ -26,4 +26,8 @@ public class ManagerService {
 	public List<SuggestionDTO> selEmp(Users user){
 		return managerMapper.selEmp(user);
 	}
+	
+	public List<Post> insertPost(Post post){
+		return managerMapper.insertPost(post);
+	}
 }

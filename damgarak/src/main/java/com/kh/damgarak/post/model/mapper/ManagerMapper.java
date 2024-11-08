@@ -13,5 +13,7 @@ public interface ManagerMapper {
 	List<SuggestionDTO> selSuggest(Post post);
 
 	List<SuggestionDTO> selEmp(Users user);
+	
+	List<Post> insertPost(Post post);
 		
 }

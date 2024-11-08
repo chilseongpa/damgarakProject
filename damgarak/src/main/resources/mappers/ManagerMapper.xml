@@ -18,4 +18,10 @@
 	    JOIN JOB_CODE J ON J.JOB_CODE = E.JOB_CODE
 	</select>
 	
+	<insert id="insertPost">
+		INSERT INTO POST 
+		(POST_NO, POST_COUNT, TITLE, CONTENT, CREATION_DATE, MODIFICATION_DATE, DELETE_STATE, USERS_ID, CATEGORY_CODE)
+		VALUES (seq_b.NEXTVAL, 0, #{title}, #{content}, SYSDATE, SYSDATE, 'N', #{userId}, 01)
+	</insert>
+	
 </mapper>
