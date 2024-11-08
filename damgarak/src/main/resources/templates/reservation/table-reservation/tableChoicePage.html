@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Damgarak</title>
     <link rel="stylesheet" href="/static/css/reservation/table-reservation/tableChoicePage.css">  
+	<script src="/static/js/reservation/table-reservation/tableChoicePage.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <main>
@@ -35,7 +37,7 @@
         <div class="chair-a-2"></div>
 
         <div>
-            <button>
+            <button value="A-1">
                 <p>A-1</p>
                 <p>2인 테이블</p>
             </button>
@@ -48,7 +50,7 @@
         <div class="chair-a-2"></div>
 
             <div>
-            <button>
+            <button value="A-2">
                 <p>A-2</p>
                 <p>2인 테이블</p>
             </button>
@@ -59,7 +61,7 @@
         <div class="chair-a-1"></div>   
         <div class="chair-a-2"></div>
         <div>
-            <button>
+            <button value="A-3">
                 <p>A-3</p>
                 <p>2인 테이블</p>
             </button>
@@ -70,7 +72,7 @@
         <div class="chair-a-1"></div>   
         <div class="chair-a-2"></div>
         <div>
-            <button>
+            <button value="A-4">
                 <p>A-4</p>
                 <p>2인 테이블</p>
             </button>
@@ -81,7 +83,7 @@
         <div class="chair-a-1"></div>   
         <div class="chair-a-2"></div>
         <div>
-            <button>
+            <button value="A-5">
                 <p>A-5</p>
                 <p>2인 테이블</p>
             </button>
@@ -97,7 +99,7 @@
         <div class="chair-b-2"></div>
         <div class="chair-b-3"></div>   
         <div class="chair-b-4"></div>
-        <button>
+        <button value="B-1">
             <p>B-1</p>
             <p>4인 테이블</p>
         </button>
@@ -108,7 +110,7 @@
         <div class="chair-b-2"></div>
         <div class="chair-b-3"></div>   
         <div class="chair-b-4"></div>
-        <button>
+        <button value="B-2">
             <p>B-2</p>
             <p>4인 테이블</p>
         </button>
@@ -120,7 +122,7 @@
         
         <div class="chair-b-3"></div>   
         <div class="chair-b-4"></div>
-        <button>
+        <button value="B-3">
             <p>B-3</p>
             <p>4인 테이블</p>
         </button>
@@ -131,7 +133,7 @@
         
         <div class="chair-b-3"></div>   
         <div class="chair-b-4"></div>
-        <button>
+        <button value="B-4">
             <p>B-4</p>
             <p>4인 테이블</p>
         </button>
@@ -143,7 +145,7 @@
     
     <div class="chair-b-3"></div>   
     <div class="chair-b-4"></div>
-         <button>
+         <button value="B-5">
             <p>B-5</p>
             <p>4인 테이블</p>
         </button>
@@ -160,7 +162,7 @@
         <div class="chair-b-2"></div>
         <div class="chair-b-3"></div>   
         <div class="chair-b-4"></div>
-        <button>
+        <button value="C-1">
             <p>C-1</p>
             <p>4인 테이블</p>
         </button>
@@ -171,7 +173,7 @@
         <div class="chair-b-2"></div>
         <div class="chair-b-3"></div>   
         <div class="chair-b-4"></div>
-        <button>
+        <button value="C-2">
             <p>C-2</p>
             <p>4인 테이블</p>
         </button>
@@ -181,7 +183,7 @@
         <div class="chair-b-2"></div>
         <div class="chair-b-3"></div>   
         <div class="chair-b-4"></div>
-        <button>
+        <button value="C-3">
             <p>C-3</p>
             <p>4인 테이블</p>
         </button>
@@ -191,7 +193,7 @@
         <div class="chair-b-2"></div>
         <div class="chair-b-3"></div>   
         <div class="chair-b-4"></div>
-        <button>
+        <button value="C-4">
             <p>C-4</p>
             <p>4인 테이블</p>
         </button>
@@ -201,7 +203,7 @@
         <div class="chair-b-2"></div>
         <div class="chair-b-3"></div>   
         <div class="chair-b-4"></div>
-        <button>
+        <button value="C-5">
             <p>C-5</p>
             <p>4인 테이블</p>
         </button>
@@ -214,7 +216,7 @@
         <div class="table-D">
             <div class="chair-a-1"></div>   
             <div class="chair-a-2"></div>
-            <button>
+            <button value="D-1">
                 <p>D-1</p>
                 <p>2인 테이블</p>
             </button>
@@ -222,7 +224,7 @@
         <div class="table-D">
             <div class="chair-a-1"></div>   
             <div class="chair-a-2"></div>
-            <button>
+            <button value="D-2">
                 <p>D-2</p>
                 <p>2인 테이블</p>
             </button>
@@ -230,7 +232,7 @@
         <div class="table-D">
             <div class="chair-a-1"></div>   
             <div class="chair-a-2"></div>
-            <button>
+            <button value="D-3">
                 <p>D-3</p>
                 <p>2인 테이블</p>
             </button>
@@ -238,7 +240,7 @@
         <div class="table-D">
             <div class="chair-a-1"></div>   
             <div class="chair-a-2"></div>
-            <button>
+            <button value="D-4">
                 <p>D-4</p>
                 <p>2인 테이블</p>
             </button>
@@ -247,7 +249,7 @@
       <div class="table-D">
             <div class="chair-a-1"></div>   
             <div class="chair-a-2"></div>
-            <button>
+            <button value="D-5">
                 <p>D-5</p>
                 <p>2인 테이블</p>
             </button>

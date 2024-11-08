@@ -28,6 +28,20 @@ onload = function () {
         event.preventDefault();
        
     });
+    function sendAuthCode(email){
+        $.ajax({
+            url: '/mail',  
+            type: 'POST',
+            data: { email: email },
+            success: (result) => {
+                alert('인증 번호가 발송되었습니다.');
+                startCountdown(document.querySelector('#authButton')); 
+        },
+            error: (err) => {
+                console.log(err);
+            }
+        });
+    }
     
 document.querySelector('.email-btn').onclick = () => {
     const usersEmail = document.getElementById('usersEmail').value;
@@ -40,18 +54,7 @@ document.querySelector('.email-btn').onclick = () => {
             if (response === "사용불가") {
                 alert('이미 사용 중인 이메일입니다.');
             } else {
-                $.ajax({
-                    url: '/mail',   // 인증 번호 발송 엔드포인트
-                    type: 'POST',
-                    data: { email: usersEmail },
-                    success: (result) => {
-                        alert('인증 번호가 발송되었습니다.');
-                        startCountdown(document.querySelector('#authButton')); // 인증번호 발송 후 카운트다운 시작
-                    },
-                    error: (err) => {
-                        console.log(err);
-                    }
-                });
+                sendAuthCode(email);
             }
         },
         error: (err) => {
@@ -137,8 +140,6 @@ function pwdCheck(event) {
 document.getElementById('signupForm').onsubmit = function(event) {
     return pwdCheck(event);  // pwdCheck 함수 호출, 조건에 따라 폼 제출 여부 결정
 };
-
-// 추가한 부분
 
 let isIdChecked = false;
 

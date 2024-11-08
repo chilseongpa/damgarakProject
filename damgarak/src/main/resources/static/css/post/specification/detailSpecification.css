@@ -1,0 +1,39 @@
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.order-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+.order-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+.order-info {
+    margin-bottom: 1rem;
+}
+.order-info p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.order-table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+.order-table th, .order-table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+.total-row {
+    font-weight: bold;
+}
