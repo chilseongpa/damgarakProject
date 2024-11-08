@@ -23,4 +23,5 @@ public class ManagerService {
         int result = managerMapper.selectSuggest(post);
         return null; // 실제 구현에 맞게 반환할 데이터 설정
     }
+    
 }
