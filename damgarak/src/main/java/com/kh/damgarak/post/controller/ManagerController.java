@@ -70,4 +70,10 @@ public class ManagerController {
 	public String jgInfoPage() {
 		return "post/board/manager/jgInfo";
 	}
+	@GetMapping("/mySuggest")
+	public String mySuggestPage() {
+		return "post/board/emp/mySuggest";
+	}
+	
+	
 }

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>내 건의함 확인</title>
-  <link rel="stylesheet" href="static/css/post/boardcss/post3.css">
+  <link rel="stylesheet" href="static/css/post/board/post1.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="static/js/post/board/board1.js"></script>
@@ -30,23 +30,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <tr>
-              <th><a href="suggestDetail.html" class="aTag">1</a></th>
-              <th><a href="suggestDetail.html" class="aTag">월급 올려주세요</a></th>
-              <th><a href="suggestDetail.html" id="date1">2024-10-12</a></th>
-            </tr>
-          </tr>
-          <tr>
-            <th><a href="" class="aTag">2</a></th>
-            <th><a href="" class="aTag">월급 올려달라고 상놈아</a></th>
-            <th><a href="" id="date1">2024-10-13</a></th>
-          </tr>
-          <tr>
-            <th><a href="" class="aTag">3</a></th>
-            <th><a href="" class="aTag">퇴사함 ㅅㄱ</a></th>
-            <th><a href="" id="date1">2024-10-14</a></th>
-          </tr>
+        <tbody>
+    <c:forEach var="post" items="${posts}">
+        <tr>
+            <th><a href="suggestDetail.html?postNo=${post.postNo}" class="aTag">${post.postNo}</a></th>
+            <th><a href="suggestDetail.html?postNo=${post.postNo}" class="aTag">${post.title}</a></th>
+            <th><a href="suggestDetail.html?postNo=${post.postNo}" id="date1">${post.creationDate}</a></th>
+        </tr>
+    </c:forEach>
+	</tbody>
         </tbody>
         
       </table>

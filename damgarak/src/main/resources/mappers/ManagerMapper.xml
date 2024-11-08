@@ -9,5 +9,6 @@
 		FROM POST P
 		JOIN USERS U ON P.USERS_ID = U.USERS_ID;
 	</select>
+	
 
 </mapper>
