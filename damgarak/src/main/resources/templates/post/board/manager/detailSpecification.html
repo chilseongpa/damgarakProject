@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="detailSpecification.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container mt-5 " >
+        <div class="order-container shadow">
+            <div class="order-title">상세주문</div>
+
+            <div class="order-info">
+                <p><strong>주문번호:</strong> 123456</p>
+                <p><strong>주문자(고객):</strong>양민욱</p>
+            </div>
+
+            <h5 class="mt-4">주문내역</h5>
+
+            <table class="table order-table">
+                <thead>
+                    <tr>
+                        <th>메뉴명</th>
+                        <th>개수</th>
+                        <th>결제방법</th>
+                        <th>금액</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>불고기</td>
+                        <td>2</td>
+                        <td>카드</td>
+                        <td>20,000원</td>
+                    </tr>
+                    <tr>
+                        <td>김밥</td>
+                        <td>3</td>
+                        <td>현금</td>
+                        <td>15,000원</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="1" class="text-right">합계</td>
+                        <td colspan="3">35,000원</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
