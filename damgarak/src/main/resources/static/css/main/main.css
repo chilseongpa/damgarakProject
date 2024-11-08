@@ -71,18 +71,20 @@ body {
 
 .section3 .lead {
 	color: white;
-	line-height: 50px;
 	font-size: 18px;
-}
-
-.section3 .lead:nth-child(1) {
-	margin-top: 40px;
+	line-height: 50px;
 }
 
 .card-img-top {
 	align-items: center;
 	width: 80px;
 	margin: 40px;
+}
+.col-6{
+	margin: auto;
+}
+.section3 .container:first-child {
+	margin-top: 120px;
 }
 
 .card {
