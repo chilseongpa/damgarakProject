@@ -31,4 +31,18 @@ TO_DATE(#{reservationDate, jdbcType=VARCHAR}, 'yyyy-MM-dd HH24:MI'),
 	#{tableNo}
 	)
 	</insert> 
+	
+	<select id="searchReservationTable" resultType="String">
+   SELECT 
+        TR.TABLE_NO
+    FROM 
+        RESERVATION R
+    JOIN 
+        TABLE_RESERVATION TR
+    ON 
+        R.RESERVATION_NO = TR.RESERVATION_NO
+    WHERE
+        TO_CHAR(R.RESERVATION_DATE, 'YYYY-MM-DD HH24:MI') = #{reservationSearch}
+
+	</select>
 </mapper>

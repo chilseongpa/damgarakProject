@@ -3,7 +3,7 @@ import com.kh.damgarak.reservation.model.vo.Reservation;
 import com.kh.damgarak.tableReservation.model.vo.TableReservation;
 
 import lombok.Data;
-import lombok.Getter;
+
 
 @Data
 public class ChoiceTableReservationDTO {

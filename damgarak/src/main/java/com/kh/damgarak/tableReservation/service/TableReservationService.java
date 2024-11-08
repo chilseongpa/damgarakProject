@@ -25,7 +25,6 @@ public class TableReservationService {
 		map.put("reservationDate",choiceReservation.getReservation().getReservationDate());
 		map.put("reservationStatus",choiceReservation.getReservation().getReservationStatus());
 		
-		
 		int rResult = mapper.createReservation(map);	
 		int tResult = mapper.createTableReservation(choiceReservation.getTableReservation());
 		
@@ -38,7 +37,6 @@ public class TableReservationService {
 
 	public List<String> searchReservationTable(String reservationSearch) {
 			
-		
 		return mapper.searchReservationTable(reservationSearch);
 	}
 	

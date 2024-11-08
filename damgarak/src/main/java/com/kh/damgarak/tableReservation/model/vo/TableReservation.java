@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TableReservation {
 	
-//	private int reservationNo;
-//	private String tableNo;
+
 	private String tableNo;
 }

@@ -80,7 +80,7 @@ function tableReservationHandle(){
         }    
     },
     error:function(err){
-        alert('오류가 발생했습니다');
+        alert('오류가 발생했습니다', err);
     }
     });
 }
@@ -111,8 +111,14 @@ function searchTableReservation(date, time){
                 
                 if(resultTable.includes(tableNo)){
                     button.disabled = true;
-                    button.style.backgroundColor = "#ccc";
-                    button.title = "이미 예약된 테이블입니다."
+             
+                    button.querySelectorAll("p").forEach(p => {
+                        p.style.color = "#222"; 
+                        p.style.textDecoration = "line-through"; 
+                    });
+                    
+                    button.classList.add("reserved");
+
                 }else{
                     button.addEventListener("click", handleTableSelection);
                 }

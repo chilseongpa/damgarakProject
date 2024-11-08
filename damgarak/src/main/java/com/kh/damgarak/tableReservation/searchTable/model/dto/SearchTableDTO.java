@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class SearchTableDTO {
-	private String data;
+	private String date;
 	private String time; 
 }
