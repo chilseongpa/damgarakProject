@@ -21,10 +21,8 @@ public class ReservationController {
 	public String reservationTableState(@RequestParam("date") String date,
             @RequestParam("time") String time,
             Model model){
-		
 	     model.addAttribute("date", date);
 	     model.addAttribute("time", time);
-	 
 		return "/reservation/table-reservation/tableChoicePage";
 	}
 	
