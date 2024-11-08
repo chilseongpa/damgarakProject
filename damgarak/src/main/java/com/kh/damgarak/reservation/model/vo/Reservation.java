@@ -1,15 +1,15 @@
 package com.kh.damgarak.reservation.model.vo;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
 public class Reservation {
-	private String reservationNumber;
-	private String usersId;
-	private Date reservationDate;
+//	private int reservationNo;
+//	private String usersId;
+//	private String reservationDate;
+//	private String reservationStatus;
+	private String reservationDate;
 	private String reservationStatus;
 }

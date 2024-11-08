@@ -1,9 +1,9 @@
 package com.kh.damgarak.tableReservation.choiceTableReservation.model.dto;
 import com.kh.damgarak.reservation.model.vo.Reservation;
 import com.kh.damgarak.tableReservation.model.vo.TableReservation;
-import com.kh.damgarak.users.model.vo.Users;
 
 import lombok.Data;
+import lombok.Getter;
 
 @Data
 public class ChoiceTableReservationDTO {
