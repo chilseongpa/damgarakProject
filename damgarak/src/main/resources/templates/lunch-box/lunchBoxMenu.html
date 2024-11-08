@@ -50,6 +50,13 @@
             <!-- 메뉴 리스트 -->
             <div class="menu-list" id="menuList">
                 <!-- JavaScript로 메뉴 항목 생성 -->
+                
+                <div class="menu-items">
+	                <p th:each="menu : ${mainMenus}">
+	                	[[${menu.menuName}]]
+	                </p>	
+                </div>
+                
             </div>
 
             <!-- 페이지네이션 -->
@@ -64,6 +71,7 @@
             <h3>주문 요약</h3>
             <div id="orderList">
                 <!-- JavaScript로 주문 항목 추가 -->
+                
             </div>
             <div class="order-total">
                 <p>총 칼로리: <span id="totalCalories">0 kcal</span></p>
@@ -78,7 +86,7 @@
             <button class="place-order-btn" onclick="location.href='/payment'">주문하기</button>
         </div>
     </div>
-
+<!-- 
     <script>
         function proceedToCheckout() {
             const totalWithoutTax = orderList.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -90,5 +98,6 @@
             window.location.href = "/payment";
         }
     </script>
+ -->    
 </body>
 </html>
