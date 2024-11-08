@@ -5,7 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
 import com.kh.damgarak.post.model.vo.Post;
@@ -52,6 +57,44 @@ public class ManagerController {
 		
 		return "post/board/manager/empInfo";
 	}
+	@GetMapping("/suggestDetail")
+	public String showSuggestDetail(@RequestParam int postNo, Model model) {
+	    List<SuggestionDTO> postDetails = mService.selsugDetail(postNo);
+
+	    if (!postDetails.isEmpty()) {
+	        model.addAttribute("post", postDetails.get(0));
+	    } else {
+	        model.addAttribute("error", "해당 게시물을 찾을 수 없습니다.");
+	    }
+	    
+	    return "post/board/manager/suggestDetail";
+	}
+	@GetMapping("/empDetails")
+	public String showempDetails(@RequestParam("usersId") String usersId, Model model) {
+	    List<SuggestionDTO> userDetails = mService.selempDetails(usersId);
+
+	    if (!userDetails.isEmpty()) {
+	        model.addAttribute("user", userDetails.get(0));  // user 객체 추가
+	    } else {
+	        model.addAttribute("error", "해당 게시물을 찾을 수 없습니다.");
+	    }
+
+	    return "post/board/manager/empDetails";
+	}
+	@ResponseBody
+	@PostMapping("/updateUser")
+	public String updateUser(@RequestBody SuggestionDTO user) {
+	    boolean isUpdated = mService.updateUserInfo(user.getUsersId(), user.getUsersName(), user.getEmail(), user.getJobCode());
+
+	    if (isUpdated) {
+	        return "ok";
+	    } else {
+	        return "fail";
+	    }
+
+	    // 직원 상세 정보 페이지로 리다이렉트
+	    // return "redirect:/manager/empDetails?usersName=" + usersName;
+	}
 
 	@GetMapping("/saleSheet")
 	public String salePage() {
@@ -69,10 +112,6 @@ public class ManagerController {
 	public String recommendPage() {
 		return "post/board/manager/recommend";
 	}
-	@GetMapping("/suggestDetail")
-	public String suggestDetailPage() {
-		return "post/board/manager/suggestDetail";
-	}
 	@GetMapping("/notice")
 	public String noticePage() {
 		return "post/board/manager/notice";
@@ -89,8 +128,5 @@ public class ManagerController {
 	public String passPage() {
 		return "post/board/manager/pass";
 	}
-	@GetMapping("/jgInfo")
-	public String jgInfoPage() {
-		return "post/board/manager/jgInfo";
-	}
+
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>내 건의함 확인</title>
+  <title>건의함 확인</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="/static/js/post/board/board2.js"></script>
@@ -21,32 +21,31 @@
   <div class="title-1">
     <div class="title">
       <div style="text-align: right;">
-        <h5>조회 1992 <!--post_count--> </h5>
-        <h5>2024-10-23 16:00 <!--creation_date--> </h5>
+        <h5 th:text="'조회 ' + ${post.postCount}">조회수</h5>
+        <h5 th:text="${#dates.format(post.creationDate, 'yyyy-MM-dd HH:mm')}">작성 날짜</h5>
        	<br>
       </div>
       <table id="TBA">
         <thead>
           <tr>
             <th class="test2">제목</th>
-            <th class="test2">최상급 재료 사주세요 <!--title 삽입--> </th>
+            <th class="test2" th:text="${post.title}">제목</th>
             <th class="test2">작성자</th>
-            <th class="test2">양민욱 <!--usersName 삽입 --> </th>
+            <th class="test2" th:text="${post.usersName}">작성자 이름</th>
+
           </tr>
         </thead>
         <tbody>
           <tr>
             <th class="test2">내용</th>
-            <th id="lucky">
-              재료좀 사주세요 제발좀요 <!--content 삽입-->
-            </th>
+            <th id="lucky" th:text="${post.content}">내용</th>
           </tr>
         </tbody>
       </table>
       <br><br><br>
       <div>
-        <a href="" class="btn btn-secondary" id="navi">뒤로가기</a>
-        <a href=""class="btn btn-primary" id="navi">수정</a>
+        <a href="javascript:history.back()" class="btn btn-secondary" id="navi">뒤로가기</a>
+        <a th:href="@{/manager/suggestEdit(postNo=${post.postNo})}" class="btn btn-primary" id="navi">수정</a>
       </div>
       <br><br>
       <hr style="border: none; height: 2px; background-color: blue;">

@@ -35,7 +35,7 @@
                         <td th:text="${post.postNo}"></td>
                         <td th:text="${post.usersName != null ? post.usersName : '사용자 정보 없음'}"></td>
                         <td>
-                            <a th:href="@{/postDetail/{postNo}(postNo=${post.postNo})}" th:text="${post.title}">제목</a>
+							<a th:href="@{/manager/suggestDetail(postNo=${post.postNo})}" th:text="${post.title}">제목</a>
                         </td>
                         <td th:text="${#dates.format(post.creationDate, 'yyyy-MM-dd')}"></td>
                     </tr>

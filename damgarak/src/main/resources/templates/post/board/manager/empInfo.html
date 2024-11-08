@@ -34,7 +34,9 @@
         </thead>
         <tr th:each="user : ${usersList}">
 			<td class="first" th:text="${user.usersName}"></td>
-			<td class="first" th:text="${user.email}"></td>
+			<td class="first">
+				<a th:href="@{/manager/empDetails(usersId=${user.usersId})}"th:text="${user.email}"></a>
+			</td>
 			<td class="first" th:text="${user.jobCode}"></td>
 		</tr>
       </table>

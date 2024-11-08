@@ -8,7 +8,9 @@ import lombok.Data;
 public class SuggestionDTO {
 	
 	private int postNo;
+	private int postCount;
 	private String title;
+	private String content;
 	private Date creationDate;
 	private String usersId;
 	private String usersName;
