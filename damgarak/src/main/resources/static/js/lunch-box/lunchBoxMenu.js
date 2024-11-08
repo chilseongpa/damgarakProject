@@ -1,20 +1,5 @@
-// 메뉴 데이터
-const menuData = {
-    main: [
-        { name: "김밥세트", price: 12000, calories: 256, img: "김밥.jpg" },
-        { name: "김치찜", price: 12000, calories: 288, img: "김치찜.jpg" },
-        { name: "돼지갈비", price: 10000, calories: 216, img: "돼지갈비.png" }
-    ],
-    soup: [
-        { name: "된장찌개", price: 8000, calories: 180, img: "차돌된장찌개.jfif" },
-        { name: "순두부찌개", price: 9000, calories: 200, img: "순두부찌개.jfif" }
-    ],
-    side: [
-        { name: "계란말이", price: 5000, calories: 120, img: "계란말이.jfif" },
-        { name: "콩나물무침", price: 4000, calories: 80, img: "콩나물무침.jfif" },
-        { name: "느타리버섯 들깨무침", price: 6000, calories: 150, img: "느타리 버섯 들깨 무침.jpg" }
-    ]
-};
+// 초기 메뉴 데이터 설정
+let menuData = {}; // 서버에서 가져온 메뉴 데이터를 저장할 객체
 
 // 페이지네이션 설정
 let currentPage = 1;
@@ -47,16 +32,17 @@ function renderMenu(category) {
     const pagedItems = itemsToDisplay.slice(start, end);
 
     pagedItems.forEach(item => {
+        const imgSrc = `/static/img/menu/menu-all-image/${item.menuImage}`; // 이미지 경로 설정
         const menuCard = document.createElement('div');
         menuCard.classList.add('menu-card');
 
         menuCard.innerHTML = `
-            <img src="${item.img}" alt="${item.name}">
+            <img src="${imgSrc}" alt="${item.menuName}">
             <div class="menu-info">
-                <h5>${item.name}</h5>
+                <h5>${item.menuName}</h5>
                 <p class="price">${item.price.toLocaleString()} 원</p>
-                <p class="calories">${item.calories} kcal</p>
-                <button class="add-btn" onclick="addToOrder('${item.name}', ${item.price}, ${item.calories}, '${item.img}', '${category}')">담기</button>
+                <p class="calorie">${item.calorie} kcal</p>
+                <button class="add-btn" onclick="addToOrder('${item.menuNo}', '${item.menuName}', ${item.price}, ${item.calorie}, '${imgSrc}', '${category}')">담기</button>
             </div>
         `;
         menuList.appendChild(menuCard);
@@ -78,7 +64,7 @@ function filterCategory(category) {
 }
 
 // 주문 목록에 메뉴 추가
-function addToOrder(name, price, calories, img, category) {
+function addToOrder(menuNo, menuName, price, calorie, img, category) {
     const selectedBento = bentoSelections[0]; // 첫 번째 도시락 기준으로 적용
     const bentoCount = parseInt(selectedBento.value[0], 10); // 3첩, 5첩, 7첩에서 숫자만 추출
 
@@ -100,12 +86,12 @@ function addToOrder(name, price, calories, img, category) {
         return;
     }
 
-    const existingItem = orderList.find(item => item.name === name);
+    const existingItem = orderList.find(item => item.menuNo === menuNo);
 
     if (existingItem) {
         existingItem.quantity++;
     } else {
-        orderList.push({ name, price, calories, img, category, quantity: 1 });
+        orderList.push({ menuName, price, calorie, img, category, quantity: 1 });
     }
 
     updateOrderSummary();
@@ -121,13 +107,13 @@ function updateOrderSummary() {
         orderItem.classList.add('order-item');
 
         orderItem.innerHTML = `
-            <img src="${item.img}" alt="${item.name}">
+            <img src="${item.img}" alt="${item.menuName}">
             <div class="order-item-details">
-                <span class="order-item-name">${item.name}</span>
+                <span class="order-item-menuName">${item.menuName}</span>
                 <div class="order-item-controls">
-                    <button class="quantity-btn" onclick="decreaseQuantity('${item.name}')">-</button>
+                    <button class="quantity-btn" onclick="decreaseQuantity('${item.menuName}')">-</button>
                     <span class="quantity">${item.quantity}</span>
-                    <button class="quantity-btn" onclick="increaseQuantity('${item.name}')">+</button>
+                    <button class="quantity-btn" onclick="increaseQuantity('${item.menuName}')">+</button>
                 </div>
             </div>
             <span class="price">${(item.price * item.quantity).toLocaleString()} 원</span>
@@ -143,7 +129,7 @@ function updateOrderSummary() {
 // 주문 금액과 칼로리 계산
 function updateTotals() {
     const totalWithoutTax = orderList.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const totalCalories = orderList.reduce((sum, item) => sum + (item.calories * item.quantity), 0);
+    const totalCalories = orderList.reduce((sum, item) => sum + (item.calorie * item.quantity), 0);
 
     document.getElementById('total').textContent = `${totalWithoutTax.toLocaleString()} 원`;
     document.getElementById('totalCalories').textContent = `${totalCalories.toLocaleString()} kcal`;
@@ -154,7 +140,6 @@ function updateBentoSummary() {
     const bentoSummary = document.getElementById('bentoSummary');
     bentoSummary.innerHTML = '';
 
-    // 도시락 별로 메뉴 구성 요약
     bentoSelections.forEach(bento => {
         const bentoCount = parseInt(bento.value[0], 10);
         const selectedMain = orderList.find(item => item.category === 'main');
@@ -162,9 +147,9 @@ function updateBentoSummary() {
         const selectedSides = orderList.filter(item => item.category === 'side');
 
         const summaryText = `
-            ${selectedMain ? selectedMain.name : "메인 메뉴 없음"} +
-            ${selectedSoup ? selectedSoup.name : "국물 요리 없음"} +
-            ${selectedSides.length ? selectedSides.map(item => item.name).join(" + ") : "반찬 없음"}
+            ${selectedMain ? selectedMain.menuName : "메인 메뉴 없음"} +
+            ${selectedSoup ? selectedSoup.menuName : "국물 요리 없음"} +
+            ${selectedSides.length ? selectedSides.map(item => item.menuName).join(" + ") : "반찬 없음"}
         `;
 
         const bentoSummaryItem = document.createElement('p');
@@ -174,8 +159,8 @@ function updateBentoSummary() {
 }
 
 // 수량 증가
-function increaseQuantity(name) {
-    const item = orderList.find(item => item.name === name);
+function increaseQuantity(menuName) {
+    const item = orderList.find(item => item.menuName === menuName);
     if (item) {
         item.quantity++;
         updateOrderSummary();
@@ -183,12 +168,12 @@ function increaseQuantity(name) {
 }
 
 // 수량 감소
-function decreaseQuantity(name) {
-    const item = orderList.find(item => item.name === name);
+function decreaseQuantity(menuName) {
+    const item = orderList.find(item => item.menuName === menuName);
     if (item && item.quantity > 1) {
         item.quantity--;
     } else {
-        orderList = orderList.filter(item => item.name !== name);
+        orderList = orderList.filter(item => item.menuName !== menuName);
     }
     updateOrderSummary();
 }
@@ -224,23 +209,47 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleButton = document.querySelector("#toggleButton");
     const sidebar = document.querySelector("#sidebar");
 
-    toggleButton.addEventListener("click", () => {
-        sidebar.classList.toggle("hidden");  // hidden 클래스 추가/제거하여 슬라이드 효과 적용
-    });
+    if (toggleButton && sidebar) {
+        toggleButton.addEventListener("click", () => {
+            sidebar.classList.toggle("hidden");
+        });
+    } else {
+        console.warn("Toggle button or sidebar not found.");
+    }
 });
 
-// 초기화 함수 정의
+// 초기화 버튼 기능
 function resetOrder() {
-    orderList = []; // 주문 목록 초기화
-    updateOrderSummary(); // 주문 요약 업데이트
+    orderList = [];
+    updateOrderSummary();
 }
 
-// 초기화 버튼 클릭 시 resetOrder 함수 호출
-document.querySelector('.reset-order-btn').addEventListener('click', resetOrder);
+document.addEventListener("DOMContentLoaded", () => {
+    const resetButton = document.querySelector('.reset-order-btn');
+    if (resetButton) {
+        resetButton.addEventListener('click', resetOrder);
+    } else {
+        console.warn("Reset button (.reset-order-btn) not found.");
+    }
+});
 
 // 페이지 로드 시 기본 메뉴 렌더링
 window.onload = function() {
-    renderMenu('all'); // 기본 카테고리로 전체 메뉴를 표시
-    updateBentoSummary(); // 초기 도시락 요약 업데이트
+    initMenuList((data) => {
+        menuData = data;
+        renderMenu('all');
+        updateBentoSummary();
+    });
 };
 
+// 서버에서 메뉴 데이터를 가져오는 함수
+const initMenuList = (callback) => {
+    fetch("/lunchBoxMenuList", {
+        method: "get"
+    })
+    .then(response => response.json())
+    .then(data => {
+        callback(data);
+    })
+    .catch(error => console.error("데이터 가져오기 실패:", error));
+};
