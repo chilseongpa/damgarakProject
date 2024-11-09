@@ -166,3 +166,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 })
+
+function updateUser() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const usersId = urlParams.get('usersId'); // URL의 usersId 파라미터 값 가져오기
+      const usersName = document.getElementById('userName').value;
+      const email = document.getElementById('email').value;
+      const jobCode = document.getElementById('jobCode').value;
+
+      fetch('/manager/updateUser', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              usersId: usersId,
+              usersName: usersName,
+              email: email,
+              jobCode: jobCode
+          })
+      })
+      .then(response => response.text())
+      .then(data => {
+          if(data === "ok") {
+              alert('정보가 성공적으로 수정되었습니다.');
+              window.location.href = '/manager/empDetails?usersId=' + usersId;
+          }
+      })
+      .catch(error => {
+          console.error('오류 발생:', error);
+          alert('정보 수정에 실패했습니다.');
+      });
+  }
