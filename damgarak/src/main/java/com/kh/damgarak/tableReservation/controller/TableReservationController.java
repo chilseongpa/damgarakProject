@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.damgarak.common.model.vo.PageInfo;
+import com.kh.damgarak.common.template.Pagination;
 import com.kh.damgarak.tableReservation.choiceTableReservation.model.dto.ChoiceTableReservationDTO;
 import com.kh.damgarak.tableReservation.searchTable.model.dto.SearchTableDTO;
+import com.kh.damgarak.tableReservation.selectReservationTable.model.dto.SelectReservationTableDTO;
 import com.kh.damgarak.tableReservation.service.TableReservationService;
 import com.kh.damgarak.users.model.vo.Users;
 
@@ -72,17 +75,63 @@ public class TableReservationController {
 								searchDto.getTime();
 		
 		List<String> reservation = tableReservationService.searchReservationTable(reservationSearch);
-	
 		return reservation;
 	}
 	
 	
 	@GetMapping("/reservationInquiry")
-	public String reservationInquiryPage(){
+	public String reservationInquiryPage(HttpSession session,
+			 @RequestParam(value = "page", defaultValue = "1")
+			 int currentPage) 
+			{
+	
+		Users users = (Users)session.getAttribute("userLogin");
+	
+		if(users == null) {
+			return "redirect:/";
+		}
+	
+		String userId = users.getUsersId();
+		
+		int listCount = tableReservationService.getReservationCount(userId);
+		
+		int pageLimit = 10; 
+		int boardLimit = 6;
+		
+		 PageInfo pageInfo = Pagination.getPageInfo(listCount, currentPage, 
+				 pageLimit, boardLimit);
+		 
+		 
+		    if (currentPage > pageInfo.getMaxPage()) {
+		        currentPage = pageInfo.getMaxPage();
+		        pageInfo = Pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		    }
+		 
+		
+		List<SelectReservationTableDTO> reservationList = tableReservationService.reservationInquiry(userId, 
+				pageInfo);
+			
+		session.setAttribute("pageInfo", pageInfo);
+		if(reservationList != null){
+			session.setAttribute("rList", reservationList);
+			return "reservation/reservation-inquiry/reservationInquiryPage";	
+		}
 		return "reservation/reservation-inquiry/reservationInquiryPage";
 	}
 	
-	
+	@PostMapping("/cancelReservation")
+	@ResponseBody
+	public String reservationCancel(int reservationNo){
+		
+		
+		int tresult = tableReservationService.deleteTableReservation(reservationNo);
+		int result = tableReservationService.deleteReservation(reservationNo);
+		
+		if(result <= 0 || tresult <= 0) {
+			return "no";
+		}
+		return "ok"; 
+	}
 	
 	
 	

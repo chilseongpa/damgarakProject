@@ -327,11 +327,9 @@ h1 {
 	left: 45%;
 	font-weight: bold;
 }
-
 main section {
 	padding: 30px;
 }
-
 button.reserved {
 	pointer-events: none;
 }

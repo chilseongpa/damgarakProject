@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setupTimeButtons();
     updateArrowVisibility(); 
 });
-
 let today = new Date();
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
