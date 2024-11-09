@@ -4,6 +4,45 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.damgarak.tableReservation.model.mapper.TableReservationMapper">
 
+	<insert id="createReservation"
+	 parameterType="map"
+	 >
+			INSERT INTO RESERVATION 
+			(RESERVATION_NO, 
+			USERS_ID, 
+			RESERVATION_DATE, 
+			RESERVATION_STATUS)
+			VALUES(
+			RESERVATION_SEQ.NEXTVAL,
+			#{usersId},
+TO_DATE(#{reservationDate, jdbcType=VARCHAR}, 'yyyy-MM-dd HH24:MI'),
+			 #{reservationStatus}
+			)
+	</insert>
+	
+	<insert id="createTableReservation" 
+	parameterType="TableReservation"
+	>
+	INSERT INTO TABLE_RESERVATION
+	(RESERVATION_NO,
+	TABLE_NO
+	)VALUES(
+	RESERVATION_SEQ.CURRVAL,
+	#{tableNo}
+	)
+	</insert> 
+	
+	<select id="searchReservationTable" resultType="String">
+   SELECT 
+        TR.TABLE_NO
+    FROM 
+        RESERVATION R
+    JOIN 
+        TABLE_RESERVATION TR
+    ON 
+        R.RESERVATION_NO = TR.RESERVATION_NO
+    WHERE
+        TO_CHAR(R.RESERVATION_DATE, 'YYYY-MM-DD HH24:MI') = #{reservationSearch}
 
-
+	</select>
 </mapper>
