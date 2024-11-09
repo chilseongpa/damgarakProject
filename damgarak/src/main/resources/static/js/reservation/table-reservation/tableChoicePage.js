@@ -17,36 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-/* 
-document.addEventListener("DOMContentLoaded", function() {
-    const buttons = document.querySelectorAll("button");
-
-    buttons.forEach(button => {
-        button.addEventListener("click", function() {
-          
-            buttons.forEach(btn => {
-                const pTags = btn.querySelectorAll("p");
-                pTags.forEach(p => {
-                    p.style.color = ""; 
-                });
-            });
-
-        
-            const pTags = button.querySelectorAll("p");
-            pTags.forEach(p => {
-                p.style.color = "red"; 
-            });
-            tableValue = button.value;
-            let tableChoice = confirm(`${date} ${time}시 날짜로 \n선택된 테이블 ${tableValue}로 예약을 하시겠습니까?`);
-            console.log("선택한 테이블 ", tableValue);
-            
-            if(tableChoice){
-                tableReservationHandle();
-            }
-        });
-    });
-});
-*/ 
 
 function tableReservationJson(){
 
@@ -116,7 +86,7 @@ function searchTableReservation(date, time){
                         p.style.color = "#222"; 
                         p.style.textDecoration = "line-through"; 
                     });
-                    
+
                     button.classList.add("reserved");
 
                 }else{
