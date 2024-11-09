@@ -4,11 +4,11 @@
 }
 p {
   font-size: 20px;
-  margin: 0 auto; /* �닔�룊 以묒븰 �젙�젹 */
+  margin: 0 auto; 
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* 遺�紐⑥쓽 �넂�씠瑜� 媛��뱷 梨꾩슦�룄濡� �꽕�젙 */
+  height: 100%; 
 }
 #graph{
   width: 500px;
@@ -71,9 +71,9 @@ h5 {
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  justify-content: center; /* 媛�濡� 以묒븰 �젙�젹 */
-  align-items: center; /* �꽭濡� 以묒븰 �젙�젹 */
-  width: 850px;
+  justify-content: center; 
+  align-items: center; 
+  width: 1000px;
   border: 1px solid white;
 }
 .aTag {
@@ -125,12 +125,12 @@ h5 {
   color: black;
   background-color: rgb(207, 207, 207);
   position: absolute;
-  bottom: 10px; /* 遺�紐� div�쓽 �븘�옒履쎌뿉 �쐞移� */
+  bottom: 10px; 
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
 }
-#test{
+.test{
   margin: 20px;
   border-radius: 5px;
   background-color: rgb(214, 214, 214);
@@ -150,11 +150,11 @@ h5 {
   height: 300px;
 }
 h1 {
-  margin: 0 auto; /* �닔�룊 以묒븰 �젙�젹 */
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* 遺�紐⑥쓽 �넂�씠瑜� 媛��뱷 梨꾩슦�룄濡� �꽕�젙 */
+  height: 100%; 
 }
 #num{
   text-align: center;
@@ -168,14 +168,14 @@ h1 {
   text-align: center;
   width: 120px;
 }
-#date1{
+.date1{
   text-decoration: none;
   color: black;
   text-align: center;
   width: 120px;
   vertical-align:middle;
 }
-#test2{
+.test2{
   padding-top: 20px;
   padding-right: 10px;
   padding-bottom: 20px;
@@ -191,7 +191,7 @@ h1 {
   background-color: #FFD7D7;
   display: inline-block;
   width: 70%;
-  box-sizing: border-box; /* padding, border瑜� �룷�븿�븳 �겕湲� �꽕�젙 */
+  box-sizing: border-box; 
 }
 #tel2{
   border :none;
@@ -208,7 +208,7 @@ h1 {
   float: right;
   margin-right: 97px;
 }
-#first{
+.first{
   padding-left: 60px;
 }
 
@@ -226,5 +226,17 @@ table{
   background-color: #FFD7D7;
   display: inline-block;
   width: 80%;
-  box-sizing: border-box; /* padding, border瑜� �룷�븿�븳 �겕湲� �꽕�젙 */
+  box-sizing: border-box; 
+}
+#TBA{
+	width: 100%; hegiht: 500px;
+}
+#lucky{
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-bottom: 100px;
+  font-size: 16px;
+  padding-left: 50px;
+  text-align: left;
+  vertical-align: baseline;
 }

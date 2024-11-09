@@ -34,9 +34,9 @@
 	</select>
 	
 	<update id="updateUserPassword">
-    UPDATE USERS
-    SET USERS_PASSWORD = #{tempPassword}
-    WHERE USERS_ID = #{userId}
+	    UPDATE USERS
+	    SET USERS_PASSWORD = #{tempPassword}
+	    WHERE USERS_ID = #{userId}
 	</update>
 	
 	<select id="emailCheck" resultType="Users">
