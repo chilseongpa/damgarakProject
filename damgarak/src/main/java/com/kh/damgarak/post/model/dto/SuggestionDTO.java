@@ -17,6 +17,7 @@ public class SuggestionDTO {
 	private String email;
 	private String jobCode;
 	private String jobName;
+	private String replyComment;
 	
 	
 }

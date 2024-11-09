@@ -32,7 +32,6 @@ a {
 
 #bttn.active {
   transform:translateX(175px);
-
 }
 #nav {
   position:fixed;

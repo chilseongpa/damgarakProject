@@ -64,6 +64,13 @@
     	 WHERE USERS_ID = #{usersId}
     </update>
     
+    <select id="selReply" parameterType="int" resultType="SuggestionDTO">
+    	SELECT R.REPLY_COMMENT, R.CREATION_DATE, U.USERS_NAME
+		FROM REPLY R
+		JOIN POST P ON R.POST_NO = P.POST_NO
+		JOIN USERS U ON P.USERS_ID = U.USERS_ID  -- USERS 테이블과 POST 테이블의 연결 조건 수정
+		WHERE P.POST_NO = #{postNo}
+    </select>
 </mapper>
 
 

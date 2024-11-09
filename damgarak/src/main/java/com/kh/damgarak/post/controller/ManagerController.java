@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
 import com.kh.damgarak.post.model.vo.Post;
+import com.kh.damgarak.post.model.vo.Reply;
 import com.kh.damgarak.post.service.ManagerService;
 import com.kh.damgarak.users.model.vo.Users;
 
@@ -95,7 +96,20 @@ public class ManagerController {
 	    // 직원 상세 정보 페이지로 리다이렉트
 	    // return "redirect:/manager/empDetails?usersName=" + usersName;
 	}
+	@RequestMapping("/getReplies")
+	public String getReplies(@RequestParam("postNo") int postNo, Model model) {
+	    // Reply 객체 생성 후 postNo 설정
+	    Reply reply = new Reply();
+	    reply.setPostNo(postNo);
 
+	    // Service를 통해 댓글 리스트 조회
+	    List<SuggestionDTO> replies = mService.selReply(postNo);
+
+	    // 모델에 추가하여 View로 전달
+	    model.addAttribute("replies", replies);
+
+	    return "repliesView"; // 댓글을 표시할 View의 이름
+	}
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";
@@ -128,5 +142,8 @@ public class ManagerController {
 	public String passPage() {
 		return "post/board/manager/pass";
 	}
-
+	@GetMapping("/specification")
+	public String specificationPage() {
+		return "post/board/manager/specification";
+	}
 }

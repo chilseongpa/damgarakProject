@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
 import com.kh.damgarak.post.model.vo.Employee;
 import com.kh.damgarak.post.model.vo.Post;
+import com.kh.damgarak.post.model.vo.Reply;
 import com.kh.damgarak.users.model.vo.Users;
 
 @Mapper
@@ -26,5 +27,7 @@ public interface ManagerMapper {
 	int updateNameEmail(Users user);
 
 	int updateJob(Employee emp);
+	
+	List<SuggestionDTO> selReply(int postNo);
 		
 }

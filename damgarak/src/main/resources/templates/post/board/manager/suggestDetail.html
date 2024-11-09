@@ -50,9 +50,22 @@
       <br><br>
       <hr style="border: none; height: 2px; background-color: blue;">
       <br><br>
+      
       <input type="text" id="tel2" disabled placeholder="관리자"><!--관리자 or 유저명-->
       <input type="text" id="tel3" disabled placeholder="그래 알았어 근데 니가 뭘 할 수 있는데"> <!--댓글 reply_comment -->
       <input type="text" id="tel4" disabled placeholder="2024-10-23 16:23"> <br><br> <!--creation_date-->
+      
+      <!-- 댓글 영역 -->
+	<div th:if="${replies != null}">
+	    <div th:each="reply : ${replies}">
+	        <textarea id="tel2" readonly th:text="${reply.usersName}"></textarea>
+	        <textarea id="tel3" readonly th:text="${reply.replyComment}"></textarea>
+	        <input type="text" readonly th:value="${#dates.format(reply.creationDate, 'yyyy-MM-dd HH:mm')}">
+	    </div>
+	</div>
+
+      
+      
       <input type="text" id="tel5"> <br><br>
       <button id="btt" class="btn btn-danger">등록</button> <br>
       <br>

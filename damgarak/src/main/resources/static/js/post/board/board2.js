@@ -167,9 +167,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })
 
-document.addEventListener("DOMContentLoaded", () => {
-	function updateUser() {
-      const usersId = 'whdrns456'; // 사용자 ID 설정. 실제로는 서버에서 가져와야 할 수도 있음
+function updateUser() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const usersId = urlParams.get('usersId'); // URL의 usersId 파라미터 값 가져오기
       const usersName = document.getElementById('userName').value;
       const email = document.getElementById('email').value;
       const jobCode = document.getElementById('jobCode').value;
@@ -188,14 +188,13 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(response => response.text())
       .then(data => {
-    	  if(data === "ok") {
-	          alert('정보가 성공적으로 수정되었습니다.');
-	          window.location.href = '/manager/empDetails?usersId=' + usersId; // 성공 시 리다이렉트할 페이지 설정
-    	  }
+          if(data === "ok") {
+              alert('정보가 성공적으로 수정되었습니다.');
+              window.location.href = '/manager/empDetails?usersId=' + usersId;
+          }
       })
       .catch(error => {
           console.error('오류 발생:', error);
           alert('정보 수정에 실패했습니다.');
       });
   }
-})

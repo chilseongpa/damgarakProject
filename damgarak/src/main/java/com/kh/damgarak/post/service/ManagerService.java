@@ -10,6 +10,7 @@ import com.kh.damgarak.post.model.dto.SuggestionDTO;
 import com.kh.damgarak.post.model.mapper.ManagerMapper;
 import com.kh.damgarak.post.model.vo.Employee;
 import com.kh.damgarak.post.model.vo.Post;
+import com.kh.damgarak.post.model.vo.Reply;
 import com.kh.damgarak.users.model.vo.Users;
 
 @Service
@@ -56,5 +57,8 @@ public class ManagerService {
 	    System.out.println("-".repeat(30));
 	    // 두 쿼리가 모두 성공적으로 업데이트된 경우에만 true 반환
 	    return updateUserResult > 0 && updateJobResult > 0;
+	}
+	public List<SuggestionDTO> selReply(int postNo){
+		return managerMapper.selReply(postNo);
 	}
 }
