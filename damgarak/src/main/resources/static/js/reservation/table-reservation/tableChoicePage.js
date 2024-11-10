@@ -4,6 +4,7 @@
 let date = null;
 let time = null;
 let tableValue = null;
+let reservationNo = null;
 
 document.addEventListener("DOMContentLoaded", function() {
  
@@ -14,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     console.log("선택한 날짜:", date);
     console.log("선택한 시간:", time);
+    
+    reservationNo = urlParams.get("reservationNo");
 
 });
 
@@ -23,6 +26,7 @@ function tableReservationJson(){
     const dateTime = `${date} ${time}`;
     return{
          reservation:{
+            reservationNo: reservationNo,
             reservationDate: dateTime, 
             reservationStatus: "y"
         },
@@ -33,20 +37,25 @@ function tableReservationJson(){
 };
 
 function tableReservationHandle(){
-	 const reservationData	= tableReservationJson()
-	 console.log("전달되는 데이터 값 확인 ", reservationData);
+     const reservationData	= tableReservationJson();
+     console.log("전달되는 데이터 값 확인 ", reservationData);
+     console.log("전달되는 데이터 값 확인 ", reservationNo);
+
+     const url = reservationNo ? "/updateTable" : "/tableReservation";
+     const methodType = reservationNo ? 'put' : 'post'; 
+
 
     $.ajax({
-        url: "/tableReservation",
-        type: 'post',
+        url: url,
+        type: methodType,
         contentType: 'application/json',
         data: JSON.stringify(reservationData),
 
         success:function(result){
             if(result === 'ok'){
-                alert(`${date} 일 ${time} ${tableValue} 예약을 성공했습니다.`);
+                alert(`${date} 일 ${time} ${tableValue} 예약이 ${reservationNo ? '수정' : '성공'}되었습니다.`);
         }else{
-            alert(`${date} 일 ${time} ${tableValue} 예약 실패했습니다 다시 시도해주십시오.`);
+            alert(`${date} 일 ${time} ${tableValue} 예약 ${reservationNo ? '수정' : '생성'} 실패했습니다. 다시 시도해주십시오.`);
         }    
     },
     error:function(err){

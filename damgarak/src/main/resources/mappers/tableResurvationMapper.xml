@@ -111,6 +111,19 @@ MINUS
 </delete>
 
 
+<update id="updateReservation" parameterType="map">
+    UPDATE RESERVATION
+    SET reservation_date = TO_DATE(#{reservationDate, jdbcType=VARCHAR}, 'yyyy-MM-dd HH24:MI'),
+        reservation_status = #{reservationStatus}
+    WHERE reservation_no = #{reservationNo}
+</update>
+
+
+<update id="updateTableReservation" parameterType="Map">
+    UPDATE TABLE_RESERVATION
+    SET table_no = #{tableNo}
+    WHERE reservation_no = #{reservationNo}
+</update>
 
 
 
