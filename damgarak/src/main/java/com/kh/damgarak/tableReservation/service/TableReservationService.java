@@ -53,6 +53,26 @@ public class TableReservationService {
 	public int deleteTableReservation(int reservationNo) {
 		return mapper.deleteTableReservation(reservationNo);
 	}
+	public int updateTableReservation(ChoiceTableReservationDTO choiceReservation, String reservationNo) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("reservationNo", reservationNo);
+		map.put("reservationDate",choiceReservation.getReservation().getReservationDate());
+		map.put("reservationStatus",choiceReservation.getReservation().getReservationStatus());
+		
+		HashMap<String, Object> tableMap = new HashMap<>();
+		tableMap.put("reservationNo", reservationNo);
+		tableMap.put("tableNo", choiceReservation.getTableReservation().getTableNo());
+		
+		
+		int rResult = mapper.updateReservation(map);	
+		int tResult = mapper.updateTableReservation(tableMap);
+		
+		if(rResult > 0 && tResult > 0) {
+			 return 1;
+		 }else {
+			 return 0;			 
+		 }
+	}
 	
 	
 

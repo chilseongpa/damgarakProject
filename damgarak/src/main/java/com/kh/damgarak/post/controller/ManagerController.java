@@ -165,4 +165,8 @@ public class ManagerController {
 	public String specificationPage() {
 		return "post/board/manager/specification";
 	}
+	@GetMapping("/detailSpecification")
+	public String detailSpecificationPage() {
+		return "post/board/manager/detailSpecification";
+	}
 }
