@@ -26,7 +26,10 @@ body {
     overflow: hidden;
     transition: height 0.55s;
 }
+a{
+    color: black;
 
+}
 
 .nav {
     display: flex;
@@ -37,7 +40,6 @@ body {
     line-height: 50px;
     padding-top: 50px;
     font-size: 23px;
-    font-family: 'GowunBatang';
 
 }
 

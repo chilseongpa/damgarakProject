@@ -15,4 +15,8 @@ public class CommonController {
 	public String mapPage() {
 		return "damgarak/map";
 	}
+	@GetMapping("/main")
+	public String mainPage() {
+		return "/index.html";
+	}
 }
