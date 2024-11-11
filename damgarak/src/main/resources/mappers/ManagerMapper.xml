@@ -8,6 +8,7 @@
 	    SELECT P.POST_NO, P.TITLE, P.CREATION_DATE, U.USERS_ID, U.USERS_NAME, U.EMAIL
 	    FROM POST P
 	    JOIN USERS U ON P.USERS_ID = U.USERS_ID
+	    ORDER BY P.POST_NO ASC
 	</select>
 
 
@@ -29,6 +30,7 @@
 		FROM POST P
 		JOIN USERS U ON U.USERS_ID = P.USERS_ID
 		WHERE POST_NO = #{postNo}
+		ORDER BY P.POST_NO DESC
 	</select>
 	
 	<update id="updateInfo">
@@ -44,12 +46,6 @@
 		JOIN EMPLOYEE E ON U.USERS_ID = E.USERS_ID
 		WHERE U.USERS_ID = #{usersId}
 	</select>
-	
-    <update id="updatePass">
-        UPDATE USERS
-           SET USERS_PASSWORD = #{usersPassword}
-         WHERE USERS_ID = #{usersId}
-    </update>
     
     <update id="updateNameEmail">
      UPDATE USERS
@@ -65,12 +61,28 @@
     </update>
     
     <select id="selReply" parameterType="int" resultType="SuggestionDTO">
-    	SELECT R.REPLY_COMMENT, R.CREATION_DATE, U.USERS_NAME
-		FROM REPLY R
-		JOIN POST P ON R.POST_NO = P.POST_NO
-		JOIN USERS U ON P.USERS_ID = U.USERS_ID  -- USERS 테이블과 POST 테이블의 연결 조건 수정
-		WHERE P.POST_NO = #{postNo}
-    </select>
+	    SELECT R.REPLY_COMMENT, R.CREATION_DATE, U.USERS_NAME
+	    FROM REPLY R
+	    JOIN POST P ON R.POST_NO = P.POST_NO
+	    JOIN USERS U ON R.USERS_ID = U.USERS_ID  -- USERS 테이블과 REPLY 테이블을 직접 연결
+	    WHERE P.POST_NO = #{postNo}
+	</select>
+    
+    <update id="updatePass">
+    	UPDATE USERS
+    	   SET USERS_PASSWORD = #{usersPassword}
+    	 WHERE USERS_PASSWORD = 'imij0126'
+    </update>
+    
+    <insert id="insertReply">
+        INSERT INTO REPLY (POST_NO, REPLY_COMMENT, CREATION_DATE, DELETE_STATE, USERS_ID)
+        VALUES (#{postNo}, #{replyComment}, SYSDATE, 'N', 'imij0126')
+    </insert>
+    
+    <insert id="insertNotice">
+    	INSERT INTO NOTICE (USERS_ID, NOTICE_TITLE, NOTICE_CONTENT,NOTICE_NO)
+    	VALUES ('imij0126', #{NoticeTitle}, #{NoticeContent},NOTICE_SEQ.NEXTVAL)
+    </insert>
 </mapper>
 
 

@@ -1,7 +1,11 @@
 package com.kh.damgarak.post.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
+import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.model.vo.Reply;
 import com.kh.damgarak.post.service.ManagerService;
@@ -60,13 +66,17 @@ public class ManagerController {
 	}
 	@GetMapping("/suggestDetail")
 	public String showSuggestDetail(@RequestParam int postNo, Model model) {
+	    // 게시글 조회
 	    List<SuggestionDTO> postDetails = mService.selsugDetail(postNo);
-
 	    if (!postDetails.isEmpty()) {
 	        model.addAttribute("post", postDetails.get(0));
 	    } else {
 	        model.addAttribute("error", "해당 게시물을 찾을 수 없습니다.");
 	    }
+	    
+	    // 댓글 리스트 조회
+	    List<SuggestionDTO> replies = mService.selReply(postNo);
+	    model.addAttribute("replist", replies); // 댓글 목록을 모델에 추가
 	    
 	    return "post/board/manager/suggestDetail";
 	}
@@ -96,20 +106,29 @@ public class ManagerController {
 	    // 직원 상세 정보 페이지로 리다이렉트
 	    // return "redirect:/manager/empDetails?usersName=" + usersName;
 	}
-	@RequestMapping("/getReplies")
-	public String getReplies(@RequestParam("postNo") int postNo, Model model) {
-	    // Reply 객체 생성 후 postNo 설정
-	    Reply reply = new Reply();
-	    reply.setPostNo(postNo);
-
-	    // Service를 통해 댓글 리스트 조회
-	    List<SuggestionDTO> replies = mService.selReply(postNo);
-
-	    // 모델에 추가하여 View로 전달
-	    model.addAttribute("replies", replies);
-
-	    return "repliesView"; // 댓글을 표시할 View의 이름
+	@PostMapping("/updatePassword")
+	public ResponseEntity<String> updatePassword(@RequestBody Map<String, String> request) {
+	    String newPassword = request.get("newPassword");
+	    boolean isUpdated = mService.updatePassword(newPassword);
+	    if (isUpdated) {
+	        return ResponseEntity.ok("Password updated successfully");
+	    } else {
+	        return ResponseEntity.status(500).body("Failed to update password");
+	    }
 	}
+	@ResponseBody
+	@PostMapping("/insertReply")
+	public String insertReply(@RequestBody Reply reply) {
+	    int result = mService.insertReply(reply);
+	    return result > 0 ? "success" : "failed";
+	}
+	@ResponseBody
+	@PostMapping("/insertNotice")
+	public String insertNotice(@RequestBody Notice notice) {
+		int result = mService.insertNotice(notice);
+		return result > 0? "success" : "failed";
+	}
+	
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";
