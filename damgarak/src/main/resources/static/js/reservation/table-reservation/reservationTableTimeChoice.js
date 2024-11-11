@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     generateCalendar();     
     setupTimeButtons();
-    updateArrowVisibility(); // 초기 버튼 가시성 설정
+    updateArrowVisibility(); 
 });
 
 let today = new Date();
@@ -10,14 +10,14 @@ let currentYear = today.getFullYear();
 
 let selectedDayButton = null; 
 let selectedTimeButton = null;
-const maxOffset = 2; // 현재 달 기준 최대 2개월 앞까지 이동 가능
+const maxOffset = 2; 
 
 function generateCalendar() {
     const calendar = document.getElementById("calendar");
     const currentDate = new Date();
     const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
     const maxDate = new Date();
-    maxDate.setDate(currentDate.getDate() + 30); // 오늘 기준 30일 뒤까지 예약 가능
+    maxDate.setDate(currentDate.getDate() + 30);
 
     calendar.innerHTML = `
         <div class="calendar-header">
@@ -60,7 +60,7 @@ function generateCalendar() {
         grid.appendChild(dayButton);
     }
 
-    // 새 달력을 생성할 때마다 버튼 가시성 업데이트
+  
     updateArrowVisibility();
 }
 
@@ -82,12 +82,11 @@ function changeMonth(offset) {
     const maxMonth = (today.getMonth() + maxOffset) % 12;
     const maxYear = today.getFullYear() + Math.floor((today.getMonth() + maxOffset) / 12);
 
-    // 현재 달 이전으로 이동 불가
+ 
     if (targetYear < minYear || (targetYear === minYear && targetMonth < minMonth)) {
         return;
     }
 
-    // 현재 달 기준 최대 2개월 이후로 이동 불가
     if (targetYear > maxYear || (targetYear === maxYear && targetMonth > maxMonth)) {
         return;
     }
@@ -103,20 +102,20 @@ function updateArrowVisibility() {
     const leftArrow = document.getElementById("left-arrow");
     const rightArrow = document.getElementById("right-arrow");
 
-    // 현재 날짜 기준으로 두 달 앞까지만 이동 가능하게 조정
+  
     const minMonth = today.getMonth(); 
     const minYear = today.getFullYear();
     const maxMonth = (today.getMonth() + maxOffset) % 12;
     const maxYear = today.getFullYear() + Math.floor((today.getMonth() + maxOffset) / 12);
 
-    // 현재 달 이전으로 이동 불가 시 왼쪽 화살표 숨기기
+   
     if (currentYear === minYear && currentMonth === minMonth) {
         leftArrow.style.visibility = "hidden";
     } else {
         leftArrow.style.visibility = "visible";
     }
     
-    // 현재 달 기준 2개월 이후로 이동 불가 시 오른쪽 화살표 숨기기
+
     if (currentYear === maxYear && currentMonth === maxMonth) {
         rightArrow.style.visibility = "hidden";
     } else {
@@ -139,8 +138,14 @@ function selectDate(year, month, day) {
         }
     });
 }
-let confirmState = null
 
+let confirmState = null
+let reservationNo = null;
+// 추가한 코드 URL에서 전달된 데이터 추출?? 
+const urlParams = new URLSearchParams(window.location.search);
+// 업데이트를 위한 코드 작성 중
+reservationNo = urlParams.get("reservationNo");
+console.log("예약 번호:", reservationNo);
 document.getElementById("reserveBtn").addEventListener("click", () => {
     const selectedDate = document.getElementById("date").value;
     const selectedTime = selectedTimeButton ? selectedTimeButton.value : null;
@@ -151,9 +156,9 @@ document.getElementById("reserveBtn").addEventListener("click", () => {
         confirmState =  confirm(`선택한 예약 날짜: ${selectedDate}\n선택한 예약 시간: ${selectedTime}\n현재 날짜로 진행하겠습니까?`);
 
     	 if (confirmState) {
-            
-            
-            window.location.href = `/reservation/table-reservation/tableChoicePage?date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedTime)}`;
+            const url = reservationNo  ? `/reservation/table-reservation/tableChoicePage?date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedTime)}&reservationNo=${encodeURIComponent(reservationNo)}`
+            : `/reservation/table-reservation/tableChoicePage?date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedTime)}`;
+            window.location.href = url  
         }
     }
 });
@@ -168,4 +173,5 @@ function setupTimeButtons() {
         });
     });
 }
+
 

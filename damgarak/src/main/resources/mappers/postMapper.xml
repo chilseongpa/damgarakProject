@@ -29,6 +29,12 @@
     DELETE FROM post
     WHERE post_No = #{post_No}
   </delete>
+
+<select id="selSuggest" resultType="com.kh.damgarak.post.model.vo.Post">
+    SELECT P.POST_NO, POST_ID, P.TITLE, P.CREATION_DATE
+    FROM POST P
+    WHERE P.DELETE_STATE = 'N'; 
+</select>
   
   
 

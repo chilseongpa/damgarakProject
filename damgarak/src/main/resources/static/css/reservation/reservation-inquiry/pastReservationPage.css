@@ -1,0 +1,191 @@
+@charset "UTF-8";
+   body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+        text-align: center;
+    }
+
+    .search-waiting {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        gap: 5px;
+    }
+
+    
+
+    .form-select {
+        width: 200px;
+        cursor: pointer;   
+    }
+   
+
+    .search-result{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+    main{
+        padding: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12), 0 4px 6px rgba(0, 0, 0, 0.08);
+    }
+    .pagination-search{
+        display: flex;
+        justify-content: center;
+
+    }
+
+
+    
+               /*사이드 아이콘 자리*/
+               input[id="menuicon"]{
+            display: none;
+        }
+        input[id="menuicon"] + label{
+            display: block;
+
+            width: 60px;
+            height: 40px;
+            position: relative;
+            cursor: pointer;
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transition: all .35s;
+        }
+        input[id="menuicon"] + label span{
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            z-index: 2;
+            border-radius: 30px;
+            background: #000;
+            transition: all .35s;
+        }
+        input[id="menuicon"] + label span:nth-child(1){
+            top: 0;
+        }
+        input[id="menuicon"] + label span:nth-child(2){
+            top: 50%;
+        }
+        input[id="menuicon"] + label span:nth-child(3){
+            top: 100%;
+        }
+        input[id="menuicon"]:checked + label{
+            z-index: 2;
+            left: 240px;
+        }
+        input[id="menuicon"]:checked + label span:nth-child(1){
+            top: 50%;
+            width:50%;
+            transform: translateY(50%) rotate(-135deg);
+            background: white;
+        }
+        input[id="menuicon"]:checked + label span:nth-child(2){
+            
+            opacity: 0;
+        }
+        input[id="menuicon"]:checked + label span:nth-child(3){
+            top: 50%;
+            width: 50%;
+          
+            background: white;
+            transform: translateY(50%) rotate(135deg);
+        }
+        /*사이드 아이콘 자리*/
+
+        /*사이드 바 자리*/
+        div[class="sidebar"]{
+            width: 300px;
+            height: 100%;
+            background: #222;
+            position: fixed;
+            top: 0px;
+            left: -300px;
+            z-index: 1;
+            transition: all .35s;
+
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+        }        
+        /*인접 요소 선택자*/
+        input[id="menuicon"]:checked + label + div.sidebar{
+            left:0;
+        }
+        /*사이드 아이콘 자리*/
+
+        /*사이드바 내부 요소들*/
+        .my-page-div{
+            margin-top: 10px;
+            text-align: center;
+            width: 180px;
+            height: 300px;
+            /* 버튼을 가운데로 맞추기 위해서 */
+            display: flex;
+            flex-direction: column;
+            /* 버튼을 가운데로 맞추기 위해서 */  
+        }
+        .my-page-a a:hover{
+            color: gray;
+        }
+        .my-page-a a{
+            text-decoration-line: none;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2em; 
+        }
+        .my-page-a div{
+            margin: 10px;
+        }
+        p{
+            font-weight: bold;
+            font-size: 1.1em;
+            color: white;
+        }
+        .member-id-div p{
+            margin: 3px;
+        }
+        .member-id-div img{
+            background-size: cover;
+            width: 30px;
+            height: 30px;  
+        }
+        /*사이드바 내부 요소들*/
+        .side-icon-section{
+            margin: 0px;
+        }
+        .main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .radio-input-choice{
+            margin: 0px;
+        }
+        form{
+            display: flex;
+            align-items: center;
+        }
+        .radio-input-choice label{
+            gap: 5px;
+
+        }
+        .radio-input-choice{
+            margin-right: 15px;
+
+        }
+        
+        
+    .search-form {
+    display: flex;
+    flex-direction: column;  /* 세로로 나열 */
+    gap: 20px;  /* 항목들 사이에 간격을 추가 */
+}

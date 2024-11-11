@@ -7,11 +7,11 @@
   }
   p {
     font-size: 20px;
-    margin: 0 auto; /* �닔�룊 以묒븰 �젙�젹 */
+    margin: 0 auto; 
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* 遺�紐⑥쓽 �넂�씠瑜� 媛��뱷 梨꾩슦�룄濡� �꽕�젙 */
+    height: 100%; 
   }
   a {
     text-decoration: none;
@@ -64,8 +64,8 @@
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    justify-content: center; /* 媛�濡� 以묒븰 �젙�젹 */
-    align-items: center; /* �꽭濡� 以묒븰 �젙�젹 */
+    justify-content: center; 
+    align-items: center; 
     width: 750px;
   }
   .real{
@@ -78,7 +78,7 @@
     background-color: rgb(207, 207, 207);
     border-radius: 5px;
   }
-  #test{
+  .test{
     margin-bottom: 10px;
     border-radius: 5px;
     background-color: rgb(214, 214, 214);
