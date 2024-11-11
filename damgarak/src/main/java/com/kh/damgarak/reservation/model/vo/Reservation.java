@@ -10,6 +10,10 @@ public class Reservation {
 //	private String usersId;
 //	private String reservationDate;
 //	private String reservationStatus;
+
+	// String
+	private String reservationNo;
+	
 	private String reservationDate;
 	private String reservationStatus;
 }

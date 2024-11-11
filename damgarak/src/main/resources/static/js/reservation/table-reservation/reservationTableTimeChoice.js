@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupTimeButtons();
     updateArrowVisibility(); 
 });
+
 let today = new Date();
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
@@ -137,8 +138,14 @@ function selectDate(year, month, day) {
         }
     });
 }
-let confirmState = null
 
+let confirmState = null
+let reservationNo = null;
+// 추가한 코드 URL에서 전달된 데이터 추출?? 
+const urlParams = new URLSearchParams(window.location.search);
+// 업데이트를 위한 코드 작성 중
+reservationNo = urlParams.get("reservationNo");
+console.log("예약 번호:", reservationNo);
 document.getElementById("reserveBtn").addEventListener("click", () => {
     const selectedDate = document.getElementById("date").value;
     const selectedTime = selectedTimeButton ? selectedTimeButton.value : null;
@@ -149,8 +156,9 @@ document.getElementById("reserveBtn").addEventListener("click", () => {
         confirmState =  confirm(`선택한 예약 날짜: ${selectedDate}\n선택한 예약 시간: ${selectedTime}\n현재 날짜로 진행하겠습니까?`);
 
     	 if (confirmState) {
-            
-            window.location.href = `/reservation/table-reservation/tableChoicePage?date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedTime)}`;
+            const url = reservationNo  ? `/reservation/table-reservation/tableChoicePage?date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedTime)}&reservationNo=${encodeURIComponent(reservationNo)}`
+            : `/reservation/table-reservation/tableChoicePage?date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedTime)}`;
+            window.location.href = url  
         }
     }
 });

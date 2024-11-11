@@ -25,3 +25,11 @@ function cancelReservation(reservationNo){
         });
     }
 }
+
+function updateReservation(reservationNo){
+    const updateState = confirm('예약을 변경하시겠습니까?');
+    
+    if(updateState){
+        location.href = `/updateReservation?reservationNo=${encodeURIComponent(reservationNo)}`    
+    }
+}
