@@ -57,9 +57,6 @@ public class TableReservationController {
 		
 		return "/reservation/table-reservation/reservationTableTimeChoice";
 	}
-	
-	
-	
 	@PostMapping(value = "/tableReservation")
 	@ResponseBody
 	public String tableReservation(

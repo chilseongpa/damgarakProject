@@ -10,8 +10,22 @@
  	</select>	
  	
 		<insert id="logupUser" parameterType="Users">
-		    INSERT INTO USERS (USERS_ID, USERS_NAME, USERS_PASSWORD, EMAIL, JOIN_DATE, USERS_STATE, USERS_TYPE)
-		    VALUES (#{usersId}, #{usersName}, #{usersPassword}, #{email}, SYSDATE, 'n', #{usersType})
+		    INSERT INTO USERS 
+		    (USERS_ID, 
+		    USERS_NAME, 
+		    USERS_PASSWORD, 
+		    EMAIL, 
+		    JOIN_DATE, 
+		    USERS_STATE, 
+		    USERS_TYPE)
+		    
+		    VALUES (#{usersId}, 
+		    #{usersName}, 
+		    #{usersPassword}, 
+		    #{email}, 
+		    SYSDATE, 
+		    'n', 
+		    #{usersType})
 		</insert>
 
 	 <select id="idCheck" resultType="_int">

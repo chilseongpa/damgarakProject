@@ -51,7 +51,7 @@ public class UserController {
 		emailAuthService.sendTemporaryPassword(userMail, tempPassword);
 		
 		int updateCheck = userService.updateUserPassword(userId, tempPassword);
-		System.out.println("Update check result: " + updateCheck); // 디버그용
+		// System.out.println("Update check result: " + updateCheck); 
 		if(0 > updateCheck){
 			return ResponseEntity.ok("전송 시 문제가 생겼습니다.");
 		}
@@ -67,13 +67,14 @@ public class UserController {
 			return ResponseEntity.ok(userId); 
 		}		
 	} 
+	
 	@GetMapping("/loginPage")
 	public String userLoginPage(HttpSession session){
-		return "users/loginOrSingup";
+		return "users/loginOrSignup";
 	}
 	
-	@PostMapping("/inrollform")
-	public String userLogin(Users user, HttpSession session, Model model, 
+	@PostMapping("/enrollform")
+	public String userLogin(Users user, HttpSession session, 
 			RedirectAttributes redirectAttributes){
 		
 		Users userLogin = userService.userLogin(user);
@@ -117,6 +118,7 @@ public class UserController {
 			return ResponseEntity.ok("true");
 		}				
 	}
+	
 	@GetMapping("/UsersMyPage")
     public String userMyPage(){
     	return "users/usersMyPage";
