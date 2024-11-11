@@ -3,6 +3,7 @@ package com.kh.damgarak.tableReservation.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.catalina.User;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,6 +66,8 @@ public class TableReservationController {
 					){
 		
 		Users users = (Users)session.getAttribute("userLogin");
+	
+		
 		if(users == null) {
 			return "로그인이 필요합니다";
 		}
