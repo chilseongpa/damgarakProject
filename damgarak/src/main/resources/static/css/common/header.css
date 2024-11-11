@@ -8,12 +8,12 @@ body {
     width: 100%;
     border-bottom: 1px solid black;
     height: 160px;
-    position: relative;
     text-align: center;
     color: black;
     text-decoration: none;
     min-width: 1200px;
     position: fixed;
+    top: 0;
     background-color: rgba(255, 255, 255, 0.171);
     z-index: 2;
 }
@@ -25,7 +25,10 @@ body {
     overflow: hidden;
     transition: height 0.55s;
 }
+a{
+    color: black;
 
+}
 
 .nav {
     display: flex;
@@ -36,7 +39,6 @@ body {
     line-height: 50px;
     padding-top: 50px;
     font-size: 23px;
-    font-family: 'GowunBatang';
 
 }
 
