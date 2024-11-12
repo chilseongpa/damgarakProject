@@ -37,7 +37,6 @@ public class ManagerController {
 
     @GetMapping("/suggestDe")
     public String adminPage(Model model,Post post) {
-        // ManagerService를 통해 추천된 포스트 목록 가져오기
     	List<SuggestionDTO> p = mService.selSuggest(post);
     	
     	log.info("post list size: {}",p.size());
@@ -45,7 +44,6 @@ public class ManagerController {
     	if (p.size() > 0) {
     		log.info("post[0]: {}", p.get(0));
     	}
-        // 모델에 가져온 포스트 목록 추가
         model.addAttribute("postList", p);
 
         return "post/board/manager/suggestDe";
