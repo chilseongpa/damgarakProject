@@ -10,37 +10,34 @@
   <script src="/static/js/post/board/board2.js"></script>
 </head>
 <body>
-        <p style="text-align: center;">비밀번호 변경</p>
-        <br>
+    <p style="text-align: center;">비밀번호 변경</p>
+    <br>
     
-        <button class="btn" id="bttn">
-	      &#9776;
-	    </button>
-	    <div id="menu-container">
-	    	<th:block th:insert="~{post/board/manager/menu2 :: nav}"></th:block>
-	    </div>
-	    
-      </div>
-      <div class="title-1">
+    <button class="btn" id="bttn">&#9776;</button>
+    <div id="menu-container">
+        <th:block th:insert="~{post/board/manager/menu2 :: nav}"></th:block>
+    </div>
+    
+    <div class="title-1">
         <div class="title">
             <table>
                 <br><br>
                 <tr>
                     <th class="first">현재 비밀번호</th>
-                    <th><input type="text" class="test"value="imij6414"></th>
+                    <th><input type="password" id="currentPassword" class="test" value="imij6414"></th>
                 </tr>
                 <tr>
                     <th class="first">새 비밀번호</th>
-                    <th><input type="text" class="test" value="" ></th>
+                    <th><input type="password" id="newPassword" class="test" value=""></th>
                 </tr>
                 <tr>
                     <th class="first">새 비밀번호 확인</th>
-                    <th><input type="text" class="test" value="" ></th>
+                    <th><input type="password" id="confirmPassword" class="test" value=""></th>
                 </tr>
             </table>
             <br><br><br><br>
             <div style="text-align: center;">
-                <a href="" class="btn btn-danger">비밀번호 변경</a>
+                <button class="btn btn-danger" onclick="updatePassword()">비밀번호 변경</button>
             </div>
         </div>
     </div>

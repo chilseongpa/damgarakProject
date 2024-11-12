@@ -198,3 +198,122 @@ function updateUser() {
           alert('정보 수정에 실패했습니다.');
       });
   }
+function updatePassword() {
+    const currentPassword = document.getElementById("currentPassword").value;
+    const newPassword = document.getElementById("newPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (newPassword !== confirmPassword) {
+        alert("새 비밀번호가 일치하지 않습니다.");
+        return;
+    }
+
+    fetch('/manager/updatePassword', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ newPassword: newPassword })
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function addReply() {
+    const replyComment = document.getElementById("content").value;
+
+    // URL에서 postNo 값을 동적으로 가져옴
+    const urlParams = new URLSearchParams(window.location.search);
+    const postNo = urlParams.get("postNo");
+
+    if (!postNo) {
+        alert("게시글 번호를 찾을 수 없습니다.");
+        return;
+    }
+
+    if (replyComment.trim() === "") {
+        alert("댓글을 입력해주세요.");
+        return;
+    }
+
+    fetch("/manager/insertReply", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            postNo: postNo,
+            replyComment: replyComment
+        })
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data === "success") {
+            document.getElementById("content").value = "";
+            fetchReplies(postNo); // 댓글 목록 갱신
+        } else {
+            alert("댓글 등록에 실패했습니다.");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
+function fetchReplies(postNo) {
+    fetch(`/manager/suggestDetail?postNo=${postNo}`)
+    .then(response => response.json())
+    .then(replyList => {
+        const replyArea = document.getElementById("replyArea");
+        replyArea.innerHTML = ""; // 댓글 목록 초기화
+
+        // 댓글 목록을 순회하며 각 댓글을 HTML로 추가
+        replyList.forEach(reply => {
+            const replyRow = document.createElement("div");
+            replyRow.style.display = "flex";
+            replyRow.style.justifyContent = "space-between";
+
+            replyRow.innerHTML = `
+                <span style="text-align: left; flex: 1;">${reply.usersName}</span>
+                <span style="text-align: center; flex: 1;">${reply.replyComment}</span>
+                <span style="text-align: right; flex: 1;">${new Date(reply.creationDate).toLocaleString()}</span>
+            `;
+            
+            replyArea.appendChild(replyRow);
+        });
+    })
+    .catch(error => console.error("Error fetching replies:", error));
+}
+
+function submitNotice() {
+  const noticeTitle = document.getElementById("noticeTitle").value;
+  const noticeContent = document.getElementById("noticeContent").value;
+
+  // 유효성 검사 (필요 시 추가)
+  if (!noticeTitle || !noticeContent) {
+    alert("제목과 내용을 입력해 주세요.");
+    return;
+  }
+
+  // 공지사항 데이터를 JSON 형식으로 서버에 전송
+  fetch('/manager/insertNotice', { // 변경된 경로
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        noticeTitle: noticeTitle,
+        noticeContent: noticeContent
+    })
+	})
+  .then(response => response.text())
+  .then(result => {
+    if (result === 'success') {
+      alert("공지사항이 등록되었습니다.");
+      location.reload(); // 페이지를 새로고침하여 등록 완료 표시
+    } else {
+      alert("공지사항 등록에 실패했습니다.");
+    }
+  })
+  .catch(error => console.error('Error:', error));
+}

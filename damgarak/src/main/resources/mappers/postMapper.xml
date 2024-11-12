@@ -3,39 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.damgarak.post.model.mapper.PostMapper">
-	
-	<!-- 게시글 생성 -->
-	<insert id="insertPost" parameterType="com.kh.damgarak.post.model.vo.Post">
-    	INSERT INTO post (title, content, creation_Date,  user_Id, category_Code, reply_Comment, post_Category_Code, post_Category_Name)
-    	VALUES (#{title}, #{content}, #{creation_Date}, #{user_Id}, #{category_Code}, #{reply_Comment}, #{post_Category_Code}, #{post_Category_Name})
-  	</insert>	
-
-	<update id="updateUserInfo" parameterType="map">
-	    UPDATE users
-	    SET users_name = #{userName},
-	        email = #{email}
-	        users_id = #{usersId}
-	    WHERE users_id = #{userId}
-	</update>
-
-	<select id="selectListCount" resultType="int">
-		SELECT COUNT(*) 
-		FROM POST
-		WHERE STATUS = 'Y'
+	<select id="selNotice" resultType="SuggestionDTO">
+		SELECT N.NOTICE_NO,N.NOTICE_TITLE,U.USERS_NAME
+		FROM NOTICE N
+		JOIN USERS U ON U.USERS_ID = N.USERS_ID
+		ORDER BY N.NOTICE_NO ASC
 	</select>
-
-  <!-- 게시글 삭제 -->
-  <delete id="deletePost" parameterType="int">
-    DELETE FROM post
-    WHERE post_No = #{post_No}
-  </delete>
-
-<select id="selSuggest" resultType="com.kh.damgarak.post.model.vo.Post">
-    SELECT P.POST_NO, POST_ID, P.TITLE, P.CREATION_DATE
-    FROM POST P
-    WHERE P.DELETE_STATE = 'N'; 
-</select>
-  
+	
+	<select id="selNoticeDetail" resultType="SuggestionDTO">
+		SELECT U.USERS_NAME, N.NOTICE_TITLE, N.NOTICE_CONTENT, NOTICE_CREATION_DATE
+		  FROM Notice N
+		  JOIN USERS U ON U.USERS_ID = N.USERS_ID
+		 WHERE N.NOTICE_NO = #{noticeNo}
+	</select>
   
 
 </mapper>

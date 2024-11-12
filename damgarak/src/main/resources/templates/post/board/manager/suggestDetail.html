@@ -45,33 +45,34 @@
       <br><br><br>
       <div>
         <a href="javascript:history.back()" class="btn btn-secondary" id="navi">뒤로가기</a>
-        <a th:href="@{/manager/suggestEdit(postNo=${post.postNo})}" class="btn btn-primary" id="navi">수정</a>
       </div>
       <br><br>
       <hr style="border: none; height: 2px; background-color: blue;">
       <br><br>
       
-      <input type="text" id="tel2" disabled placeholder="관리자"><!--관리자 or 유저명-->
-      <input type="text" id="tel3" disabled placeholder="그래 알았어 근데 니가 뭘 할 수 있는데"> <!--댓글 reply_comment -->
-      <input type="text" id="tel4" disabled placeholder="2024-10-23 16:23"> <br><br> <!--creation_date-->
+      <!-- 댓글 등록 영역 -->
+	  <table id="replyArea" class="table" align="center">
+	    <thead>
+	        <tr>
+	          <th colspan="2">
+	            <textarea id="content" cols="55" rows="2" class="form-control" style="resize: none;" placeholder="댓글을 입력하세요"></textarea>
+	          </th>
+	          <th style="vertical-align:middle;">
+	            <button id="addReply" class="btn btn-danger" onclick="addReply()">등록</button>
+	          </th>
+	        </tr>             
+	    </thead>
+	  </table>
       
       <!-- 댓글 영역 -->
-	<div th:if="${replies != null}">
-	    <div th:each="reply : ${replies}">
-	        <textarea id="tel2" readonly th:text="${reply.usersName}"></textarea>
-	        <textarea id="tel3" readonly th:text="${reply.replyComment}"></textarea>
-	        <input type="text" readonly th:value="${#dates.format(reply.creationDate, 'yyyy-MM-dd HH:mm')}">
-	    </div>
-	</div>
-
-      
-      
-      <input type="text" id="tel5"> <br><br>
-      <button id="btt" class="btn btn-danger">등록</button> <br>
-      <br>
-      
-      <br>
+	<div th:each="reply : ${replist}" id="even" style="display: flex; justify-content: space-between;">
+      <span id="tel2" th:text="${reply.usersName}" style="text-align: left; flex: 1;"></span>
+      <span id="tel3" th:text="${reply.replyComment}" style="text-align: center; flex: 1;"></span>
+      <span id="tel4" th:text="${#dates.format(reply.creationDate, 'yyyy-MM-dd HH:mm')}" style="text-align: right; flex: 1;"></span>
     </div>
+
+  	<br><br>
+
   </div>
 </body>
 </html>
