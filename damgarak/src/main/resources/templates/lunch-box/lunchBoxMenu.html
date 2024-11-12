@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>도시락 POS 시스템</title>
-        <link rel="stylesheet" href="static/css/lunch-box/lunchBoxMenu.css">
-   <script src="static/js/lunch-box/lunchBoxMenu.js"></script>
+    <link rel="stylesheet" href="static/css/lunch-box/lunchBoxMenu.css">
+    <script src="static/js/lunch-box/lunchBoxMenu.js"></script>
 </head>
 <body>
     <div class="pos-container">
@@ -16,7 +16,6 @@
                 <button class="menu-toggle" id="toggleButton">☰</button>
             </div>
             <div class="menu">
-              
                 <button class="menu-item" onclick="location.href='choiceLunchBox'">도시락 선택</button>
                 <button class="menu-item active" onclick="location.href='lunchBoxMenu'">주문하기</button>
             </div>
@@ -25,7 +24,7 @@
                     <div class="user-initial">홍</div>
                     <span>홍길동</span>
                 </div>
-                <button class="logout">로그아웃</button>
+          
             </div>
         </div>
 
@@ -49,14 +48,11 @@
 
             <!-- 메뉴 리스트 -->
             <div class="menu-list" id="menuList">
-                <!-- JavaScript로 메뉴 항목 생성 -->
-                
                 <div class="menu-items">
-	                <p th:each="menu : ${mainMenus}">
-	                	[[${menu.menuName}]]
-	                </p>	
+                    <p th:each="menu : ${mainMenus}">
+                        [[${menu.menuName}]]
+                    </p>    
                 </div>
-                
             </div>
 
             <!-- 페이지네이션 -->
@@ -71,7 +67,6 @@
             <h3>주문 요약</h3>
             <div id="orderList">
                 <!-- JavaScript로 주문 항목 추가 -->
-                
             </div>
             <div class="order-total">
                 <p>총 칼로리: <span id="totalCalories">0 kcal</span></p>
@@ -81,23 +76,17 @@
             <div id="bentoSummary">
                 <!-- JavaScript로 도시락별 메뉴 요약 표시 -->
             </div>
-            <!-- 초기화 버튼 추가 -->
             <button class="reset-order-btn" onclick="resetOrder()">초기화</button>
-            <button class="place-order-btn" onclick="location.href='/payment'">주문하기</button>
+            <button class="place-order-btn" onclick="proceedToCheckout()">주문하기</button>
         </div>
     </div>
-<!-- 
+
     <script>
         function proceedToCheckout() {
-            const totalWithoutTax = orderList.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            // 최종 금액을 localStorage에 저장
-            localStorage.setItem("finalPrice", totalWithoutTax);
-            
-            // lunchBoxMenu.html로 이동
+            const totalAmount = parseInt(document.getElementById("total").textContent.replace("₩", "").replace(",", ""), 10);
+            localStorage.setItem("finalPrice", totalAmount);
             window.location.href = "/payment";
         }
     </script>
- -->    
 </body>
 </html>

@@ -1,0 +1,64 @@
+/* 전체 화면 스타일 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f3f3;
+    font-family: Arial, sans-serif;
+}
+
+.full-screen-container {
+    display: flex;
+    flex-direction: column;
+    width: 80vw; /* 화면 폭을 80%로 줄임 */
+    max-width: 1200px; /* 최대 폭 설정 */
+    height: auto;
+    align-items: center;
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.payment-details {
+    width: 100%;
+    text-align: left;
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#payment-method, #agreement {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    color: white;
+    background-color: #3182f6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #1b64da;
+}
+
+#priceDisplay {
+    font-weight: bold;
+    color: #3182f6;
+}
