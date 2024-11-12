@@ -117,6 +117,7 @@ public class ManagerController {
 		int result = mService.insertNotice(notice);
 		return result > 0? "success" : "failed";
 	}
+<<<<<<< HEAD
 	@ResponseBody
 	@PostMapping("/deleteEmp")
 	public String deleteEmployee(@RequestBody Users users) {
@@ -133,10 +134,15 @@ public class ManagerController {
 
 	    return result > 0 ? "success" : "fail";
 	}
+=======
+>>>>>>> damgarak
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";
 	}
+	
+	
+	
 	@GetMapping("/bentoRv")
 	public String bentoRvPage() {
 		return "post/board/manager/bentoRv";

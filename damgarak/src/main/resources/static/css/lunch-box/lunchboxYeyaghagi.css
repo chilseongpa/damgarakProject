@@ -1,153 +1,64 @@
-:root {
-    --primary-color: #725AC1;         /* 메인 색상 */
-    --secondary-color: #FF6600;       /* 강조 색상 */
-    --background-color: #F3F4F6;      /* 배경 색상 */
-    --button-color: #FF6600;          /* 버튼 기본 색상 */
-    --text-color: #333333;            /* 기본 텍스트 색상 */
-    --highlight-color: #E35D5B;       /* 강조 효과 색상 */
-    --border-color: #E0E0E0;          /* 테두리 색상 */
-    --sidebar-bg: #333333;            /* 사이드바 배경 색상 */
-}
-
+@charset "UTF-8";
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
 body {
-    font-family: Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-}
-
-.pos-container {
     display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.main-content {
     width: 100vw;
     height: 100vh;
-}
-
-/* 좌측 사이드바 */
-.sidebar {
-    width: 300px;
-    background-color: var(--sidebar-bg);
-    color: #fff;
     display: flex;
-    flex-direction: column;
-    padding: 25px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    transform: translateX(0);
-    transition: transform 0.3s ease;
-    z-index: 10;
-}
-
-.sidebar.hidden {
-    transform: translateX(-100%);
-}
-
-.logo-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 25px;
-}
-
-.logo {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.menu-toggle {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.4em;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.menu-toggle.active {
-    transform: rotate(90deg);
-}
-
-/* 사이드바 메뉴 */
-.menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    flex-grow: 1;
-    gap: 80px;
+    align-items: center;
 }
-
-.menu-item {
-    font-size: 1.4em;
-    padding: 20px;
-    color: #fff;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: background 0.3s;
+.time-div-btns {
     width: 100%;
-    text-align: center;
-}
-
-.menu-item.active,
-.menu-item:hover {
-    background-color: var(--highlight-color);
-}
-
-.user-section {
+    height: 70%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-top: auto;
 }
-
-.user {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.user-initial {
-    width: 40px;
-    height: 40px;
-    background-color: #fff;
-    color: var(--primary-color);
-    border-radius: 50%;
+.btns-div {
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.btns-div button {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    background-color: white;
+    border: solid 1px;
+}
+button {
+    transform: scale(1);
+    transition: transform 0.1s ease;
+}
+button:active {
+    transform: scale(0.95);
+}
+hr {
+    border: 1px rgba(70, 76, 82, 0.068) solid;
+    width: 100%;
+}
+.selected-day {
     font-weight: bold;
-    font-size: 1.2em;
+    color: #ee790b;
 }
-
-.logout {
-    background-color: var(--highlight-color);
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1em;
+@media (max-width: 768px) {
+    .btns-div button {
+        font-size: 1.2em;
+        width: 80%;
+        height: 80%;
+    }
 }
-
-/* 메인 콘텐츠 */
-.main-content {
-    flex: 1;
-    padding: 30px;
-    margin-left: 300px;
-    transition: margin-left 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .reservation {
     background-color: #fff;
     padding: 30px;
@@ -155,38 +66,30 @@ body {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: center;
     max-width: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 90%;
 }
-
-/* "도시락 예약하기" 헤더 스타일 */
 .reservation h2 {
     font-size: 2.4em;
     color: var(--primary-color);
     margin-bottom: 25px;
 }
-
-/* 달력 UI */
 #calendar {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 30px; /* 기존보다 약간 더 아래로 내리기 위해 값을 증가 */
-    width: 100%;
+    margin-bottom: 20px; 
 }
-
-.calendar-header h3 {
-    font-size: 2em;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-}
-
 .calendar-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 20px;
 }
-
 .arrow-button {
     background: none;
     border: none;
@@ -195,108 +98,64 @@ body {
     color: var(--primary-color);
     transition: color 0.3s ease;
 }
-
+.choice-timer-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
 .arrow-button:hover {
     color: var(--highlight-color);
 }
-
 .calendar-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7일 주 */
+    grid-template-columns: repeat(7, minmax(15px, 1fr));
     gap: 12px;
     width: 100%;
+    justify-content: center;
+    align-items: center;
 }
-
-.calendar-day-name {
-    font-weight: bold;
-    text-align: center;
-    padding: 15px;
-    font-size: 1.5em;
-}
-
-.calendar-empty {
-    padding: 20px;
-}
-
 .calendar-day {
-    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #f0f0f0;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 1.5em;
     transition: background-color 0.3s ease;
+    width: 30%;
+    height: 30%;
 }
-
 .calendar-day:hover {
-    background-color: var(--highlight-color);
     color: white;
 }
-
-.disabled-day {
-    background-color: #e0e0e0;
-    color: #888;
-    cursor: not-allowed;
-}
-
-/* 날짜와 시간 선택 */
-.date-time-picker {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 가운데 정렬 */
-    justify-content: center; /* 가운데 정렬 */
-    margin-bottom: 30px; /* 여백 추가 */
-    width: 100%; /* 너비를 100%로 설정 */
-}
-
-.date-time-picker label {
-    display: block;
-    margin: 12px 0 6px;
-    font-size: 1.4em;
-}
-
-input[type="date"], select {
-    width: 100%; /* 너비를 100%로 설정하여 부모 요소에 맞춤 */
-    padding: 15px; /* 패딩 추가 */
-    font-size: 1.4em; /* 폰트 크기 설정 */
-    margin-bottom: 18px; /* 아래쪽 여백 추가 */
-    border-radius: 6px; /* 모서리 둥글게 */
-    border: 1px solid #ccc; /* 테두리 색상 설정 */
-    text-align: center; /* 텍스트 가운데 정렬 */
-}
-
-/* 선택한 날짜와 시간 표시 */
-.selected-date-time {
-    margin-bottom: 30px; /* 선택한 날짜와 시간과 버튼 사이 간격 */
-}
-
-.selected-date-time p {
-    font-size: 1.5em;
-    color: var(--primary-color);
-    margin-top: 20px;
-}
-
-/* 버튼 스타일 */
 .buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 20px;
+    width: 100%;
 }
-
 button {
-    padding: 15px 25px;
+    padding: 8px 16px;
     font-size: 1.3em;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
 }
-
 #cancelBtn {
-    background-color: #e57373;
+    background-color: #eb0606;
     color: #fff;
 }
-
 #reserveBtn {
-    background-color: #ffa726;
+    background-color: #e97529;
     color: #fff;
+}
+.selected-time {
+    background-color: #e97529; 
+    color: #e97529;
+    font-weight: bold;
+    border: 1px solid #e97529;
 }
