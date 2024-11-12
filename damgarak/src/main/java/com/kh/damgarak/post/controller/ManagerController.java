@@ -168,5 +168,4 @@ public class ManagerController {
 		return "post/board/manager/detailSpecification";
 	}
 	
-	
 }

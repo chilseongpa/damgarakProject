@@ -22,41 +22,29 @@
   <div class="title-1">
     <div class="title">
       <br><br>
-      <table class="table">
-        <thead class="table-light">
-          <tr>
+<!-- mySuggest.html -->
+<table class="table">
+    <thead class="table-light">
+        <tr>
             <th>순번</th>
             <th>제목</th>
             <th>날짜</th>
-          </tr>
-        </thead>
-        <tbody>
+        </tr>
+    </thead>
+    <tbody>
+   <tbody>
+    <tr th:if="${#lists.isEmpty(suggestions)}">
+        <td colspan="3" style="text-align:center;">등록된 건의함 게시글이 없습니다.</td>
+    </tr>
+    <tr th:each="suggestion, iterStat : ${suggestions}">
+        <td th:text="${iterStat.count}">1</td>
+        <td><a th:href="@{'/manager/suggestDetail/' + ${suggestion.postNo}}" th:text="${suggestion.title}">제목</a></td>
+        <td th:text="${suggestion.creationDate}">날짜</td>
+    </tr>
+</tbody>
 
-          <tr>
-            <tr>
-              <th><a href="suggestDetail.html" class="aTag">1</a></th>
-              <th><a href="suggestDetail.html" class="aTag">월급 올려주세요</a></th>
-              <th><a href="suggestDetail.html" class="date1">2024-10-12</a></th>
-            </tr>
-          </tr>
-          <tr>
-            <th><a href="" class="aTag">2</a></th>
-            <th><a href="" class="aTag">월급 올려달라고 상놈아</a></th>
-            <th><a href="" class="date1">2024-10-13</a></th>
-          </tr>
-          <tr>
-            <th><a href="" class="aTag">3</a></th>
-            <th><a href="" class="aTag">퇴사함 ㅅㄱ</a></th>
-            <th><a href="" class="date1">2024-10-14</a></th>
+</table>
 
-          <tr th:each="post, iterStat : ${posts}">
-            <th><a th:href="@{'/manager/suggestDetail/' + ${post.postNo}}" class="aTag" th:text="${iterStat.count}">1</a></th>
-            <th><a th:href="@{'/manager/suggestDetail/' + ${post.postNo}}" class="aTag" th:text="${post.title}">제목</a></th>
-            <th><a th:href="@{'/manager/suggestDetail/' + ${post.postNo}}" id="date1" th:text="${post.creationDate}">날짜</a></th>
-
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </body>

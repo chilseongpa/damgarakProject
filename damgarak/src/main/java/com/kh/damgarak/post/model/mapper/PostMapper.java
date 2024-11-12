@@ -16,5 +16,7 @@ public interface PostMapper {
 	List<SuggestionDTO> selNotice(Notice notice);
 	
 	List<SuggestionDTO> selNoticeDetail(@Param("noticeNo") int noticeNo);
+	
+	 List<SuggestionDTO> selectUserSuggestions(String userId);
 
 }

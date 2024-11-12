@@ -48,9 +48,12 @@ public class PostController {
 	}
 
 	@GetMapping("/mySuggest")
-	public String mySuggestPage() {
-		return "post/board/emp/mySuggest";
+	public String mySuggestPage(HttpSession session, Model model) {
+	    String userId = (String) session.getAttribute("userId"); // 세션에서 사용자 ID 가져오기
+	    List<SuggestionDTO> suggestions = pService.getUserSuggestions(userId); // 서비스 메서드 호출
+	    
+	    model.addAttribute("suggestions", suggestions); // 건의 목록을 모델에 추가
+	    return "post/board/emp/mySuggest";
 	}
-	
 
 }

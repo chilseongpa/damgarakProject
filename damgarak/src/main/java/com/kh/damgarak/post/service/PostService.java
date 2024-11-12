@@ -26,5 +26,7 @@ public class PostService {
     public List<SuggestionDTO> selNoticeDetail(int noticeNo){
     	return postMapper.selNoticeDetail(noticeNo);
     }
-
+    public List<SuggestionDTO> getUserSuggestions(String userId) {
+        return postMapper.selectUserSuggestions(userId);
+    }
 }

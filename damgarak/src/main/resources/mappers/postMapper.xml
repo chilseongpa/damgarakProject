@@ -16,6 +16,13 @@
 		  JOIN USERS U ON U.USERS_ID = N.USERS_ID
 		 WHERE N.NOTICE_NO = #{noticeNo}
 	</select>
+
+<select id="selectUserSuggestions" parameterType="String" resultType="SuggestionDTO">
+    SELECT POST_NO, TITLE, CREATION_DATE
+    FROM POST
+    WHERE USERS_ID = #{userId}
+    ORDER BY CREATION_DATE DESC
+</select>
   
 
 </mapper>
