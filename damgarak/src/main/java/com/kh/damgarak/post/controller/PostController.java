@@ -37,14 +37,14 @@ public class PostController {
 		return "post/board/emp/notice";
 	}
 	@GetMapping("/noticeDetail")
-    public String suggestDetailPage(@RequestParam("noticeNo") int noticeNo, Model model) {
-        List<SuggestionDTO> postDetails = pService.selNoticeDetail(noticeNo);
-        if (!postDetails.isEmpty()) {
-            model.addAttribute("post", postDetails.get(0));
-        } else {
-            model.addAttribute("error", "해당 게시물을 찾을 수 없습니다.");
-        }
-        return "post/board/emp/suggestDetail";
-    }
+	public String suggestDetailPage(@RequestParam("noticeNo") int noticeNo, Model model) {
+	    List<SuggestionDTO> postDetails = pService.selNoticeDetail(noticeNo);
+	    if (!postDetails.isEmpty()) {
+	        model.addAttribute("post", postDetails.get(0));
+	    } else {
+	        model.addAttribute("error", "해당 게시물을 찾을 수 없습니다.");
+	    }
+	    return "post/board/emp/noticeDetail"; // 경로 수정
+	}
 	
 }
