@@ -29,6 +29,9 @@ function addToOrder(selectedValue) {
         selectedBentoList.push({ value: selectedValue, count: 1 });
     }
 
+    // 선택된 도시락 타입 저장 (마지막 선택된 도시락 타입 저장)
+    localStorage.setItem("selectedLunchboxType", selectedValue);
+
     // 선택 항목을 화면에 업데이트
     updateSelectedBentoDisplay();
 }
@@ -68,9 +71,10 @@ function resetSelection() {
     selectedBentoList = []; // 도시락 리스트 초기화
     updateSelectedBentoDisplay(); // 화면에서 선택한 도시락 제거
     localStorage.removeItem("selectedBentoList"); // localStorage에서 선택 내역 제거
+    localStorage.removeItem("selectedLunchboxType"); // 선택된 도시락 타입 제거
 }
 
-// 다음 단계로 이동 (선택한 도시락 수를 저장하고 bb.html로 이동)
+// 다음 단계로 이동 (선택한 도시락 수를 저장하고 다음 페이지로 이동)
 function nextStep() {
     if (selectedBentoList.length < 1) {
         alert("최소 1개의 도시락을 선택해야 합니다.");
@@ -80,16 +84,11 @@ function nextStep() {
     // 선택한 도시락 수 계산
     const totalBentoCount = selectedBentoList.reduce((count, item) => count + item.count, 0);
     localStorage.setItem("selectedBentoCount", totalBentoCount); // 총 도시락 수 저장
-    
-    function selectLunchbox(lunchboxType) {
-    // 도시락 정보를 localStorage에 저장
-    localStorage.setItem("selectedLunchboxType", lunchboxType);
-   
-}
 
-    // lunchBoxMenu.html로 이동
+    // 선택된 도시락 타입을 모든 선택한 항목을 연결해 저장
+    const selectedLunchboxType = selectedBentoList.map(item => item.value).join(", ");
+    localStorage.setItem("selectedLunchboxType", selectedLunchboxType);
+
+    // 다음 페이지로 이동 (예: lunchBoxMenu.html로 이동)
     window.location.href = "/lunchBoxMenu";
-
 }
-
-
