@@ -18,8 +18,9 @@ public class SuggestionDTO {
 	private String jobCode;
 	private String jobName;
 	private String replyComment;
-	private String NoticeTitle;
-	private String NoticeContent;
-	private int NoticeNo;
+	private String noticeTitle;
+	private String noticeContent;
+	private int noticeNo;
+	private Date noticeCreationDate;
 	
 }

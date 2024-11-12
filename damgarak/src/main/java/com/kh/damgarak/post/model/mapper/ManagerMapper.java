@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
-import com.kh.damgarak.post.model.vo.Employee;
+import com.kh.damgarak.employee.model.vo.Employee;
 import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.model.vo.Reply;
