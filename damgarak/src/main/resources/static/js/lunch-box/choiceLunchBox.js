@@ -80,9 +80,16 @@ function nextStep() {
     // 선택한 도시락 수 계산
     const totalBentoCount = selectedBentoList.reduce((count, item) => count + item.count, 0);
     localStorage.setItem("selectedBentoCount", totalBentoCount); // 총 도시락 수 저장
+    
+    function selectLunchbox(lunchboxType) {
+    // 도시락 정보를 localStorage에 저장
+    localStorage.setItem("selectedLunchboxType", lunchboxType);
+   
+}
 
     // lunchBoxMenu.html로 이동
     window.location.href = "/lunchBoxMenu";
 
 }
+
 

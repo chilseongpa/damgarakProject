@@ -1,21 +1,24 @@
+// LunchBoxyeongsujeung.js
+
 document.addEventListener("DOMContentLoaded", () => {
     // URL에서 결제 성공 정보를 가져와 화면에 표시
     const urlParams = new URLSearchParams(window.location.search);
     const amount = urlParams.get("amount");
-
-    // 결제 금액 표시
     document.getElementById("amount").textContent = `${amount}원`;
 
-    // 주문한 메뉴 가져오기 및 표시
-    const orderList = JSON.parse(localStorage.getItem("orderList")) || [];
-    const orderedMenu = orderList.map(item => item.menuName).join(", ");
-    document.getElementById("orderedMenu").textContent = orderedMenu;
+    // 선택한 도시락 타입 가져오기 및 표시
+    const selectedLunchboxType = localStorage.getItem("selectedLunchboxType") || "선택된 도시락 없음";
+    document.getElementById("orderedMenu").textContent = `주문한 메뉴: ${selectedLunchboxType}`;
 
-    // 주문번호 관리: 이전 주문번호가 있으면 고정, 없으면 +1 증가
+    // 주문한 메뉴 요약 가져오기 및 표시
+    const orderList = JSON.parse(localStorage.getItem("orderSummary")) || [];
+    const orderedMenu = orderList.map(item => `${item.menuName} x ${item.quantity}`).join(", ");
+    document.getElementById("orderedMenu").textContent = `${selectedLunchboxType} - ${orderedMenu}`;
+
+    // 주문번호 생성
     let lastOrderId = parseInt(localStorage.getItem("lastOrderId"), 10) || 1;
-    const currentOrderId = localStorage.getItem("currentOrderId");
+    let currentOrderId = localStorage.getItem("currentOrderId");
 
-    // 현재 주문번호가 없을 때만 lastOrderId 사용하여 고정
     if (!currentOrderId) {
         localStorage.setItem("currentOrderId", lastOrderId);
         localStorage.setItem("lastOrderId", lastOrderId + 1);
