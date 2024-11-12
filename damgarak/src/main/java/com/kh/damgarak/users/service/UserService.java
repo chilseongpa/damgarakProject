@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.damgarak.users.model.mapper.UserMapper;
 import com.kh.damgarak.users.model.vo.Users;
+import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,9 +14,10 @@ public class UserService {
 	
 		private final UserMapper userMapper;
 		
-		public Users userLogin(Users user){
-			return userMapper.loginUser(user.getUsersId(), user.getUsersPassword());
+		public UsersLoginDTO userLogin(String usersId){
+			return userMapper.loginUser(usersId);
 		} 
+		
 		public int userSingup(Users user){
 			return userMapper.logupUser(user);
 		}
