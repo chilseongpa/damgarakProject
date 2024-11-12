@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+ 	 <link rel="stylesheet" href="/static/css/common/header.css" />
+	<link rel="stylesheet" href="static/css/damgarak/partnerCompany.css">
+	<link rel="stylesheet" href="/static/css/common/footer.css" />
+
+</head>
+
+
+
+<body>
+
+
+		<!-- 헤더 자리-->
+		<div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>	
+		<!-- 헤더 자리-->
+
+    <section>
+        <div class="container-sm container-md container-lg container-xl container-xxl">
+            <div class="partner-company-div">
+                <div class="potapo-img img-div-company">
+                        <h1 class="h3-potato">싱싱한 야채들만을 <br> 취급하는 양민욱 <br>친환경농사센터</h1>
+                  
+                </div>
+                <div class="text-company-info">
+                        <div class="text-info-div">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#potato-modal">
+                                    친환경농사센터 (주) 양민욱 알아보기
+                            </button>
+                        </div>
+                    </div>
+                 </div>
+                 <!-- 농사물 센터-->
+
+                 <div class="partner-company-div">
+                    <div class="blobfish-img img-div-company">
+                            <h1 class="h3-blobfish">방금 잡은 싱싱한 <br> 해산물들만 취급하는 <br>까탈스러운 수산물센터</h1>
+                      
+                    </div>
+    
+                    <div class="text-company-info">
+                            <div class="text-info-div">
+                                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#blobfish-modal">
+                                         (주) 기름짜는 집 알아보기
+                                </button>
+                            </div>
+                        </div>
+                     </div>
+
+
+                     <div class="partner-company-div">
+                        <div class="kimchangsik-img img-div-company">
+                                <h1 class="h3-kimchangsik">어둠 도축 </h1>
+                          
+                        </div>
+        
+                        <div class="text-company-info">
+                                <div class="text-info-div">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#kimchangsik-modal">
+                                             (주) 어둠의 도축장
+                                    </button>
+                                </div>
+                            </div>
+                         </div>
+
+
+                         <div class="partner-company-div">
+                            <div class="monkey-img img-div-company">
+                                    <h1 class="h3-monkey">담가 벌레 </h1>
+                              
+                            </div>
+            
+                            <div class="text-company-info">
+                                    <div class="text-info-div">
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#monkey-modal">
+                                                 (주) 담가 벌레
+                                        </button>
+                                    </div>
+                                </div>
+                             </div>	
+                          </div>
+   				 </section>
+    
+
+ 
+                          <div class="modal fade" id="monkey-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">최종군 사장님</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    강사님 언제나 열 시 힘 가르쳐주셔서 감사합니다. <br> 
+                                    제가 좀 많이 부족하고 모자르지만 <br>
+                                    강사님 덕분에 여기까지 왔습니다.
+                                     감사합니다. 
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">퇴소</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>  
+
+                     <div class="modal fade" id="kimchangsik-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">김창식 사장님</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                강사님 언제나 열 시 힘 가르쳐주셔서 감사합니다. <br> 
+                                제가 좀 많이 부족하고 모자르지만 <br>
+                                강사님 덕분에 여기까지 왔습니다.
+                                 감사합니다. 
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">퇴소</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                     <div class="modal fade" id="blobfish-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">조건웅 알바생</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                강사님 언제나 열 시 힘 가르쳐주셔서 감사합니다. <br> 
+                                제가 좀 많이 부족하고 모자르지만 <br>
+                                강사님 덕분에 여기까지 왔습니다.
+                                 감사합니다. 
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">퇴소</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="potato-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">양민욱 사장님</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                강사님 언제나 열 시 힘 가르쳐주셔서 감사합니다. <br> 
+                                제가 좀 많이 부족하고 모자르지만 <br>
+                                강사님 덕분에 여기까지 왔습니다.
+                                 감사합니다. 
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">퇴소</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    
+        <section class="footer-div-controller">
+			<div id="footer-div-controller" th:replace="common/footer::footer" style="position: relative; "></div>	
+    	</section>    	
+		
+</body>
+</html>
