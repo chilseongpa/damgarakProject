@@ -11,8 +11,8 @@ onload = function () {
     });
 
     document.getElementById('signupForm').onsubmit = function (event) {
-        const userName = document.getElementById("userName").value;
-        const userPassowrd = document.getElementById("userPassword").value;
+        const userName = document.getElementById("userName").value; 
+      /*  const userPassowrd = document.getElementById("userPassword").value; */
         const usernamePattern = /^[a-zA-Z0-9]{8,15}$/;
 
         if (!usernamePattern.test(userName)) {
@@ -54,7 +54,7 @@ document.querySelector('.email-btn').onclick = () => {
             if (response === "사용불가") {
                 alert('이미 사용 중인 이메일입니다.');
             } else {
-                sendAuthCode(email);
+                sendAuthCode(usersEmail);
             }
         },
         error: (err) => {
@@ -138,7 +138,7 @@ function pwdCheck(event) {
 
 // 폼 제출 이벤트에 연결
 document.getElementById('signupForm').onsubmit = function(event) {
-    return pwdCheck(event);  // pwdCheck 함수 호출, 조건에 따라 폼 제출 여부 결정
+    return pwdCheck(event);  
 };
 
 let isIdChecked = false;

@@ -4,11 +4,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.kh.damgarak.users.model.vo.Users;
+import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
 
 @Mapper
 public interface UserMapper {
 
-	Users loginUser(String usersId, String usersPassword);
+	UsersLoginDTO loginUser(String usersId);
 	int logupUser(Users user);
 	int idCheck(String usersId);
 	String findUserId(String userName, String userMail);

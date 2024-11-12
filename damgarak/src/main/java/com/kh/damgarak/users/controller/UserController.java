@@ -1,4 +1,6 @@
 package com.kh.damgarak.users.controller;
+import java.sql.Date;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.damgarak.emailauth.service.EmailAuthService;
 import com.kh.damgarak.users.model.vo.Users;
 import com.kh.damgarak.users.service.UserService;
+import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
 
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
@@ -73,15 +76,19 @@ public class UserController {
 		return "users/loginOrSignup";
 	}
 	
+
 	@PostMapping("/enrollform")
-	public String userLogin(Users user, HttpSession session, 
-			RedirectAttributes redirectAttributes){
+	public String userLogin(String usersId, String usersPassword, HttpSession session, 
+			RedirectAttributes redirectAttributes){	
 		
-		Users userLogin = userService.userLogin(user);
+		UsersLoginDTO userLogin = userService.userLogin(usersId);
 		
-		if(userLogin != null && passwordEncoder.matches(user.getUsersPassword(), userLogin.getUsersPassword())) {
+		System.out.println("userLogin null 체크 중" + userLogin);
+		System.out.println("userLogin : 비밀번호 체크" + userLogin.getUsers().getUsersPassword());
+		
+		if(userLogin != null && passwordEncoder.matches(usersPassword, userLogin.getUsers().getUsersPassword())) {
 			session.setAttribute("userLogin", userLogin);
-			redirectAttributes.addFlashAttribute("successMsg", user.getUsersId() + "님 환영합니다.");
+			redirectAttributes.addFlashAttribute("successMsg", usersId + "님 환영합니다.");
 			return "redirect:/";
 		}else{
 	        redirectAttributes.addFlashAttribute("errorMsg", "아이디 또는 비밀번호가 틀렸습니다");

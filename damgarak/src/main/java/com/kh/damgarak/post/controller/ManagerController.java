@@ -128,11 +128,13 @@ public class ManagerController {
 		int result = mService.insertNotice(notice);
 		return result > 0? "success" : "failed";
 	}
-	
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";
 	}
+	
+	
+	
 	@GetMapping("/bentoRv")
 	public String bentoRvPage() {
 		return "post/board/manager/bentoRv";

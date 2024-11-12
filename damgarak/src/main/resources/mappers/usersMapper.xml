@@ -3,11 +3,39 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.damgarak.users.model.mapper.UserMapper">
-	<select id="loginUser" resultType="Users">
-		select * 
-		from USERS
-		where USERS_ID = #{usersId}  AND USERS_STATE = 'n'
+
+<resultMap id="UsersResultMap" type="UsersLoginDTO">
+    <association property="users" javaType="Users">
+  	<id property="usersId" column="USERS_ID"/>
+    <result property="usersPassword" column="USERS_PASSWORD"/>
+    <result property="usersName" column="USERS_NAME"/>
+    <result property="email" column="EMAIL"/>
+    <result property="joinDate" column="JOIN_DATE"/>
+    <result property="withdrawalDate" column="WITHDRAWAL_DATE"/>
+    <result property="usersState" column="USERS_STATE"/>
+    <result property="usersType" column="USERS_TYPE"/>
+</association>
+
+<association property="employee" javaType="Employee">
+  	<id property="usersId" column="USERS_ID"/>
+    <result property="employeeName" column="EMPLOYEE_NAME"/>
+    <result property="phone" column="PHONE"/>
+    <result property="address" column="ADDRESS"/>
+    <result property="deptCode" column="DEPT_CODE"/>
+    <result property="jobCode" column="JOB_CODE"/>
+    <result property="employeeType" column="EMPLOYEE_TYPE"/>
+    <result property="salary" column="SALARY"/>
+   </association>
+</resultMap>
+
+	<select id="loginUser" resultMap="UsersResultMap">
+		select u.USERS_ID, u.USERS_PASSWORD, u.USERS_TYPE, e.EMPLOYEE_TYPE 
+		from USERS u 
+		LEFT JOIN EMPLOYEE e on u.USERS_ID = e.USERS_ID
+		where u.USERS_ID = #{usersId}  
+		AND u.USERS_STATE = 'y'
  	</select>	
+ 
  	
 		<insert id="logupUser" parameterType="Users">
 		    INSERT INTO USERS 
@@ -24,7 +52,7 @@
 		    #{usersPassword}, 
 		    #{email}, 
 		    SYSDATE, 
-		    'n', 
+		    'y', 
 		    #{usersType})
 		</insert>
 
