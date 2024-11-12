@@ -3,12 +3,14 @@ package com.kh.damgarak.tableReservation.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.catalina.User;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,6 +47,17 @@ public class TableReservationController {
 	     model.addAttribute("time", time);
 		return "/reservation/table-reservation/tableChoicePage";
 	}
+	
+	@GetMapping("/updateReservation")
+	public String updateTableReservation(
+			@RequestParam("reservationNo")
+			int reservationNo,
+			Model model){
+	
+		model.addAttribute("reservationNo", reservationNo);
+		
+		return "/reservation/table-reservation/reservationTableTimeChoice";
+	}
 	@PostMapping(value = "/tableReservation")
 	@ResponseBody
 	public String tableReservation(
@@ -53,6 +66,8 @@ public class TableReservationController {
 					){
 		
 		Users users = (Users)session.getAttribute("userLogin");
+	
+		
 		if(users == null) {
 			return "로그인이 필요합니다";
 		}
@@ -64,6 +79,34 @@ public class TableReservationController {
 		}else 
 		return "not";
 	}
+	
+	@PutMapping("/updateTable")
+	@ResponseBody
+	public String updateTableReservation(
+			@RequestBody ChoiceTableReservationDTO choiceReservation,
+			HttpSession session
+			){
+		Users user = (Users)session.getAttribute("userLogin"); 
+		
+		if(user == null){
+			return "로그인이 필요합니다.";
+		}
+		
+		String reservationNo = choiceReservation.getReservation().getReservationNo(); 
+		if(reservationNo == null){
+			return "수정할 수 없습니다.";
+		}
+		
+		int result = tableReservationService.updateTableReservation(choiceReservation, reservationNo);
+		
+		if(result > 0) {
+			return "ok";
+		}else {
+			return "filed"; 
+		}
+		
+	}
+	
 	
 	@GetMapping("/getSearchTableState")
 	@ResponseBody

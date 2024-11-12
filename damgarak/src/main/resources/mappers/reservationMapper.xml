@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.damgarak.reservation.model.mapper.ReservationMapper">
+  
+  <select id="searTableList" resultType="PastReservationSearch">
+	  SELECT 
+        r.RESERVATION_NO AS reservationNo,        
+        TO_CHAR(r.RESERVATION_DATE, 'YYYY-MM-DD') AS reservationDate,  
+        TO_CHAR(r.RESERVATION_DATE, 'HH24:MI') AS reservationTime,    
+        t.TABLE_NO AS tableNo                       
+    FROM 
+        RESERVATION r
+    LEFT JOIN 
+        TABLE_RESERVATION t ON r.RESERVATION_NO = t.RESERVATION_NO
+    WHERE 
+        r.USERS_ID = #{usersId}                
+        AND TO_CHAR(r.RESERVATION_DATE, 'YYYY') = #{year}   
+        AND TO_CHAR(r.RESERVATION_DATE, 'MM') = #{month}  
+        AND r.RESERVATION_DATE &lt; SYSDATE  
+    ORDER BY 
+        r.RESERVATION_DATE DESC 
+	  	
+  </select>
+    
+  <select id="searchLuchList" resultType="PastReservationSearch">
+    SELECT 
+        r.RESERVATION_NO AS reservationNo,         
+        TO_CHAR(r.RESERVATION_DATE, 'YYYY-MM-DD') AS reservationDate, 
+        TO_CHAR(r.RESERVATION_DATE, 'HH24:MI') AS reservationTime,    
+        lr.LUNCHBOX_DETAILS AS lunchBoxDetails     
+    FROM 
+        RESERVATION r
+    LEFT JOIN 
+        LUNCHBOX_RESERVATION lr ON r.RESERVATION_NO = lr.RESERVATION_NO
+    WHERE 
+        r.USERS_ID = #{usersId}                  
+        AND TO_CHAR(r.RESERVATION_DATE, 'YYYY') = #{year}   
+        AND TO_CHAR(r.RESERVATION_DATE, 'MM') = #{month}  
+        AND  r.RESERVATION_DATE &lt; SYSDATE 
+    ORDER BY 
+        r.RESERVATION_DATE DESC
+</select>
+  
+  
+  
+  
+  
+</mapper>

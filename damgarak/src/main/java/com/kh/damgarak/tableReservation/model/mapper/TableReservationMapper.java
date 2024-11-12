@@ -18,6 +18,7 @@ public interface TableReservationMapper {
 	int getReservationCount(String userId);
 	int deleteResultvation(int reservationNo);
 	int deleteTableReservation(int reservationNo);
-	
-	
+	int updateReservation(HashMap<String, Object> map);
+	int updateTableReservation(HashMap<String, Object> tableMap);
 }
+
