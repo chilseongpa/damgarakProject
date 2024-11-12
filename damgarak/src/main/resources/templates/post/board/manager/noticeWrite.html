@@ -20,28 +20,29 @@
     	<th:block th:insert="~{post/board/manager/menu2 :: nav}"></th:block>
     </div>
     
+  <form id="noticeForm">
   <div class="title-1">
     <div class="title">
-      <br><br>
       <table>
         <tr>
           <th id="test2">제목</th>
           <th id="test2">
-            <input type="text" class="test">
+            <input type="text" id="noticeTitle" class="test">
           </th>
         </tr>
         <tr>
           <th id="test2">내용</th>
-          <th >
-            <textarea id="test1"></textarea>
+          <th>
+            <textarea class="test1" id="noticeContent"></textarea>
           </th>
         </tr>
       </table>
       <br>
       <div style="text-align: center;">
-        <a href="" class="btn btn-danger">등록</a>
-      </div>
-    </div>
-  </div>
+        <button type="button" class="btn btn-danger" onclick="submitNotice()">등록</button>
+	      </div>
+	    </div>
+	  </div>
+	</form>
 </body>
 </html>

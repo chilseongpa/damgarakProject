@@ -1,4 +1,4 @@
-package com.kh.damgarak.post.model.vo;
+package com.kh.damgarak.employee.model.vo;
 
 import lombok.Data;
 

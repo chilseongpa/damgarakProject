@@ -4,56 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.kh.damgarak.post.model.dto.SuggestionDTO;
+import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
+import com.kh.damgarak.post.service.ManagerService;
 import com.kh.damgarak.post.service.PostService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RestController
+@Controller
+@RequiredArgsConstructor
 @RequestMapping("/admin")
 public class PostController {
 	
-	@Autowired
 	private final PostService pService;
-	
-	public PostController(PostService pService) {
-		this.pService = pService;
-	}
-	
+		
 	@GetMapping("/notice")
-	public String noticePage(HttpSession session) {
-		List<Post> list = pService.noticeMenu();
-		if(list != null) {
-			session.setAttribute("post",list);
-		}
+	public String noticePage(Model model, Notice notice) {
+		List<SuggestionDTO> n = pService.selNotice(notice);
 		
-		return "post/notice";
+		model.addAttribute("noticeList",n);
+		
+		return "post/board/emp/notice";
+	}
+	@GetMapping("/noticeDetail")
+	public String suggestDetailPage(@RequestParam("noticeNo") int noticeNo, Model model) {
+	    List<SuggestionDTO> postDetails = pService.selNoticeDetail(noticeNo);
+	    if (!postDetails.isEmpty()) {
+	        model.addAttribute("post", postDetails.get(0));
+	    } else {
+	        model.addAttribute("error", "해당 게시물을 찾을 수 없습니다.");
+	    }
+	    return "post/board/emp/noticeDetail"; // 경로 수정
 	}
 	
-	@PostMapping("/updatePost")
-    public String updatePost(
-        @RequestParam("postNo") int postNo,
-        @RequestParam("title") String title,
-        @RequestParam("content") String content) {
-
-        pService.updatePost(postNo, title, content);
-        return "redirect:/post/notice"; // 업데이트 후 리다이렉트할 페이지 경로 설정
-    }
-	
-	@PostMapping("/list")
-	public String boardList(@RequestParam(value="cpage", defaultValue="1") int currentPage
-							, Model model) {
-		
-		// 전체 게시글 수 조회
-		int listCount = pService.selectListCount();
-		return "post/postList";
-	}
 }
