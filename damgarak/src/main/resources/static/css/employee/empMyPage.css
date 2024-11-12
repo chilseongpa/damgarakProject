@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+body {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	height: 100vh;
+}
+#main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+#section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+.container-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40%;
+	height: 80%;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#change-my-info {
+	width: 95%;
+	height: 95%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.emp-infomatin-input-css {
+	width: 70%;
+	height: 20%;
+	margin: 20px;
+}
+
+#h3-div {
+	display: flex;
+	justify-content: center;
+}
+
+

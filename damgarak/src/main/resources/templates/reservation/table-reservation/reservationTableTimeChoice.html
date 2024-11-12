@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +9,13 @@
     <link rel="stylesheet" th:href="@{/static/css/common/header.css}" />
 	<link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
     
-    
 </head>
 <body>
 <div>
-<div class="header-div">
+
+<section class="header-div">
     <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
-</div>
+</section>
 
     <div class="pos-container">
         <div class="main-content" data-reservation-no="${reservationNo}">
@@ -56,9 +56,9 @@
             </section>
         </div>
     </div>
-    <div class="footer-div">
+    <section class="footer-div">
     <div id="footer-div-controller" th:replace="common/footer::footer" style="position: relative; "></div>
-	</div>
+	</section>
 </div>
 </body>
 </html>

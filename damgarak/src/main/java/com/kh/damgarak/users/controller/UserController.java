@@ -27,6 +27,16 @@ public class UserController {
 	private final EmailAuthService emailAuthService;
 	private final PasswordEncoder passwordEncoder;
 	
+	
+	@GetMapping("/userslogout")
+	public String usersLogout(HttpSession session){
+		session.removeAttribute("userLogin");
+		return "redirect:/";
+	}
+	@GetMapping("/goToMain")
+	public String goMain(){
+		return "redirect:/";
+	}
 	@GetMapping("/checkEmail")
 	@ResponseBody
 	public String emailCheck(String email){
@@ -37,11 +47,9 @@ public class UserController {
 		return "사용가능";
 	}
 	
-	
 	@PostMapping("/findPwd")
 	@ResponseBody
 	public ResponseEntity<String> findPwd(String userName, String userId, String userMail) throws MessagingException{
-		
 		boolean checkUser = userService.findUserPwd(userName, userId, userMail);
 		System.out.println(checkUser);
 		
@@ -130,5 +138,7 @@ public class UserController {
     public String userMyPage(){
     	return "users/usersMyPage";
     }
+	
+	
 	
 }
