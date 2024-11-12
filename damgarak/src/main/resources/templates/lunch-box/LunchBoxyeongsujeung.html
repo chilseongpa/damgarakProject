@@ -3,33 +3,33 @@
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="https://static.toss.im/icons/png/4x/icon-toss-logo.png" />
-    <link rel="stylesheet" href="static/css/lunch-box/lunchBoxMenu.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>결제 성공</title>
+    <link rel="stylesheet" href="static/css/lunch-box/LunchBoxyeongsujeung.css">
+    <script src="static/js/lunch-box/LunchBoxyeongsujeung.js" defer></script>
 </head>
 
 <body>
-    <div class="box_section" style="width: 600px">
-        <img width="100px" src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" />
+    <div class="box_section">
+        <img width="120px" src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" />
         <h2>결제를 완료했어요</h2>
 
-        <div class="p-grid typography--p" style="margin-top: 50px">
-            <div class="p-grid-col text--left"><b>결제금액</b></div>
-            <div class="p-grid-col text--right" id="amount"></div>
+        <!-- 주문한 메뉴 간단히 표시 -->
+        <div class="p-grid typography--p" style="margin-top: 20px">
+            <div class="p-grid-col text--left"><b>주문한 메뉴:</b></div>
+            <div class="p-grid-col text--right" id="orderedMenu"></div>
         </div>
-        <div class="p-grid typography--p" style="margin-top: 10px">
-            <div class="p-grid-col text--left"><b>주문번호</b></div>
+
+        <!-- 주문번호와 결제금액 표시 -->
+        <div class="p-grid typography--p" style="margin-top: 20px">
+            <div class="p-grid-col text--left"><b>주문번호:</b></div>
             <div class="p-grid-col text--right" id="orderId"></div>
         </div>
+        <div class="p-grid typography--p" style="margin-top: 10px">
+            <div class="p-grid-col text--left"><b>결제금액:</b></div>
+            <div class="p-grid-col text--right" id="amount"></div>
+        </div>
     </div>
-
-    <script>
-        // URL에서 결제 성공 정보를 가져와 화면에 표시
-       const urlParams = new URLSearchParams(window.location.search);
-document.getElementById("orderId").textContent = urlParams.get("orderId");
-document.getElementById("amount").textContent = `${urlParams.get("amount")}원`;
-
-    </script>
 </body>
 </html>

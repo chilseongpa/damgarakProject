@@ -1,7 +1,5 @@
 // 초기 메뉴 데이터 설정
 let menuData = {}; // 서버에서 가져온 메뉴 데이터를 저장할 객체
-
-// 페이지네이션 설정
 let currentPage = 1;
 const itemsPerPage = 6;
 let orderList = [];
