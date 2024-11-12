@@ -21,9 +21,13 @@
   <div class="title-1">
       <br><br>
       <table class="table table-bordered" style="width: 50%; margin: 0 auto;">
+      	<tr>
+      	  <th class="first">직원 아이디</th>
+      	  <td><input type="text" id="userId" th:value="${user.usersId}" class="form-control" readonly></td>
+      	</tr>
         <tr>
           <th class="first">직원 이름</th>
-          <td><input type="text" id="userName" th:value="${user.usersName}" class="form-control"></td>
+          <td><input type="text" id="userName" th:value="${user.usersName}" class="form-control" readonly></td>
         </tr>
         <tr>
           <th class="first">이메일</th>
@@ -32,7 +36,7 @@
         <tr>
           <th class="first">직급</th>
           <td>
-            <select class="form-select" aria-label="Default select example" id="jobCode">
+            <select class="form-select" aria-label="Default select example" id="jobCode" th:value="${user.jobCode}">
               <option value="CEO">사장</option>
               <option value="Chef">주방장</option>
               <option value="Guard">가드</option>
@@ -44,9 +48,36 @@
   </div>
   <div class="text-center">
     <button class="btn btn-danger mx-2" id="updateButton" onclick="updateUser()">수정</button>
-    <a href="#" class="btn btn-dark mx-2" id="fireButton" onclick="deleteEmployee()">해고</a>
+    <button class="btn btn-dark mx-2" id="fireButton" onclick="deleteEmployee()">해고</button>
   </div>
 
-  
+ <script>
+ function deleteEmployee() {
+	  const userId = document.getElementById("userId").value;
+	  
+	  if (!confirm(`정말로 ${userId} 직원을 해고하시겠습니까?`)) return;
+
+	  fetch('/manager/deleteEmp', {
+	    method: 'POST',
+	    headers: {
+	      'Content-Type': 'application/json'
+	    },
+	    body: JSON.stringify({ usersId: userId })
+	  })
+	  .then(response => response.text())
+	  .then(result => {
+	    if (result === 'success') {
+	      alert(`${userId} 직원이 삭제되었습니다.`);
+	      window.location.href = '/manager/empInfo';
+	    } else {
+	      alert('직원 삭제에 실패했습니다.');
+	    }
+	  })
+	  .catch(error => {
+	    console.error('Error:', error);
+	    alert('삭제 요청 중 오류가 발생했습니다.');
+	  });
+	}
+  </script>
 </body>
 </html>

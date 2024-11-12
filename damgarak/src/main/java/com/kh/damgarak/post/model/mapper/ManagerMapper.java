@@ -24,17 +24,17 @@ public interface ManagerMapper {
 	
 	List<SuggestionDTO> selempDetails(String usersId);
 	
-	List<Users> deleteUser(Users users);
-	
 	int updateNameEmail(Users user);
 
 	int updateJob(Employee emp);
 	
 	List<SuggestionDTO> selReply(int postNo);
-		
-	int updatePass(@Param("usersPassword") String usersPassword);
 	
 	int insertReply(Reply reply);
 	
 	int insertNotice(Notice notice);
+	
+	int deleteEmp(Users users);
+	
+	int updatePass(String userId, String changePassword);
 }

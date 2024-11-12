@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.damgarak.employee.model.vo.Employee;
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
 import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
@@ -104,16 +105,6 @@ public class ManagerController {
 	    // 직원 상세 정보 페이지로 리다이렉트
 	    // return "redirect:/manager/empDetails?usersName=" + usersName;
 	}
-	@PostMapping("/updatePassword")
-	public ResponseEntity<String> updatePassword(@RequestBody Map<String, String> request) {
-	    String newPassword = request.get("newPassword");
-	    boolean isUpdated = mService.updatePassword(newPassword);
-	    if (isUpdated) {
-	        return ResponseEntity.ok("Password updated successfully");
-	    } else {
-	        return ResponseEntity.status(500).body("Failed to update password");
-	    }
-	}
 	@ResponseBody
 	@PostMapping("/insertReply")
 	public String insertReply(@RequestBody Reply reply) {
@@ -126,7 +117,22 @@ public class ManagerController {
 		int result = mService.insertNotice(notice);
 		return result > 0? "success" : "failed";
 	}
-	
+	@ResponseBody
+	@PostMapping("/deleteEmp")
+	public String deleteEmployee(@RequestBody Users users) {
+	    int result = mService.deleteEmp(users);
+	    return result > 0 ? "success" : "failed";
+	}
+	@ResponseBody
+	@PostMapping("/updatePassword")
+	public String updatePassword(@RequestBody Map<String, String> passwordData) {
+	    String userId = passwordData.get("userId");
+	    String changePassword = passwordData.get("changePassword");
+
+	    int result = mService.updatePass(userId, changePassword);
+
+	    return result > 0 ? "success" : "fail";
+	}
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";

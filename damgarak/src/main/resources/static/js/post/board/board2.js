@@ -198,29 +198,6 @@ function updateUser() {
           alert('정보 수정에 실패했습니다.');
       });
   }
-function updatePassword() {
-    const currentPassword = document.getElementById("currentPassword").value;
-    const newPassword = document.getElementById("newPassword").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-
-    if (newPassword !== confirmPassword) {
-        alert("새 비밀번호가 일치하지 않습니다.");
-        return;
-    }
-
-    fetch('/manager/updatePassword', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ newPassword: newPassword })
-    })
-    .then(response => response.text())
-    .then(data => {
-        alert(data);
-    })
-    .catch(error => console.error('Error:', error));
-}
 
 function addReply() {
     const replyComment = document.getElementById("content").value;
@@ -316,4 +293,44 @@ function submitNotice() {
     }
   })
   .catch(error => console.error('Error:', error));
+}
+
+function updatePassword() {
+    const currentPassword = document.getElementById("currentPassword").value;
+    const newPassword = document.getElementById("newPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    // 비밀번호 확인
+    if (newPassword !== confirmPassword) {
+        alert("새 비밀번호가 일치하지 않습니다.");
+        return;
+    }
+
+    // 요청에 사용할 데이터
+    const passwordData = {
+        userId: "imij0126",  // 실제 아이디를 넣어주세요
+        changePassword: newPassword
+    };
+
+    // 비밀번호 변경 요청
+    fetch("/manager/updatePassword", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(passwordData)
+    })
+    .then(response => response.text())
+    .then(result => {
+        if (result === "success") {
+            alert("비밀번호가 성공적으로 변경되었습니다.");
+            location.reload();  // 페이지를 새로고침하여 변경 사항 적용
+        } else {
+            alert("비밀번호 변경에 실패했습니다. 다시 시도해 주세요.");
+        }
+    })
+    .catch(error => {
+        console.error("비밀번호 변경 오류:", error);
+        alert("비밀번호 변경 중 오류가 발생했습니다.");
+    });
 }

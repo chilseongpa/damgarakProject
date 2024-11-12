@@ -41,10 +41,10 @@
 	</update>
 	
 	<select id="selempDetails" parameterType="String" resultType="SuggestionDTO">
-		SELECT USERS_NAME, EMAIL, JOB_CODE
-		FROM USERS U
-		JOIN EMPLOYEE E ON U.USERS_ID = E.USERS_ID
-		WHERE U.USERS_ID = #{usersId}
+	    SELECT U.USERS_ID, U.USERS_NAME, U.EMAIL, E.JOB_CODE
+	    FROM USERS U
+	    JOIN EMPLOYEE E ON U.USERS_ID = E.USERS_ID
+	    WHERE U.USERS_ID = #{usersId}
 	</select>
     
     <update id="updateNameEmail">
@@ -68,21 +68,26 @@
 	    WHERE P.POST_NO = #{postNo}
 	</select>
     
-    <update id="updatePass">
-    	UPDATE USERS
-    	   SET USERS_PASSWORD = #{usersPassword}
-    	 WHERE USERS_PASSWORD = 'imij0126'
-    </update>
-    
     <insert id="insertReply">
         INSERT INTO REPLY (POST_NO, REPLY_COMMENT, CREATION_DATE, DELETE_STATE, USERS_ID)
         VALUES (#{postNo}, #{replyComment}, SYSDATE, 'N', 'imij0126')
     </insert>
     
     <insert id="insertNotice">
-    	INSERT INTO NOTICE (USERS_ID, NOTICE_TITLE, NOTICE_CONTENT,NOTICE_NO)
-    	VALUES ('imij0126', #{NoticeTitle}, #{NoticeContent},NOTICE_SEQ.NEXTVAL)
-    </insert>
+	    INSERT INTO NOTICE (USERS_ID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_NO, NOTICE_CREATION_DATE)
+	    VALUES ('imij0126', #{noticeTitle}, #{noticeContent}, NOTICE_SEQ.NEXTVAL, SYSDATE)
+	</insert>
+	
+	<delete id="deleteEmp" parameterType="Users">
+	    DELETE FROM Users 
+	    WHERE USERS_NAME = #{usersId}
+	</delete>
+	
+	<update id="updatePass">
+	  UPDATE USERS 
+	     SET USERS_PASSWORD = #{changePassword} 
+	   WHERE USERS_ID = #{userId}
+	</update>
 </mapper>
 
 
