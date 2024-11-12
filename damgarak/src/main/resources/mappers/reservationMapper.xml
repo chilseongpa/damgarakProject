@@ -18,8 +18,9 @@
         r.USERS_ID = #{usersId}                
         AND TO_CHAR(r.RESERVATION_DATE, 'YYYY') = #{year}   
         AND TO_CHAR(r.RESERVATION_DATE, 'MM') = #{month}  
+        AND r.RESERVATION_DATE &lt; SYSDATE  
     ORDER BY 
-        r.RESERVATION_DATE DESC
+        r.RESERVATION_DATE DESC 
 	  	
   </select>
     
@@ -36,7 +37,8 @@
     WHERE 
         r.USERS_ID = #{usersId}                  
         AND TO_CHAR(r.RESERVATION_DATE, 'YYYY') = #{year}   
-        AND TO_CHAR(r.RESERVATION_DATE, 'MM') = #{month}   
+        AND TO_CHAR(r.RESERVATION_DATE, 'MM') = #{month}  
+        AND  r.RESERVATION_DATE &lt; SYSDATE 
     ORDER BY 
         r.RESERVATION_DATE DESC
 </select>
