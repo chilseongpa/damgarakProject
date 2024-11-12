@@ -13,20 +13,22 @@
        <script src="static/js/users/login-page/loginOrSingup.js"></script>  
         <link rel="stylesheet" href="static/css/users/login-page/findUserIdOrPassword.css"/>  
         <script src="static/js/users/login-page/findUserIdOrPassword.js"></script>   
+<link rel="stylesheet" th:href="@{/static/css/common/header.css}" />
+<link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
+
 </head>
 <body>
-
    <div th:if="${errorMsg}">
         <script th:inline="javascript">
             alert([[${errorMsg}]]);
         </script>
     </div>
+    <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
     
     
     
     <section class="head-img-login-section">
     </section>
-    <h1 class="title-h1-controll">계정 생성하기</h1>
     <div id="container" class="container">
         <div class="form-container sign-up-container">
             <form action="/signupForm"  id="signupForm" onsubmit="return pwdCheck()" method="post">
@@ -148,6 +150,9 @@
         </div>
     </div>
 </div>
+      
+      <div id="footer-div-controller" th:replace="common/footer::footer" style="position: relative; "></div>
+      
       
 </body>
 </html>

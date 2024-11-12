@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,9 +40,28 @@
 						<li><a href="#">공지사항</a></li>
 					</ul></li>
 			</ul>
-			<ul id="singUpUl">
-				<li><a href="/loginPage">로그인</a></li>
-			</ul>
+			
+	<ul id="singUpUl">
+    <!-- 로그인 링크: 로그인 정보가 없을 경우 표시 -->
+    <th:block th:if="${session.userLogin == null}">
+        <li><a href="/loginPage">로그인</a></li>
+    </th:block>
+
+    <th:block th:if="${session.userLogin != null}">
+    
+        <th:block th:if="${session.userLogin.users != null and session.userLogin.users.usersType == '고객'}">
+            <li><a href="/UsersMyPage">고객 마이페이지</a></li>
+        </th:block>
+
+        <th:block th:if="${session.userLogin.employee != null and session.userLogin.employee.employeeType == '관리자'}">
+            <li><a href="/manager/saleSheet">관리자 페이지</a></li>
+        </th:block>
+
+        <th:block th:if="${session.userLogin.employee != null and session.userLogin.employee.employeeType == '직원'}">
+            <li><a href="/admin/notice">직원 페이지</a></li>
+        </th:block>
+    </th:block>
+</ul>
 		</div>
 	</header>
 </body>
