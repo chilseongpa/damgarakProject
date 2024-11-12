@@ -46,9 +46,12 @@ public class PostController {
 	    }
 	    return "post/board/emp/noticeDetail"; // 경로 수정
 	}
+<<<<<<< HEAD
 	@GetMapping("/mySuggest")
 	public String mySuggestPage() {
 		return "post/board/emp/mySuggest";
 	}
 	
+=======
+>>>>>>> damgarak
 }
