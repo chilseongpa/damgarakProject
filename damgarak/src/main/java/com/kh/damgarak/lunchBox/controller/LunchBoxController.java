@@ -37,6 +37,11 @@ public class LunchBoxController {
         return "lunch-box/choiceLunchBox";  // 이 경로에 해당하는 템플릿 파일이 존재해야 합니다.
     }
     
+    @GetMapping("/LunchBoxReservation")
+    public String lunchBoxReservationPage() {
+        return "lunch-box/LunchBoxReservation";  // 템플릿 경로에 맞게 설정
+    }
+
     
     // -------------------------------------
     @ResponseBody

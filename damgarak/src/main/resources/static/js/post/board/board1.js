@@ -1,10 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 메뉴 파일 불러오기
-  fetch("menu.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("menu-container").innerHTML = data;
-
+  
       // 메뉴 파일이 로드된 후 버튼과 메뉴 선택자 설정
       let btn = document.querySelector("#bttn");
       let menu = document.querySelector("#nav");
@@ -14,31 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.classList.toggle("active");
         menu.classList.toggle("active");
       });
-    });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  new Chart(document.getElementById("bar-chart"), {
-      type: 'bar',
-      data: {
-          labels: ["10월25일", "10월26일", "10월27일", "10월28일", "10월29일", "10월30일"],
-          datasets: [
-              {
-                  label: "원",
-                  backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e84cd"],
-                  data: [250000, 490000, 357000, 850000, 430000, 500000]
-              }
-          ]
-      },
-      options: {
-          responsive: true,
-          legend: { display: false },
-          title: {
-              display: true,
-              text: '일별 매출'
-          }
-      }
-  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {

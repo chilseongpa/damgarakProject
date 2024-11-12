@@ -1,7 +1,5 @@
 // 초기 메뉴 데이터 설정
 let menuData = {}; // 서버에서 가져온 메뉴 데이터를 저장할 객체
-
-// 페이지네이션 설정
 let currentPage = 1;
 const itemsPerPage = 6;
 let orderList = [];
@@ -89,9 +87,9 @@ function addToOrder(menuNo, menuName, price, calorie, img, category) {
     const existingItem = orderList.find(item => item.menuNo === menuNo);
 
     if (existingItem) {
-        existingItem.quantity++;
+        existingItem.quantity++; // 이미 선택한 메뉴일 경우 수량 증가
     } else {
-        orderList.push({ menuName, price, calorie, img, category, quantity: 1 });
+        orderList.push({ menuNo, menuName, price, calorie, img, category, quantity: 1 });
     }
 
     updateOrderSummary();
@@ -111,9 +109,9 @@ function updateOrderSummary() {
             <div class="order-item-details">
                 <span class="order-item-menuName">${item.menuName}</span>
                 <div class="order-item-controls">
-                    <button class="quantity-btn" onclick="decreaseQuantity('${item.menuName}')">-</button>
+                    <button class="quantity-btn" onclick="decreaseQuantity('${item.menuNo}')">-</button>
                     <span class="quantity">${item.quantity}</span>
-                    <button class="quantity-btn" onclick="increaseQuantity('${item.menuName}')">+</button>
+                    <button class="quantity-btn" onclick="increaseQuantity('${item.menuNo}')">+</button>
                 </div>
             </div>
             <span class="price">${(item.price * item.quantity).toLocaleString()} 원</span>
@@ -159,8 +157,8 @@ function updateBentoSummary() {
 }
 
 // 수량 증가
-function increaseQuantity(menuName) {
-    const item = orderList.find(item => item.menuName === menuName);
+function increaseQuantity(menuNo) {
+    const item = orderList.find(item => item.menuNo === menuNo);
     if (item) {
         item.quantity++;
         updateOrderSummary();
@@ -168,12 +166,12 @@ function increaseQuantity(menuName) {
 }
 
 // 수량 감소
-function decreaseQuantity(menuName) {
-    const item = orderList.find(item => item.menuName === menuName);
+function decreaseQuantity(menuNo) {
+    const item = orderList.find(item => item.menuNo === menuNo);
     if (item && item.quantity > 1) {
         item.quantity--;
     } else {
-        orderList = orderList.filter(item => item.menuName !== menuName);
+        orderList = orderList.filter(item => item.menuNo !== menuNo);
     }
     updateOrderSummary();
 }
@@ -203,20 +201,6 @@ function updatePaginationButtons(totalItems) {
     document.getElementById('prevButton').disabled = currentPage === 1;
     document.getElementById('nextButton').disabled = currentPage === Math.ceil(totalItems / itemsPerPage);
 }
-
-// 사이드바 애니메이션 토글 기능
-document.addEventListener("DOMContentLoaded", () => {
-    const toggleButton = document.querySelector("#toggleButton");
-    const sidebar = document.querySelector("#sidebar");
-
-    if (toggleButton && sidebar) {
-        toggleButton.addEventListener("click", () => {
-            sidebar.classList.toggle("hidden");
-        });
-    } else {
-        console.warn("Toggle button or sidebar not found.");
-    }
-});
 
 // 초기화 버튼 기능
 function resetOrder() {
