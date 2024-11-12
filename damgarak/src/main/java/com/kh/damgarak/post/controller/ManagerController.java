@@ -169,4 +169,6 @@ public class ManagerController {
 	public String detailSpecificationPage() {
 		return "post/board/manager/detailSpecification";
 	}
+	
+	
 }

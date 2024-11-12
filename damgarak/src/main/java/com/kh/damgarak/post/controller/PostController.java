@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin")
+@RequestMapping("/post")
 public class PostController {
 	
 	private final PostService pService;
@@ -45,6 +45,10 @@ public class PostController {
 	        model.addAttribute("error", "해당 게시물을 찾을 수 없습니다.");
 	    }
 	    return "post/board/emp/noticeDetail"; // 경로 수정
+	}
+	@GetMapping("/mySuggest")
+	public String mySuggestPage() {
+		return "post/board/emp/mySuggest";
 	}
 	
 }
