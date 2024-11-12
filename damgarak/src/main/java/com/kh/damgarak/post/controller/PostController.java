@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin")
+@RequestMapping("/emp")
 public class PostController {
 	
 	private final PostService pService;
@@ -46,5 +46,4 @@ public class PostController {
 	    }
 	    return "post/board/emp/noticeDetail"; // 경로 수정
 	}
-	
 }
