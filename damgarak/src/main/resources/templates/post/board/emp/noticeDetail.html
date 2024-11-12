@@ -18,31 +18,31 @@
   </button>
   <div id="menu-container"></div>
 
-  <div class="title-1">
-      <br><br>
-      <table>
-        <tr>
-          <th class="test2">직원 이름</th>
-          <th class="test2">김인창</th>
-        </tr>
-        <tr>
-          <th class="test2">제목</th>
-          <th class="test2">월급이 다들 동결 됬어요</th>
-        </tr>
-        <tr>
-          <th class="test2">내용</th>
-          <th class="test2">사장이 월급 안올려준다고 하네요 ㅎㅎㅎ<br>
-            이 회사 때려 치울 사람 구함~ <br>
-          </th>
-        </tr>
-        <tr>
-          <th class="test2">작성일</th>
-          <th class="test2">2024/10/12</th>
-        </tr>
-      </table>
-      <br><br><br>
-      <div>
-      </div>
+   <div class="title-1">
+    <br><br>
+    <table>
+      <tr>
+        <th class="test2">작성자</th>
+        <td class="test2" th:text="${post.usersName}">김인창</td>
+      </tr>
+      <tr>
+        <th class="test2">제목</th>
+        <td class="test2" th:text="${post.title}">게시글 제목</td>
+      </tr>
+      <tr>
+        <th class="test2">내용</th>
+        <td class="test2" th:text="${post.content}">게시글 내용</td>
+      </tr>
+      <tr>
+        <th class="test2">작성일</th>
+        <td class="test2" th:text="${post.creationDate}">2024/10/12</td>
+      </tr>
+    </table>
+    <br><br><br>
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="/manager/suggestList" class="btn btn-primary">목록으로 돌아가기</a>
   </div>
 </body>
 </html>

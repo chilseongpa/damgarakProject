@@ -76,10 +76,6 @@ h5 {
   width: 1000px;
   border: 1px solid white;
 }
-.title{
-	width: 900px;
-	height: 700px;
-}
 .aTag {
   margin: 30px;
   color : black;
@@ -199,16 +195,14 @@ h1 {
 }
 #tel2{
   border :none;
-
+  width: 50px;
 }
 #tel3{
   border :none;
   width: 300px;
-  text-align: left;
 }
 #tel4{
   border :none;
-
 }
 #btt{
   float: right;
