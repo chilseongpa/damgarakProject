@@ -118,12 +118,6 @@ public class ManagerController {
 		return result > 0? "success" : "failed";
 	}
 	@ResponseBody
-	@PostMapping("/deleteEmp")
-	public String deleteEmployee(@RequestBody Users users) {
-	    int result = mService.deleteEmp(users);
-	    return result > 0 ? "success" : "failed";
-	}
-	@ResponseBody
 	@PostMapping("/updatePassword")
 	public String updatePassword(@RequestBody Map<String, String> passwordData) {
 	    String userId = passwordData.get("userId");
@@ -131,6 +125,16 @@ public class ManagerController {
 
 	    int result = mService.updatePass(userId, changePassword);
 
+	    return result > 0 ? "success" : "fail";
+	}
+	@ResponseBody
+	@GetMapping("/fireEmployee")
+	public String fireEmployee(String usersId) {
+		System.out.println("유저 아이디 확인용" + usersId);
+		
+	    int result = mService.updateFire(usersId);
+	    
+	    
 	    return result > 0 ? "success" : "fail";
 	}
 	@GetMapping("/saleSheet")

@@ -34,7 +34,7 @@ public interface ManagerMapper {
 	
 	int insertNotice(Notice notice);
 	
-	int deleteEmp(Users users);
-	
 	int updatePass(String userId, String changePassword);
+	
+	int updateFire(String usersId);
 }

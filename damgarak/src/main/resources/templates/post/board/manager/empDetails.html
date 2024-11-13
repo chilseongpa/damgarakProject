@@ -6,8 +6,10 @@
   <title>Document</title>
   <link rel="stylesheet" href="/static/css/post/boardcss/post1.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="/static/js/post/board/board2.js"></script>
+
 </head>
 <body>
   <p style="text-align: center;">직원 정보 수정</p>
@@ -27,7 +29,7 @@
       	</tr>
         <tr>
           <th class="first">직원 이름</th>
-          <td><input type="text" id="userName" th:value="${user.usersName}" class="form-control" readonly></td>
+          <td><input type="text" id="userName" th:value="${user.usersName}" class="form-control"></td>
         </tr>
         <tr>
           <th class="first">이메일</th>
@@ -37,10 +39,10 @@
           <th class="first">직급</th>
           <td>
             <select class="form-select" aria-label="Default select example" id="jobCode" th:value="${user.jobCode}">
-              <option value="CEO">사장</option>
-              <option value="Chef">주방장</option>
-              <option value="Guard">가드</option>
-              <option value="Manager">관리자</option>
+              <option value="J01">사장</option>
+              <option value="c01">주방장</option>
+              <option value="g01">가드</option>
+              <option value="D02">관리자</option>
             </select>
           </td>
         </tr>
@@ -50,34 +52,35 @@
     <button class="btn btn-danger mx-2" id="updateButton" onclick="updateUser()">수정</button>
     <button class="btn btn-dark mx-2" id="fireButton" onclick="deleteEmployee()">해고</button>
   </div>
+<script>
+  function deleteEmployee() {
+    const userId = document.getElementById("userId").value;
+    console.log('확인용 : ', userId);
 
- <script>
- function deleteEmployee() {
-	  const userName = document.getElementById("userName").value;
-	  
-	  if (!confirm(`정말로 ${userName} 직원을 해고하시겠습니까?`)) return;
+    $.ajax({
+    		url: '/manager/fireEmployee',
+        type: 'get',
+        data:{
+          usersId: userId,
+        },
+        success:function(result){
+          if(result === 'success'){
+            alert('해고 성공입니다.');
+          }else{
+            alert('해고 실패입니다.');
+          }
+        },
+        error:function(error){
+          alert(error);
+        }
+    
+    })
+    
+    }
+    
 
-	  fetch('/manager/deleteEmp', {
-	    method: 'POST',
-	    headers: {
-	      'Content-Type': 'application/json'
-	    },
-	    body: JSON.stringify({ userName: userName })
-	  })
-	  .then(response => response.text())
-	  .then(result => {
-	    if (result === 'success') {
-	      alert(`${userId} 직원이 삭제되었습니다.`);
-	      window.location.href = '/manager/empInfo';
-	    } else {
-	      alert('직원 삭제에 실패했습니다.');
-	    }
-	  })
-	  .catch(error => {
-	    console.error('Error:', error);
-	    alert('삭제 요청 중 오류가 발생했습니다.');
-	  });
-	}
-  </script>
+</script>
+
+
 </body>
 </html>

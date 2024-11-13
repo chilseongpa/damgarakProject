@@ -68,10 +68,10 @@ public class ManagerService {
     public int insertNotice(Notice notice) {
     	return managerMapper.insertNotice(notice);
     }
-    public int deleteEmp(Users users) {
-        return managerMapper.deleteEmp(users);
-    }
     public int updatePass(String userId, String changePassword) {
     	return managerMapper.updatePass(userId, changePassword);
+    }
+    public int updateFire(String usersId) {
+    	return managerMapper.updateFire(usersId);
     }
 }
