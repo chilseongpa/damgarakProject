@@ -73,7 +73,7 @@ public class TableReservationController {
 			return "로그인이 필요합니다";
 		}
 
-		int result = tableReservationService.createTableReservation(choiceReservation, users.getUsers().getUsersId());
+		int result = tableReservationService.createTableReservation(choiceReservation, users.getUsersId());
 	
 		if(result > 0) {
 			return "ok";
@@ -135,7 +135,7 @@ public class TableReservationController {
 			return "redirect:/";
 		}
 	
-		String userId = users.getUsers().getUsersId();
+		String userId = users.getUsersId();
 		
 		int listCount = tableReservationService.getReservationCount(userId);
 		
