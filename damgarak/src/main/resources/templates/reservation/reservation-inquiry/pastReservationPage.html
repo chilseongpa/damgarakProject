@@ -8,9 +8,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="static/css/reservation/reservation-inquiry/pastReservationPage.css">
 	<script src="static/js/reservation/reservationInquiry/pastReservationPage.js"></script>
+<link rel="stylesheet" th:href="@{/static/css/common/header.css}" />
+<link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
+
 </head>
 <body>
 <main>  
+<section id="header-section">
+<div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
+ </section>
     <section class="search-waiting">
     <div class="search-div-select">
         <form action="/pastReservationSearch" method="GET">
@@ -98,6 +104,11 @@
         </ul>
       </nav>
     </section>
+   	
+   	<section class="footer-section">
+     <div  th:replace="common/footer::footer" style="position: relative; z-index: 1;"></div>
+   </section>
     </main>
+    
 </body>
 </html>

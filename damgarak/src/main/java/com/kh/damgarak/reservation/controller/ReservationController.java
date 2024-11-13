@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.damgarak.reservation.pastReservationSearch.model.dto.PastReservationSearch;
 import com.kh.damgarak.reservation.service.ReservationService;
 import com.kh.damgarak.users.model.vo.Users;
+import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -38,9 +39,9 @@ public class ReservationController {
 	
 		HashMap<String, String> map = new HashMap<String, String>();
 		
-		Users user = (Users)session.getAttribute("userLogin");
+		UsersLoginDTO user = (UsersLoginDTO)session.getAttribute("userLogin");
 	
-		String usersId = user.getUsersId();
+		String usersId = user.getUsers().getUsersId();
 	
 		List<PastReservationSearch> searchList = new ArrayList();
 		
