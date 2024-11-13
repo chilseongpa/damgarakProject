@@ -30,11 +30,11 @@ public class PostController {
 		
 	@GetMapping("/notice")
 	public String noticePage(Model model, Notice notice) {
-		List<SuggestionDTO> n = pService.selNotice(notice);
+		// List<SuggestionDTO> n = pService.selNotice(notice);
 		
-		model.addAttribute("noticeList",n);
+		// model.addAttribute("noticeList",n);
 		
-		return "post/board/emp/notice";
+		return "post/board/emp/empMyPage";
 	}
 	@GetMapping("/noticeDetail")
 	public String suggestDetailPage(@RequestParam("noticeNo") int noticeNo, Model model) {

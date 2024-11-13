@@ -1,49 +1,9 @@
 @charset "UTF-8";
 
 body {
-	margin: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	text-align: center;
+	margin: 0px;
+	height: 2000px;
 }
-.search-waiting {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-
-	gap: 5px;
-}
-
-.form-select {
-	width: 200px;
-	cursor: pointer;
-}
-
-.search-result {
-	display: flex;
-	justify-content: center;
-	text-align: center;
-	width: 100%;
-	height: 100vh;
-}
-
-main {
-	padding: 10px;
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12), 0 4px 6px
-		rgba(0, 0, 0, 0.08);
-		
-		width: 60%;
-		height: 10%;
-}
-
-.pagination-search {
-	display: flex;
-	justify-content: center;
-}
-
 /*사이드 아이콘 자리*/
 input[id="menuicon"] {
 	display: none;
@@ -51,13 +11,13 @@ input[id="menuicon"] {
 
 input[id="menuicon"]+label {
 	display: block;
-	width: 60px;
-	height: 40px;
+	width: 40px;
+	height: 20px;
 	position: relative;
 	cursor: pointer;
 	position: fixed;
-	top: 50%;
-	left: 0;
+	top: 11%;
+	left: 10px;
 	transition: all .35s;
 }
 
@@ -139,6 +99,7 @@ input[id="menuicon"]:checked+label+div.sidebar {
 	flex-direction: column;
 	/* 버튼을 가운데로 맞추기 위해서 */
 }
+
 .my-page-a a:hover {
 	color: gray;
 }
@@ -170,46 +131,14 @@ p {
 	width: 30px;
 	height: 30px;
 }
-/*사이드바 내부 요소들*/
-.side-icon-section {
-	margin: 0px;
+
+.my-page-div p:nth-child(2) {
+	position: absolute;
+	top: 10%;
+	left: 85px;
+	font-size: 1.5em;
 }
 
-.main {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.radio-input-choice {
-	margin: 0px;
-}
-
-form {
-	display: flex;
-	align-items: center;
-	height: 100%;
-}
-
-.radio-input-choice label {
-	gap: 5px;
-}
-
-.radio-input-choice {
-	margin-right: 15px;
-}
-
-.search-form {
-	display: flex;
-	flex-direction: column; 
-	gap: 20px; 
-}
-#header-section {
-	display: flex;
-	justify-content: center;
-}
-.footer-section {
-	display: flex;
-	justify-content: center;
-
+hr {
+	opacity: 1px;
 }
