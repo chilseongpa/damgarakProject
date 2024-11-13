@@ -4,7 +4,7 @@
  
  onload = () =>{
         document.getElementById('openModal-div').addEventListener('click', function() {
-        window.location.href = "/changeUserMyPage";
+        window.location.href = "/changeInfoMyPage";
 });
 		var modal = document.getElementById("myModal");
 		var btn = document.getElementById("openModal");
