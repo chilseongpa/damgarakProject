@@ -1,176 +1,181 @@
 @charset "UTF-8";
 
-html, body {
-	margin: 0;
+body {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	height: 1300px!important;
-	background-color: #f8f8f8;
-}
-
-.user-page-section {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 30%;
-	height: 80%;
-}
-
-.user-page {
-	width: 100%;
-	padding: 20px 40px 30px 40px;
-	border-radius: 15px;
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-	height: 90%;
-	display: flex;
 	flex-direction: column;
+	height: 100vh;
+}
+
+#main {
+	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #ffffff;
-	transition: transform 0.3s ease;
-}
-
-.user-page:hover {
-	transform: scale(1.02);
-}
-
-.user-page input {
-	width: calc(100% + 20px);
-	padding: 20px;
-	font-size: 1.2em;
-	margin-top: 15px;
-	border-radius: 8px;
-	border: 1px solid #ddd;
-	transition: border-color 0.2s ease;
-}
-
-.user-page input:focus {
-	border-color: #4A90E2;
-	outline: none;
-}
-
-.info-icon {
-	cursor: pointer;
-	color: hsl(16, 96%, 49%);
-	font-size: 24px;
-	transition: color 0.2s ease;
-}
-
-.info-icon:hover {
-	color: #ff8c42;
-}
-
-
-
-
-.my-page-comment>p {
-	font-size: 0.9em;
-	margin: 4px;
-	color: #666;
-}
-
-.member-id-div p:nth-child(2) {
-	position: absolute;
-	top: 10%;
-	/*        모달 구역   */ . modal-content { border-radius : 15px;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-	overflow: hidden;
-}
-
-.modal-header {
-	background-color: #FF4B2B;
-	color: white;
-	padding: 15px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border-bottom: 1px solid #ddd;
-}
-
-.modal-title {
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.btn-close {
-	color: #ffffff;
-	font-size: 1.2em;
-	opacity: 0.8;
-	transition: opacity 0.2s;
-}
-
-.btn-close:hover {
-	opacity: 1;
-}
-
-.modal-body {
-	padding: 20px;
-	color: #333;
-}
-
-.modal-footer {
-	padding: 15px;
-	border-top: 1px solid #ddd;
-	display: flex;
-	justify-content: center;
-	background-color: #f8f8f8;
-}
-
-.modal-footer .btn-secondary {
-	background-color: #FF4B2B;
-	color: white;
-	border: none;
-}
-
-.member-level-name {
-	display: flex;
-	justify-content: center;
-	align-content: center;
-}
-
-.member-level-name pre {
-	font-size: 1.5em !important;
-	color: black !important;
-	font-weight: bold !important;
-	text-align: center !important;
-}
-
-/* 오른쪽 툴팁 시작 */
-.tooltip .tooltip-right {
-	top: -5px;
-	left: 105%;
-}
-
-.tooltip .tooltip-right::after {
-	top: 50%;
-	right: 100%;
-	margin-top: -5px;
-	border-color: transparent black transparent transparent;
-}
-
-.btn btn-secondary {
-	float: right;
-}
-
-
-.user-page {
 	width: 100%;
-	padding: 20px 50px 50px 50px;
-	border-radius: 10px;
-	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.12), 0 9px 9px
-		rgba(0, 0, 0, 0.08);
-	height: 400px;
+	height: 100%;
+
 }
 
-.info-icon {
-	cursor: pointer;
-	color: hsl(16, 96%, 49%);
-	font-size: 20px;
+#section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
-h3 {
-	text-align: center;
+.container-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40%;
+	height: 80%;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#change-my-info {
+	width: 95%;
+	height: 95%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.emp-infomatin-input-css {
+	width: 70%;
+	height: 10%;
+	margin-bottom: 30px;
+}
+
+#h3-div {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 50px;
+}
+
+.fist-input {
+	margin-top: 10px;
+}
+
+/*모달 css*/
+#myModal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+}
+
+.modal-content {
+	position: relative;
+	margin: 15% auto;
+	padding: 20px;
+	background-color: white;
+	border: 1px solid #888;
+	width: 80%;
+	max-width: 500px;
+}
+
+.close {
+	position: absolute;
+	top: 10px;
+	right: 25px;
+	color: #aaa;
+	font-size: 28px;
 	font-weight: bold;
-	padding: 10px;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+/*모달 css*/
+
+/* 테이블 스타일 */
+#modal-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+#modal-table th, #modal-table td {
+	padding: 12px;
+	text-align: left;
+	border: 1px solid #ddd;
+}
+
+#modal-table th {
+	background-color: #f4f4f4;
+	font-weight: bold;
+}
+
+#modal-table tr:hover {
+	background-color: #f1f1f1;
+}
+/* 테이블 스타일 */
+
+#tooltip-btn-style{
+    width: 25%;
+    background-color: #FF5400;
+    border-radius: 8px;
+    border-style: none;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+#openModal{
+    margin-top: -45px;
+    margin-left: -300px;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 1.2em;
+
+    background-color: black;
+    border-style: none;
+}
+
+#openModal-div{
+    margin-top: 0px;
+    margin-right: -300px;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 1.2em;
+
+    background-color: #FF5400;
+    border-style: none;
+
+}
+
+#div-a-div-info{
+    background-color: #FF5400;
+    border: 1px solid #FF5400;
+    width: 140px;
+    height: 40px;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    font-weight: bold;
+    color: white;
+
+    border-radius: 8px;
+
+    margin-right: -300px;
+  
+}
+
+#div-a-div-info a{
+    width: 100%;
+    height: 65%;
+    text-decoration: none; 
+    cursor: pointer;
+
+    font-size: 1.2em;
 }

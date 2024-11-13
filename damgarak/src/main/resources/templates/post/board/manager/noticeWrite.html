@@ -3,46 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>공지사항 작성</title>
+  <title>Damgarak</title>
   <link rel="stylesheet" href="/static/css/post/boardcss/post1.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="/static/js/post/board/board2.js"></script>
 </head>
 <body>
-  <p>공지사항 작성</p>
-  <br>
   
 	<button class="btn" id="bttn">
 	      &#9776;
     </button>
     <div id="menu-container">
     	<th:block th:insert="~{post/board/manager/menu2 :: nav}"></th:block>
-    </div>
+    </div> 
     
+ <div class="notice-div-kim"> 
   <form id="noticeForm">
+  
   <div class="title-1">
     <div class="title">
-      <table>
-        <tr>
-          <th id="test2">제목</th>
-          <th id="test2">
+    	 <h2>게시글 작성 페이지</h2>
+    	<div class="form-floating mb-3">
+  			<input type="email" class="form-control" id="noticeTitle" placeholder="name@example.com">
+ 		 <label for="floatingInput">게시글 제목 입력</label>
+		</div>
+		
+		 	<div id="input-controller"></div>
+		 
+		 <div class="form-floating">
+		  <textarea class="form-control" placeholder="Leave a comment here" id="noticeContent"></textarea>
+		  <label for="floatingTextarea">내용 입력</label>
+	
+		</div>	
+    	<!-- 
             <input type="text" id="noticeTitle" class="test">
-          </th>
-        </tr>
-        <tr>
-          <th id="test2">내용</th>
-          <th>
             <textarea class="test1" id="noticeContent"></textarea>
-          </th>
-        </tr>
-      </table>
-      <br>
-      <div style="text-align: center;">
-        <button type="button" class="btn btn-danger" onclick="submitNotice()">등록</button>
+      	-->
+      	<div>
+        <button type="reset" id="reset-btn" class="btn btn-danger">초기화</button>
+        <button type="button" id="submit-btn" class="btn btn-danger" onclick="submitNotice()">등록</button>
 	      </div>
+	   
+	     
+	      
+	      
 	    </div>
 	  </div>
+	  
 	</form>
+	</div>
 </body>
 </html>

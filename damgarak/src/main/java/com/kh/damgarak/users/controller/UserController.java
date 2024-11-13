@@ -27,6 +27,13 @@ public class UserController {
 	private final EmailAuthService emailAuthService;
 	private final PasswordEncoder passwordEncoder;
 	
+	@GetMapping("/changeInfoMyPage")
+	public String changeInfoMyPage(HttpSession session){
+		UsersLoginDTO dto = (UsersLoginDTO)session.getAttribute("userLogin");
+		String usersId = dto.getUsers().getUsersId();
+		
+		return "users/userChangeInfo"; 
+	}
 	
 	@GetMapping("/userslogout")
 	public String usersLogout(HttpSession session){
@@ -136,7 +143,7 @@ public class UserController {
 	
 	@GetMapping("/UsersMyPage")
     public String userMyPage(){
-    	return "users/usersMyPage";
+    	return "users/userMyPage";
     }
 	
 	
