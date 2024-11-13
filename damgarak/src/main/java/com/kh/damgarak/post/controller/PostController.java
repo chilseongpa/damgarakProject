@@ -27,14 +27,20 @@ import lombok.extern.slf4j.Slf4j;
 public class PostController {
 	
 	private final PostService pService;
-		
+	
+	
+	@GetMapping("/myPage")
+	public String empMyPage() {
+		return "post/board/emp/empMyPage";
+	}
+	
 	@GetMapping("/notice")
 	public String noticePage(Model model, Notice notice) {
-		// List<SuggestionDTO> n = pService.selNotice(notice);
+		List<SuggestionDTO> n = pService.selNotice(notice);
 		
-		// model.addAttribute("noticeList",n);
+		 model.addAttribute("noticeList",n);
 		
-		return "post/board/emp/empMyPage";
+		return "post/board/emp/notice";
 	}
 	@GetMapping("/noticeDetail")
 	public String suggestDetailPage(@RequestParam("noticeNo") int noticeNo, Model model) {
