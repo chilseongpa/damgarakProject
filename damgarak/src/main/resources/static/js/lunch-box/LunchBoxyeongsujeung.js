@@ -28,4 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 주문번호 표시
     document.getElementById("orderId").textContent = String(localStorage.getItem("currentOrderId")).padStart(5, '0');
+
+    // 완료 버튼 클릭 시 index.html로 이동
+    document.getElementById("completeBtn").addEventListener("click", () => {
+        window.location.href = "/index.html";
+    });
 });

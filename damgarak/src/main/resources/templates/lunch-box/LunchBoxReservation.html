@@ -1,33 +1,64 @@
-<!-- LunchBoxyeongsujeung.html -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <title>결제 성공</title>
-    <link rel="stylesheet" href="static/css/lunch-box/LunchBoxyeongsujeung.css">
-    <script src="LunchBoxyeongsujeung.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도시락 예약</title>
+<link rel="stylesheet" href="static/css/lunch-box/LunchBoxReservation.css">
+    <script src="static/js/lunch-box/LunchBoxReservation.js" defer></script>
+    <link rel="stylesheet" th:href="@{/static/css/common/header.css}" />
+	<link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
+    
 </head>
-
 <body>
-    <div class="box_section">
-        <img width="120px" src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" />
-        <h2>결제를 완료했어요</h2>
+<div>
 
-        <!-- 주문한 메뉴 간단히 표시 -->
-        <div class="p-grid typography--p" style="margin-top: 20px">
-            <div class="p-grid-col text--left"><b>주문한 메뉴:</b></div>
-            <div class="p-grid-col text--right" id="orderedMenu"></div>
-        </div>
+<section class="header-div">
+    <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
+</section>
 
-        <!-- 주문번호와 결제금액 표시 -->
-        <div class="p-grid typography--p" style="margin-top: 20px">
-            <div class="p-grid-col text--left"><b>주문번호:</b></div>
-            <div class="p-grid-col text--right" id="orderId"></div>
-        </div>
-        <div class="p-grid typography--p" style="margin-top: 10px">
-            <div class="p-grid-col text--left"><b>결제금액:</b></div>
-            <div class="p-grid-col text--right" id="amount"></div>
+    <div class="pos-container">
+        <div class="main-content" data-reservation-no="${reservationNo}">
+            <section class="reservation">
+                <h2>도시락 예약하기</h2>
+                <div id="calendar"></div> 
+                <input type="hidden" id="date">
+                <div>
+                </div>
+                <hr>
+                <div class="choice-timer-div">
+                    <div class="time-div-btns">
+                        <div class="btns-div">
+                            <button class="time-button" value="11:00">11:00</button>
+                            <button class="time-button" value="11:30">11:30</button>
+                            <button class="time-button" value="12:00">12:00</button>    
+                        </div>
+                        
+                        <div class="btns-div">
+                            <button class="time-button" value="12:30">12:30</button>
+                            <button class="time-button" value="13:00">13:00</button>
+                            <button class="time-button" value="13:30">13:30</button>    
+                        </div>
+                        
+                        <div class="btns-div">
+                            <button class="time-button" value="14:00">14:00</button>
+                            <button class="time-button" value="14:30">14:30</button>
+                            <button class="time-button" value="15:00">15:00</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button id="historyBtn">이전</button>
+                    <button id="cancelBtn">초기화</button>
+                    <button id="reserveBtn">예약</button>
+                </div>
+            </section>
         </div>
     </div>
+    <section class="footer-div">
+    <div id="footer-div-controller" th:replace="common/footer::footer" style="position: relative; "></div>
+	</section>
+</div>
 </body>
 </html>

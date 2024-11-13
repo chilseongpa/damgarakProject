@@ -41,6 +41,7 @@ public class LunchBoxController {
     public String lunchBoxReservationPage() {
         return "lunch-box/LunchBoxReservation";  // 템플릿 경로에 맞게 설정
     }
+    
 
     
     // -------------------------------------

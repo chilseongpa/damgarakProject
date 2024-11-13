@@ -23,4 +23,9 @@ public class PaymentController {
         model.addAttribute("amount", amount);
         return "lunch-box/LunchBoxyeongsujeung";
     }
+
+    @GetMapping("/index.html")
+    public String home() {
+        return "index"; // index.html의 위치에 맞춰 경로 수정
+    }
 }
