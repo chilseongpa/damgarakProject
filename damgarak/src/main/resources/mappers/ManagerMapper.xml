@@ -82,7 +82,7 @@
 	<update id="updatePass">
 	  UPDATE USERS 
 	     SET USERS_PASSWORD = #{changePassword} 
-	   WHERE USERS_NAME = #{usersName}
+	   WHERE USERS_ID = #{userId}
 	</update>
 	
 	<update id ="updateFire">
