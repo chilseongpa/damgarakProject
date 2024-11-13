@@ -136,7 +136,7 @@ public class UserController {
 	
 	@GetMapping("/UsersMyPage")
     public String userMyPage(){
-    	return "users/usersMyPage";
+    	return "users/userMyPage";
     }
 	
 	
