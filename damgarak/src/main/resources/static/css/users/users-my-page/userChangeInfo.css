@@ -48,6 +48,10 @@ box-shadow: 1px 1px 5px rgba(100, 100, 100, 0.2), 0 0 8px rgba(0, 0, 0, 0.1);
 .input-div-class-controller{
 	margin-bottom: -20px;
 }
+button{
+margin-left: 30px !important;
+padding: 8px 16px !important;
+}
 
 /*헤더 작업한 거 */
 #logoText {
@@ -57,3 +61,62 @@ box-shadow: 1px 1px 5px rgba(100, 100, 100, 0.2), 0 0 8px rgba(0, 0, 0, 0.1);
 	color: white !important;
 }
 /*헤더 작업한 거 */
+
+
+/* 모달 배경 스타일 */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+#leave-btn{
+	width: 50%;
+	height: 50%;
+	
+	margin: 0 auto; 
+}
+.modal-content{
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+}
+
+.modal-content button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	position: relative;
+	left: 20%;
+}
+.close span{
+	margin-right: -50px;
+}
+

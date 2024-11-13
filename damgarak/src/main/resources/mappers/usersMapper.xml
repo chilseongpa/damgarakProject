@@ -4,30 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.damgarak.users.model.mapper.UserMapper">
 
-<resultMap id="UsersResultMap" type="UsersLoginDTO">
-    <association property="users" javaType="Users">
-  	<id property="usersId" column="USERS_ID"/>
-    <result property="usersPassword" column="USERS_PASSWORD"/>
-    <result property="usersName" column="USERS_NAME"/>
-    <result property="email" column="EMAIL"/>
-    <result property="joinDate" column="JOIN_DATE"/>
-    <result property="withdrawalDate" column="WITHDRAWAL_DATE"/>
-    <result property="usersState" column="USERS_STATE"/>
-    <result property="usersType" column="USERS_TYPE"/>
-</association>
-
-<association property="employee" javaType="Employee">
-  	<id property="usersId" column="USERS_ID"/>
-    <result property="employeeName" column="EMPLOYEE_NAME"/>
-    <result property="phone" column="PHONE"/>
-    <result property="address" column="ADDRESS"/>
-    <result property="deptCode" column="DEPT_CODE"/>
-    <result property="jobCode" column="JOB_CODE"/>
-    <result property="employeeType" column="EMPLOYEE_TYPE"/>
-    <result property="salary" column="SALARY"/>
-   </association>
-</resultMap>
-
+	  <resultMap id="UsersResultMap" type="UsersLoginDTO">
+        <result property="usersId" column="USERS_ID"/>
+        <result property="usersPassword" column="USERS_PASSWORD"/>
+        <result property="usersType" column="USERS_TYPE"/>
+        <result property="employeeType" column="EMPLOYEE_TYPE"/>
+    </resultMap>
+	
 	<select id="loginUser" resultMap="UsersResultMap">
 		select u.USERS_ID, u.USERS_PASSWORD, u.USERS_TYPE, e.EMPLOYEE_TYPE 
 		from USERS u 
@@ -55,7 +38,6 @@
 		    'y', 
 		    #{usersType})
 		</insert>
-
 	 <select id="idCheck" resultType="_int">
 	 	SELECT COUNT(*) COUNT
 	 	FROM USERS
@@ -77,7 +59,7 @@
 	
 	<update id="updateUserPassword">
 	    UPDATE USERS
-	    SET USERS_PASSWORD = #{tempPassword}
+	    SET USERS_PASSWORD = #{password}
 	    WHERE USERS_ID = #{userId}
 	</update>
 	
@@ -85,6 +67,12 @@
 		select EMAIL 
 		FROM USERS
 		WHERE EMAIL = #{email}
+	</select>
+	
+	<select id="checkPassword" resultType="UsersLoginDTO">
+		select USERS_ID, USERS_PASSWORD 
+		FROM USERS
+		WHERE USERS_ID = #{usersId}
 	</select>
 	
 </mapper>

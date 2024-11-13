@@ -1,5 +1,7 @@
 package com.kh.damgarak.users.service;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 
 import com.kh.damgarak.users.model.mapper.UserMapper;
@@ -17,7 +19,6 @@ public class UserService {
 		public UsersLoginDTO userLogin(String usersId){
 			return userMapper.loginUser(usersId);
 		} 
-		
 		public int userSingup(Users user){
 			return userMapper.logupUser(user);
 		}
@@ -34,11 +35,18 @@ public class UserService {
 			}
 			return false;
 		}
-		public int updateUserPassword(String userId, String tempPassword) {
-			return userMapper.updateUserPassword(userId, tempPassword);
+		public int updateUserPassword(String userId, String password) {
+			return userMapper.updateUserPassword(userId, password);
 		}
+		
+		
 		public Users emailCheck(String email) {
 			return userMapper.emailCheck(email);
+		}
+
+		public UsersLoginDTO checkPassword(String usersId) {
+			
+			return userMapper.checkPassword(usersId);
 		}
 
 		
