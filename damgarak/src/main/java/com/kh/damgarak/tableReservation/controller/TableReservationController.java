@@ -22,6 +22,7 @@ import com.kh.damgarak.tableReservation.searchTable.model.dto.SearchTableDTO;
 import com.kh.damgarak.tableReservation.selectReservationTable.model.dto.SelectReservationTableDTO;
 import com.kh.damgarak.tableReservation.service.TableReservationService;
 import com.kh.damgarak.users.model.vo.Users;
+import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -65,14 +66,14 @@ public class TableReservationController {
 					@RequestBody ChoiceTableReservationDTO choiceReservation
 					){
 		
-		Users users = (Users)session.getAttribute("userLogin");
+		UsersLoginDTO users = (UsersLoginDTO)session.getAttribute("userLogin");
 	
 		
 		if(users == null) {
 			return "로그인이 필요합니다";
 		}
 
-		int result = tableReservationService.createTableReservation(choiceReservation, users.getUsersId());
+		int result = tableReservationService.createTableReservation(choiceReservation, users.getUsers().getUsersId());
 	
 		if(result > 0) {
 			return "ok";
@@ -86,7 +87,7 @@ public class TableReservationController {
 			@RequestBody ChoiceTableReservationDTO choiceReservation,
 			HttpSession session
 			){
-		Users user = (Users)session.getAttribute("userLogin"); 
+		UsersLoginDTO user = (UsersLoginDTO)session.getAttribute("userLogin"); 
 		
 		if(user == null){
 			return "로그인이 필요합니다.";
@@ -128,13 +129,13 @@ public class TableReservationController {
 			 int currentPage) 
 			{
 	
-		Users users = (Users)session.getAttribute("userLogin");
+		UsersLoginDTO users = (UsersLoginDTO)session.getAttribute("userLogin");
 	
 		if(users == null) {
 			return "redirect:/";
 		}
 	
-		String userId = users.getUsersId();
+		String userId = users.getUsers().getUsersId();
 		
 		int listCount = tableReservationService.getReservationCount(userId);
 		
