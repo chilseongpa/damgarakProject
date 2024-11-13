@@ -53,16 +53,16 @@
 
  <script>
  function deleteEmployee() {
-	  const userId = document.getElementById("userId").value;
+	  const userName = document.getElementById("userName").value;
 	  
-	  if (!confirm(`정말로 ${userId} 직원을 해고하시겠습니까?`)) return;
+	  if (!confirm(`정말로 ${userName} 직원을 해고하시겠습니까?`)) return;
 
 	  fetch('/manager/deleteEmp', {
 	    method: 'POST',
 	    headers: {
 	      'Content-Type': 'application/json'
 	    },
-	    body: JSON.stringify({ usersId: userId })
+	    body: JSON.stringify({ userName: userName })
 	  })
 	  .then(response => response.text())
 	  .then(result => {
