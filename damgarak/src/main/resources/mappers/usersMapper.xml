@@ -74,7 +74,6 @@
 		FROM USERS
 		WHERE USERS_ID = #{usersId}
 	</select>
-	
 </mapper>
 
 
