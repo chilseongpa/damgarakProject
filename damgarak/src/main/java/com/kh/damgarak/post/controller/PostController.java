@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.damgarak.employee.model.vo.Employee;
+import com.kh.damgarak.employee.serchEmployee.model.dto.SerchEmployeeDto;
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
 import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.service.ManagerService;
 import com.kh.damgarak.post.service.PostService;
+import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +31,26 @@ import lombok.extern.slf4j.Slf4j;
 public class PostController {
 	
 	private final PostService pService;
+
+	
+	@GetMapping("/myPage")
+	public String empMyPage(HttpSession session, Model model) {
+		UsersLoginDTO dto = (UsersLoginDTO)session.getAttribute("userLogin");
+		String usersId= dto.getUsersId();
+		SerchEmployeeDto emp = pService.empInfomation(usersId);
+		
+		if(emp != null) {
+			model.addAttribute("emp", emp);
+			return "post/board/emp/empMyPage";
+		}else {
+			return "redirect:/";
+		}
+	}
+	
+	@GetMapping("/notice")
+	public String noticePage(Model model, Notice notice) {
+		List<SuggestionDTO> n = pService.selNotice(notice);
+
 		
 
 	

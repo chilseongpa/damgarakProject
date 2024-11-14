@@ -7,5 +7,6 @@ public class UsersLoginDTO {
 	private String usersId;
 	private	String usersPassword;
 	private String usersType;
-	private String employeeType;	
+	private String employeeType;
+	private String usersName;
 }

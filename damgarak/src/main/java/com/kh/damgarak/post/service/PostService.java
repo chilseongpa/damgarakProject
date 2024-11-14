@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.damgarak.employee.model.vo.Employee;
+import com.kh.damgarak.employee.serchEmployee.model.dto.SerchEmployeeDto;
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
 import com.kh.damgarak.post.model.mapper.PostMapper;
 import com.kh.damgarak.post.model.vo.Notice;
@@ -26,7 +28,15 @@ public class PostService {
     public List<SuggestionDTO> selNoticeDetail(int noticeNo){
     	return postMapper.selNoticeDetail(noticeNo);
     }
+<<<<<<< HEAD
     public List<SuggestionDTO> getUserSuggestions(String userId) {
         return postMapper.selectUserSuggestions(userId);
     }
+=======
+	public SerchEmployeeDto empInfomation(String usersId) {
+		return postMapper.empInfomation(usersId);
+	}
+
+
+>>>>>>> damgarak
 }

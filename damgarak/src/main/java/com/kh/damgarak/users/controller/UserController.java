@@ -2,6 +2,7 @@ package com.kh.damgarak.users.controller;
 
 import java.sql.Date;
 
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,9 @@ public class UserController {
 		}
 		String usersId = dto.getUsersId();
 		UsersLoginDTO users = userService.checkPassword(usersId);
+		
 		boolean isTrue = passwordEncoder.matches(password, users.getUsersPassword());
+		
 		if (users != null  &&  isTrue ) {
 			return "true";
 		} else {
@@ -92,21 +95,26 @@ public class UserController {
 	@PostMapping("/findPwd")
 	@ResponseBody
 	public ResponseEntity<String> findPwd(String userName, String userId, String userMail) throws MessagingException {
+		
 		boolean checkUser = userService.findUserPwd(userName, userId, userMail);
-		System.out.println(checkUser);
+		
 
 		if (!checkUser) {
 			return ResponseEntity.ok("사용자 정보를 찾을 수 없습니다.");
 		}
+		
 		String tempPassword = emailAuthService.generateTemporaryPassword();
 		emailAuthService.sendTemporaryPassword(userMail, tempPassword);
-		int updateCheck = userService.updateUserPassword(userId, tempPassword);
+		String encoderPassword = passwordEncoder.encode(tempPassword);
+		int updateCheck = userService.updateUserPassword(userId, encoderPassword);
+		
 		if (0 > updateCheck) {
 			return ResponseEntity.ok("전송 시 문제가 생겼습니다.");
 		}
 		return ResponseEntity.ok("임시 비밀번호가 전달되었습니다.");
 	}
 
+	
 	@GetMapping("/findUserId")
 	public ResponseEntity<String> findUserId(String userName, String userMail) {
 		String userId = userService.findUserId(userName, userMail);
@@ -138,8 +146,8 @@ public class UserController {
 			return "redirect:/loginPage";
 		}
 	}
-
-	@PostMapping("/signupForm") // Model : org.springframework.ui.Model; import하기!
+	
+	@PostMapping("/signupForm") 
 	public String userSignp(Users user, Model model, RedirectAttributes redirectAttributes) {
 
 		String encoderPassword = passwordEncoder.encode(user.getUsersPassword());
@@ -157,20 +165,33 @@ public class UserController {
 	}
 	@GetMapping("/idCheck.me")
 	public ResponseEntity<String> UserIdCheck(String usersId) {
-
 		int count = userService.idCheck(usersId);
-
 		if (count > 0) {
 			return ResponseEntity.ok("false");
 		} else {
 			return ResponseEntity.ok("true");
 		}
 	}
-
 	@GetMapping("/UsersMyPage")
 	public String userMyPage() {
 		return "users/userMyPage";
 	}
 	
+<<<<<<< HEAD
 
+=======
+	@PostMapping("/deleteUser")
+	@ResponseBody
+	public String deleteUser(HttpSession session){
+		UsersLoginDTO dto = (UsersLoginDTO)session.getAttribute("userLogin");
+		String usersId = dto.getUsersId();
+		
+		int deleteCheck = userService.deleteUser(usersId);
+		if(deleteCheck > 0){
+			return "success";
+		}else {
+			return "failed";
+		}
+	}
+>>>>>>> damgarak
 }

@@ -24,5 +24,26 @@
     ORDER BY CREATION_DATE DESC
 </select>
   
+  
+ <select id="empInfomation" resultType="SerchEmployeeDto">
+  	SELECT 
+    E.USERS_ID,
+    u.USERS_NAME,
+    E.PHONE,
+    E.ADDRESS,
+    E.SALARY ,
+    J.JOB_NAME,
+    D.DEPT_NAME
+FROM 
+    EMPLOYEE E
+JOIN 
+    DEPT D ON E.DEPT_CODE = D.DEPT_CODE
+JOIN 
+    JOB_CODE J ON E.JOB_CODE = J.JOB_CODE
+JOIN 
+	USERS u ON E.USERS_ID = u.USERS_ID    
+WHERE E.USERS_ID = #{usersId}
+  </select>
+  
 
 </mapper>
