@@ -120,8 +120,8 @@ public class ManagerController {
 	    UsersLoginDTO dto = (UsersLoginDTO) session.getAttribute("userLogin");
 
 	    // dto가 null이 아닌지 확인하여 usersId 추출
-	    if (dto != null && dto.getUsers() != null) {
-	        String usersId = dto.getUsers().getUsersId();
+	    if (dto != null && dto.getUsersId() != null) {
+	        String usersId = dto.getUsersId();
 	        System.out.println("Logged in userId: " + usersId); // usersId 출력
 	        notice.setUsersId(usersId);  // Notice 객체에 usersId 설정
 	    } else {

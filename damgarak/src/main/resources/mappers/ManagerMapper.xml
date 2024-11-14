@@ -71,21 +71,20 @@
     
     <!-- 문제 -->
     <insert id="insertReply">
-        INSERT INTO REPLY (POST_NO, REPLY_COMMENT, CREATION_DATE, DELETE_STATE, USERS_ID)
-        VALUES (#{postNo}, #{replyComment}, SYSDATE, 'N', #{usersId})
-    </insert>
+	    INSERT INTO REPLY (POST_NO, REPLY_COMMENT, CREATION_DATE, DELETE_STATE, USERS_ID)
+	    VALUES (#{postNo}, #{replyComment}, SYSDATE, 'N', #{usersId})
+	</insert>
     
-        <!-- 문제 -->
     <insert id="insertNotice">
 	    INSERT INTO NOTICE (USERS_ID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_NO, NOTICE_CREATION_DATE)
 	    VALUES (#{usersId}, #{noticeTitle}, #{noticeContent}, NOTICE_SEQ.NEXTVAL, SYSDATE)
 	</insert>
 	
-	    <!-- 문제 -->
+	<!-- 문제 -->
 	<update id="updatePass">
 	  UPDATE USERS 
 	     SET USERS_PASSWORD = #{changePassword} 
-	   WHERE USERS_ID = #{userId}
+	   WHERE USERS_ID = #{usersId}
 	</update>
 	
 	<update id ="updateFire">

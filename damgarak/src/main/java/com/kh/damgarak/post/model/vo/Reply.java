@@ -10,4 +10,5 @@ public class Reply {
 	private Date creationDate;
 	private String replyComment;
 	private String deleteState;
+	private String usersId;
 }
