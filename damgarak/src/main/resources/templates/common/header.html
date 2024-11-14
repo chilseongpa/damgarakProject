@@ -49,15 +49,15 @@
 
     <th:block th:if="${session.userLogin != null}">
     
-        <th:block th:if="${session.userLogin.users != null and session.userLogin.users.usersType == '고객'}">
+        <th:block th:if="${session.userLogin != null and session.userLogin.usersType == '고객'}">
             <li><a href="/UsersMyPage">고객 마이페이지</a></li>
         </th:block>
 
-        <th:block th:if="${session.userLogin.employee != null and session.userLogin.employee.employeeType == '관리자'}">
+        <th:block th:if="${session.userLogin != null and session.userLogin.employeeType == '관리자' and session.userLogin.usersType == '직원'}">
             <li><a href="/manager/saleSheet">관리자 페이지</a></li>
         </th:block>
 
-        <th:block th:if="${session.userLogin.employee != null and session.userLogin.employee.employeeType == '직원'}">
+ <th:block th:if="${session.userLogin.employeeType != '관리자' and session.userLogin.usersType == '직원'}">
             <li><a href="/emp/myPage">직원 페이지</a></li>
         </th:block>
     </th:block>
