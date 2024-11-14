@@ -17,6 +17,7 @@
     text-decoration: none;
   }
   #bttn {
+    margin-top: 250px;
     position:fixed;
     top:20px;
     left:10px;
@@ -131,4 +132,11 @@
   table{
     box-shadow: 1px 1px 10px 3px #555555;
   
+  }
+
+  #menu-container{
+    text-align: center;
+  }
+  #first-li{
+    margin-top: 130px;
   }

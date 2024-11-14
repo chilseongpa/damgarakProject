@@ -65,22 +65,6 @@ public class ManagerController {
 		
 		return "post/board/manager/empInfo";
 	}
-	@GetMapping("/suggestDetail")
-	public String showSuggestDetail(@RequestParam int postNo, Model model) {
-	    // 게시글 조회
-	    List<SuggestionDTO> postDetails = mService.selsugDetail(postNo);
-	    if (!postDetails.isEmpty()) {
-	        model.addAttribute("post", postDetails.get(0));
-	    } else {
-	        model.addAttribute("error", "해당 게시물을 찾을 수 없습니다.");
-	    }
-	    
-	    // 댓글 리스트 조회
-	    List<SuggestionDTO> replies = mService.selReply(postNo);
-	    model.addAttribute("replist", replies); // 댓글 목록을 모델에 추가
-	    
-	    return "post/board/manager/suggestDetail";
-	}
 	@GetMapping("/empDetails")
 	public String showempDetails(@RequestParam("usersId") String usersId, Model model) {
 	    List<SuggestionDTO> userDetails = mService.selempDetails(usersId);
@@ -103,23 +87,44 @@ public class ManagerController {
 	    } else {
 	        return "fail";
 	    }
-
-	    // 직원 상세 정보 페이지로 리다이렉트
-	    // return "redirect:/manager/empDetails?usersName=" + usersName;
+	}
+	@GetMapping("/suggestDetail")
+	public String showSuggestDetail(@RequestParam int postNo, Model model) {
+	    // 게시글 조회
+	    List<SuggestionDTO> postDetails = mService.selsugDetail(postNo);
+	    if (!postDetails.isEmpty()) {
+	        model.addAttribute("post", postDetails.get(0));
+	    } else {
+	        model.addAttribute("error", "해당 게시물을 찾을 수 없습니다.");
+	    }
+	    
+	    // 댓글 리스트 조회
+	    List<SuggestionDTO> replies = mService.selReply(postNo);
+	    model.addAttribute("replist", replies); // 댓글 목록을 모델에 추가
+	    
+	    return "post/board/manager/suggestDetail";
 	}
 	@ResponseBody
 	@PostMapping("/insertReply")
-	public String insertReply(@RequestBody Reply reply) {
+	public String insertReply(@RequestBody Reply reply, HttpSession session) {
+	    UsersLoginDTO userLogin = (UsersLoginDTO) session.getAttribute("userLogin");
+	    
+	    if (userLogin != null) {
+	        reply.setUsersId(userLogin.getUsersId()); // 세션에서 usersId 설정
+	        System.out.println("Retrieved usersId from session: " + userLogin.getUsersId());
+	    } else {
+	        System.out.println("UserLoginDTO not found in session");
+	        return "failed"; // 세션에 userLogin 정보가 없는 경우 실패 처리
+	    }
+	    
 	    int result = mService.insertReply(reply);
 	    return result > 0 ? "success" : "failed";
 	}
 	@ResponseBody
 	@PostMapping("/insertNotice")
 	public String insertNotice(@RequestBody Notice notice, HttpSession session) {
-	    // 세션에서 UsersLoginDTO 객체 가져오기
 	    UsersLoginDTO dto = (UsersLoginDTO) session.getAttribute("userLogin");
 
-	    // dto가 null이 아닌지 확인하여 usersId 추출
 	    if (dto != null && dto.getUsersId() != null) {
 	        String usersId = dto.getUsersId();
 	        System.out.println("Logged in userId: " + usersId); // usersId 출력

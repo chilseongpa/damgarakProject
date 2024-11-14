@@ -8,9 +8,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="/static/js/post/board/board2.js"></script>
+  <link rel="stylesheet" href="/static/css/common/header.css">
+  <link rel="stylesheet" href="/static/css/common/footer.css">
 </head>
 <body>
-  <p style="text-align: center;">직원 정보 수정</p>
+	<div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
+	<br><br><br><br><br><br><br><br><br><br><br>
+	<h3 style="text-align: center;">직원 정보 수정</h3>
   <br>
   <br>
 
@@ -21,26 +25,27 @@
 	    	<th:block th:insert="~{post/board/manager/menu2 :: nav}"></th:block>
 	    </div>
 
-  <div class="title-1">
-    <div class="title">
-      <br>
-      <table class="table">
-        <thead class="table-light">
-          <tr>
-            <th class="first">직원 이름</th>
-            <th class="first">이메일</th>
-            <th class="first">직급</th>
-          </tr>
-        </thead>
-        <tr th:each="user : ${usersList}">
-			<td class="first" th:text="${user.usersName}"></td>
-			<td class="first">
-				<a th:href="@{/manager/empDetails(usersId=${user.usersId})}"th:text="${user.email}"></a>
-			</td>
-			<td class="first" th:text="${user.jobName}"></td>
-		</tr>
-      </table>
-    </div>
-  </div>
+	  <div class="title-1">
+	    <div class="title">
+	      <br>
+	      <table class="table">
+	        <thead class="table-light">
+	          <tr>
+	            <th class="first">직원 이름</th>
+	            <th class="first">이메일</th>
+	            <th class="first">직급</th>
+	          </tr>
+	        </thead>
+	        <tr th:each="user : ${usersList}">
+				<td class="first" th:text="${user.usersName}"></td>
+				<td class="first">
+					<a th:href="@{/manager/empDetails(usersId=${user.usersId})}"th:text="${user.email}"></a>
+				</td>
+				<td class="first" th:text="${user.jobName}"></td>
+			</tr>
+	      </table>
+	    </div>
+	  </div>
+  <div th:replace="common/footer :: footer"></div>
 </body>
 </html>

@@ -9,10 +9,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="/static/js/post/board/board2.js"></script>
+  <link rel="stylesheet" href="/static/css/common/header.css">
+  <link rel="stylesheet" href="/static/css/common/footer.css">
 
 </head>
 <body>
-  <p style="text-align: center;">직원 정보 수정</p>
+	<div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
+	
+  <h3 style="text-align: center; margin-top: 250px;">직원 정보 수정</h3>
   <br><br>
   
   <button class="btn" id="bttn">&#9776;</button>
@@ -21,7 +25,6 @@
   </div>
 
   <div class="title-1">
-      <br><br>
       <table class="table table-bordered" style="width: 50%; margin: 0 auto;">
       	<tr>
       	  <th class="first">직원 아이디</th>
@@ -48,39 +51,39 @@
         </tr>
       </table>
   </div>
+  <br><br>
   <div class="text-center">
     <button class="btn btn-danger mx-2" id="updateButton" onclick="updateUser()">수정</button>
     <button class="btn btn-dark mx-2" id="fireButton" onclick="deleteEmployee()">해고</button>
   </div>
-<script>
-  function deleteEmployee() {
-    const userId = document.getElementById("userId").value;
-    console.log('확인용 : ', userId);
-
-    $.ajax({
-    		url: '/manager/fireEmployee',
-        type: 'get',
-        data:{
-          usersId: userId,
-        },
-        success:function(result){
-          if(result === 'success'){
-            alert('해고 성공입니다.');
-          }else{
-            alert('해고 실패입니다.');
-          }
-        },
-        error:function(error){
-          alert(error);
-        }
-    
-    })
-    
-    }
-    
-
-</script>
-
-
+	<script>
+	  function deleteEmployee() {
+	    const userId = document.getElementById("userId").value;
+	    console.log('확인용 : ', userId);
+	
+	    $.ajax({
+	    		url: '/manager/fireEmployee',
+	        type: 'get',
+	        data:{
+	          usersId: userId,
+	        },
+	        success:function(result){
+	          if(result === 'success'){
+	            alert('해고 성공입니다.');
+	          }else{
+	            alert('해고 실패입니다.');
+	          }
+	        },
+	        error:function(error){
+	          alert(error);
+	        }
+	    
+	    })
+	    
+	    }
+	    
+	
+	</script>
+	<div th:replace="common/footer :: footer"></div>
 </body>
 </html>
