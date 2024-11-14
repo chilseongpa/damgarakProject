@@ -9,10 +9,9 @@ body, html {
     flex-direction: column;
     position: relative;
     min-width: 1200px;
-/*
-    overflow-x: hidden; 
-*/
+    overflow-x: hidden;
 }
+
 
 /* 푸터를 바닥에 고정시키기 위한 스타일 */
 #footer {
@@ -20,8 +19,8 @@ body, html {
     color: #fff;
     padding: 40px 0;
     text-align: center;
-    position: absolute ;
-    bottom: 0 !important;
+    position: absolute;
+    bottom: 0;
     width: 100%;
 }
 .footerMenu {

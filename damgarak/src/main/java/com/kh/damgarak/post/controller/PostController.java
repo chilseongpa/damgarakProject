@@ -46,14 +46,7 @@ public class PostController {
 			return "redirect:/";
 		}
 	}
-	
 
-		
-	   @GetMapping("/myPage")
-	   public String empMyPage() {
-	      return "post/board/emp/empMyPage";
-	   }
-	   
 	   @GetMapping("/notice")
 	   public String noticePage(Model model, Notice notice) {
 	      List<SuggestionDTO> n = pService.selNotice(notice);
