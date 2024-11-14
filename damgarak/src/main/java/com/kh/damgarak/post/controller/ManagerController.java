@@ -24,7 +24,9 @@ import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.model.vo.Reply;
 import com.kh.damgarak.post.service.ManagerService;
 import com.kh.damgarak.users.model.vo.Users;
+import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -113,16 +115,39 @@ public class ManagerController {
 	}
 	@ResponseBody
 	@PostMapping("/insertNotice")
-	public String insertNotice(@RequestBody Notice notice) {
-		int result = mService.insertNotice(notice);
-		return result > 0? "success" : "failed";
+	public String insertNotice(@RequestBody Notice notice, HttpSession session) {
+	    // 세션에서 UsersLoginDTO 객체 가져오기
+	    UsersLoginDTO dto = (UsersLoginDTO) session.getAttribute("userLogin");
+
+	    // dto가 null이 아닌지 확인하여 usersId 추출
+	    if (dto != null && dto.getUsers() != null) {
+	        String usersId = dto.getUsers().getUsersId();
+	        System.out.println("Logged in userId: " + usersId); // usersId 출력
+	        notice.setUsersId(usersId);  // Notice 객체에 usersId 설정
+	    } else {
+	        System.out.println("User not logged in or invalid session."); // 로그 출력
+	        return "failed: not logged in";  // 로그인되지 않은 경우 실패 메시지 반환
+	    }
+
+	    // Notice 객체를 서비스로 전달
+	    int result = mService.insertNotice(notice);
+	    
+	    return result > 0 ? "success" : "failed";
 	}
+
 	@ResponseBody
 	@PostMapping("/updatePassword")
-	public String updatePassword(@RequestBody Map<String, String> passwordData) {
-	    String userId = passwordData.get("userId");
+	public String updatePassword(@RequestBody Map<String, String> passwordData, HttpSession session) {
+	    // 세션에서 userId 가져오기
+	    String userId = (String) session.getAttribute("userId");
+	    if (userId == null) {
+	        return "fail";
+	    }
+
+	    // 클라이언트로부터 전달받은 변경할 비밀번호
 	    String changePassword = passwordData.get("changePassword");
 
+	    // 비밀번호 변경 서비스 호출
 	    int result = mService.updatePass(userId, changePassword);
 
 	    return result > 0 ? "success" : "fail";

@@ -42,25 +42,22 @@
             </div>
         </div>
     </div>
+    <!-- 뮨제 -->
     <script>
     function updatePassword() {
         const currentPassword = $("#currentPassword").val();
         const newPassword = $("#newPassword").val();
         const confirmPassword = $("#confirmPassword").val();
 
-        // 비밀번호 확인
         if (newPassword !== confirmPassword) {
             alert("새 비밀번호가 일치하지 않습니다.");
             return;
         }
 
-        // 요청에 사용할 데이터
         const passwordData = {
-            userId: "kimchangsik123",  // 실제 아이디를 넣어주세요
             changePassword: newPassword
         };
 
-        // 비밀번호 변경 요청
         $.ajax({
             url: "/manager/updatePassword",
             type: "POST",
@@ -69,7 +66,7 @@
             success: function(result) {
                 if (result === "success") {
                     alert("비밀번호가 성공적으로 변경되었습니다.");
-                    location.reload();  // 페이지를 새로고침하여 변경 사항 적용
+                    location.reload();
                 } else {
                     alert("비밀번호 변경에 실패했습니다. 다시 시도해 주세요.");
                 }
@@ -79,6 +76,7 @@
             }
         });
     }
+
 </script>
 </body>
 </html>
