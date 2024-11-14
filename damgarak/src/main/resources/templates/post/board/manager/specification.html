@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/static/css/post/specification/specification.css">
+    <script src="/static/js/post/specification/specification.js"></script>
     <link rel="stylesheet" href="/static/css/common/header.css">
     <link rel="stylesheet" href="/static/css/common/footer.css">
 
@@ -25,16 +27,16 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="start-date" class="form-label">시작 날짜</label>
-                    <input type="date" id="start-date" class="form-control" />
+                    <input type="date" id="startDate" class="form-control" />
                 </div>
 
                 <div class="mb-3">
                     <label for="end-date" class="form-label">종료 날짜</label>
-                    <input type="date" id="end-date" class="form-control" />
+                    <input type="date" id="endDate" class="form-control" />
                 </div>
 
                 <div class="text-center">
-                    <button class="btn btn-primary" onclick="searchByDate()">조회</button>
+                    <button class="btn btn-primary" id="search-button">조회</button>
                 </div>
             </div>
         </div>
@@ -48,25 +50,11 @@
                     <th scope="col">주문시간</th>
                 </tr>
             </thead>
-            <tbody class="table-group-divider">
-                <tr>
-                    <td>1234</td>
-                    <td>최종군</td>
-                    <td>VIP</td>
-                    <td>2024-10-30 15:04</td>
-                </tr>
-                <tr>
-                    <td>1235</td>
-                    <td>양민욱</td>
-                    <td>GOLD</td>
-                    <td>2024-10-30 15:05</td>
-                </tr>
+            <tbody id="result-body">
+                
             </tbody>
         </table>
-
     </div>
-
-    <script src="specification.js"></script>
     <div th:replace="common/footer :: footer"></div>
 </body>
 
