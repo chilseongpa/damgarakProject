@@ -34,14 +34,11 @@ public interface ManagerMapper {
 	int insertReply(Reply reply);
 	
 	int insertNotice(Notice notice);
-<<<<<<< HEAD
 	
 	int updatePass(String userId, String changePassword);
 	
 	int updateFire(String usersId);
-=======
 
 	List<OrderDetailsDTO> findOrdersWithinDateRange(String startDate, String endDate);
 	
->>>>>>> damgarak
 }
