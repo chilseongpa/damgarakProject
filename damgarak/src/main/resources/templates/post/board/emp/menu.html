@@ -14,7 +14,8 @@
         <li class="active node"><a href="suggest">건의함 작성</a></li>
         <li class="active node"><a href="mySuggest">내 건의함</a></li>
         <li class="active node"><a href="">메인으로</a></li>
-        <li class="active node"><a href="">로그아웃</a></li>
+       <li th:if="${session.userId == null}" class="active node"><a href="login">로그인</a></li>
+        <li th:if="${session.userId != null}" class="active node"><a href="/logout">로그아웃</a></li>
         <li>담가락 식당 전화 <br>
             010-2725-0780 <br>
             ㈜ 담가락

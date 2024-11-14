@@ -6,9 +6,8 @@
     <select id="selectMenuByCategory" parameterType="String" resultType="Menu">
         SELECT MENU_NO, MENU_NAME, PRICE, MENU_IMAGE, CALORIE, CATEGORY_CODE
         FROM MENU
-        WHERE CATEGORY_CODE = #{categoryCode} <!-- 특정 카테고리만 필터링 -->
+        WHERE CATEGORY_CODE = #{categoryCode} 
     </select>
 </mapper>
-
 
 
