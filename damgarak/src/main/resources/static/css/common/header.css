@@ -3,7 +3,9 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
+
 }
+
 #header {
     width: 100%;
     border-bottom: 1px solid black;
@@ -16,6 +18,8 @@ body {
     top: 0;
     background-color: rgba(255, 255, 255, 0.171);
     z-index: 2;
+
+
 }
 
 #navigator {
@@ -25,7 +29,8 @@ body {
     overflow: hidden;
     transition: height 0.55s;
 }
-a{
+
+a {
     color: black;
 
 }
@@ -66,7 +71,7 @@ a{
     color: black;
     text-decoration: none;
 
-    
+
     transition: display 2s;
 }
 
@@ -97,6 +102,7 @@ a{
     border-bottom: none;
     background-color: none !important;
     z-index: 2;
+
     #navigator {
         background-color: rgba(0, 0, 0, 0.863);
 
@@ -119,22 +125,26 @@ a{
     #logoImg {
         filter: grayscale(90);
     }
-    #singUpUl{
+
+    #singUpUl {
         color: white;
     }
-    #singUpUl>li>a{
+
+    #singUpUl>li>a {
         color: white;
     }
 
 }
-#singUpUl{
+
+#singUpUl {
     list-style-type: none;
     display: flex;
     position: absolute;
     right: 4%;
     top: 39%;
 }
-#singUpUl>li>a{
+
+#singUpUl>li>a {
     color: black;
     text-decoration: none;
 }
