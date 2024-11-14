@@ -41,7 +41,7 @@ public class ReservationController {
 		
 		UsersLoginDTO user = (UsersLoginDTO)session.getAttribute("userLogin");
 	
-		String usersId = user.getUsers().getUsersId();
+		String usersId = user.getUsersId();
 	
 		List<PastReservationSearch> searchList = new ArrayList();
 		

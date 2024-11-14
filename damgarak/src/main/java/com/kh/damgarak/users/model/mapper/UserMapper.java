@@ -14,6 +14,7 @@ public interface UserMapper {
 	int idCheck(String usersId);
 	String findUserId(String userName, String userMail);
 	Users findUserPwd(String userName, String userId, String userMail);
-	int updateUserPassword(String userId, String tempPassword);
+	int updateUserPassword(String userId, String password);
 	Users emailCheck(String email);
+	UsersLoginDTO checkPassword(String usersId);
 }
