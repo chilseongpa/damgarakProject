@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Damgarak</title>
+</head>
+<body>
+<div id="thymeleaf-div" th:fragment="empSidebar">
+    <section>
+        <input type="checkbox" id="menuicon">
+        <label for="menuicon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <div class="sidebar">
+            <div class="my-page-div">
+                <div class="my-page-a">
+                    <div class="member-id-div">
+					<p th:text="${session.userLogin.usersId + '님'}"></p>
+                        <p>직원 페이지</p>
+                        <hr>
+                    </div>
+                <div>
+                    <a href="">공지 사항</a>
+                </div>
+                <div>
+                    <a href="/myPage">마이페이지</a>
+                </div>
+                
+                <div>
+                    <a href="">비밀번호 변경</a>
+                </div>
+                
+                
+                <div>
+                    <a href="">개인 정보 변경</a>
+                </div>
+                
+                 <div>
+                    <a href="">건의함 작성</a>
+                </div>
+                <div>
+                    <a href="">내 건의함</a>
+                </div>
+                <div>
+                    <a href="/goToMain">메인으로</a>
+                </div>
+                <div>
+                    <a href="/userslogout">로그아웃</a>
+                </div>
+                <hr>
+              </div>
+            </div>
+        </div>
+    </section>   
+    </div>
+</body>
+</html>

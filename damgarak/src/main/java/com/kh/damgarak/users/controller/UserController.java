@@ -2,6 +2,7 @@ package com.kh.damgarak.users.controller;
 
 import java.sql.Date;
 
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -164,19 +165,29 @@ public class UserController {
 	}
 	@GetMapping("/idCheck.me")
 	public ResponseEntity<String> UserIdCheck(String usersId) {
-
 		int count = userService.idCheck(usersId);
-
 		if (count > 0) {
 			return ResponseEntity.ok("false");
 		} else {
 			return ResponseEntity.ok("true");
 		}
 	}
-
 	@GetMapping("/UsersMyPage")
 	public String userMyPage() {
 		return "users/userMyPage";
 	}
-
+	
+	@PostMapping("/deleteUser")
+	@ResponseBody
+	public String deleteUser(HttpSession session){
+		UsersLoginDTO dto = (UsersLoginDTO)session.getAttribute("userLogin");
+		String usersId = dto.getUsersId();
+		
+		int deleteCheck = userService.deleteUser(usersId);
+		if(deleteCheck > 0){
+			return "success";
+		}else {
+			return "failed";
+		}
+	}
 }

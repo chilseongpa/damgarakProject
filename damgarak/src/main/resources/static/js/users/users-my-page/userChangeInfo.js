@@ -6,11 +6,9 @@ onload = () => {
     btn.onclick = function() {
         modal.style.display = "block";
     };
-
     span.onclick = function() {
         modal.style.display = "none";
     };
-
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
@@ -75,3 +73,32 @@ function validatePassword(password) {
     const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,15}$/;
     return regex.test(password);
 }
+
+
+
+function leaveUsers(){
+    const checkConfirm = confirm('정말 삭제하시겠습니까?');
+
+    if(checkConfirm){
+        $.ajax({
+            url: '/deleteUser',
+            type: 'post',
+            success:function(result){
+                if(result === 'success'){
+                    alert('삭제 완료되었습니다');
+                    window.location.href = '/userslogout';
+                }else{
+                    alert('삭제 실패했습니다');
+                }
+            },
+            error:function(error){
+                alert(error);
+            }
+        });
+    }
+        
+    
+
+}
+
+

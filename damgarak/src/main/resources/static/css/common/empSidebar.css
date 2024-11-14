@@ -1,26 +1,18 @@
-@charset "UTF-8";
-
-body {
-	margin: 0px;
-	height: 2000px;
-}
-/*사이드 아이콘 자리*/
+/* 사이드 아이콘 스타일 */
 input[id="menuicon"] {
 	display: none;
 }
-
 input[id="menuicon"]+label {
 	display: block;
-	width: 40px;
-	height: 20px;
+	width: 50px;
+	height: 30px;
 	position: relative;
 	cursor: pointer;
 	position: fixed;
-	top: 11%;
-	left: 10px;
+	top: 20%;
+	left: 30px;
 	transition: all .35s;
 }
-
 input[id="menuicon"]+label span {
 	display: block;
 	position: absolute;
@@ -31,50 +23,40 @@ input[id="menuicon"]+label span {
 	background: #000;
 	transition: all .35s;
 }
-
 input[id="menuicon"]+label span:nth-child(1) {
 	top: 0;
 }
-
 input[id="menuicon"]+label span:nth-child(2) {
 	top: 50%;
 }
-
 input[id="menuicon"]+label span:nth-child(3) {
 	top: 100%;
 }
-
 input[id="menuicon"]:checked+label {
 	z-index: 2;
 	left: 240px;
 }
-
 input[id="menuicon"]:checked+label span:nth-child(1) {
 	top: 50%;
 	width: 50%;
 	transform: translateY(50%) rotate(-135deg);
 	background: white;
 }
-
 input[id="menuicon"]:checked+label span:nth-child(2) {
 	opacity: 0;
 }
-
 input[id="menuicon"]:checked+label span:nth-child(3) {
 	top: 50%;
 	width: 50%;
 	background: white;
 	transform: translateY(50%) rotate(135deg);
 }
-/*사이드 아이콘 자리*/
-
-/*사이드 바 자리*/
-div[class="sidebar"] {
+.sidebar {
 	width: 300px;
 	height: 100%;
 	background: #222;
 	position: fixed;
-	top: 0px;
+	top: 0;
 	left: -300px;
 	z-index: 1;
 	transition: all .35s;
@@ -82,63 +64,53 @@ div[class="sidebar"] {
 	justify-content: center;
 	align-items: center;
 }
-/*인접 요소 선택자*/
-input[id="menuicon"]:checked+label+div.sidebar {
+input[id="menuicon"]:checked+label+.sidebar {
 	left: 0;
 }
-/*사이드 아이콘 자리*/
-
-/*사이드바 내부 요소들*/
 .my-page-div {
 	margin-top: 10px;
 	text-align: center;
 	width: 180px;
 	height: 300px;
-	/* 버튼을 가운데로 맞추기 위해서 */
 	display: flex;
 	flex-direction: column;
-	/* 버튼을 가운데로 맞추기 위해서 */
 }
 
+.my-page-a{
+	position: relative;
+	top:10%;
+	
+	margin-top: -80px;
+}
 .my-page-a a:hover {
 	color: gray;
 }
-
 .my-page-a a {
-	text-decoration-line: none;
+	text-decoration: none;
 	color: white;
 	cursor: pointer;
 	font-weight: bold;
 	font-size: 1.2em;
 }
-
 .my-page-a div {
 	margin: 10px;
 }
-
 p {
 	font-weight: bold;
 	font-size: 1.1em;
 	color: white;
 }
-
-.member-id-div p {
-	margin: 3px;
-}
-
-.member-id-div img {
-	background-size: cover;
-	width: 30px;
-	height: 30px;
-}
-
-.my-page-div p:nth-child(2) {
-	position: absolute;
-	top: 10%;
-	left: 85px;
-	font-size: 1.5em;
-}
-
 hr {
-	opacity: 1px;
+	background-color: white;
+	color: white;
+	opacity: 1;
 }
+.my-page-comment p {
+	font-size: 0.9em !important;
+	color: white;
+	margin: 0;
+}
+/* 사이드 아이콘 스타일 */
+
+
+
