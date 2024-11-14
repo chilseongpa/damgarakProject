@@ -159,3 +159,10 @@ body {
 	position: relative;
 	bottom: -120px;
 }
+body{
+	-ms-overflow-style: none;
+	}
+	
+   ::-webkit-scrollbar {
+	 display: none;
+   }

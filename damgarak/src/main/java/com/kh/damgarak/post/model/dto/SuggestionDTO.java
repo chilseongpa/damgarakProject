@@ -23,5 +23,6 @@ public class SuggestionDTO {
 	private String noticeContent;
 	private int noticeNo;
 	private Date noticeCreationDate;
-	
+
 }
+

@@ -1,12 +1,42 @@
-function searchByDate() {
-    const startDate = document.getElementById('start-date').value;
-    const endDate = document.getElementById('end-date').value;
+$(document).ready(function() {
+    $('#search-button').click(function() {
+        const startDate = $('#startDate').val();
+        const endDate = $('#endDate').val();
 
-    if (startDate && endDate) {
-        console.log(`조회 날짜: ${startDate} ~ ${endDate}`);
-        alert(`조회 날짜: ${startDate} ~ ${endDate}`);
+        if (!startDate || !endDate) {
+            alert("시작 날짜와 종료 날짜를 모두 입력해 주세요.");
+            return;
+        }
 
-    } else {
-        alert('시작 날짜와 종료 날짜를 모두 선택해주세요.');
-    }
-}
+        $.ajax({
+            url: `/manager/filterOrders`,
+            type: 'GET',
+            data: {
+                startDate: startDate,
+                endDate: endDate
+            },
+            success: function(data) {
+                const resultBody = $('#result-body');
+                resultBody.empty();
+
+                if (data.length === 0) {
+                    resultBody.append("<tr><td colspan='4' class='text-center'>조회 결과가 없습니다.</td></tr>");
+                } else {
+                    data.forEach(order => {
+                        const row = `<tr>
+                            <td>${order.orderNo}</td>
+                            <td>${order.usersName}</td>
+                            <td>${order.memberLevel}</td>
+                            <td>${order.orderDate}</td>
+                        </tr>`;
+                        resultBody.append(row);
+                        
+                    });
+                }
+            },
+            error:function(err){
+                console.log('에러가 발생했습니다.', err);  
+            }
+        });
+    });
+});

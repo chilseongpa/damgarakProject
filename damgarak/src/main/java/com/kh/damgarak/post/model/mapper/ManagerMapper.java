@@ -10,6 +10,7 @@ import com.kh.damgarak.employee.model.vo.Employee;
 import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.model.vo.Reply;
+import com.kh.damgarak.post.specification.model.dto.OrderDetailsDTO;
 import com.kh.damgarak.users.model.vo.Users;
 
 @Mapper
@@ -33,8 +34,14 @@ public interface ManagerMapper {
 	int insertReply(Reply reply);
 	
 	int insertNotice(Notice notice);
+<<<<<<< HEAD
 	
 	int updatePass(String userId, String changePassword);
 	
 	int updateFire(String usersId);
+=======
+
+	List<OrderDetailsDTO> findOrdersWithinDateRange(String startDate, String endDate);
+	
+>>>>>>> damgarak
 }

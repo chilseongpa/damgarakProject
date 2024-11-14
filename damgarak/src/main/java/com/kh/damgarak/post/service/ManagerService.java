@@ -1,5 +1,8 @@
 package com.kh.damgarak.post.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import com.kh.damgarak.employee.model.vo.Employee;
 import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.model.vo.Reply;
+import com.kh.damgarak.post.specification.model.dto.OrderDetailsDTO;
 import com.kh.damgarak.users.model.vo.Users;
 
 @Service
@@ -68,10 +72,21 @@ public class ManagerService {
     public int insertNotice(Notice notice) {
     	return managerMapper.insertNotice(notice);
     }
+<<<<<<< HEAD
     public int updatePass(String userId, String changePassword) {
     	return managerMapper.updatePass(userId, changePassword);
     }
     public int updateFire(String usersId) {
     	return managerMapper.updateFire(usersId);
     }
+=======
+
+	public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
+
+		return managerMapper.findOrdersWithinDateRange(startDate, endDate);
+	}
+
+   
+	
+>>>>>>> damgarak
 }
