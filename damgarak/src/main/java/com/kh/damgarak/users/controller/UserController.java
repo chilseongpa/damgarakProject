@@ -171,5 +171,6 @@ public class UserController {
 	public String userMyPage() {
 		return "users/userMyPage";
 	}
+	
 
 }

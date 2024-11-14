@@ -9,5 +9,3 @@
         WHERE CATEGORY_CODE = #{categoryCode} 
     </select>
 </mapper>
-
-

@@ -28,14 +28,23 @@ public class PostController {
 	
 	private final PostService pService;
 		
-	@GetMapping("/notice")
-	public String noticePage(Model model, Notice notice) {
-		// List<SuggestionDTO> n = pService.selNotice(notice);
-		
-		// model.addAttribute("noticeList",n);
-		
-		return "post/board/emp/empMyPage";
-	}
+
+	
+	   @GetMapping("/myPage")
+	   public String empMyPage() {
+	      return "post/board/emp/empMyPage";
+	   }
+	   
+	   @GetMapping("/notice")
+	   public String noticePage(Model model, Notice notice) {
+	      List<SuggestionDTO> n = pService.selNotice(notice);
+	      
+	       model.addAttribute("noticeList",n);
+	      
+	      return "post/board/emp/notice";
+	   }
+	
+	
 	@GetMapping("/noticeDetail")
 	public String suggestDetailPage(@RequestParam("noticeNo") int noticeNo, Model model) {
 	    List<SuggestionDTO> postDetails = pService.selNoticeDetail(noticeNo);
