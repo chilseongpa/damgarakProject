@@ -12,6 +12,7 @@ public class SuggestionDTO {
 	private String title;
 	private String content;
 	private Date creationDate;
+	private String deleteState;
 	private String usersId;
 	private String usersName;
 	private String email;
