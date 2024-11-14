@@ -47,13 +47,8 @@ public class PostController {
 		}
 	}
 	
-	@GetMapping("/notice")
-	public String noticePage(Model model, Notice notice) {
-		List<SuggestionDTO> n = pService.selNotice(notice);
 
 		
-
-	
 	   @GetMapping("/myPage")
 	   public String empMyPage() {
 	      return "post/board/emp/empMyPage";

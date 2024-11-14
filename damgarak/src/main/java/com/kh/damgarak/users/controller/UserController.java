@@ -177,9 +177,7 @@ public class UserController {
 		return "users/userMyPage";
 	}
 	
-<<<<<<< HEAD
 
-=======
 	@PostMapping("/deleteUser")
 	@ResponseBody
 	public String deleteUser(HttpSession session){
@@ -193,5 +191,5 @@ public class UserController {
 			return "failed";
 		}
 	}
->>>>>>> damgarak
+
 }
