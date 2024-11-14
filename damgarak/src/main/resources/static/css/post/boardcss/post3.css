@@ -18,6 +18,7 @@ a {
   text-decoration: none;
 }
 #bttn {
+  margin-top: 250px;
   position:fixed;
   top:20px;
   left:10px;
@@ -249,4 +250,11 @@ table{
   width: 900px;
   height: 750px;
   text-align: center;
+}
+
+#menu-container{
+  text-align: center;
+}
+#first-li{
+  margin-top: 130px;
 }

@@ -66,16 +66,17 @@ public class ManagerService {
 	public List<SuggestionDTO> selReply(int postNo){
 		return managerMapper.selReply(postNo);
 	}
-	// 비밀번호 업데이트 메서드
-    public boolean updatePassword(String newPassword) {
-        int result = managerMapper.updatePass(newPassword);
-        return result > 0;
-    }
     public int insertReply(Reply reply) {
         return managerMapper.insertReply(reply); // 성공 시 1, 실패 시 0 반환
     }
     public int insertNotice(Notice notice) {
     	return managerMapper.insertNotice(notice);
+    }
+    public int updatePass(String userId, String changePassword) {
+    	return managerMapper.updatePass(userId, changePassword);
+    }
+    public int updateFire(String usersId) {
+    	return managerMapper.updateFire(usersId);
     }
 
 	public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
@@ -83,6 +84,4 @@ public class ManagerService {
 		return managerMapper.findOrdersWithinDateRange(startDate, endDate);
 	}
 
-   
-	
 }
