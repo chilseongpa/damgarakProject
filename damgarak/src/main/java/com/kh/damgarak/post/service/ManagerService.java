@@ -72,21 +72,16 @@ public class ManagerService {
     public int insertNotice(Notice notice) {
     	return managerMapper.insertNotice(notice);
     }
-<<<<<<< HEAD
     public int updatePass(String userId, String changePassword) {
     	return managerMapper.updatePass(userId, changePassword);
     }
     public int updateFire(String usersId) {
     	return managerMapper.updateFire(usersId);
     }
-=======
 
 	public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
 
 		return managerMapper.findOrdersWithinDateRange(startDate, endDate);
 	}
 
-   
-	
->>>>>>> damgarak
 }

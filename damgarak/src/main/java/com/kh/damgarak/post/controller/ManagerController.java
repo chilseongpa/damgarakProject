@@ -104,32 +104,9 @@ public class ManagerController {
 	    model.addAttribute("replist", replies); // 댓글 목록을 모델에 추가
 	    
 	    return "post/board/manager/suggestDetail";
-=======
-		if (isUpdated) {
-			return "ok";
-		} else {
-			return "fail";
-		}
-
-		// 직원 상세 정보 페이지로 리다이렉트
-		// return "redirect:/manager/empDetails?usersName=" + usersName;
 	}
-
-	@PostMapping("/updatePassword")
-	public ResponseEntity<String> updatePassword(@RequestBody Map<String, String> request) {
-		String newPassword = request.get("newPassword");
-		boolean isUpdated = mService.updatePassword(newPassword);
-		if (isUpdated) {
-			return ResponseEntity.ok("Password updated successfully");
-		} else {
-			return ResponseEntity.status(500).body("Failed to update password");
-		}
->>>>>>> damgarak
-	}
-
 	@ResponseBody
 	@PostMapping("/insertReply")
-<<<<<<< HEAD
 	public String insertReply(@RequestBody Reply reply, HttpSession session) {
 	    UsersLoginDTO userLogin = (UsersLoginDTO) session.getAttribute("userLogin");
 	    
@@ -143,16 +120,9 @@ public class ManagerController {
 	    
 	    int result = mService.insertReply(reply);
 	    return result > 0 ? "success" : "failed";
-=======
-	public String insertReply(@RequestBody Reply reply) {
-		int result = mService.insertReply(reply);
-		return result > 0 ? "success" : "failed";
->>>>>>> damgarak
 	}
-
 	@ResponseBody
 	@PostMapping("/insertNotice")
-<<<<<<< HEAD
 	public String insertNotice(@RequestBody Notice notice, HttpSession session) {
 	    UsersLoginDTO dto = (UsersLoginDTO) session.getAttribute("userLogin");
 
@@ -197,61 +167,43 @@ public class ManagerController {
 	    
 	    
 	    return result > 0 ? "success" : "fail";
-=======
-	public String insertNotice(@RequestBody Notice notice) {
-		int result = mService.insertNotice(notice);
-		return result > 0 ? "success" : "failed";
->>>>>>> damgarak
 	}
-
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> damgarak
 	@GetMapping("/bentoRv")
 	public String bentoRvPage() {
 		return "post/board/manager/bentoRv";
 	}
-
 	@GetMapping("/rv")
 	public String rvPage() {
 		return "post/board/manager/rv";
 	}
-
 	@GetMapping("/recommend")
 	public String recommendPage() {
 		return "post/board/manager/recommend";
 	}
-
 	@GetMapping("/notice")
 	public String noticePage() {
 		return "post/board/manager/notice";
 	}
-
 	@GetMapping("/infoChange")
 	public String InfoChangePage() {
 		return "post/board/manager/infoChange";
 	}
-
 	@GetMapping("/noticeWrite")
 	public String noticeWritePage() {
 		return "post/board/manager/noticeWrite";
 	}
-
 	@GetMapping("/pass")
 	public String passPage() {
 		return "post/board/manager/pass";
 	}
-	
 	@GetMapping("/specification")
 	public String specificationPage() {
 		return "post/board/manager/specification";
 	}
-	
 	@GetMapping("/filterOrders")
 	@ResponseBody
 	public List<OrderDetailsDTO> filterOrdersByDate(
@@ -259,9 +211,5 @@ public class ManagerController {
             @RequestParam("endDate") String endDate) {
         return mService.getOrdersWithinDateRange(startDate, endDate);
 	}
-<<<<<<< HEAD
+
 }
-=======
-	
-}
->>>>>>> damgarak
