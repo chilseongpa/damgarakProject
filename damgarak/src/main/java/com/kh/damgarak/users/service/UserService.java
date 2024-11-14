@@ -48,6 +48,10 @@ public class UserService {
 			
 			return userMapper.checkPassword(usersId);
 		}
+		public int deleteUser(String usersId) {
+			
+			return userMapper.deleteUser(usersId);
+		}
 
 		
 

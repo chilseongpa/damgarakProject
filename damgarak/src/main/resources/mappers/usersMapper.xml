@@ -10,16 +10,17 @@
         <result property="usersType" column="USERS_TYPE"/>
         <result property="employeeType" column="EMPLOYEE_TYPE"/>
     </resultMap>
-	
+    
+    
 	<select id="loginUser" resultMap="UsersResultMap">
-		select u.USERS_ID, u.USERS_PASSWORD, u.USERS_TYPE, e.EMPLOYEE_TYPE 
+		select u.USERS_ID, u.USERS_PASSWORD, u.USERS_TYPE, e.EMPLOYEE_TYPE,
+		u.USERS_NAME
 		from USERS u 
 		LEFT JOIN EMPLOYEE e on u.USERS_ID = e.USERS_ID
 		where u.USERS_ID = #{usersId}  
 		AND u.USERS_STATE = 'y'
  	</select>	
  
- 	
 		<insert id="logupUser" parameterType="Users">
 		    INSERT INTO USERS 
 		    (USERS_ID, 
@@ -75,6 +76,14 @@
 		WHERE USERS_ID = #{usersId}
 	</select>
 	
+	<update id="deleteUser">
+		UPDATE USERS 
+		SET USERS_STATE = 'n'
+		WHERE USERS_ID = #{usersId}
+	</update>
+
+
+
 </mapper>
 
 
