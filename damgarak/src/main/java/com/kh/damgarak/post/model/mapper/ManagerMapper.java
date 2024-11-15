@@ -39,6 +39,7 @@ public interface ManagerMapper {
 	
 	int updateFire(String usersId);
 
-	List<OrderDetailsDTO> findOrdersWithinDateRange(String startDate, String endDate);
+	List<OrderDetailsDTO> findOrdersWithinDateRange(@Param("startDate") String startDate, @Param("endDate") String endDate);
 	
+	OrderDetailsDTO findOrderDetails(@Param("orderNo") int orderNo);
 }

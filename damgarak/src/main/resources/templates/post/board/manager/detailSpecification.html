@@ -10,49 +10,51 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <title>주문 상세 페이지</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/static/css/post/specification/detailSpecification.css">
+    <link rel="stylesheet" href="/static/css/common/header.css">
+    <link rel="stylesheet" href="/static/css/common/footer.css">
 </head>
 
 <body>
+    <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
     <div class="container mt-5">
         <div class="order-container shadow-lg p-4 mb-5 bg-white rounded">
-            <div class="order-title text-center mb-4"><strong>상세 주문 정보</strong></div>
+            <div class="order-title text-cen ter mb-4"><strong>상세 주문 정보</strong></div>
 
             <div class="order-info">
-                <p><strong>주문번호:</strong> 123456</p>
-                <p><strong>주문자(고객):</strong> 양민욱</p>
-            </div>
+			    <p><strong>주문번호:</strong> <span th:text="${orderDetails.orderNo}"></span></p>
+			    <p><strong>주문자(고객):</strong> <span th:text="${orderDetails.usersName}"></span></p>
+			    <p><strong>회원 등급:</strong> <span th:text="${orderDetails.memberLevel}"></span></p>
+			    <p><strong>주문 날짜:</strong> <span th:text="${orderDetails.orderDate}"></span></p>
+			</div>
 
             <h5 class="order-subtitle mt-4 mb-3">주문 내역</h5>
-
             <table class="table table-bordered order-table">
-                <thead class="table-light">
-                    <tr>
-                        <th>메뉴명</th>
-                        <th>개수</th>
-                        <th>결제 방법</th>
-                        <th>금액</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>불고기</td>
-                        <td>2</td>
-                        <td>카드</td>
-                        <td>20,000원</td>
-                    </tr>
-                    <tr>
-                        <td>김밥</td>
-                        <td>3</td>
-                        <td>현금</td>
-                        <td>15,000원</td>
-                    </tr>
-                    <tr class="total-row table-info font-weight-bold">
-                        <td colspan="3" class="text-end">합계</td>
-                        <td>35,000원</td>
-                    </tr>
-                </tbody>
-            </table>
+			    <thead class="table-light">
+			        <tr>
+			            <th>메뉴명</th>
+			            <th>개수</th>
+			            <th>결제 방법</th>
+			            <th>금액</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr>
+			            <td th:text="${orderDetails.menuName}"></td>
+			            <td th:text="${orderDetails.menuCount}"></td>
+			            <td th:text="${orderDetails.paymentMethod}"></td>
+			            <td th:text="${orderDetails.price} + '원'"></td>
+			        </tr>
+			    </tbody>
+			    <tfoot>
+			        <tr>
+			            <td colspan="3">총합계</td>
+			            <td th:text="${orderDetails.price * orderDetails.menuCount} + '원'"></td>
+			        </tr>
+			    </tfoot>
+			</table>
+            
 
             <div class="text-center">
                 <a href="/manager/specification">

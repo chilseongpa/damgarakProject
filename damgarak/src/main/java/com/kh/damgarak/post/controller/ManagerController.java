@@ -207,9 +207,27 @@ public class ManagerController {
 	@GetMapping("/filterOrders")
 	@ResponseBody
 	public List<OrderDetailsDTO> filterOrdersByDate(
-            @RequestParam("startDate") String startDate,
-            @RequestParam("endDate") String endDate) {
-        return mService.getOrdersWithinDateRange(startDate, endDate);
+	        @RequestParam("startDate") String startDate,
+	        @RequestParam("endDate") String endDate) {
+	    return mService.getOrdersWithinDateRange(startDate, endDate);
 	}
+
+	@GetMapping("/detailSpecification")
+	public String getOrderDetails(@RequestParam("orderNo") int orderNo, Model model) {
+	    // 서비스에서 주문 상세 데이터 가져오기
+	    OrderDetailsDTO orderDetails = mService.getOrderDetails(orderNo);
+
+	    // 데이터가 없으면 에러 처리
+	    if (orderDetails == null) {
+	        model.addAttribute("error", "주문 번호에 해당하는 데이터를 찾을 수 없습니다.");
+	        return "post/board/manager/detailSpecification";
+	    }
+
+	    // 모델에 주문 상세 데이터 추가
+	    model.addAttribute("orderDetails", orderDetails);
+
+	    return "post/board/manager/detailSpecification";
+	}
+	
 
 }

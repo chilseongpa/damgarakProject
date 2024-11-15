@@ -79,9 +79,14 @@ public class ManagerService {
     	return managerMapper.updateFire(usersId);
     }
 
-	public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
-
-		return managerMapper.findOrdersWithinDateRange(startDate, endDate);
-	}
+    public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
+        return managerMapper.findOrdersWithinDateRange(startDate, endDate);
+    }
+    
+    public OrderDetailsDTO getOrderDetails(int orderNo) {
+    	return managerMapper.findOrderDetails(orderNo);
+    }
+    
+	
 
 }

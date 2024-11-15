@@ -92,7 +92,53 @@
 		   SET USERS_STATE = 'n'
 		 WHERE USERS_ID = #{usersId}
 	</update>
+	<select id="findOrdersWithinDateRange" resultType="OrderDetailsDTO">
 	
+    SELECT 
+        O.ORDER_NO AS orderNo,
+        U.USERS_NAME AS usersName,
+        M.MEMBER_LEVEL AS memberLevel,
+        TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD') AS orderDate
+    FROM 
+        ORDER_HISTORY O
+    JOIN 
+        RESERVATION R ON O.RESERVATION_NO = R.RESERVATION_NO
+    JOIN 
+        USERS U ON R.USERS_ID = U.USERS_ID
+    JOIN 
+        MEMBERSHIP M ON U.USERS_ID = M.USERS_ID
+    WHERE 
+        O.ORDER_DATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') 
+        AND TO_DATE(#{endDate}, 'YYYY-MM-DD')
+</select>
+
+<select id="findOrderDetails" resultType="OrderDetailsDTO">
+    SELECT 
+        O.ORDER_NO AS orderNo,
+        U.USERS_NAME AS usersName,
+        M.MEMBER_LEVEL AS memberLevel,
+        TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD') AS orderDate,
+        MN.MENU_NAME AS menuName,
+        MN.MENU_COUNT AS menuCount,
+        P.PAYMENT_METHOD AS paymentMethod,
+        MN.PRICE AS price
+    FROM 
+        ORDER_HISTORY O
+    JOIN 
+        ORDER_DETAILS OD ON O.ORDER_NO = OD.ORDER_NO
+    JOIN 
+        MENU MN ON OD.MENU_NO = MN.MENU_NO
+    JOIN 
+        RESERVATION R ON O.RESERVATION_NO = R.RESERVATION_NO
+    JOIN 
+        USERS U ON R.USERS_ID = U.USERS_ID
+    JOIN 
+        MEMBERSHIP M ON U.USERS_ID = M.USERS_ID
+    LEFT JOIN 
+        PAYMENT P ON O.ORDER_NO = P.ORDER_NO
+    WHERE 
+        O.ORDER_NO = #{orderNo}
+</select>
 </mapper>
 
 
