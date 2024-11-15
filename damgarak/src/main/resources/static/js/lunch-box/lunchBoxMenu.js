@@ -237,3 +237,41 @@ const initMenuList = (callback) => {
     })
     .catch(error => console.error("데이터 가져오기 실패:", error));
 };
+
+// 주문하기 버튼 클릭 시 결제 페이지 전 주문 정보 데이터 저장 후 페이지 이동
+const orderLunchBox = () => {
+    let lunchBoxType = '', count = 0;
+    if (bentoSelections.length > 0) {
+        // [{..}, {..}] --> '3첩 도시락' --> ['3첩', '도시락'] --> '3첩'
+        const lunchbox = bentoSelections[0];
+        lunchBoxType = lunchbox.value.split(' ')[0];
+        count = lunchbox.count;
+    }
+
+    console.log(orderList);
+    
+    const menuList = orderList.map((m)=>parseInt(m.menuNo));
+    
+
+    $.ajax({
+        url: 'insertLunchBox',
+        type: 'post',
+        data: JSON.stringify({
+            menuList: menuList,       // 선택된 메뉴 목록
+            lunchBoxType: lunchBoxType, // 도시락 종류
+            amount: count               // 도시락 갯수
+        }), 
+        contentType: "application/json; charset=utf-8",
+        success: result=>{
+            if (result === 'success') {
+                const totalAmount = parseInt(document.getElementById("total").textContent.replace("₩", "").replace(",", ""), 10);
+                localStorage.setItem("finalPrice", totalAmount);
+                window.location.href = "/payment";
+            }
+        },
+        error: err=>{
+            alert("도시락 예약 주문에 실패했습니다. 다시 시도해주세요.");
+            console.log(err);            
+        }
+    })
+}
