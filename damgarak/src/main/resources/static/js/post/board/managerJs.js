@@ -231,3 +231,121 @@ function submitNotice() {
   })
   .catch(error => console.error('Error:', error));
 }
+// Ajax를 통해 댓글을 전송하고 저장 후 화면에 표시
+function addReply() {
+  const replyContent = $("#content").val().trim();
+  
+  if (replyContent.length > 0) {
+      $.ajax({
+          url: '/manager/insertReply',  // 서버로 댓글 데이터를 전송할 엔드포인트
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({
+              postNo: getPostNo(),
+              replyComment: replyContent
+          }),
+          success: function(response) {
+              if (response.status === 'success') {
+                  $("#content").val(''); // 입력창 초기화
+                  addNewReplyToDOM(response.replyData); // 새 댓글을 DOM에 추가
+                  alert('댓글 추가에 실패했습니다.');
+              } else {
+                  alert('댓글 추가에 성공했습니다.');
+              }
+          },
+          error: function(err) {
+              console.log('댓글 추가 요청 실패');
+              console.log(err);
+          }
+      });
+  } else {
+      alert("내용을 입력 후 추가 가능합니다.");
+  }
+}
+
+// 새 댓글을 화면에 추가하는 함수
+function addNewReplyToDOM(replyData) {
+  const newReplyDiv = document.createElement("div");
+  newReplyDiv.setAttribute("style", "display: flex; justify-content: space-between;");
+
+  const userNameSpan = document.createElement("span");
+  userNameSpan.setAttribute("style", "text-align: left; flex: 1;");
+  userNameSpan.textContent = replyData.usersName;
+
+  const commentSpan = document.createElement("span");
+  commentSpan.setAttribute("style", "text-align: center; flex: 1;");
+  commentSpan.textContent = replyData.replyComment;
+
+  const dateSpan = document.createElement("span");
+  dateSpan.setAttribute("style", "text-align: right; flex: 1;");
+  dateSpan.textContent = new Date(replyData.creationDate).toLocaleString();
+
+  newReplyDiv.appendChild(userNameSpan);
+  newReplyDiv.appendChild(commentSpan);
+  newReplyDiv.appendChild(dateSpan);
+
+  document.getElementById("replyList").appendChild(newReplyDiv);
+}
+
+// URL에서 postNo 추출하는 함수
+function getPostNo() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('postNo');
+}
+
+function deleteEmployee() {
+  const userId = document.getElementById("userId").value;
+  console.log('확인용 : ', userId);
+
+  $.ajax({
+      url: '/manager/fireEmployee',
+      type: 'get',
+      data:{
+        usersId: userId,
+      },
+      success:function(result){
+        if(result === 'success'){
+          alert('해고 성공입니다.');
+        }else{
+          alert('해고 실패입니다.');
+        }
+      },
+      error:function(error){
+        alert(error);
+      }
+  
+  })
+  
+  }
+  function updatePassword() {
+    const currentPassword = $("#currentPassword").val();
+    const newPassword = $("#newPassword").val();
+    const confirmPassword = $("#confirmPassword").val();
+
+    if (newPassword !== confirmPassword) {
+        alert("새 비밀번호가 일치하지 않습니다.");
+        return;
+    }
+
+    const passwordData = {
+        changePassword: newPassword
+    };
+
+    $.ajax({
+        url: "/manager/updatePassword",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(passwordData),
+        success: function(result) {
+            if (result === "success") {
+                alert("비밀번호가 성공적으로 변경되었습니다.");
+                location.reload();
+            } else {
+                alert("비밀번호 변경에 실패했습니다. 다시 시도해 주세요.");
+            }
+        },
+        error: function(error) {
+            alert("비밀번호 변경 중 오류가 발생했습니다.");
+        }
+    });
+}

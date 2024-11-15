@@ -1,0 +1,149 @@
+
+* {
+  box-sizing: border-box;
+}
+#bttn {
+  margin-top: 250px;
+  position:fixed;
+  top:20px;
+  left:10px;
+  padding:15px;
+  border:none;
+  outline: none;
+  background-color: black;
+  color:white;    
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+#bttn.active {
+  transform:translateX(175px);
+}
+#nav {
+  position:fixed;
+  top:0;
+  left:0;
+  background-color:rgb(0, 0, 0);  
+  height:100vh;
+  padding:2em;
+  transform:translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+#nav.active {
+  transform:translateX(0);
+}
+#nav ul {  
+  padding:0;
+  margin:0;
+  list-style: none;
+}
+#nav ul li {
+  padding:1em 0;
+}
+#nav a {
+  color:rgb(255, 255, 255);
+  text-decoration: none;
+}
+.main {
+  text-align: center;
+}
+.title-1 {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  border: 1px solid white;
+}
+.btn{
+  font-size: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: none;
+  text-decoration: none;
+  color: black;
+  background-color: rgb(207, 207, 207);
+  border-radius: 5px;
+}
+.fff{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pic{
+  width: 100px; height: 100px;
+}
+.cobo{
+  width: 120px;height: 120px;
+}
+#recommendedMenu{
+  width: 250px;
+  margin-bottom: 10px;
+}
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 25px;
+  user-select: none;
+}
+.checkmark {
+  border: 1px solid black;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.6em;
+  width: 1.6em;
+  border-radius: 50%;
+  background: #ffeded38;
+  transition: all 0.2s ease;
+}
+.checkmark {
+  margin-left: 10px;
+  opacity: 0.4;
+}
+.container input:checked ~ .checkmark {
+  background-color: rgba(214, 96, 0, 0.897);
+  opacity: 0.9;
+  transition: all 0.2s ease;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 0.61em;
+  top: 0.43em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid rgba(255, 255, 255);
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+}
+#r{
+  padding-top: 30px;
+}
+table{
+  box-shadow: 1px 1px 10px 3px #555555;
+}
+
+#menu-container{
+  text-align: center;
+}
+#first-li{
+  margin-top: 130px;
+}
