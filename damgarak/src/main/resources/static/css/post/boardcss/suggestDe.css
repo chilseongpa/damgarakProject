@@ -99,18 +99,6 @@
     padding-top: 20px;
     padding-bottom: 20px;
   }
-  #num{
-    width: 80px;
-  }
-  #name{
-    width: 70px;
-  }
-  #titleName{
-      width: 300px;
-  }
-  #date{
-    width: 100px;
-  }
   .aTag {
     color : black;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -139,4 +127,15 @@
   }
   #first-li{
     margin-top: 130px;
+  }
+  .trh{
+    width: 200px;
+    text-align: center;
+  }
+  td{
+    text-align: center;
+  }
+  #title {
+    text-align: center;
+    width: 300px; /* 특정 th 내에서만 너비를 다르게 설정 */
   }

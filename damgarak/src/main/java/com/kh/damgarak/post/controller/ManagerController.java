@@ -24,6 +24,7 @@ import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.model.vo.Reply;
 import com.kh.damgarak.post.service.ManagerService;
 import com.kh.damgarak.post.specification.model.dto.OrderDetailsDTO;
+import com.kh.damgarak.reservation.model.vo.Reservation;
 import com.kh.damgarak.users.model.vo.Users;
 import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
 
@@ -158,7 +159,6 @@ public class ManagerController {
 
 	    return result > 0 ? "success" : "fail";
 	}
-	@ResponseBody
 	@GetMapping("/fireEmployee")
 	public String fireEmployee(String usersId) {
 		System.out.println("유저 아이디 확인용" + usersId);
@@ -168,17 +168,21 @@ public class ManagerController {
 	    
 	    return result > 0 ? "success" : "fail";
 	}
+	@GetMapping("/rv")
+	public String rvPage(Model model, Reservation reservation) {
+	    List<SuggestionDTO> r = mService.selRv(reservation);
+	    model.addAttribute("reserList", r);
+	    return "post/board/manager/rv";
+	}
+	@GetMapping("/bentoRv")
+	public String bentoRvPage(Model model, Reservation reservation) {
+		List<SuggestionDTO> br = mService.selbentoRv(reservation);
+		model.addAttribute("bentoList",br);
+		return "post/board/manager/bentoRv";
+	}
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";
-	}
-	@GetMapping("/bentoRv")
-	public String bentoRvPage() {
-		return "post/board/manager/bentoRv";
-	}
-	@GetMapping("/rv")
-	public String rvPage() {
-		return "post/board/manager/rv";
 	}
 	@GetMapping("/recommend")
 	public String recommendPage() {
@@ -211,5 +215,6 @@ public class ManagerController {
             @RequestParam("endDate") String endDate) {
         return mService.getOrdersWithinDateRange(startDate, endDate);
 	}
+
 
 }

@@ -1,0 +1,161 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.footer {
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+}
+
+#replyInputArea {
+  width: 100%;
+  margin-top: 20px;
+}
+
+#replyList {
+  max-height: 300px; /* 댓글 리스트의 최대 높이 지정 */
+  overflow-y: auto; /* 댓글이 많아지면 스크롤 추가 */
+  width: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+p {
+  font-size: 20px;
+  margin: 0 auto; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+}
+#graph{
+  width: 500px;
+  margin-right: auto;
+}
+a {
+  text-decoration: none;
+}
+#bttn {
+  margin-top: 250px;
+  position:fixed;
+  top:20px;
+  left:10px;
+  padding:15px;
+  border:none;
+  outline: none;
+  background-color: black;
+  color:white;    
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+h5 {
+  float: right;
+  padding-top: 10px;
+  padding-right: 10px;
+  display: inline-block;
+}
+
+#bttn.active {
+  transform:translateX(175px);
+}
+#nav {
+  position:fixed;
+  top:0;
+  left:0;
+  background-color:rgb(0, 0, 0);  
+  height:100vh;
+  padding:2em;
+  transform:translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+#nav.active {
+  transform:translateX(0);
+}
+
+#nav ul {  
+  padding:0;
+  margin:0;
+  list-style: none;
+}
+
+#nav ul li {
+  padding:1em 0;
+}
+#nav a {
+  color:rgb(255, 255, 255);
+  text-decoration: none;
+}
+.title-1 {
+  padding-top: 100px;
+  border: none;
+  width: 900px;
+  height: 2000px;
+  margin: 0 auto; /* 중앙 정렬 */
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  flex-direction: column; /* 내용이 세로로 나열되도록 설정 */
+  border: 1px solid #ddd; /* 테두리 추가 (옵션) */
+  padding: 20px; /* 여백 추가 (옵션) */
+  box-sizing: border-box;
+}
+.title{
+	  border: none;
+}
+.btn{
+  font-size: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: none;
+  text-decoration: none;
+  color: black;
+  background-color: rgb(207, 207, 207);
+  border-radius: 5px;
+}
+
+.test2{
+  width: 200px;
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  font-size: 16px;
+  padding-left: 50px;
+  text-align: left;
+  vertical-align: baseline;
+}
+table{
+  box-shadow: 1px 1px 10px 3px #555555;
+}
+#TBA{
+	width: 100%;
+}
+#lucky{
+  width: 1000px;
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-bottom: 100px;
+  padding-left: 50px;
+  font-size: 16px;
+  text-align: left;
+  vertical-align: baseline;
+}
+#menu-container{
+  text-align: center;
+}
+#first-li{
+  margin-top: 130px;
+}

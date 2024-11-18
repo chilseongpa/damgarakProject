@@ -78,15 +78,6 @@ a {
   display: block;
 }
 
-
-p {
-  font-size: 28px;
-  margin: 0 auto; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%; 
-}
 .first{
   font-size: 16px;
   padding-left: 30px;
@@ -255,29 +246,7 @@ table{
 }
 
 /*수정한 css 범위*/
-.notice-div-kim{
-	display: flex;
-	justify-content: center;
-	align-items:center;
-	
-	width: 50%;
-	height: 100%;
-  position: relative;
-}
-#noticeForm{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -25px 0 0 -25px;
-  margin-top: 200px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #f5f5f5;
-	width: 100%;
-	height: 70%;
-	box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
-}
+
 .aTag:hover{
   color: blue;
 }
@@ -344,4 +313,52 @@ table{
 }
 #first-li{
   margin-top: 130px;
+}
+
+.notice-div-kim {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px); /* 푸터 공간 확보 */
+  margin-top: 50px;
+}
+
+/* 푸터를 하단에 고정시키기 위한 스타일 */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333; /* 배경색 설정 */
+  color: white; /* 글자색 설정 */
+  padding: 10px 0;
+  text-align: center;
+  z-index: 1;
+}
+
+#noticeForm{
+  margin: -25px 0 0 -25px;
+  margin-top: 200px;
+  margin-bottom: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f5f5f5;
+	width: 70%;
+	height: 70%;
+	box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#reset-btn, #submit-btn {
+  padding: 16px 32px;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#reset-btn {
+  background-color: black;
+  color: white;
+  margin-right: 20px;
 }
