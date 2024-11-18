@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-section {
+#user-section {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -95,11 +95,9 @@ padding: 8px 16px !important;
     color: #000;
     text-decoration: none;
 }
-
 #leave-btn{
 	width: 50%;
 	height: 50%;
-	
 	margin: 0 auto; 
 }
 .modal-content{
@@ -107,16 +105,20 @@ padding: 8px 16px !important;
 	justify-content: center;
 	align-items: center;	
 }
-
-.modal-content button {
+.modal-content button{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
 	position: relative;
 	left: 20%;
 }
 .close span{
 	margin-right: -50px;
 }
-
+#header{
+	background-color: white!important;
+}
+#footer{
+	background-color:#333!important;
+	z-index: 5;
+}

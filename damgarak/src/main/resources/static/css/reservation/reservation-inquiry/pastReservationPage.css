@@ -38,11 +38,11 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	height: 50vh;
 	
-	height: 100vh;
-	
-	 box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06);
-	 padding: 8px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06);
+	padding: 8px;
+	margin-top: -20%;
 }
 .radio-input-choice {
 	margin: 0px;
@@ -51,6 +51,8 @@ form {
 	display: flex;
 	align-items: center;
 	height: 100%;
+	
+	margin-top: 0px;
 }
 .radio-input-choice label {
 	gap: 5px;
@@ -87,12 +89,15 @@ form {
 	justify-content: center;
 	align-content: center;
 	
-	
 	margin-bottom: -200px;
-	
 }
 #div-footer{
 	position: absolute;
 	bottom: -100px;
+}
+
+#main .pagination-search{
+	position: relative;
+	bottom: -20px !important;
 }
 

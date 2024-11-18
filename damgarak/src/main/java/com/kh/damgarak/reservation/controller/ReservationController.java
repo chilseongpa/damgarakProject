@@ -78,7 +78,7 @@ public class ReservationController {
 			searchList = reservationService.searchLuchList(map, pageInfo);
 		}
 		
-		session.setAttribute("pageInfo", pageInfo);
+		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("sList",searchList);
 		
 		return "reservation/reservation-inquiry/pastReservationPage";
