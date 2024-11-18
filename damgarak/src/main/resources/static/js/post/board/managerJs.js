@@ -56,16 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
     isOrderAsc = !isOrderAsc; // 정렬 방향 반전
   }
 
-  function sortTableByTime() {
+function sortTableByTime() {
     let rows = Array.from(tableBody.querySelectorAll("tr"));
     rows.sort((a, b) => {
-      let timeA = a.cells[4].textContent.split(":").map(Number);
-      let timeB = b.cells[4].textContent.split(":").map(Number);
-      return isTimeAsc ? (timeA[0] - timeB[0] || timeA[1] - timeB[1]) : (timeB[0] - timeA[0] || timeB[1] - timeA[1]);
+        let dateA = new Date(a.cells[3].textContent.trim()); // 3번째 셀에서 날짜 문자열 가져오기
+        let dateB = new Date(b.cells[3].textContent.trim()); // 3번째 셀에서 날짜 문자열 가져오기
+        
+        // 날짜를 비교하여 정렬 (오름차순 또는 내림차순)
+        return isTimeAsc ? dateA - dateB : dateB - dateA;
     });
     tableBody.append(...rows);
     isTimeAsc = !isTimeAsc; // 정렬 방향 반전
-  }
+}
 
   sortByOrderButton.addEventListener("click", sortTableByOrder);
   sortByTimeButton.addEventListener("click", sortTableByTime);

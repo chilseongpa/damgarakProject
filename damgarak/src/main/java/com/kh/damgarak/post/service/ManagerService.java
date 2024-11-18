@@ -16,6 +16,7 @@ import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.model.vo.Reply;
 import com.kh.damgarak.post.specification.model.dto.OrderDetailsDTO;
+import com.kh.damgarak.reservation.model.vo.Reservation;
 import com.kh.damgarak.users.model.vo.Users;
 
 @Service
@@ -82,6 +83,9 @@ public class ManagerService {
 	public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
 
 		return managerMapper.findOrdersWithinDateRange(startDate, endDate);
+	}
+	public List<SuggestionDTO> selRv(Reservation reservation) {
+	    return managerMapper.selRv(reservation);
 	}
 
 }
