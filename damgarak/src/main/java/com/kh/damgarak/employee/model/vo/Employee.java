@@ -1,7 +1,6 @@
 package com.kh.damgarak.employee.model.vo;
 
 import lombok.Data;
-
 @Data
 public class Employee {
 	private String usersId;

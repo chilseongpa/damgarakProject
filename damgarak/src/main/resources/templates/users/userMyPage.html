@@ -12,8 +12,35 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="/static/css/users/users-my-page/userMyPage.css"/>
 	<script src="static/js/users/users-my-page/userMyPage.js"></script>
+<link rel="stylesheet" th:href="@{/static/css/common/header.css}"  />
+<link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
+<link rel="stylesheet" th:href="@{/static/css/common/sidebar.css}" />
+	
+	<style>
+	#header-div{
+		margin-top: 7%;
+	}
+	#footer-div{
+		margin-top: 10%; 
+	}
+	#header {
+		background-color : white;
+	}
+	#footer{
+		background-color: #333 !important;
+		z-index: 5;
+	}
+	
+	</style>
 </head>
 <body>
+<div id="header-div">
+	<div th:replace="common/header::header"
+			style="position: relative; z-index: 2;"></div>
+</div>
+	
+	<div th:replace="common/sidebar::sidebar"></div>
+	
 	<main id="main">
 		<section id="section">
 			<div class="container-div">
@@ -21,21 +48,45 @@
 					<div id="h3-div">
 						<h1>고객 정보 페이지</h1>
 					</div>
-					<input class="form-control emp-infomatin-input-css fist-input"
-						type="text" value="ID : " aria-label="Disabled input example"
-						disabled readonly> <input
-						class="form-control emp-infomatin-input-css" type="text"
-						value="이름 : " aria-label="Disabled input example" disabled
-						readonly> <input
-						class="form-control emp-infomatin-input-css" type="text"
-						value="mail :" aria-label="Disabled input example" disabled
-						readonly> <input
-						class="form-control emp-infomatin-input-css" type="text"
-						value="누적 금액 : " aria-label="Disabled input example" disabled
-						readonly> <input
-						class="form-control emp-infomatin-input-css" type="text"
-						value="회원등급 : " aria-label="Disabled input example" disabled
-						readonly>
+			
+  
+ 
+    <input class="form-control emp-infomatin-input-css fist-input"
+           type="text"
+           th:value="'ID : ' + (${d?.usersId != null ? d.usersId : '정보 없음'})"
+           aria-label="Disabled input example"
+           disabled readonly>
+
+    <!-- 이름 -->
+    <input class="form-control emp-infomatin-input-css"
+           type="text"
+           th:value="'이름 : ' + (${d?.usersName != null ? d.usersName : '정보 없음'})"
+           aria-label="Disabled input example"
+           disabled readonly>
+
+    <!-- 메일 -->
+    <input class="form-control emp-infomatin-input-css"
+           type="text"
+           th:value="'Mail : ' + (${d?.email != null ? d.email : '정보 없음'})"
+           aria-label="Disabled input example"
+           disabled readonly>
+
+    <!-- 누적 금액 -->
+    <input class="form-control emp-infomatin-input-css"
+           type="text"
+           th:value="'누적 금액 : ' + (${d?.accumlatedAmount != null ? d.accumlatedAmount : '정보 없음'})"
+           aria-label="Disabled input example"
+           disabled readonly>
+
+    <!-- 회원등급 -->
+    <input class="form-control emp-infomatin-input-css"
+           type="text"
+           th:value="'회원등급 : ' + (${d?.memberLevel != null ? d.memberLevel : '정보 없음'})"
+           aria-label="Disabled input example"
+           disabled readonly>
+
+
+
 
 
                         <button type="button" id="openModal-div" class="btn btn-primary">
@@ -116,5 +167,10 @@
 			</div>
 		</section>
 	</main>
+	
+<div id="footer-div">
+<div th:replace="common/footer::footer"
+			style="position: relative; z-index: 1;"></div>
+</div>
 </body>
 </html>
