@@ -27,5 +27,7 @@ public class SuggestionDTO {
 	private Date reservationDate;
 	private String reservationStatus;
 	private String tableNo;
+	private int amount;
+	private String lunchboxDetails;
 }
 

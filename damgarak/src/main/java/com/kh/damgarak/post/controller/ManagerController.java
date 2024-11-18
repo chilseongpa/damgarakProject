@@ -174,13 +174,15 @@ public class ManagerController {
 	    model.addAttribute("reserList", r);
 	    return "post/board/manager/rv";
 	}
+	@GetMapping("/bentoRv")
+	public String bentoRvPage(Model model, Reservation reservation) {
+		List<SuggestionDTO> br = mService.selbentoRv(reservation);
+		model.addAttribute("bentoList",br);
+		return "post/board/manager/bentoRv";
+	}
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";
-	}
-	@GetMapping("/bentoRv")
-	public String bentoRvPage() {
-		return "post/board/manager/bentoRv";
 	}
 	@GetMapping("/recommend")
 	public String recommendPage() {

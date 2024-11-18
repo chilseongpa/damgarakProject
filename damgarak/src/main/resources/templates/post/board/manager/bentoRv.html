@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,50 +29,19 @@
 	            <button type="button" class="btn btn-outline-primary" id="sort-by-order">순번순</button>
 	            <table class="table" id="reservation-table">
 	              <thead class="table-light">
-	                <tr>
+	                <tr class="table-light">
 	                  <th class="trh">순번</th>
 	                  <th class="trh">고객 이름</th>
 	                  <th id="number">도시락종류</th>
 	                </tr>
 	              </thead>
 	              <tbody>
-	              	<tr>
-	              	  <th></th>
-	              	  <th></th>
-	              	  <th></th>
+	              	<tr th:each="bentoReservation : ${bentoList}">
+	              	  <th class="tabcd" th:text="${bentoReservation.reservationNo}"></th>
+	              	  <th class="tabcd" th:text="${bentoReservation.usersName}"></th>
+	              	  <th class="tabcd" th:text="${bentoReservation.lunchboxDetails}"></th>
 	              	</tr>
-	                <tr>
-	                  <th class="tabcd">1</th>
-	                  <th class="tabcd">김수창</th>
-	                  <th class="tabcd">010-1234-5678</th>
-	                </tr>
-	                <tr>
-	                  <th class="tabcd">2</th>
-	                  <th class="tabcd">박재은</th>
-	                  <th class="tabcd">010-4567-8547</th>
-	                </tr>
-	                <tr>
-	                  <th class="tabcd">3</th>
-	                  <th class="tabcd">이임세</th>
-	                  <th class="tabcd">010-7894-5873</th>
-	                </tr>
-	                <tr>
-	                  <th class="tabcd">4</th>
-	                  <th class="tabcd">장원준</th>
-	                  <th class="tabcd">010-7895-2854</th>
-	                </tr>
-	                <tr>
-	                  <th class="tabcd">5</th>
-	                  <th class="tabcd">에픽하이</th>
-	                  <th class="tabcd">010-7788-5798</th>
-	                </tr>
-	                <tr>
-	                  <th class="tabcd">6</th>
-	                  <th class="tabcd">UV</th>
-	                  <th class="tabcd">010-2222-4444</th>
-	                </tr>
-	              </tbody>
-	                
+	              </tbody> 
 	            </table>
 	        </div>
 	    </div>

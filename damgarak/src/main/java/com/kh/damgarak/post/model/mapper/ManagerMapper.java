@@ -44,4 +44,5 @@ public interface ManagerMapper {
 	
 	List<SuggestionDTO> selRv (Reservation reservation);
 	
+	List<SuggestionDTO> selbentoRv (Reservation reservation);
 }

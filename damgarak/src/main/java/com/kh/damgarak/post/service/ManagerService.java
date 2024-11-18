@@ -87,5 +87,8 @@ public class ManagerService {
 	public List<SuggestionDTO> selRv(Reservation reservation) {
 	    return managerMapper.selRv(reservation);
 	}
-
+	
+	public List<SuggestionDTO> selbentoRv(Reservation reservation){
+		return managerMapper.selbentoRv(reservation);
+	}
 }
