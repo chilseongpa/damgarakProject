@@ -4,44 +4,70 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.damgarak.reservation.model.mapper.ReservationMapper">
   
-  <select id="searTableList" resultType="PastReservationSearch">
-	  SELECT 
-        r.RESERVATION_NO AS reservationNo,        
-        TO_CHAR(r.RESERVATION_DATE, 'YYYY-MM-DD') AS reservationDate,  
-        TO_CHAR(r.RESERVATION_DATE, 'HH24:MI') AS reservationTime,    
-        t.TABLE_NO AS tableNo                       
-    FROM 
-        RESERVATION r
-    LEFT JOIN 
-        TABLE_RESERVATION t ON r.RESERVATION_NO = t.RESERVATION_NO
-    WHERE 
-        r.USERS_ID = #{usersId}                
-        AND TO_CHAR(r.RESERVATION_DATE, 'YYYY') = #{year}   
-        AND TO_CHAR(r.RESERVATION_DATE, 'MM') = #{month}  
-        AND r.RESERVATION_DATE &lt; SYSDATE  
-    ORDER BY 
-        r.RESERVATION_DATE DESC 
-  </select>
-    
-  <select id="searchLuchList" resultType="PastReservationSearch">
+<select id="searTableList" resultType="PastReservationSearch">
+  SELECT * 
+  FROM (
     SELECT 
-        r.RESERVATION_NO AS reservationNo,         
-        TO_CHAR(r.RESERVATION_DATE, 'YYYY-MM-DD') AS reservationDate, 
-        TO_CHAR(r.RESERVATION_DATE, 'HH24:MI') AS reservationTime,    
-        lr.LUNCHBOX_DETAILS AS lunchBoxDetails     
+      r.RESERVATION_NO AS reservationNo,        
+      TO_CHAR(r.RESERVATION_DATE, 'YYYY-MM-DD') AS reservationDate,  
+      TO_CHAR(r.RESERVATION_DATE, 'HH24:MI') AS reservationTime,    
+      t.TABLE_NO AS tableNo,
+      ROW_NUMBER() OVER (ORDER BY r.RESERVATION_DATE DESC) AS RN
     FROM 
-        RESERVATION r
+      RESERVATION r
     LEFT JOIN 
-        LUNCHBOX_RESERVATION lr ON r.RESERVATION_NO = lr.RESERVATION_NO
+      TABLE_RESERVATION t ON r.RESERVATION_NO = t.RESERVATION_NO
     WHERE 
-        r.USERS_ID = #{usersId}                  
-        AND TO_CHAR(r.RESERVATION_DATE, 'YYYY') = #{year}   
-        AND TO_CHAR(r.RESERVATION_DATE, 'MM') = #{month}  
-        AND  r.RESERVATION_DATE &lt; SYSDATE 
-    ORDER BY 
-        r.RESERVATION_DATE DESC
+      r.USERS_ID = #{map.usersId}                
+      AND TO_CHAR(r.RESERVATION_DATE, 'YYYY') = #{map.year}   
+      AND TO_CHAR(r.RESERVATION_DATE, 'MM') = #{map.month}
+      AND r.RESERVATION_DATE &lt; SYSDATE
+  )
+  WHERE RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
 </select>
+
+<select id="searchLuchList" resultType="PastReservationSearch">
+  SELECT * 
+  FROM (
+    SELECT 
+      r.RESERVATION_NO AS reservationNo,         
+      TO_CHAR(r.RESERVATION_DATE, 'YYYY-MM-DD') AS reservationDate, 
+      TO_CHAR(r.RESERVATION_DATE, 'HH24:MI') AS reservationTime,    
+      lr.LUNCHBOX_DETAILS AS lunchBoxDetails,
+      ROW_NUMBER() OVER (ORDER BY r.RESERVATION_DATE DESC) AS RN
+    FROM 
+      RESERVATION r
+    LEFT JOIN 
+      LUNCHBOX_RESERVATION lr ON r.RESERVATION_NO = lr.RESERVATION_NO
+    WHERE 
+      r.USERS_ID = #{map.usersId}                  
+      AND TO_CHAR(r.RESERVATION_DATE, 'YYYY') = #{map.year}   
+      AND TO_CHAR(r.RESERVATION_DATE, 'MM') = #{map.month}  
+      AND r.RESERVATION_DATE &lt; SYSDATE
+  )
+  WHERE RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+</select>
+    
+
   
+  
+  <select id="getCountTable" resultType="_int">
+  SELECT COUNT(*) 
+  FROM TABLE_RESERVATION TR
+  JOIN RESERVATION R ON TR.RESERVATION_NO = R.RESERVATION_NO
+  WHERE R.USERS_ID = #{usersId}
+  AND R.RESERVATION_STATUS = 'y'
+  AND R.RESERVATION_DATE &lt; TRUNC(SYSDATE) 
+  </select>
+  
+  <select id="getCountLunchBox" resultType="_int">
+  SELECT COUNT(*) 
+  FROM LUNCHBOX_RESERVATION LR
+  JOIN RESERVATION R ON LR.RESERVATION_NO = R.RESERVATION_NO
+  WHERE R.USERS_ID = #{usersId}
+  AND R.RESERVATION_STATUS = 'y'
+  AND R.RESERVATION_DATE &lt; TRUNC(SYSDATE)  
+  </select>
   
   
   
