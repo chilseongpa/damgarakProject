@@ -1,8 +1,6 @@
 package com.kh.damgarak.users.controller;
 
-import java.sql.Date;
 
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,11 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.processor.element.AbstractAttributeModelProcessor;
 
 import com.kh.damgarak.emailauth.service.EmailAuthService;
+import com.kh.damgarak.employee.model.vo.Employee;
 import com.kh.damgarak.users.model.vo.Users;
 import com.kh.damgarak.users.service.UserService;
 import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
+import com.kh.damgarak.users.userMemvership.model.dto.userMemvershipDTO;
 
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
@@ -29,9 +30,7 @@ public class UserController {
 	private final PasswordEncoder passwordEncoder;
 
 	@GetMapping("/changeInfoMyPage")
-	public String changeInfoMyPage(HttpSession session) {
-		// UsersLoginDTO dto = (UsersLoginDTO)session.getAttribute("userLogin");
-		// String usersId = dto.getUsers().getUsersId();
+	public String changeInfoMyPage() {
 		return "users/userChangeInfo";
 	}
 	
@@ -148,14 +147,27 @@ public class UserController {
 	}
 	
 	@PostMapping("/signupForm") 
-	public String userSignp(Users user, Model model, RedirectAttributes redirectAttributes) {
+	public String userSignp(Users user, Model model, Employee employee, RedirectAttributes redirectAttributes) {
 
 		String encoderPassword = passwordEncoder.encode(user.getUsersPassword());
 		user.setUsersPassword(encoderPassword);
-
+		
+		String empId = user.getUsersId();
+		
+		
 		int singup = userService.userSingup(user);
-
-		if (singup > 0) {
+		
+		boolean userType = user.getUsersType().equals("직원");
+		
+		int empResult = 1;
+		
+		if(userType){		
+		
+			empResult = userService.empSingup(empId);
+		
+		}
+		
+		if (singup > 0 && empResult > 0) {
 			redirectAttributes.addFlashAttribute("successMsg", "회원가입에 성공했습니다");
 			return "redirect:/loginPage";
 		} else {
@@ -163,6 +175,7 @@ public class UserController {
 			return "redirect:/loginPage";
 		}
 	}
+	
 	@GetMapping("/idCheck.me")
 	public ResponseEntity<String> UserIdCheck(String usersId) {
 		int count = userService.idCheck(usersId);
@@ -172,9 +185,19 @@ public class UserController {
 			return ResponseEntity.ok("true");
 		}
 	}
-	@GetMapping("/UsersMyPage")
-	public String userMyPage() {
-		return "users/userMyPage";
+	@GetMapping("/usersMyPage")
+	public String userMyPage(HttpSession session, Model model) {
+		UsersLoginDTO dto = (UsersLoginDTO)session.getAttribute("userLogin");
+		String usersId = dto.getUsersId();
+				
+		userMemvershipDTO userDto = userService.userMyPageInfo(usersId);
+		System.out.println(userDto);
+		
+		if(userDto != null){
+			model.addAttribute("d",userDto);
+			return "users/userMyPage";			
+		}	
+			return "users/userMyPage"; 
 	}
 	
 

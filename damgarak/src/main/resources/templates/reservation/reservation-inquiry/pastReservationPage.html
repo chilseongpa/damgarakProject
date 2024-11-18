@@ -13,10 +13,11 @@
 
 </head>
 <body>
-<main>  
-<section id="header-section">
-<div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
- </section>
+<div id="header-div">
+	<div th:replace="common/header::header"
+			style="position: relative; z-index: 2;"></div>
+</div>
+<main id="main">
     <section class="search-waiting">
     <div class="search-div-select">
         <form action="/pastReservationSearch" method="GET">
@@ -83,7 +84,7 @@
             <tbody>
                 <tr>
            
-   <tr th:each="r: ${sList}">
+   				<tr th:each="r: ${sList}">
                 <td th:text="${r.reservationNo}"></td> <!-- 순서 -->
                 <td th:text="${r.reservationDate}"></td> <!-- 예약 날짜 -->
                 <td th:text="${r.reservationTime}"></td> <!-- 예약 시간 -->
@@ -93,22 +94,50 @@
             </tbody>
           </table>
      </section>
-    <section class="pagination-search">
-     <nav aria-label="Page navigation example" class="nav-page-items">
+<section class="pagination-search">
+    <nav aria-label="Page navigation example" class="nav-page-items">
         <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <!-- Previous 버튼 -->
+            <li th:class="${session.pageInfo.currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+                <a class="page-link"
+                   th:href="@{/pastReservationSearch(
+                       page=${session.pageInfo.currentPage - 1}, 
+                       select-list-type=${param['select-list-type']},
+                       year=${param.year},
+                       month=${param.month})}">
+                    Previous
+                </a>
+            </li>
+
+            <!-- 페이지 번호 -->
+            <li th:each="i : ${#numbers.sequence(session.pageInfo.startPage, session.pageInfo.endPage)}"
+                th:class="${session.pageInfo.currentPage == i ? 'page-item active' : 'page-item'}">
+                <a class="page-link" 
+                   th:href="@{/pastReservationSearch(
+                       page=${i}, 
+                       select-list-type=${param['select-list-type']},
+                       year=${param.year},
+                       month=${param.month})}"
+                   th:text="${i}">
+                </a>
+            </li>
+
+            <!-- Next 버튼 -->
+            <li th:class="${session.pageInfo.currentPage < session.pageInfo.maxPage ? 'page-item' : 'page-item disabled'}">
+                <a class="page-link"
+                   th:href="@{/pastReservationSearch(
+                       page=${session.pageInfo.currentPage + 1}, 
+                       select-list-type=${param['select-list-type']},
+                       year=${param.year},
+                       month=${param.month})}">
+                    Next
+                </a>
+            </li>
         </ul>
-      </nav>
-    </section>
+    </nav>
+</section>
+
+   	</main>
    	
-   	<section class="footer-section">
-     <div  th:replace="common/footer::footer" style="position: relative; z-index: 1;"></div>
-   </section>
-    </main>
-    
 </body>
 </html>

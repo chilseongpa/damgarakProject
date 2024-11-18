@@ -21,14 +21,29 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" th:href="@{/static/css/common/header.css}" />
 <link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
+<link rel="stylesheet" th:href="@{/static/css/common/sidebar.css}" />
+s
 
+<style>
+#header {
+	background-color: white;
+}
+#footer {
+	background-color: #333 !important;
+	z-index: 5;
+	position: absolute !important;
+	bottom: 0px !important;
+}
+
+</style>
 </head>
 <body>
 
-<div id="header-div">
-	<div th:replace="common/header::header"
-		style="position: relative; z-index: 2;"></div>
-</div>
+	<div id="header-div">
+		<div th:replace="common/header::header"
+			style="position: relative; z-index: 2;"></div>
+	</div>
+	<div th:replace="common/sidebar::sidebar"></div>
 
 	<section class="waiting-section">
 		<div class="container">
@@ -111,8 +126,7 @@
 		</div>
 	</section>
 	<div class="footer-div">
-	<div th:replace="common/footer::footer"
-		style="position: relative; z-index: 1;"></div>
+		<div th:replace="common/footer::footer"
+			style="position: relative; z-index: 1;"></div>
 	</div>
-		
 </html>

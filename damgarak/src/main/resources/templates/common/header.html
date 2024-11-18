@@ -49,7 +49,7 @@
     <th:block th:if="${session.userLogin != null}">
     
         <th:block th:if="${session.userLogin != null and session.userLogin.usersType == '고객'}">
-            <li><a href="/UsersMyPage">고객 마이페이지</a></li>
+            <li><a href="/usersMyPage">고객 마이페이지</a></li>
         </th:block>
 
         <th:block th:if="${session.userLogin != null and session.userLogin.employeeType == '관리자' and session.userLogin.usersType == '직원'}">
