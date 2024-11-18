@@ -7,9 +7,13 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="static/css/lunch-box/lunchBoxMenu.css">
     <script src="static/js/lunch-box/lunchBoxMenu.js"></script>
+     <link rel="stylesheet" th:href="@{/static/css/common/header.css}" />
+    <link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
 </head>
 <body>
-	
+	<section class="header-div">
+    <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
+</section>
     <div class="pos-container">
         <!-- 사이드바 -->
         <div class="sidebar" id="sidebar">
@@ -81,5 +85,8 @@
             <button class="place-order-btn" onclick="orderLunchBox()">주문하기</button>
         </div>
     </div>
+    <section class="footer-div">
+    <div id="footer-div-controller" th:replace="common/footer::footer" style="position: relative;"></div>
+</section>
 </body>
 </html>
