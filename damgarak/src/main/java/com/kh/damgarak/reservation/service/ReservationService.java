@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.kh.damgarak.common.model.vo.PageInfo;
 import com.kh.damgarak.reservation.model.mapper.ReservationMapper;
 import com.kh.damgarak.reservation.pastReservationSearch.model.dto.PastReservationSearch;
+import com.kh.damgarak.tableReservation.selectReservationLunchBox.model.dto.ReservationLunchBoxDTO;
+import com.kh.damgarak.tableReservation.selectReservationTable.model.dto.SelectReservationTableDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +33,15 @@ public class ReservationService {
 	}
 	public int getCountLunchBox(String usersId) {
 		return mapper.getCountLunchBox(usersId);
+	}
+	public int getLunchCount(String userId) {
+		
+		return mapper.getLunchCount(userId);
+	}
+	public List<ReservationLunchBoxDTO> reservationInquiryLunchBox(String userId, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit(); 
+		 int limit = pi.getBoardLimit();
+		return mapper.reservationInquiryLunchBox(userId, offset, limit);
 	}
 
 }
