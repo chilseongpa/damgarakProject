@@ -54,6 +54,7 @@ function tableReservationHandle(){
         success:function(result){
             if(result === 'ok'){
                 alert(`${date} 일 ${time} ${tableValue} 예약이 ${reservationNo ? '수정' : '성공'}되었습니다.`);
+                 window.location.href = '/reservationInquiry';
         }else{
             alert(`${date} 일 ${time} ${tableValue} 예약 ${reservationNo ? '수정' : '생성'} 실패했습니다. 다시 시도해주십시오.`);
         }    
