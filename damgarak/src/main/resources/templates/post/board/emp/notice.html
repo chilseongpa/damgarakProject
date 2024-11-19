@@ -24,6 +24,7 @@
 	<div  th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
     </div>
 	<div id="side-controller"></div>
+	<br><br><br><br><br><br><br><br>
   <h2 style="text-align: center;">공지사항</h2>
   <div id="side-div">
   <div th:replace="common/empSidebar::empSidebar"></div>
@@ -55,9 +56,9 @@
       </div>
     </div>
   </div>
-  <div id="footer-div">
-	   <div  th:replace="common/footer::footer" style="position: relative; z-index: 1;"></div>
-  </div>
+  <div style="position: relative; z-index: 1;">
+	 <div th:replace="common/footer::footer"></div>
+  </div> 
   
 </body>
 </html>
