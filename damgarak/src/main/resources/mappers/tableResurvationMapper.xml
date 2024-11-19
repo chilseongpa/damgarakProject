@@ -63,7 +63,7 @@ TO_DATE(#{reservationDate, jdbcType=VARCHAR}, 'yyyy-MM-dd HH24:MI'),
             TABLE_RESERVATION TR ON R.RESERVATION_NO = TR.RESERVATION_NO
         WHERE 
             R.USERS_ID = #{userId}
-            AND R.RESERVATION_DATE &lt; SYSDATE
+            AND R.RESERVATION_DATE > SYSDATE
             AND R.RESERVATION_STATUS = 'y'
     )
     WHERE RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -77,7 +77,7 @@ TO_DATE(#{reservationDate, jdbcType=VARCHAR}, 'yyyy-MM-dd HH24:MI'),
   JOIN RESERVATION R ON TR.RESERVATION_NO = R.RESERVATION_NO
   WHERE R.USERS_ID = #{usersId}
   AND R.RESERVATION_STATUS = 'y'
-  AND R.RESERVATION_DATE &lt; SYSDATE
+  AND R.RESERVATION_DATE > SYSDATE
 </select>
 
 

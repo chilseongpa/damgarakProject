@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="/static/css/common/main-footer.css">
 </head>
 <body>
+  <div id="successMsg" th:if="${successMsg}" th:text="${successMsg}" style="display: none;"></div>
+    <div id="errorMsg" th:if="${errorMsg}" th:text="${errorMsg}" style="display: none;"></div>
 <!-- 헤더 부분 -->
    <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
 
@@ -193,5 +195,24 @@
          <div th:replace="common/footer :: footer"></div>
       </div>
    </div>
+  
+      <script>
+        window.onload = function() {
+       
+            let successMsg = document.getElementById("successMsg")?.textContent;
+            if (successMsg) {
+                alert(successMsg.trim());
+            }
+
+         
+            let errorMsg = document.getElementById("errorMsg")?.textContent;
+            if (errorMsg) {
+                alert(errorMsg.trim());
+            }
+        }
+    </script>
+   
+   
+   
 </body>
 </html>

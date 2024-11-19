@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pusher Chat</title>
+<link rel="stylesheet" th:href="@{/static/css/common/header.css}" />
+<link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	height: 100vh !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+#header-div, #footer-div {
+	color: white;
+	text-align: center;
+}
+
+#header-div {
+	margin-bottom: 100px;
+}
+
+#footer-div {
+	margin-top: 100px;
+}
+
+#containner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+h1 {
+	color: #333;
+}
+
+#messages {
+	width: 100%;
+	max-width: 600px;
+	height: 400px;
+	background-color: white;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	overflow-y: auto;
+	padding: 10px;
+	margin-bottom: 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	overflow: hidden !important;
+}
+
+#messages p {
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 5px 0;
+}
+
+#messageInput {
+	width: calc(100% - 100px);
+	max-width: 500px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 16px;
+	margin-right: 10px;
+	outline: none;
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button {
+	padding: 9px 16px;
+	background-color: #FF5400;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s;
+}
+
+button:hover {
+	background-color: #d66113;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+	#messageInput {
+		width: calc(100% - 60px);
+		margin-right: 5px;
+	}
+	button {
+		
+		padding-left: 8px;
+		padding-right: 8px;
+		font-size: 14px ;
+	}
+}
+
+#input-pusher {
+width:100%;
+	margin-bottom: 50px;
+}
+
+#messageInput {
+
+	
+}
+</style>
+</head>
+<body>
+	<div id="header-div">
+		<div th:replace="common/header::header"
+			style="position: relative; z-index: 2;"></div>
+	</div>
+
+	<div id="containner">
+		<h1>담가락 실시간 고객 상담</h1>
+		<div id="messages" placeholder="메시지가 표시됩니다..."></div>
+		
+		<div id="input-pusher"
+			style="display: flex; justify-content: center; align-items: center;">
+			<input type="text" id="messageInput" placeholder="메시지를 입력하세요..." />
+			<button onclick="sendMessage()">입력</button>
+		</div>
+		
+	</div>
+
+	<div id="footer-div">
+		<div th:replace="common/footer::footer"
+			style="position: relative; z-index: 1;">&copy; 2024 고객 상담 센터</div>
+	</div>
+
+	<script>
+	 	const userId = '[[${userId}]]';
+	 	
+	 	 console.log('수신된 데이터:', userId);
+        // Pusher 클라이언트 초기화
+        var pusher = new Pusher('b6fa21c979dd4a7fb342', {
+            cluster: 'ap3',
+            encrypted: true
+        });
+
+        // 채널 구독
+        var channel = pusher.subscribe('my-channel');
+
+        // 'my-event' 이벤트 수신
+        channel.bind('my-event', function(data) {
+            console.log('수신된 데이터:', data);
+
+            // 데이터가 정상인지 확인
+            if (!data.userId || !data.message) {
+                console.error('데이터 구조가 다릅니다:', data);
+                return;
+            }
+            var isAdmin = data.userId === 'whdrns456';
+            var userDisplayName = isAdmin ? '관리자' : data.userId;
+            var userIcon = isAdmin ? '👑' : '👤';
+            var userMsgIcon = isAdmin ? '⚔️' : '📩';
+            
+        	
+            var messageDiv = document.getElementById('messages');
+            var newMessage = document.createElement('p');
+           // newMessage.textContent = "📩 " + data.message;
+           // newMessage.textContent = `👤 ${data.userId}: 📩 ${data.message}`;
+           newMessage.textContent = userIcon + userDisplayName + ": "+ userMsgIcon + data.message;
+           
+           console.log("메시지 생성:", newMessage.textContent);
+           messageDiv.appendChild(newMessage);
+            messageDiv.scrollTop = messageDiv.scrollHeight; // 자동 스크롤
+        }); 
+        // 서버로 메시지 전송
+        function sendMessage() {
+            var message = document.getElementById('messageInput').value;
+            if (message.trim() === '') {
+                alert('메시지를 입력하세요!');
+                messageInput.value = '';
+         
+                return;
+            }
+            console.log(document.getElementById('messages'));
+            
+            fetch('/chat/send?message=' + encodeURIComponent(message) + '&userId=' + encodeURIComponent(userId), {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Message sent:', data);
+                document.getElementById('messageInput').value = ''; // 입력 필드 초기화
+                messageInput.value = '';
+            })
+            .catch(error => console.error('Error:', error));
+            messageInput.value = '';
+        }
+      
+        document.getElementById('messageInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') { 
+                sendMessage();
+            }
+        });
+        
+    </script>
+</body>
+</html>
