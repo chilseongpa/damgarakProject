@@ -198,7 +198,11 @@ public class UserController {
 		}	
 			return "users/userMyPage"; 
 	}
-	
+	@GetMapping("/index.html")
+    public String index() {
+        return "index"; // index.html 파일을 반환
+    }
+
 	@PostMapping("/deleteUser")
 	@ResponseBody
 	public String deleteUser(HttpSession session){
@@ -212,4 +216,5 @@ public class UserController {
 			return "failed";
 		}
 	}
+
 }

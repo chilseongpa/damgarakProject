@@ -40,19 +40,24 @@ public class ManagerController {
 	
 	private final ManagerService mService;
 
-    @GetMapping("/suggestDe")
-    public String adminPage(Model model,Post post) {
-    	List<SuggestionDTO> p = mService.selSuggest(post);
-    	
-    	log.info("post list size: {}",p.size());
-    	
-    	if (p.size() > 0) {
-    		log.info("post[0]: {}", p.get(0));
-    	}
-        model.addAttribute("postList", p);
+	
+	
+	
+	@GetMapping("/suggestDe")
+	public String adminPage(Model model, Post post) {
+		List<SuggestionDTO> p = mService.selSuggest(post);
 
-        return "post/board/manager/suggestDe";
-    }
+		log.info("post list size: {}", p.size());
+
+		if (p.size() > 0) {
+			log.info("post[0]: {}", p.get(0));
+		}
+		model.addAttribute("postList", p);
+
+		return "post/board/manager/suggestDe";
+	}
+
+
 	@GetMapping("/empInfo")
 	public String empInfoPage(Model model, Users user) {
 		List<SuggestionDTO> u = mService.selEmp(user);
@@ -218,3 +223,5 @@ public class ManagerController {
 
 
 }
+
+
