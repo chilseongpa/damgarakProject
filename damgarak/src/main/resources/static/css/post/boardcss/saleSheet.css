@@ -3,7 +3,7 @@
   box-sizing: border-box;
 }
 #graph{
-  width: 500px;
+  width: 700px;
   margin-right: auto;
 }
 #bttn {
@@ -59,7 +59,7 @@
 }
 
 #bar-chart{
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
 }

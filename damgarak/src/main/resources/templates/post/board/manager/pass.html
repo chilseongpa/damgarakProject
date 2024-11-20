@@ -23,28 +23,27 @@
     </div>
     
     <div class="title-1">
-        <div class="title">
-            <table>
-                <br><br>
-                <tr>
-                    <th class="first">현재 비밀번호</th>
-                    <th><input type="password" id="currentPassword" class="test" value=""></th>
-                </tr>
-                <tr>
-                    <th class="first">새 비밀번호</th>
-                    <th><input type="password" id="newPassword" class="test" value=""></th>
-                </tr>
-                <tr>
-                    <th class="first">새 비밀번호 확인</th>
-                    <th><input type="password" id="confirmPassword" class="test" value=""></th>
-                </tr>
-            </table>
-            <br><br>
-            <div style="text-align: center;">
-                <button class="btn btn-danger" onclick="updatePassword()">비밀번호 변경</button>
-            </div>
-        </div>
-    </div>
+    <div class="title">
+	        <table class="table">
+	            <tr>
+	                <th class="first">현재 비밀번호</th>
+	                <td><input type="password" id="currentPassword" class="form-control" placeholder="현재 비밀번호를 입력하세요"></td>
+	            </tr>
+	            <tr>
+	                <th class="first">새 비밀번호</th>
+	                <td><input type="password" id="newPassword" class="form-control" placeholder="새 비밀번호를 입력하세요"></td>
+	            </tr>
+	            <tr>
+	                <th class="first">새 비밀번호 확인</th>
+	                <td><input type="password" id="confirmPassword" class="form-control" placeholder="새 비밀번호를 다시 입력하세요"></td>
+	            </tr>
+	        </table>
+	        <br><br>
+	        <div style="text-align: center;">
+	            <button class="btn btn-danger" onclick="changePassword()">비밀번호 변경</button>
+	        </div>
+	    </div>
+	</div>
 		<div th:replace="common/footer :: footer"></div>
 </body>
 </html>
