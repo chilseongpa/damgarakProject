@@ -1,20 +1,19 @@
 
-
-body{
-	display: flex;
-	justify-content: center;
-
-	
-	width:100vw;
-	height: 100vh;
-	
+* {
+  box-sizing: border-box;
 }
-
 #graph{
   width: 500px;
   margin-right: auto;
 }
-
+p {
+  font-size: 20px;
+  margin: 0 auto; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+}
 a {
   text-decoration: none;
 }
@@ -67,7 +66,14 @@ a {
 .main {
   text-align: center;
 }
-
+.title-1 {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  border: 1px solid white;
+}
 .aTag {
   color : black;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -77,7 +83,58 @@ a {
   margin: 20px;
   display: block;
 }
+.aTag:hover{
+  color: blue;
+}
 
+<<<<<<< HEAD:damgarak/src/main/resources/static/css/post/boardcss/post1.css
+.test{
+  width: 400px;
+  height: 40px;
+  font-size: 16px;
+  margin-top: 25px;
+  border-radius: 5px;
+  background-color: rgb(214, 214, 214);
+  border: none;
+  margin-left: 22px;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+#test1{
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: rgb(214, 214, 214);
+  border: none;
+  margin-left: 50px;
+  width: 400px;
+  height: 300px;
+}
+#test2{
+  padding-bottom: 10px;
+  font-size: 16px;
+  padding-left: 30px;
+  text-align: left;
+  vertical-align: baseline;
+}
+#test3{
+  margin-top: 20px;
+  width: 150px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-color: rgb(214, 214, 214);
+  border: none;
+  margin-left: 50px;
+}
+p {
+  font-size: 28px;
+  margin: 0 auto; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+}
+=======
+>>>>>>> damgarak:damgarak/src/main/resources/static/css/post/boardcss/noticeWrite.css
 .first{
   font-size: 16px;
   padding-left: 30px;
@@ -115,7 +172,7 @@ a {
   color: black;
   background-color: rgb(207, 207, 207);
   position: absolute;
-  bottom: 10px; 
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -243,6 +300,9 @@ table{
   margin-top: 150px;
   margin-left: auto;
   margin-right: auto;
+<<<<<<< HEAD
+}
+=======
 }
 
 /*수정한 css 범위*/
@@ -314,6 +374,9 @@ table{
 #first-li{
   margin-top: 130px;
 }
+<<<<<<< HEAD:damgarak/src/main/resources/static/css/post/boardcss/post1.css
+>>>>>>> damgarak
+=======
 
 .notice-div-kim {
   display: flex;
@@ -362,3 +425,4 @@ footer {
   color: white;
   margin-right: 20px;
 }
+>>>>>>> damgarak:damgarak/src/main/resources/static/css/post/boardcss/noticeWrite.css
