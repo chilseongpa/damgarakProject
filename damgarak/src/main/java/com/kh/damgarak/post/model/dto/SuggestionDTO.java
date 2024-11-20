@@ -23,6 +23,11 @@ public class SuggestionDTO {
 	private String noticeContent;
 	private int noticeNo;
 	private Date noticeCreationDate;
-
+	private String reservationNo;
+	private Date reservationDate;
+	private String reservationStatus;
+	private String tableNo;
+	private int amount;
+	private String lunchboxDetails;
 }
 

@@ -6,7 +6,7 @@
 </head>
 <body>
 <div id="thymeleaf-div" th:fragment="sidebar">
-    <section>
+    <section id="sidebar-session">
         <input type="checkbox" id="menuicon">
         <label for="menuicon">
             <span></span>
@@ -23,12 +23,18 @@
                     </div>
                 <div>
                     <a href="/usersMyPage">개인정보 확인</a>
+                </div>
+                  <div>
+                    <a href="/changeInfoMyPage">개인정보 변경</a>
                 </div>   
+                  <div>
+                    <a href="/lunchBoxInquiryPage">도시락 예약 조회</a>
+                </div>      
                 <div>
                     <a href="/reservationInquiry">식당 예약 조회</a>
                 </div>
                 <div>
-                    <a href="/pastReservationSearch">지난 예약 조회</a>
+                    <a href="/pastReservation">지난 예약 조회</a>
                 </div>
                 
                 <div>

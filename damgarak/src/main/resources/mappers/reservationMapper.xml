@@ -69,6 +69,38 @@
   AND R.RESERVATION_DATE &lt; TRUNC(SYSDATE)  
   </select>
   
+  <select id="getLunchCount" resultType="_int">
+  SELECT COUNT(*)
+  FROM RESERVATION R
+  JOIN LUNCHBOX_RESERVATION L
+  ON R.RESERVATION_NO = L.RESERVATION_NO
+  WHERE USERS_ID = #{userId} AND RESERVATION_DATE > SYSDATE
+  </select>
+  
+  
+  <select id="reservationInquiryLunchBox" resultType="ReservationLunchBoxDTO">
+     SELECT *
+    FROM (
+        SELECT 
+            R.RESERVATION_NO,
+            R.RESERVATION_DATE,
+            R.USERS_ID,
+            TR.LUNCHBOX_DETAILS,
+            TO_CHAR(R.RESERVATION_DATE, 'YYYY-MM-DD HH24:MI') AS FORMATTED_DATE,
+            ROW_NUMBER() OVER (ORDER BY R.RESERVATION_DATE DESC) AS RN
+        FROM 
+            RESERVATION R
+        JOIN 
+            LUNCHBOX_RESERVATION TR ON R.RESERVATION_NO = TR.RESERVATION_NO
+        WHERE 
+            R.USERS_ID = #{userId}
+            AND R.RESERVATION_DATE > SYSDATE
+            AND R.RESERVATION_STATUS = 'y'
+    )
+    WHERE RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+  
+  
+  </select>
   
   
   
