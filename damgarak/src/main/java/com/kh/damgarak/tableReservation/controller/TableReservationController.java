@@ -139,19 +139,19 @@ public class TableReservationController {
 		
 		int listCount = tableReservationService.getReservationCount(userId);
 		
+		System.out.println("페이징 네이션 갯수 확인용 : "+listCount);
+		
 		int pageLimit = 10; 
 		int boardLimit = 6;
 		
 		 PageInfo pageInfo = Pagination.getPageInfo(listCount, currentPage, 
 				 pageLimit, boardLimit);
-		 
-		 
+		 		 
 		    if (currentPage > pageInfo.getMaxPage()) {
 		        currentPage = pageInfo.getMaxPage();
 		        pageInfo = Pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
 		    }
-		 
-		
+		 		
 		List<SelectReservationTableDTO> reservationList = tableReservationService.reservationInquiry(userId, 
 				pageInfo);
 			
@@ -160,6 +160,7 @@ public class TableReservationController {
 			session.setAttribute("rList", reservationList);
 			return "reservation/reservation-inquiry/reservationInquiryPage";	
 		}
+		
 		return "reservation/reservation-inquiry/reservationInquiryPage";
 	}
 	

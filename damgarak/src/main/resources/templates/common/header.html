@@ -30,12 +30,12 @@
 					<ul>
 
 						<li><a href="/reservationTableTimeChoice">식당 좌석 예약</a></li>
-						<li><a href="/choiceLunchBox">도시락 예약</a></li>
+						<li><a href="/LunchBoxReservation">도시락 예약</a></li>
 
 					</ul></li>
 				<li><a href="#" class='headerText'>고객센터</a>
 					<ul>
-						<li><a href="#">건의함</a></li>
+						<li><a href="/pusher">실시간 문의</a></li>
 						<li><a href="#">공지사항</a></li>
 					</ul></li>
 			</ul>
@@ -49,7 +49,7 @@
     <th:block th:if="${session.userLogin != null}">
     
         <th:block th:if="${session.userLogin != null and session.userLogin.usersType == '고객'}">
-            <li><a href="/UsersMyPage">고객 마이페이지</a></li>
+            <li><a href="/usersMyPage">고객 마이페이지</a></li>
         </th:block>
 
         <th:block th:if="${session.userLogin != null and session.userLogin.employeeType == '관리자' and session.userLogin.usersType == '직원'}">

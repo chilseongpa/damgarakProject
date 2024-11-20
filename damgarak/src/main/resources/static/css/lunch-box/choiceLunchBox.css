@@ -23,8 +23,10 @@ body {
 
 .pos-container {
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    justify-content: space-between;
+    position: static; 
+    height: auto; 
+     min-height: 100vh; 
 }
 
 /* 좌측 사이드바 */
@@ -142,11 +144,14 @@ body {
     flex: 1;
     padding: 30px;
     margin-left: 430px;
+    margin-top: 70px; /* 추가된 여백: 원하는 값으로 조정 가능 */
     transition: margin-left 0.3s ease;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: -230px; /* 필요시 조정 */
 }
+
 
 /* 도시락 선택 섹션 */
 .selection-content {
@@ -174,7 +179,7 @@ body {
 .menu-list {
     display: flex;
     justify-content: center;
-    gap: 30px; /* 메뉴 카드들 간의 간격을 추가로 벌림 */
+    gap: 30px; 
     flex-wrap: wrap;
 }
 
@@ -234,10 +239,12 @@ body {
     gap: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
     border: 1px solid var(--border-color);
-    position: fixed; /* 우측에 고정 */
-    right: 20px;     /* 우측에서 일정 거리 */
-    top: 20px;       /* 상단에서 일정 거리 */
-    bottom: 20px;    /* 하단에서 일정 거리 */
+    position: fixed; 
+    right: 20px;     
+    top: 20px;    
+    bottom: 20px;    
+     position: relative; 
+    margin-top: 150px;
 }
 
 .order-summary h3 {
@@ -275,3 +282,18 @@ button {
 button:hover {
     background-color: #e65c00;
 }
+.footer-div {
+    margin-top: 20px; 
+    padding: 20px 0; 
+    background-color: var(--sidebar-bg); 
+    color: #fff;
+    text-align: center;
+    position: relative;
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+html, body, .pos-container {
+    overflow: auto;
+}
+

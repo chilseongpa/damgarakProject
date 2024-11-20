@@ -24,6 +24,7 @@ import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.model.vo.Reply;
 import com.kh.damgarak.post.service.ManagerService;
 import com.kh.damgarak.post.specification.model.dto.OrderDetailsDTO;
+import com.kh.damgarak.reservation.model.vo.Reservation;
 import com.kh.damgarak.users.model.vo.Users;
 import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
 
@@ -39,19 +40,24 @@ public class ManagerController {
 	
 	private final ManagerService mService;
 
-    @GetMapping("/suggestDe")
-    public String adminPage(Model model,Post post) {
-    	List<SuggestionDTO> p = mService.selSuggest(post);
-    	
-    	log.info("post list size: {}",p.size());
-    	
-    	if (p.size() > 0) {
-    		log.info("post[0]: {}", p.get(0));
-    	}
-        model.addAttribute("postList", p);
+	
+	
+	
+	@GetMapping("/suggestDe")
+	public String adminPage(Model model, Post post) {
+		List<SuggestionDTO> p = mService.selSuggest(post);
 
-        return "post/board/manager/suggestDe";
-    }
+		log.info("post list size: {}", p.size());
+
+		if (p.size() > 0) {
+			log.info("post[0]: {}", p.get(0));
+		}
+		model.addAttribute("postList", p);
+
+		return "post/board/manager/suggestDe";
+	}
+
+
 	@GetMapping("/empInfo")
 	public String empInfoPage(Model model, Users user) {
 		List<SuggestionDTO> u = mService.selEmp(user);
@@ -158,7 +164,6 @@ public class ManagerController {
 
 	    return result > 0 ? "success" : "fail";
 	}
-	@ResponseBody
 	@GetMapping("/fireEmployee")
 	public String fireEmployee(String usersId) {
 		System.out.println("유저 아이디 확인용" + usersId);
@@ -168,17 +173,21 @@ public class ManagerController {
 	    
 	    return result > 0 ? "success" : "fail";
 	}
+	@GetMapping("/rv")
+	public String rvPage(Model model, Reservation reservation) {
+	    List<SuggestionDTO> r = mService.selRv(reservation);
+	    model.addAttribute("reserList", r);
+	    return "post/board/manager/rv";
+	}
+	@GetMapping("/bentoRv")
+	public String bentoRvPage(Model model, Reservation reservation) {
+		List<SuggestionDTO> br = mService.selbentoRv(reservation);
+		model.addAttribute("bentoList",br);
+		return "post/board/manager/bentoRv";
+	}
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";
-	}
-	@GetMapping("/bentoRv")
-	public String bentoRvPage() {
-		return "post/board/manager/bentoRv";
-	}
-	@GetMapping("/rv")
-	public String rvPage() {
-		return "post/board/manager/rv";
 	}
 	@GetMapping("/recommend")
 	public String recommendPage() {
@@ -214,16 +223,13 @@ public class ManagerController {
 
 	@GetMapping("/detailSpecification")
 	public String getOrderDetails(@RequestParam("orderNo") int orderNo, Model model) {
-	    // 서비스에서 주문 상세 데이터 가져오기
 	    OrderDetailsDTO orderDetails = mService.getOrderDetails(orderNo);
 
-	    // 데이터가 없으면 에러 처리
 	    if (orderDetails == null) {
 	        model.addAttribute("error", "주문 번호에 해당하는 데이터를 찾을 수 없습니다.");
 	        return "post/board/manager/detailSpecification";
 	    }
 
-	    // 모델에 주문 상세 데이터 추가
 	    model.addAttribute("orderDetails", orderDetails);
 
 	    return "post/board/manager/detailSpecification";
@@ -231,3 +237,5 @@ public class ManagerController {
 	
 
 }
+
+

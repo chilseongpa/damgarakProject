@@ -21,4 +21,8 @@ public class CommonController {
 		return "/index.html";
 
 	}
+	@GetMapping("/intro")
+	public String introPage() {
+		return "damgarak/intro";
+	}
 }

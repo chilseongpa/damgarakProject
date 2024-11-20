@@ -46,64 +46,45 @@ TO_DATE(#{reservationDate, jdbcType=VARCHAR}, 'yyyy-MM-dd HH24:MI'),
 
 	</select>
 
-<select id="reservationInquiry" resultType="SelectReservationTableDTO">
 
-    SELECT * 
+  <select id="reservationInquiry" resultType="SelectReservationTableDTO">
+    SELECT *
     FROM (
         SELECT 
-            R.RESERVATION_NO, 
-            R.RESERVATION_DATE, 
-            R.USERS_ID, 
+            R.RESERVATION_NO,
+            R.RESERVATION_DATE,
+            R.USERS_ID,
             TR.TABLE_NO,
-            TO_CHAR(R.RESERVATION_DATE, 'YYYY-MM-DD HH24:MI') AS FORMATTED_DATE
+            TO_CHAR(R.RESERVATION_DATE, 'YYYY-MM-DD HH24:MI') AS FORMATTED_DATE,
+            ROW_NUMBER() OVER (ORDER BY R.RESERVATION_DATE DESC) AS RN
         FROM 
             RESERVATION R
         JOIN 
             TABLE_RESERVATION TR ON R.RESERVATION_NO = TR.RESERVATION_NO
         WHERE 
             R.USERS_ID = #{userId}
-            AND R.RESERVATION_DATE > SYSDATE 
+            AND R.RESERVATION_DATE > SYSDATE
             AND R.RESERVATION_STATUS = 'y'
-        ORDER BY 
-            R.RESERVATION_DATE DESC
-    ) 
-    WHERE ROWNUM &lt;= #{offset} + #{limit}
-MINUS
-    SELECT * 
-    FROM (
-        SELECT 
-            R.RESERVATION_NO, 
-            R.RESERVATION_DATE, 
-            R.USERS_ID, 
-            TR.TABLE_NO,
-            TO_CHAR(R.RESERVATION_DATE, 'YYYY-MM-DD HH24:MI') AS FORMATTED_DATE
-        FROM 
-            RESERVATION R
-        JOIN 
-            TABLE_RESERVATION TR ON R.RESERVATION_NO = TR.RESERVATION_NO
-        WHERE 
-            R.USERS_ID = #{userId}
-            AND R.RESERVATION_DATE > SYSDATE 
-            AND R.RESERVATION_STATUS = 'y'
-        ORDER BY 
-            R.RESERVATION_DATE DESC
-    ) 
-    WHERE ROWNUM &lt;= #{offset}
+    )
+    WHERE RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
 </select>
 
 
 
 <select id="getReservationCount" resultType="_int">
-    SELECT COUNT(*)
-    FROM RESERVATION
-    WHERE USERS_ID = #{userId} AND RESERVATION_STATUS = 'y'
+  SELECT COUNT(*) 
+  FROM TABLE_RESERVATION TR
+  JOIN RESERVATION R ON TR.RESERVATION_NO = R.RESERVATION_NO
+  WHERE R.USERS_ID = #{usersId}
+  AND R.RESERVATION_STATUS = 'y'
+  AND R.RESERVATION_DATE > SYSDATE
 </select>
+
 
 <delete id="deleteTableReservation">
  DELETE FROM TABLE_RESERVATION
  WHERE  RESERVATION_NO = #{reservationNo}
 </delete>
-
 
 <delete id="deleteResultvation">
  DELETE FROM RESERVATION

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.kh.damgarak.users.model.mapper.UserMapper;
 import com.kh.damgarak.users.model.vo.Users;
 import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
+import com.kh.damgarak.users.userMemvership.model.dto.userMemvershipDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -51,6 +52,13 @@ public class UserService {
 		public int deleteUser(String usersId) {
 			
 			return userMapper.deleteUser(usersId);
+		}
+		public userMemvershipDTO userMyPageInfo(String usersId) {
+			return userMapper.userMyInfo(usersId);
+		}
+		public int empSingup(String empId) {
+			
+			return userMapper.empSingup(empId);
 		}
 
 		
