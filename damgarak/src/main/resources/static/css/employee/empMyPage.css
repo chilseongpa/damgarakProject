@@ -4,8 +4,13 @@ body {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	height: 100vh !important;
+	overflow: hidden !important;	
 }
+#footer{
+	overflow: hidden !important;
+	
+}
+
 #main {
 	display: flex;
 	justify-content: center;
