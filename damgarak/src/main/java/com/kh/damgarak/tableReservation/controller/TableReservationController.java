@@ -160,6 +160,7 @@ public class TableReservationController {
 			session.setAttribute("rList", reservationList);
 			return "reservation/reservation-inquiry/reservationInquiryPage";	
 		}
+		
 		return "reservation/reservation-inquiry/reservationInquiryPage";
 	}
 	
