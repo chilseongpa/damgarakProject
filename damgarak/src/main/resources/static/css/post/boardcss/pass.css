@@ -92,10 +92,18 @@
 }
 table{
   box-shadow: 1px 1px 10px 3px #555555;
+  text-align: center;
 }
 #menu-container{
   text-align: center;
 }
 #first-li{
   margin-top: 130px;
+}
+td{
+  width: 300px; height: 100px;
+  vertical-align : middle;
+}
+th{
+  vertical-align : middle;
 }
