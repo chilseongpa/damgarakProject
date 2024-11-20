@@ -16,6 +16,18 @@
 <link rel="stylesheet" th:href="@{/static/css/common/header.css}" />
 <link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
 
+<style>
+#header{
+z-index:10000 !important;
+background-color: white;
+}
+#container{
+margin-top: 100px;
+margin-bottom: 100px;
+}
+
+
+</style>
 </head>
 <body>
    <div th:if="${errorMsg}">
@@ -38,7 +50,7 @@
                 <button class="check-btn" type="button" onclick="idCheck()" >중복확인</button>
             </div>
 
-            <div class="input-margin-controll">
+            <div class="input-margin-controll-div">
                 <input type="text" class="input userName" name="usersName" id="usersName" placeholder="이름을 입력해주세요" required>
                 <input type="password" name="usersPassword" class="input pwd" id="usersPassword" placeholder="password를 입력해주세요." required>
             </div>

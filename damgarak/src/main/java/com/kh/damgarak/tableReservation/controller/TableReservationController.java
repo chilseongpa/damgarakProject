@@ -1,9 +1,7 @@
 package com.kh.damgarak.tableReservation.controller;
 
-import java.util.HashMap;
-import java.util.List;
 
-import org.apache.catalina.User;
+import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +19,6 @@ import com.kh.damgarak.tableReservation.choiceTableReservation.model.dto.ChoiceT
 import com.kh.damgarak.tableReservation.searchTable.model.dto.SearchTableDTO;
 import com.kh.damgarak.tableReservation.selectReservationTable.model.dto.SelectReservationTableDTO;
 import com.kh.damgarak.tableReservation.service.TableReservationService;
-import com.kh.damgarak.users.model.vo.Users;
 import com.kh.damgarak.users.userLogin.model.dto.UsersLoginDTO;
 
 import jakarta.servlet.http.HttpSession;
@@ -37,6 +34,7 @@ public class TableReservationController {
 	public String TableTimeChoicePage(){
 		return "reservation/table-reservation/reservationTableTimeChoice";
 	}
+	
 	@GetMapping("/reservation/table-reservation/tableChoicePage")
 	public String reservationTableState(
 			@RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") 
@@ -59,7 +57,7 @@ public class TableReservationController {
 		
 		return "/reservation/table-reservation/reservationTableTimeChoice";
 	}
-	@PostMapping(value = "/tableReservation")
+	@PostMapping("/tableReservation")
 	@ResponseBody
 	public String tableReservation(
 			HttpSession session,
@@ -67,13 +65,14 @@ public class TableReservationController {
 					){
 		
 		UsersLoginDTO users = (UsersLoginDTO)session.getAttribute("userLogin");
-	
+		System.out.println("Received DTO: " + choiceReservation);
 		
 		if(users == null) {
 			return "로그인이 필요합니다";
 		}
-
+		
 		int result = tableReservationService.createTableReservation(choiceReservation, users.getUsersId());
+		System.out.println("숫자 확인용------------- ---------------------" + result);
 	
 		if(result > 0) {
 			return "ok";
@@ -105,6 +104,7 @@ public class TableReservationController {
 		}else {
 			return "filed"; 
 		}
+		
 		
 	}
 	
