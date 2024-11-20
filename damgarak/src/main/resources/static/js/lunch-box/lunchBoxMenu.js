@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
 window.onload = function() {
     initMenuList((data) => {
         menuData = data;
-        renderMenu('all');
+        renderMenu('main');
         updateBentoSummary();
     });
 };

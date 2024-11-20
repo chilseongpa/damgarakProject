@@ -74,11 +74,15 @@ public class PaymentController {
         try {
             // 결제 상태 조회 요청
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+            System.out.println("결제 api 확인하는 코드 "+response);
             
             // 결제가 성공적으로 확인된 경우 결제 정보를 저장
             if (response.getStatusCode().is2xxSuccessful()) {
                 PaymentDto paymentDto = new PaymentDto();
                 // TODO: Service 통해서 저장하기
+              //  PaymentDto dto = paymentService.insertPayment();
+            	
+                
             }
 
             return response; // 조회 결과 반환
