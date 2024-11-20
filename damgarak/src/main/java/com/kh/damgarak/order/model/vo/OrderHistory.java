@@ -5,8 +5,7 @@ import lombok.Data;
 @Data
 public class OrderHistory {
 	private int orderNo;
-	private String reservationNo;
+	private int reservationNo;
 	private String orderDate;
-	
-	
+		
 }

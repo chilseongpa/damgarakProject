@@ -62,7 +62,7 @@ public class LunchBoxController {
             
             lunchBoxOrder.setUserId(user.getUsersId());
             // Service method to insert lunchbox data
-            log.info("----");
+            log.info("----");          
             int result = lunchBoxService.addLunchBoxOrder(lunchBoxOrder);
             if (result > 0) {
             	return "success";
