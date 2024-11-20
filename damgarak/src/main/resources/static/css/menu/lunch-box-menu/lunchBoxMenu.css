@@ -3,6 +3,7 @@
 body{
     margin: 0px;
     padding: 0px;
+      overflow: visible !important;
 }
 /*view-menu-section css*/
 .view-menu-section{
