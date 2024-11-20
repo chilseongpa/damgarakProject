@@ -1,0 +1,49 @@
+
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+.title-1 {
+  top: auto; /* 고정 위치 제거 */
+  left: auto; /* 고정 위치 제거 */
+  position: relative; /* 고정 대신 상대적 위치 사용 */
+  margin: 50px auto; /* 중앙 정렬 */
+  width: 900px;
+  padding: 20px;
+  border: none; 
+  box-sizing: border-box;
+  min-height: 950px;
+}
+.title{
+	  border: none;
+}
+#num{
+  text-align: center;
+  width: 100px;
+}
+#titleName{
+  text-align: center;
+    width: 300px;
+}
+table{
+  box-shadow: 1px 1px 10px 3px #555555;
+}
+#table-1{
+  width: 900px;
+  height: 750px;
+  text-align: center;
+}
+.footer-div-controller{
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100px;
+	position: absolute;
+	bottom: -3050px;
+	}
+	#footer-css-div {
+	position: absolute;
+	bottom: 0px;
+}
