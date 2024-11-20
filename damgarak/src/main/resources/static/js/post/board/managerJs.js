@@ -319,35 +319,70 @@ function deleteEmployee() {
   })
   
   }
-  function updatePassword() {
-    const currentPassword = $("#currentPassword").val();
-    const newPassword = $("#newPassword").val();
-    const confirmPassword = $("#confirmPassword").val();
+  
+  
+document.addEventListener('DOMContentLoaded', () => {
+    function changePassword() {
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
 
-    if (newPassword !== confirmPassword) {
-        alert("새 비밀번호가 일치하지 않습니다.");
-        return;
+        // 비밀번호 조건 검증
+        if (!validatePassword(newPassword)) {
+            alert('비밀번호는 10자 이상 15자 이하이며, 영문, 숫자, 특수문자를 하나 이상 포함해야 합니다.');
+            return;
+        }
+
+        $.ajax({
+            url: '/checkPassword',
+            data: {
+                password: currentPassword,
+            },
+            type: 'post',
+            success: function (result) {
+                if (result === 'true') {
+                    updateUserPassword(newPassword, confirmPassword);
+                } else {
+                    alert('잘못된 비밀번호입니다.');
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
     }
 
-    const passwordData = {
-        changePassword: newPassword
-    };
+    // 버튼 클릭 이벤트 바인딩
+    document.querySelector('.btn-danger').addEventListener('click', changePassword);
+});
 
-    $.ajax({
-        url: "/manager/updatePassword",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(passwordData),
-        success: function(result) {
-            if (result === "success") {
-                alert("비밀번호가 성공적으로 변경되었습니다.");
-                location.reload();
-            } else {
-                alert("비밀번호 변경에 실패했습니다. 다시 시도해 주세요.");
+
+function updateUserPassword(password, passwordCheck) {
+    if (password !== passwordCheck) {
+        alert('변경 비밀번호와 비밀번호 확인 값이 다릅니다.');
+    } else {
+        $.ajax({
+            url: '/updatePassword',
+            type: 'post',
+            data: {
+                password: password
+            },
+            success: function(result) {
+                if (result === 'success') {
+                    alert('비밀번호가 변경되었습니다.');
+                } else {
+                    alert('비밀번호 변경에 실패했습니다. 다시 시도해주세요.');
+                }
+            },
+            error: function(err) {
+                console.log(err);
+                alert('오류가 발생했습니다. 다시 시도해주세요.');
             }
-        },
-        error: function(error) {
-            alert("비밀번호 변경 중 오류가 발생했습니다.");
-        }
-    });
+        });
+    }
+}
+
+function validatePassword(password) {
+    const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,15}$/;
+    return regex.test(password);
 }
