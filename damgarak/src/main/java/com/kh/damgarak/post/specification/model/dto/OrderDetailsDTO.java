@@ -7,11 +7,9 @@ import lombok.Data;
 @Data
 public class OrderDetailsDTO {
 	private int orderNo;
-	private String usersName;
-	private String memberLevel;
-	private String orderDate;
-	private String menuName;
-	private int menuCount;
-	private String paymentMethod;
-	private int price;
+    private String usersName;
+    private String memberLevel;
+    private String orderDate;
+    private List<OrderItemDTO> items;
+	
 }

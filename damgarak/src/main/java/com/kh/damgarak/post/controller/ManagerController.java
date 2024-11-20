@@ -1,11 +1,8 @@
 package com.kh.damgarak.post.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.kh.damgarak.employee.model.vo.Employee;
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
 import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
@@ -222,18 +216,17 @@ public class ManagerController {
 	}
 
 	@GetMapping("/detailSpecification")
-	public String getOrderDetails(@RequestParam("orderNo") int orderNo, Model model) {
-	    OrderDetailsDTO orderDetails = mService.getOrderDetails(orderNo);
+	public String detailSpecificationPage(@RequestParam("orderNo") int orderNo, Model model) {
 
-	    if (orderDetails == null) {
-	        model.addAttribute("error", "주문 번호에 해당하는 데이터를 찾을 수 없습니다.");
-	        return "post/board/manager/detailSpecification";
-	    }
+	    OrderDetailsDTO details = mService.OrderDetails(orderNo);
 
-	    model.addAttribute("orderDetails", orderDetails);
+	    model.addAttribute("details", details);
 
 	    return "post/board/manager/detailSpecification";
 	}
+	
+
+
 	
 
 }

@@ -12,13 +12,13 @@
 </head>
 
 <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
-<div>
+<div id="mapSpace">
   <div class="container text-center">
-    
+
     <div class="row">
       <div class="col">
       </div>
-      <div class="col-11">
+      <div class="col-15">
         <div class="container mt-5 shadow p-3 mb-5 bg-body-tertiary rounded">
           <div class="row"></div>
           <h2 class="mb-4 text-center">오시는 길</h2>
@@ -39,13 +39,10 @@
       </div>
     </div>
   </div>
-
-
-
-
 </div>
-<script async src="https://maps.googleapis.com/maps/api/js?key="></script>
-<script src="static/js/damgarak/map.js"></script>
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key="></script>
+<script src="/static/js/damgarak/map.js"></script>
 <div th:replace="common/footer :: footer"></div>
 </body>
 

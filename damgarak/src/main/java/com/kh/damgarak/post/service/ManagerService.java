@@ -16,6 +16,7 @@ import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.model.vo.Reply;
 import com.kh.damgarak.post.specification.model.dto.OrderDetailsDTO;
+import com.kh.damgarak.post.specification.model.dto.OrderItemDTO;
 import com.kh.damgarak.reservation.model.vo.Reservation;
 import com.kh.damgarak.users.model.vo.Users;
 
@@ -79,15 +80,18 @@ public class ManagerService {
     public int updateFire(String usersId) {
     	return managerMapper.updateFire(usersId);
     }
-    
-    public OrderDetailsDTO getOrderDetails(int orderNo) {
-    	return managerMapper.findOrderDetails(orderNo);
+
+    public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
+        return managerMapper.findOrdersWithinDateRange(startDate, endDate);
+    }
+
+    public OrderDetailsDTO OrderDetails(int orderNo) {
+        OrderDetailsDTO details = managerMapper.findOrderDetails(orderNo);
+        List<OrderItemDTO> items = managerMapper.findOrderItems(orderNo);
+        details.setItems(items);
+        return details;
     }
     
-	public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
-
-		return managerMapper.findOrdersWithinDateRange(startDate, endDate);
-	}
 	public List<SuggestionDTO> selRv(Reservation reservation) {
 	    return managerMapper.selRv(reservation);
 	}
@@ -95,5 +99,11 @@ public class ManagerService {
 	public List<SuggestionDTO> selbentoRv(Reservation reservation){
 		return managerMapper.selbentoRv(reservation);
 	}
+
+
+    
+
+
+   
 
 }
