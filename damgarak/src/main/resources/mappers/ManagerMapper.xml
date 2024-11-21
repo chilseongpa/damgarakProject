@@ -92,7 +92,43 @@
 		   SET USERS_STATE = 'n'
 		 WHERE USERS_ID = #{usersId}
 	</update>
+	<select id="findOrdersWithinDateRange" resultType="OrderDetailsDTO">
 	
+    SELECT 
+        O.ORDER_NO AS orderNo,
+        U.USERS_NAME AS usersName,
+        M.MEMBER_LEVEL AS memberLevel,
+        TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD') AS orderDate
+    FROM 
+        ORDER_HISTORY O
+    JOIN 
+        RESERVATION R ON O.RESERVATION_NO = R.RESERVATION_NO
+    JOIN 
+        USERS U ON R.USERS_ID = U.USERS_ID
+    JOIN 
+        MEMBERSHIP M ON U.USERS_ID = M.USERS_ID
+    WHERE 
+        O.ORDER_DATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') 
+        AND TO_DATE(#{endDate}, 'YYYY-MM-DD')
+	</select>
+	<select id="findOrderDetails" resultType="OrderDetailsDTO">
+    SELECT 
+        O.ORDER_NO AS orderNo,
+        U.USERS_NAME AS usersName,
+        M.MEMBER_LEVEL AS memberLevel,
+        TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD') AS orderDate
+    FROM 
+        ORDER_HISTORY O
+    JOIN 
+        RESERVATION R ON O.RESERVATION_NO = R.RESERVATION_NO
+    JOIN 
+        USERS U ON R.USERS_ID = U.USERS_ID
+    JOIN 
+        MEMBERSHIP M ON U.USERS_ID = M.USERS_ID
+    WHERE 
+        O.ORDER_NO = #{orderNo}
+</select>
+
 	<select id="selRv" resultType="SuggestionDTO">
 		SELECT R.RESERVATION_NO, U.USERS_NAME, T.TABLE_NO, R.RESERVATION_DATE
 	    FROM RESERVATION R
@@ -110,6 +146,24 @@
 		ORDER BY L.RESERVATION_NO ASC
 	</select>
 	
+	<select id="findOrderItems" resultType="OrderItemDTO">
+    SELECT 
+    MN.MENU_NAME,
+    MN.MENU_COUNT,
+    P.PAYMENT_METHOD,
+    MN.PRICE
+FROM 
+    ORDER_DETAILS OD
+JOIN 
+    MENU MN ON OD.MENU_NO = MN.MENU_NO
+JOIN 
+    ORDER_HISTORY OH ON OD.ORDER_NO = OH.ORDER_NO
+JOIN 
+    PAYMENT P ON OH.RESERVATION_NO = P.RESERVATION_NO
+WHERE 
+    OD.ORDER_NO = #{orderNo}
+	</select>
+
 </mapper>
 
 

@@ -2,6 +2,6 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #f8f9fa;
 }
-.mt-5 {
-    margin-top: 15rem !important;
+.container .mt-5 {
+    margin-top: 13rem !important;
 }
