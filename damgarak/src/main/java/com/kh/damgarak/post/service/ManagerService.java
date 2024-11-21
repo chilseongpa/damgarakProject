@@ -89,6 +89,18 @@ public class ManagerService {
         OrderDetailsDTO details = managerMapper.findOrderDetails(orderNo);
         List<OrderItemDTO> items = managerMapper.findOrderItems(orderNo);
         details.setItems(items);
+        
+        // 총 합 계산
+        // ex) [{삼겹살 구이	50	현금	14000원}, {생선 구이	50	현금	14000원}]
+        int totalPrice = 0;
+        for (OrderItemDTO item : items) {
+        	// 메뉴의 총 가격 = 수량 * 가격
+        	// ex) 총금액 += 50 * 14000
+        	totalPrice += item.getMenuCount() * item.getPrice();
+        }
+        // 선택된 메뉴들의 총 금액
+        details.setTotalPrice(totalPrice);
+        
         return details;
     }
     

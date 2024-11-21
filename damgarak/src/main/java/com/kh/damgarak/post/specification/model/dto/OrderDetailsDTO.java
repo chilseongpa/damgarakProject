@@ -11,5 +11,5 @@ public class OrderDetailsDTO {
     private String memberLevel;
     private String orderDate;
     private List<OrderItemDTO> items;
-	
+    private int totalPrice;
 }

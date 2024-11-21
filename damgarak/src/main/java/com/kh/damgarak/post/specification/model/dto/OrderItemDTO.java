@@ -8,5 +8,4 @@ public class OrderItemDTO {
     private int menuCount;
     private String paymentMethod;
     private int price;
-    
 }
