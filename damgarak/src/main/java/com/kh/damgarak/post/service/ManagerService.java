@@ -16,6 +16,7 @@ import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
 import com.kh.damgarak.post.model.vo.Reply;
 import com.kh.damgarak.post.specification.model.dto.OrderDetailsDTO;
+import com.kh.damgarak.post.specification.model.dto.OrderItemDTO;
 import com.kh.damgarak.reservation.model.vo.Reservation;
 import com.kh.damgarak.users.model.vo.Users;
 
@@ -80,10 +81,29 @@ public class ManagerService {
     	return managerMapper.updateFire(usersId);
     }
 
-	public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
+    public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
+        return managerMapper.findOrdersWithinDateRange(startDate, endDate);
+    }
 
-		return managerMapper.findOrdersWithinDateRange(startDate, endDate);
-	}
+    public OrderDetailsDTO OrderDetails(int orderNo) {
+        OrderDetailsDTO details = managerMapper.findOrderDetails(orderNo);
+        List<OrderItemDTO> items = managerMapper.findOrderItems(orderNo);
+        details.setItems(items);
+        
+        // 총 합 계산
+        // ex) [{삼겹살 구이	50	현금	14000원}, {생선 구이	50	현금	14000원}]
+        int totalPrice = 0;
+        for (OrderItemDTO item : items) {
+        	// 메뉴의 총 가격 = 수량 * 가격
+        	// ex) 총금액 += 50 * 14000
+        	totalPrice += item.getMenuCount() * item.getPrice();
+        }
+        // 선택된 메뉴들의 총 금액
+        details.setTotalPrice(totalPrice);
+        
+        return details;
+    }
+    
 	public List<SuggestionDTO> selRv(Reservation reservation) {
 	    return managerMapper.selRv(reservation);
 	}
@@ -91,4 +111,11 @@ public class ManagerService {
 	public List<SuggestionDTO> selbentoRv(Reservation reservation){
 		return managerMapper.selbentoRv(reservation);
 	}
+
+
+    
+
+
+   
+
 }

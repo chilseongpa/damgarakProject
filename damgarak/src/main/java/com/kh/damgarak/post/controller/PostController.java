@@ -37,7 +37,12 @@ public class PostController {
 	public String empMyPage(HttpSession session, Model model) {
 		UsersLoginDTO dto = (UsersLoginDTO)session.getAttribute("userLogin");
 		String usersId= dto.getUsersId();
+		System.out.println(usersId);
+		
 		SerchEmployeeDto emp = pService.empInfomation(usersId);
+		
+	
+		System.out.println(emp);
 		
 		if(emp != null) {
 			model.addAttribute("emp", emp);

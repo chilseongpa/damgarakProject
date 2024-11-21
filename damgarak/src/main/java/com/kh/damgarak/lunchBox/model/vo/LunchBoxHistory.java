@@ -1,16 +1,17 @@
-package com.kh.damgarak.reservation.model.vo;
+package com.kh.damgarak.lunchBox.model.vo;
 
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Reservation {
-	private String reservationNo;
+@NoArgsConstructor
+public class LunchBoxHistory {
+	private int reservationNo;
 	private String usersId;
-	private String reservationDate;
+	private Date reservationDate;
 	private String reservationStatus;
 }

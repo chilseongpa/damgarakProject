@@ -10,5 +10,6 @@ public class ChoiceTableReservationDTO {
 	
 	private TableReservation tableReservation;
 	private Reservation reservation;
+	
 
 }
