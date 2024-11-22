@@ -12,11 +12,10 @@
     <link rel="stylesheet" href="/static/css/common/footer.css">
 </head>
 <body>
+<div id="footer-div">
 	<div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
-		<br><br><br><br><br><br><br><br><br><br><br>
-        <h2 style="text-align: center;">도시락 예약 확인</h2>
-        <br>
-        
+</div>	
+		
         <button class="btn" id="bttn">
 	      &#9776;
 	    </button>
@@ -24,6 +23,7 @@
 	    	<th:block th:insert="~{post/board/manager/menu2 :: nav}"></th:block>
 	    </div>
 	      <div class="title-1">
+		<h2>도시락 예약 확인</h2>
 	        <div class="title">
 	            <br>
 	            <button type="button" class="btn btn-outline-primary" id="sort-by-order">순번순</button>

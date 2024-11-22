@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
-  <h2 style="text-align: center;margin-top: 250px;">추천 메뉴 변경</h2>
+  <h2 >추천 메뉴 변경</h2>
   <br>
 
   <button class="btn" id="bttn">
@@ -23,13 +23,10 @@
     	<th:block th:insert="~{post/board/manager/menu2 :: nav}"></th:block>
     </div>
 
-  <div class="title-1">
-    <div class="title">
-      <br>
-      <div>
         현재 추천 메뉴 : <input type="text" value="" id="recommendedMenu" style="border: none;">
-      </div>
-      <br>
+    <div class="title-1">
+    <div class="title">
+    
       <table class="fff">
         <tr>
           <td id="r"></td>
@@ -107,6 +104,9 @@
       <br>
     </div>
   </div>
+  
+<div id="footer-div">
   <div th:replace="common/footer :: footer"></div>
+</div>
 </body>
 </html>

@@ -18,7 +18,7 @@ public interface LunchBoxMapper {
     int insertReservation(Reservation resv);
     int insertOrderHistory(OrderHistory oh);
     int insertOrderDetails(int orderHistoryNo, int menuNo);
-    int insertLunchBoxReservation(int amount, String lunchBoxType);
+    int insertLunchBoxReservation(int reservationNo, int amount, String lunchBoxType);
 
 
 	void insertReservation(LunchBoxHistory resv);
