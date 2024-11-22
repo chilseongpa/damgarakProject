@@ -20,6 +20,10 @@
 
 <body>
     <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
+    <button class="btn" id="bttn">&#9776;</button>
+    <div id="menu-container" style="z-index: 3;">
+        <th:block th:insert="~{post/board/manager/menu2 :: nav}"></th:block>
+    </div>
     <div class="container shadow p-4 mt-5 bg-body-tertiary rounded">
         <h2 class="text-center mb-4">명세서 조회</h2>
 

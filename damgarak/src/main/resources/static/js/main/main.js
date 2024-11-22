@@ -15,4 +15,3 @@ window.addEventListener("wheel", (event) => {
   scrollToSection(currentSection);
 });
 }
-
