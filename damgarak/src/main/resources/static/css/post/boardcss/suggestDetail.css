@@ -26,9 +26,9 @@ html, body {
 }
 
 #replyList {
-  max-height: 300px; /* 댓글 리스트의 최대 높이 지정 */
+  max-height: 400px; /* 댓글 리스트의 최대 높이 지정 */
   overflow-y: auto; /* 댓글이 많아지면 스크롤 추가 */
-  width: 100%;
+  width: 80%;
 }
 * {
   box-sizing: border-box;
@@ -109,7 +109,7 @@ h5 {
   align-items: center; /* 세로 중앙 정렬 */
   justify-content: center; /* 가로 중앙 정렬 */
   flex-direction: column; /* 내용이 세로로 나열되도록 설정 */
-  border: 1px solid #ddd; /* 테두리 추가 (옵션) */
+ 
   padding: 20px; /* 여백 추가 (옵션) */
   box-sizing: border-box;
 }

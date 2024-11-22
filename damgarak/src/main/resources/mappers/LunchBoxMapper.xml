@@ -42,6 +42,6 @@
 	<!-- 도시락 예약 저장 -->
 	<insert id="insertLunchBoxReservation">
 		INSERT INTO LUNCHBOX_RESERVATION
-		VALUES (LUNCHBOX_RESERVATION_SEQ.NEXTVAL, #{amount}, #{lunchBoxType})
+		VALUES (#{reservationNo},  #{lunchBoxType}, #{amount})
 	</insert>
 </mapper>

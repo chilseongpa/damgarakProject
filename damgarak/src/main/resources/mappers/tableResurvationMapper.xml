@@ -93,7 +93,6 @@ TO_DATE(#{reservationDate, jdbcType=VARCHAR}, 'yyyy-MM-dd HH24:MI'),
     WHERE RESERVATION_STATUS = 'y' AND RESERVATION_NO = #{reservationNo}
 </delete>
 
-
 <update id="updateReservation" parameterType="map">
     UPDATE RESERVATION
     SET reservation_date = TO_DATE(#{reservationDate, jdbcType=VARCHAR}, 'yyyy-MM-dd HH24:MI'),

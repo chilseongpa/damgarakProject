@@ -46,15 +46,38 @@
 .main {
   text-align: center;
 }
-.title-1 {
-  width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+body{
   display: flex;
   justify-content: center; 
   align-items: center; 
-  border: 1px solid white;
 }
+
+.title-1 {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column;
+
+}
+.title{
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+#footer-div{
+  display: flex;
+  justify-content: center; 
+ 
+  
+}
+#suggest-div{
+	  display: flex;
+  justify-content: center; 
+  align-items: center; 
+	
+}
+
 .btn{
   font-size: 10px;
   padding-left: 10px;

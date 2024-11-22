@@ -46,7 +46,7 @@ public class LunchBoxService {
     	}
     	
     	// 도시락 예약 저장
-    	lunchBoxMapper.insertLunchBoxReservation(lunchBoxOrder.getAmount(), lunchBoxOrder.getLunchBoxType());
+    	lunchBoxMapper.insertLunchBoxReservation(resv.getReservationNo(), lunchBoxOrder.getAmount(), lunchBoxOrder.getLunchBoxType());
     
     	return 1;
     }
