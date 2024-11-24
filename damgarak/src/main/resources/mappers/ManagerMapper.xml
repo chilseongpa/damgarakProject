@@ -93,12 +93,14 @@
 		 WHERE USERS_ID = #{usersId}
 	</update>
 	<select id="findOrdersWithinDateRange" resultType="OrderDetailsDTO">
-	
+  SELECT *
+FROM (
     SELECT 
         O.ORDER_NO AS orderNo,
         U.USERS_NAME AS usersName,
         M.MEMBER_LEVEL AS memberLevel,
-        TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD') AS orderDate
+        TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD') AS orderDate,
+        ROW_NUMBER() OVER (ORDER BY O.ORDER_NO ASC) AS RN
     FROM 
         ORDER_HISTORY O
     JOIN 
@@ -110,7 +112,28 @@
     WHERE 
         O.ORDER_DATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') 
         AND TO_DATE(#{endDate}, 'YYYY-MM-DD')
+) SUB
+WHERE SUB.RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+ORDER BY SUB.RN ASC
+
 	</select>
+	
+	<select id="getdetailSpecificationCount" resultType="_int">
+	 SELECT 
+    	COUNT(*)
+    FROM 
+        ORDER_HISTORY O
+    JOIN 
+        RESERVATION R ON O.RESERVATION_NO = R.RESERVATION_NO
+    JOIN 
+        USERS U ON R.USERS_ID = U.USERS_ID
+    JOIN 
+        MEMBERSHIP M ON U.USERS_ID = M.USERS_ID
+    WHERE 
+        O.ORDER_DATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') 
+        AND TO_DATE(#{endDate}, 'YYYY-MM-DD') 
+	</select>
+	
 	<select id="findOrderDetails" resultType="OrderDetailsDTO">
     SELECT 
         O.ORDER_NO AS orderNo,
@@ -130,21 +153,56 @@
 </select>
 
 	<select id="selRv" resultType="SuggestionDTO">
-		SELECT R.RESERVATION_NO, U.USERS_NAME, T.TABLE_NO, R.RESERVATION_DATE
+SELECT *
+FROM (
+    SELECT 
+        R.RESERVATION_NO,
+        U.USERS_NAME,
+        T.TABLE_NO,
+        R.RESERVATION_DATE,
+        ROW_NUMBER() OVER (ORDER BY R.RESERVATION_NO ASC) AS RN
+    FROM RESERVATION R
+    JOIN USERS U ON U.USERS_ID = R.USERS_ID
+    JOIN TABLE_RESERVATION T ON R.RESERVATION_NO = T.RESERVATION_NO
+    WHERE R.RESERVATION_STATUS = 'y'
+) SUB
+WHERE SUB.RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+ORDER BY SUB.RN ASC
+	</select>
+	
+	<select id="selbentoRv" resultType="SuggestionDTO">
+   SELECT 
+        T.RESERVATION_NO,
+        T.USERS_NAME,
+        T.LUNCHBOX_DETAILS
+    FROM (
+        SELECT 
+            L.RESERVATION_NO,
+            U.USERS_NAME,
+            L.LUNCHBOX_DETAILS,
+            ROW_NUMBER() OVER (ORDER BY L.RESERVATION_NO ASC) AS RN
+        FROM LUNCHBOX_RESERVATION L
+        JOIN RESERVATION R ON R.RESERVATION_NO = L.RESERVATION_NO
+        JOIN USERS U ON U.USERS_ID = R.USERS_ID
+    ) T
+    WHERE T.RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+		
+<select id="getReservationCount" resultType="int">
+    SELECT COUNT(*)
+    FROM LUNCHBOX_RESERVATION L
+    JOIN RESERVATION R ON R.RESERVATION_NO = L.RESERVATION_NO 
+    JOIN USERS U ON U.USERS_ID = R.USERS_ID
+</select>
+
+<select id="getRvtionCount" resultType="int">
+SELECT COUNT(*)
 	    FROM RESERVATION R
 	    JOIN USERS U ON U.USERS_ID = R.USERS_ID
 	    JOIN TABLE_RESERVATION T ON R.RESERVATION_NO = T.RESERVATION_NO
 	    WHERE RESERVATION_STATUS = 'y'
-	    ORDER BY R.RESERVATION_NO ASC
-	</select>
-	
-	<select id="selbentoRv" resultType="SuggestionDTO">
-		SELECT L.RESERVATION_NO,U.USERS_NAME,L.LUNCHBOX_DETAILS
-		FROM LUNCHBOX_RESERVATION L
-		JOIN RESERVATION R ON R.RESERVATION_NO = L.RESERVATION_NO 
-		JOIN USERS U ON U.USERS_ID = R.USERS_ID
-		ORDER BY L.RESERVATION_NO ASC
-	</select>
+</select>
+
 	
 	<select id="findOrderItems" resultType="OrderItemDTO">
 	    SELECT 

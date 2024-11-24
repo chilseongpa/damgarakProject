@@ -52,11 +52,10 @@ body{
 
 .packed.lunch img{
     position: absolute;
-    height: 47%; 
+    height: 455px; 
     right:0px;
     background-attachment: fixed;
     background-size: cover;
-    
 }
 .lunch-h1{
     font-size: 4em;
@@ -152,7 +151,7 @@ body{
     border-radius: 10px;
     text-align: center;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 260px;
     animation: lunchbox-a 2s ease-in-out;
     

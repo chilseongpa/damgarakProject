@@ -44,15 +44,19 @@ public interface ManagerMapper {
 	
 	int updateFire(String usersId);
 
-	List<SuggestionDTO> selRv (Reservation reservation);
+	List<SuggestionDTO> selRv (Reservation reservation, int offset, int limit);
 	
-	List<SuggestionDTO> selbentoRv (Reservation reservation);
+	List<SuggestionDTO> selbentoRv (Reservation reservation, int offset, int limit);
 	
-	List<OrderDetailsDTO> findOrdersWithinDateRange(@Param("startDate") String startDate, @Param("endDate") String endDate);
+	List<OrderDetailsDTO> findOrdersWithinDateRange(@Param("startDate") String startDate, @Param("endDate") String endDate, int offset, int limit);
 	
 	OrderDetailsDTO findOrderDetails(@Param("orderNo") int orderNo);
 
     List<OrderItemDTO> findOrderItems(@Param("orderNo") int orderNo);
+
+	int getReservationCount();
+	int getRvtionCount();
+	int getdetailSpecificationCount(@Param("startDate") String startDate, @Param("endDate") String endDate);
 	
 	
 }

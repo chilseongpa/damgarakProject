@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
 import com.kh.damgarak.post.model.mapper.ManagerMapper;
+import com.kh.damgarak.common.model.vo.PageInfo;
 import com.kh.damgarak.employee.model.vo.Employee;
 import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
@@ -81,8 +82,10 @@ public class ManagerService {
     	return managerMapper.updateFire(usersId);
     }
 
-    public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate) {
-        return managerMapper.findOrdersWithinDateRange(startDate, endDate);
+    public List<OrderDetailsDTO> getOrdersWithinDateRange(String startDate, String endDate, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit(); 
+		int limit = pi.getBoardLimit();
+    	return managerMapper.findOrdersWithinDateRange(startDate, endDate, offset,limit);
     }
 
     public OrderDetailsDTO OrderDetails(int orderNo) {
@@ -104,12 +107,27 @@ public class ManagerService {
         return details;
     }
     
-	public List<SuggestionDTO> selRv(Reservation reservation) {
-	    return managerMapper.selRv(reservation);
+	public List<SuggestionDTO> selRv(Reservation reservation, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit(); 
+		int limit = pi.getBoardLimit();
+		return managerMapper.selRv(reservation,offset,limit);
+	}
+	public List<SuggestionDTO> selbentoRv(Reservation reservation, PageInfo pi){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit(); 
+		int limit = pi.getBoardLimit();
+		return managerMapper.selbentoRv(reservation, offset ,limit);
 	}
 	
-	public List<SuggestionDTO> selbentoRv(Reservation reservation){
-		return managerMapper.selbentoRv(reservation);
+	public int getReservationCount() {
+		return managerMapper.getReservationCount();
+	}
+
+	public int getRvtionCount() {
+		return managerMapper.getRvtionCount();
+	}
+
+	public int getdetailSpecificationCount(String startDate, String endDate) {
+		return managerMapper.getdetailSpecificationCount(startDate, endDate);
 	}
 
 

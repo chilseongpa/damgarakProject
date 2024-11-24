@@ -17,9 +17,17 @@
 <link rel="stylesheet" href="/static/css/common/main-footer.css">
 </head>
 <body>
-  <div id="successMsg" th:if="${successMsg}" th:text="${successMsg}" style="display: none;"></div>
-    <div id="errorMsg" th:if="${errorMsg}" th:text="${errorMsg}" style="display: none;"></div>
-<!-- 헤더 부분 -->
+    <div th:if="${successMsg}">
+    <script th:inline="javascript">
+        alert([[${successMsg}]]);
+    </script>
+</div>
+<div th:if="${errorMsg}">
+    <script th:inline="javascript">
+        alert([[${errorMsg}]]);
+    </script>
+</div> 
+ <!-- 헤더 부분 -->
    <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
 
 <!-- 메인페이지 부분 -->

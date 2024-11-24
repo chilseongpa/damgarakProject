@@ -1,5 +1,6 @@
 package com.kh.damgarak.post.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.damgarak.common.model.vo.PageInfo;
+import com.kh.damgarak.common.template.Pagination;
 import com.kh.damgarak.post.model.dto.SuggestionDTO;
 import com.kh.damgarak.post.model.vo.Notice;
 import com.kh.damgarak.post.model.vo.Post;
@@ -168,17 +171,56 @@ public class ManagerController {
 	    return result > 0 ? "success" : "fail";
 	}
 	@GetMapping("/rv")
-	public String rvPage(Model model, Reservation reservation) {
-	    List<SuggestionDTO> r = mService.selRv(reservation);
-	    model.addAttribute("reserList", r);
+	public String rvPage(Model model, Reservation reservation,
+			@RequestParam(value = "page", defaultValue = "1")int currentPage) {
+	    
+	    int pageLimit = 10; 
+		int boardLimit = 6;
+		
+		int listCount = mService.getRvtionCount();
+		
+		 PageInfo pageInfo = Pagination.getPageInfo(listCount, currentPage, 
+				 pageLimit, boardLimit);
+		 		 
+		    if (currentPage > pageInfo.getMaxPage()) {
+		        currentPage = pageInfo.getMaxPage();
+		        pageInfo = Pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		    }
+		
+		    List<SuggestionDTO> r = mService.selRv(reservation, pageInfo);
+		
+		    model.addAttribute("pageInfo", pageInfo);
+		    model.addAttribute("reserList", r);
+	    
 	    return "post/board/manager/rv";
 	}
+	
 	@GetMapping("/bentoRv")
-	public String bentoRvPage(Model model, Reservation reservation) {
-		List<SuggestionDTO> br = mService.selbentoRv(reservation);
+	public String bentoRvPage(Model model, Reservation reservation, 
+			@RequestParam(value = "page", defaultValue = "1")
+	 int currentPage) {
+				
+		int pageLimit = 10; 
+		int boardLimit = 6;
+		
+		int listCount = mService.getReservationCount();
+			
+		 PageInfo pageInfo = Pagination.getPageInfo(listCount, currentPage, 
+				 pageLimit, boardLimit);
+		 		 
+		    if (currentPage > pageInfo.getMaxPage()) {
+		        currentPage = pageInfo.getMaxPage();
+		        pageInfo = Pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		    }
+		    
+		List<SuggestionDTO> br = mService.selbentoRv(reservation, pageInfo);
+		
+		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("bentoList",br);
+
 		return "post/board/manager/bentoRv";
 	}
+	
 	@GetMapping("/saleSheet")
 	public String salePage() {
 		return "post/board/manager/saleSheet";
@@ -207,21 +249,42 @@ public class ManagerController {
 	public String specificationPage() {
 		return "post/board/manager/specification";
 	}
+	
 	@GetMapping("/filterOrders")
 	@ResponseBody
-	public List<OrderDetailsDTO> filterOrdersByDate(
+	public Map<String, Object> filterOrdersByDate(
 	        @RequestParam("startDate") String startDate,
-	        @RequestParam("endDate") String endDate) {
-	    return mService.getOrdersWithinDateRange(startDate, endDate);
+	        @RequestParam("endDate") String endDate,
+	        Model model,
+	        @RequestParam(value = "page", defaultValue = "1")
+	   	 int currentPage
+	        ) {
+		int pageLimit = 10; 
+		int boardLimit = 6;
+		
+		int listCount = mService.getdetailSpecificationCount(startDate, endDate);
+		
+		 PageInfo pageInfo = Pagination.getPageInfo(listCount, currentPage, 
+				 pageLimit, boardLimit);	 
+		    if (currentPage > pageInfo.getMaxPage()) {
+		        currentPage = pageInfo.getMaxPage();
+		        pageInfo = Pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
+		    }
+		  
+		    List<OrderDetailsDTO> orders = mService.getOrdersWithinDateRange(startDate, endDate, pageInfo);
+		    
+		    Map<String, Object> result = new HashMap<>();
+		    result.put("pageInfo", pageInfo);
+		    result.put("orders", orders);    
+		    
+		    return result;
 	}
 
 	@GetMapping("/detailSpecification")
 	public String detailSpecificationPage(@RequestParam("orderNo") int orderNo, Model model) {
-
 	    OrderDetailsDTO details = mService.OrderDetails(orderNo);
-
+	    
 	    model.addAttribute("details", details);
-
 	    return "post/board/manager/detailSpecification";
 	}
 	
