@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.damgarak.tableReservation.model.mapper.TableReservationMapper">
+
+
+
+	<insert id="createReservation"
+	 parameterType="map"
+	 >
+			INSERT INTO RESERVATION 
+			(RESERVATION_NO, 
+			USERS_ID, 
+			RESERVATION_DATE, 
+			RESERVATION_STATUS)
+			VALUES(
+			RESERVATION_SEQ.NEXTVAL,
+			#{usersId},
+TO_DATE(#{reservationDate, jdbcType=VARCHAR}, 'yyyy-MM-dd HH24:MI'),
+			'y'
+			)
+	</insert>
+	
+	<insert id="createTableReservation" 
+	parameterType="TableReservation"
+	>
+	INSERT INTO TABLE_RESERVATION
+	(RESERVATION_NO,
+	TABLE_NO
+	)VALUES(
+	RESERVATION_SEQ.CURRVAL,
+	#{tableNo}
+	)
+	</insert> 
+	
+	<select id="searchReservationTable" resultType="String">
+   SELECT 
+        TR.TABLE_NO
+    FROM 
+        RESERVATION R
+    JOIN 
+        TABLE_RESERVATION TR
+    ON 
+        R.RESERVATION_NO = TR.RESERVATION_NO
+    WHERE
+        TO_CHAR(R.RESERVATION_DATE, 'YYYY-MM-DD HH24:MI') = #{reservationSearch}
+
+	</select>
+
+
+  <select id="reservationInquiry" resultType="SelectReservationTableDTO">
+    SELECT *
+    FROM (
+        SELECT 
+            R.RESERVATION_NO,
+            R.RESERVATION_DATE,
+            R.USERS_ID,
+            TR.TABLE_NO,
+            TO_CHAR(R.RESERVATION_DATE, 'YYYY-MM-DD HH24:MI') AS FORMATTED_DATE,
+            ROW_NUMBER() OVER (ORDER BY R.RESERVATION_DATE DESC) AS RN
+        FROM 
+            RESERVATION R
+        JOIN 
+            TABLE_RESERVATION TR ON R.RESERVATION_NO = TR.RESERVATION_NO
+        WHERE 
+            R.USERS_ID = #{userId}
+            AND R.RESERVATION_DATE > SYSDATE
+            AND R.RESERVATION_STATUS = 'y'
+    )
+    WHERE RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+</select>
+
+
+
+<select id="getReservationCount" resultType="_int">
+  SELECT COUNT(*) 
+  FROM TABLE_RESERVATION TR
+  JOIN RESERVATION R ON TR.RESERVATION_NO = R.RESERVATION_NO
+  WHERE R.USERS_ID = #{usersId}
+  AND R.RESERVATION_STATUS = 'y'
+  AND R.RESERVATION_DATE > SYSDATE
+</select>
+
+
+<delete id="deleteTableReservation">
+ DELETE FROM TABLE_RESERVATION
+ WHERE  RESERVATION_NO = #{reservationNo}
+</delete>
+
+<delete id="deleteResultvation">
+ DELETE FROM RESERVATION
+    WHERE RESERVATION_STATUS = 'y' AND RESERVATION_NO = #{reservationNo}
+</delete>
+
+<update id="updateReservation" parameterType="map">
+    UPDATE RESERVATION
+    SET reservation_date = TO_DATE(#{reservationDate, jdbcType=VARCHAR}, 'yyyy-MM-dd HH24:MI'),
+        reservation_status = #{reservationStatus}
+    WHERE reservation_no = #{reservationNo}
+</update>
+
+
+<update id="updateTableReservation" parameterType="Map">
+    UPDATE TABLE_RESERVATION
+    SET table_no = #{tableNo}
+    WHERE reservation_no = #{reservationNo}
+</update>
+
+
+
+</mapper>

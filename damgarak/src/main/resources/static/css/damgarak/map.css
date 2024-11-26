@@ -1,0 +1,21 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+footer {
+  position: relative!important;
+}
+#map{
+    width: 900px;
+  height: 500px;
+  }
+  #mapSpace{
+    margin-top: 350px;
+  }
+

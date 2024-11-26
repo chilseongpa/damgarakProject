@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damgarak</title>
+    <link rel="stylesheet" href="/static/css/reservation/table-reservation/tableChoicePage.css">  
+	<script src="/static/js/reservation/table-reservation/tableChoicePage.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <link rel="stylesheet" th:href="@{/static/css/common/header.css}" />
+	<link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
+    
+<style>
+#footer-div{
+position: relative !important;
+}
+
+#footer{
+position: relative;
+bottom: 0px;
+
+}
+</style>       
+</head>
+<body>
+<main>
+
+<section class="header-div">
+    <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
+</section>
+
+    <section class="head-img-section">  
+        <div>
+            <h1>담가락 식당 좌석 예약</h1>
+        </div>     
+    </section>
+
+    <section class="table-choice">
+        <!--A 테이블 자리-->
+        <div class="table-list">
+        <div>
+            <br> <br>
+        </div>    
+     
+            <div class="exit-door">
+                <strong>출입구</strong>
+            </div>
+
+            <div class="restaurant-counter">
+                <strong>카운터</strong>
+            </div>
+       
+        <div class="table-A-List">    
+        <div class="table-A1">
+        <div class="chair-a-1"></div>   
+        <div class="chair-a-2"></div>
+
+        <div>
+            <button value="A-1">
+                <p>A-1</p>
+                <p>2인 테이블</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-A2">
+
+        <div class="chair-a-1"></div>   
+        <div class="chair-a-2"></div>
+
+            <div>
+            <button value="A-2">
+                <p>A-2</p>
+                <p>2인 테이블</p>
+            </button>
+            </div>
+        </div>
+   
+    <div class="table-A3">
+        <div class="chair-a-1"></div>   
+        <div class="chair-a-2"></div>
+        <div>
+            <button value="A-3">
+                <p>A-3</p>
+                <p>2인 테이블</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-A4">
+        <div class="chair-a-1"></div>   
+        <div class="chair-a-2"></div>
+        <div>
+            <button value="A-4">
+                <p>A-4</p>
+                <p>2인 테이블</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-A5">
+        <div class="chair-a-1"></div>   
+        <div class="chair-a-2"></div>
+        <div>
+            <button value="A-5">
+                <p>A-5</p>
+                <p>2인 테이블</p>
+            </button>
+        </div>
+    </div>
+</div>
+ <!--A 테이블 자리-->
+
+  <!--B 테이블 자리-->
+<div class="table-B-List">
+    <div class="table-B1">
+        <div class="chair-b-1"></div>   
+        <div class="chair-b-2"></div>
+        <div class="chair-b-3"></div>   
+        <div class="chair-b-4"></div>
+        <button value="B-1">
+            <p>B-1</p>
+            <p>4인 테이블</p>
+        </button>
+    </div>
+
+    <div class="table-B2">
+        <div class="chair-b-1"></div>   
+        <div class="chair-b-2"></div>
+        <div class="chair-b-3"></div>   
+        <div class="chair-b-4"></div>
+        <button value="B-2">
+            <p>B-2</p>
+            <p>4인 테이블</p>
+        </button>
+    </div>
+
+    <div class="table-B3">
+        <div class="chair-b-1"></div>   
+        <div class="chair-b-2"></div>
+        
+        <div class="chair-b-3"></div>   
+        <div class="chair-b-4"></div>
+        <button value="B-3">
+            <p>B-3</p>
+            <p>4인 테이블</p>
+        </button>
+    </div>
+    <div class="table-B4">
+        <div class="chair-b-1"></div>   
+        <div class="chair-b-2"></div>
+        
+        <div class="chair-b-3"></div>   
+        <div class="chair-b-4"></div>
+        <button value="B-4">
+            <p>B-4</p>
+            <p>4인 테이블</p>
+        </button>
+    </div>
+
+<div class="table-B5">
+    <div class="chair-b-1"></div>   
+    <div class="chair-b-2"></div>
+    
+    <div class="chair-b-3"></div>   
+    <div class="chair-b-4"></div>
+         <button value="B-5">
+            <p>B-5</p>
+            <p>4인 테이블</p>
+        </button>
+    </div>
+</div> 
+  <!--B 테이블 자리-->
+
+
+<!--C 테이블 자리-->
+<div class="table-C-List">
+
+    <div class="table-C1">
+        <div class="chair-b-1"></div>   
+        <div class="chair-b-2"></div>
+        <div class="chair-b-3"></div>   
+        <div class="chair-b-4"></div>
+        <button value="C-1">
+            <p>C-1</p>
+            <p>4인 테이블</p>
+        </button>
+    </div>
+
+    <div class="table-C2">
+        <div class="chair-b-1"></div>   
+        <div class="chair-b-2"></div>
+        <div class="chair-b-3"></div>   
+        <div class="chair-b-4"></div>
+        <button value="C-2">
+            <p>C-2</p>
+            <p>4인 테이블</p>
+        </button>
+    </div>
+    <div class="table-C3">
+        <div class="chair-b-1"></div>   
+        <div class="chair-b-2"></div>
+        <div class="chair-b-3"></div>   
+        <div class="chair-b-4"></div>
+        <button value="C-3">
+            <p>C-3</p>
+            <p>4인 테이블</p>
+        </button>
+    </div>
+    <div class="table-C4">
+        <div class="chair-b-1"></div>   
+        <div class="chair-b-2"></div>
+        <div class="chair-b-3"></div>   
+        <div class="chair-b-4"></div>
+        <button value="C-4">
+            <p>C-4</p>
+            <p>4인 테이블</p>
+        </button>
+    </div>
+    <div class="table-C5">
+        <div class="chair-b-1"></div>   
+        <div class="chair-b-2"></div>
+        <div class="chair-b-3"></div>   
+        <div class="chair-b-4"></div>
+        <button value="C-5">
+            <p>C-5</p>
+            <p>4인 테이블</p>
+        </button>
+    </div>
+</div>
+<!--C 테이블 자리-->
+
+<!--D 테이블 자리-->
+    <div class="table-D-List">
+        <div class="table-D">
+            <div class="chair-a-1"></div>   
+            <div class="chair-a-2"></div>
+            <button value="D-1">
+                <p>D-1</p>
+                <p>2인 테이블</p>
+            </button>
+        </div>
+        <div class="table-D">
+            <div class="chair-a-1"></div>   
+            <div class="chair-a-2"></div>
+            <button value="D-2">
+                <p>D-2</p>
+                <p>2인 테이블</p>
+            </button>
+        </div>
+        <div class="table-D">
+            <div class="chair-a-1"></div>   
+            <div class="chair-a-2"></div>
+            <button value="D-3">
+                <p>D-3</p>
+                <p>2인 테이블</p>
+            </button>
+        </div>
+        <div class="table-D">
+            <div class="chair-a-1"></div>   
+            <div class="chair-a-2"></div>
+            <button value="D-4">
+                <p>D-4</p>
+                <p>2인 테이블</p>
+            </button>
+        </div>
+
+      <div class="table-D">
+            <div class="chair-a-1"></div>   
+            <div class="chair-a-2"></div>
+            <button value="D-5">
+                <p>D-5</p>
+                <p>2인 테이블</p>
+            </button>
+        </div>
+    </div>
+
+    <!--C 테이블 자리-->
+    <div class="toilet-room">
+        <strong>화장실</strong>
+    </div>
+    <div class="kitchen">
+        <strong>주방</strong>
+    </div>
+</div>
+</section>
+
+ <section class="footer-div">
+    <div id="footer-div-controller" th:replace="common/footer::footer" style="position: relative; "></div>
+	</section>
+
+
+
+</main>
+</body>
+</html>

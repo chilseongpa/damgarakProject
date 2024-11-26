@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.damgarak.post.model.mapper.PostMapper">
+	<select id="selNotice" resultType="SuggestionDTO">
+		SELECT N.NOTICE_NO,N.NOTICE_TITLE,U.USERS_NAME
+		FROM NOTICE N
+		JOIN USERS U ON U.USERS_ID = N.USERS_ID
+		ORDER BY N.NOTICE_NO ASC
+	</select>
+	
+	<select id="selNoticeDetail" resultType="SuggestionDTO">
+		SELECT U.USERS_NAME, N.NOTICE_TITLE, N.NOTICE_CONTENT, NOTICE_CREATION_DATE
+		  FROM Notice N
+		  JOIN USERS U ON U.USERS_ID = N.USERS_ID
+		 WHERE N.NOTICE_NO = #{noticeNo}
+	</select>
+
+<select id="selectUserSuggestions" parameterType="String" resultType="SuggestionDTO">
+    SELECT POST_NO, TITLE, CREATION_DATE
+    FROM POST
+    WHERE USERS_ID = #{userId}
+    ORDER BY CREATION_DATE DESC
+</select>
+  
+  
+ <select id="empInfomation" resultType="SerchEmployeeDto">
+  	SELECT 
+    E.USERS_ID,
+    u.USERS_NAME,
+    E.PHONE,
+    E.ADDRESS,
+    E.SALARY ,
+    J.JOB_NAME,
+    D.DEPT_NAME
+FROM 
+     EMPLOYEE E
+LEFT JOIN 
+    DEPT D ON E.DEPT_CODE = D.DEPT_CODE
+LEFT JOIN 
+    JOB_CODE J ON E.JOB_CODE = J.JOB_CODE
+LEFT JOIN 
+	USERS u ON E.USERS_ID = u.USERS_ID    
+WHERE E.USERS_ID = #{usersId}
+  </select>
+  
+
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.damgarak.lunchBox.mapper.LunchBoxMapper">
+
+    <!-- 메뉴 카테고리별 조회 -->
+    <select id="selectMenuByCategory" parameterType="String" resultType="Menu">
+        SELECT MENU_NO, MENU_NAME, PRICE, MENU_IMAGE, CALORIE, CATEGORY_CODE
+        FROM MENU
+        WHERE CATEGORY_CODE = #{categoryCode}
+    </select>
+
+    <!-- 도시락 예약 삽입 -->
+    <insert id="insertReservation" >
+        INSERT INTO RESERVATION
+        VALUES (RESERVATION_SEQ.NEXTVAL, #{usersId}, SYSDATE, 'y')
+        
+       <selectKey keyProperty="reservationNo" resultType="int" order="AFTER">
+       		SELECT RESERVATION_SEQ.CURRVAL FROM DUAL
+  		</selectKey>
+    </insert>
+
+    <!-- 주문 기록 삽입 -->
+    <insert id="insertOrderHistory" >
+        INSERT INTO ORDER_HISTORY
+        VALUES (ORDERHISTORY_SEQ.NEXTVAL, #{reservationNo}, SYSDATE)
+        <selectKey keyProperty="orderNo" resultType="int" order="AFTER">
+       		SELECT ORDERHISTORY_SEQ.CURRVAL FROM DUAL
+  		</selectKey>
+    </insert>
+    
+    
+    <!-- 주문 내역 삽입 -->
+    <insert id="insertOrderDetails" >
+        INSERT INTO ORDER_DETAILS
+        VALUES (#{orderHistoryNo}, #{menuNo})
+    </insert>
+    
+
+	<!-- 도시락 예약 저장 -->
+	<insert id="insertLunchBoxReservation">
+		INSERT INTO LUNCHBOX_RESERVATION
+		VALUES (#{reservationNo},  #{lunchBoxType}, #{amount})
+	</insert>
+</mapper>

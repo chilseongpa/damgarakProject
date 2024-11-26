@@ -3,17 +3,51 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.damgarak.users.model.mapper.UserMapper">
-	<select id="loginUser" resultType="Users">
-		select * 
-		from USERS
-		where USERS_ID = #{usersId} AND USERS_PASSWORD = #{usersPassword} AND USERS_STATE = 'n'
- 	</select>	
- 	
-		<insert id="logupUser" parameterType="Users">
-		    INSERT INTO USERS (USERS_ID, USERS_NAME, USERS_PASSWORD, EMAIL, JOIN_DATE, USERS_STATE, USERS_TYPE)
-		    VALUES (#{usersId}, #{usersName}, #{usersPassword}, #{email}, SYSDATE, 'n', #{usersType})
-		</insert>
 
+	  <resultMap id="UsersResultMap" type="UsersLoginDTO">
+        <result property="usersId" column="USERS_ID"/>
+        <result property="usersPassword" column="USERS_PASSWORD"/>
+        <result property="usersType" column="USERS_TYPE"/>
+        <result property="employeeType" column="EMPLOYEE_TYPE"/>
+    </resultMap>
+    
+    
+	<select id="loginUser" resultMap="UsersResultMap">
+		select u.USERS_ID, u.USERS_PASSWORD, u.USERS_TYPE, e.EMPLOYEE_TYPE,
+		u.USERS_NAME
+		from USERS u 
+		LEFT JOIN EMPLOYEE e on u.USERS_ID = e.USERS_ID
+		where u.USERS_ID = #{usersId}  
+		AND u.USERS_STATE = 'y'
+ 	</select>	
+ 
+		<insert id="logupUser" parameterType="Users">
+		    INSERT INTO USERS 
+		    (USERS_ID, 
+		    USERS_NAME, 
+		    USERS_PASSWORD, 
+		    EMAIL, 
+		    JOIN_DATE, 
+		    USERS_STATE, 
+		    USERS_TYPE)
+		    
+		    VALUES (#{usersId}, 
+		    #{usersName}, 
+		    #{usersPassword}, 
+		    #{email}, 
+		    SYSDATE, 
+		    'y', 
+		    #{usersType})
+		</insert>
+		
+		<insert id="empSingup" parameterType="Employee">
+			INSERT INTO Employee
+			(USERS_ID, 
+			 EMPLOYEE_TYPE
+			)VALUES(#{empId}, '직원')
+		</insert>
+		
+		
 	 <select id="idCheck" resultType="_int">
 	 	SELECT COUNT(*) COUNT
 	 	FROM USERS
@@ -34,9 +68,9 @@
 	</select>
 	
 	<update id="updateUserPassword">
-    UPDATE USERS
-    SET USERS_PASSWORD = #{tempPassword}
-    WHERE USERS_ID = #{userId}
+	    UPDATE USERS
+	    SET USERS_PASSWORD = #{password}
+	    WHERE USERS_ID = #{userId}
 	</update>
 	
 	<select id="emailCheck" resultType="Users">
@@ -45,6 +79,35 @@
 		WHERE EMAIL = #{email}
 	</select>
 	
+	<select id="checkPassword" resultType="UsersLoginDTO">
+		select USERS_ID, USERS_PASSWORD 
+		FROM USERS
+		WHERE USERS_ID = #{usersId}
+	</select>
+	
+	<update id="deleteUser">
+		UPDATE USERS 
+		SET USERS_STATE = 'n'
+		WHERE USERS_ID = #{usersId}
+	</update>
+	
+    
+	
+	<select id="userMyInfo" resultType="userMemvershipDTO">
+		SELECT  
+		u.USERS_ID,
+		u.EMAIL,
+		u.USERS_NAME,
+		m.MEMBER_LEVEL, 
+		m.ACCUMULATED_AMOUNT
+		FROM USERS u 
+		LEFT JOIN  MEMBERSHIP m on u.USERS_ID = m.USERS_ID
+		WHERE u.USERS_ID = #{usersId}
+	</select>
+	
+	
+	
+
 </mapper>
 
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도시락 POS 시스템</title>
+    <link rel="stylesheet" href="static/css/lunch-box/payment.css">
+    <script src="https://js.tosspayments.com/v2/standard"></script>
+    <script src="static/js/lunch-box/payment.js" defer></script>
+</head>
+<body>
+    <div class="full-screen-container">
+        <!-- 결제 금액 -->
+        <div class="payment-details">
+            <p class="payment-amount">결제 금액: <span id="priceDisplay">0</span>원</p>
+        </div>
+
+        <!-- 결제 방법 및 약관 -->
+        <div id="payment-method"></div>
+        <div id="agreement"></div>
+
+        <!-- 결제 버튼 -->
+        <button class="button" id="payment-button">결제하기</button>
+    </div>
+</body>
+</html>

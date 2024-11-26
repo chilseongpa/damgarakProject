@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.damgarak.post.model.mapper.ManagerMapper">
+	
+	<select id="selSuggest" resultType="SuggestionDTO">
+	    SELECT P.POST_NO, P.TITLE, P.CREATION_DATE, U.USERS_ID, U.USERS_NAME, U.EMAIL
+	    FROM POST P
+	    JOIN USERS U ON P.USERS_ID = U.USERS_ID
+	    ORDER BY P.POST_NO ASC
+	</select>
+
+
+	<select id="selEmp" resultType="SuggestionDTO">
+	    SELECT U.USERS_ID, U.USERS_NAME, U.EMAIL, J.JOB_CODE, J.JOB_NAME
+	    FROM USERS U
+	    JOIN EMPLOYEE E ON E.USERS_ID = U.USERS_ID
+	    JOIN JOB_CODE J ON J.JOB_CODE = E.JOB_CODE
+	    WHERE USERS_STATE = 'y'
+	</select>
+	
+	<insert id="insertPost">
+		INSERT INTO POST 
+		(POST_NO, POST_COUNT, TITLE, CONTENT, CREATION_DATE, MODIFICATION_DATE, DELETE_STATE, USERS_ID, CATEGORY_CODE)
+		VALUES (seq_b.NEXTVAL, 0, #{title}, #{content}, SYSDATE, SYSDATE, 'N', #{userId}, 01)
+	</insert>
+	
+	<select id="selsugDetail" parameterType="int" resultType="SuggestionDTO">
+		SELECT POST_COUNT, CREATION_DATE, TITLE, CONTENT, USERS_NAME
+		FROM POST P
+		JOIN USERS U ON U.USERS_ID = P.USERS_ID
+		WHERE POST_NO = #{postNo}
+		ORDER BY P.POST_NO DESC
+	</select>
+	
+	<update id="updateInfo">
+		UPDATE USERS
+		   SET USERS_NAME = #{usersName},
+		       EMAIL = #{email}
+		 WHERE USERS_ID = #{usersId};
+	</update>
+	
+	<select id="selempDetails" parameterType="String" resultType="SuggestionDTO">
+	    SELECT U.USERS_ID, U.USERS_NAME, U.EMAIL, E.JOB_CODE
+	    FROM USERS U
+	    JOIN EMPLOYEE E ON U.USERS_ID = E.USERS_ID
+	    WHERE U.USERS_ID = #{usersId}
+	</select>
+    
+    <update id="updateNameEmail">
+     UPDATE USERS
+    	SET USERS_NAME = #{usersName},
+                 EMAIL = #{email}
+        WHERE USERS_ID = #{usersId}
+    </update>
+    
+    <update id="updateJob">
+    	UPDATE EMPLOYEE
+    	   SET JOB_CODE = #{jobCode}
+    	 WHERE USERS_ID = #{usersId}
+    </update>
+    
+    <select id="selReply" parameterType="int" resultType="SuggestionDTO">
+	    SELECT R.REPLY_COMMENT, R.CREATION_DATE, U.USERS_NAME
+	    FROM REPLY R
+	    JOIN POST P ON R.POST_NO = P.POST_NO
+	    JOIN USERS U ON R.USERS_ID = U.USERS_ID 
+	    WHERE P.POST_NO = #{postNo}
+	</select>
+    
+    <!-- 문제 -->
+    <insert id="insertReply">
+	    INSERT INTO REPLY (POST_NO, REPLY_COMMENT, CREATION_DATE, DELETE_STATE, USERS_ID)
+	    VALUES (#{postNo}, #{replyComment}, SYSDATE, 'N', #{usersId})
+	</insert>
+    
+    <insert id="insertNotice">
+	    INSERT INTO NOTICE (USERS_ID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_NO, NOTICE_CREATION_DATE)
+	    VALUES (#{usersId}, #{noticeTitle}, #{noticeContent}, NOTICE_SEQ.NEXTVAL, SYSDATE)
+	</insert>
+	
+	<!-- 문제 -->
+	<update id="updatePass">
+	  UPDATE USERS 
+	     SET USERS_PASSWORD = #{changePassword} 
+	   WHERE USERS_ID = #{usersId}
+	</update>
+	
+	<update id ="updateFire">
+		UPDATE USERS
+		   SET USERS_STATE = 'n'
+		 WHERE USERS_ID = #{usersId}
+	</update>
+	<select id="findOrdersWithinDateRange" resultType="OrderDetailsDTO">
+  SELECT *
+FROM (
+    SELECT 
+        O.ORDER_NO AS orderNo,
+        U.USERS_NAME AS usersName,
+        M.MEMBER_LEVEL AS memberLevel,
+        TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD') AS orderDate,
+        ROW_NUMBER() OVER (ORDER BY O.ORDER_NO ASC) AS RN
+    FROM 
+        ORDER_HISTORY O
+    JOIN 
+        RESERVATION R ON O.RESERVATION_NO = R.RESERVATION_NO
+    JOIN 
+        USERS U ON R.USERS_ID = U.USERS_ID
+    JOIN 
+        MEMBERSHIP M ON U.USERS_ID = M.USERS_ID
+    WHERE 
+        O.ORDER_DATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') 
+        AND TO_DATE(#{endDate}, 'YYYY-MM-DD')
+) SUB
+WHERE SUB.RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+ORDER BY SUB.RN ASC
+
+	</select>
+	
+	<select id="getdetailSpecificationCount" resultType="_int">
+	 SELECT 
+    	COUNT(*)
+    FROM 
+        ORDER_HISTORY O
+    JOIN 
+        RESERVATION R ON O.RESERVATION_NO = R.RESERVATION_NO
+    JOIN 
+        USERS U ON R.USERS_ID = U.USERS_ID
+    JOIN 
+        MEMBERSHIP M ON U.USERS_ID = M.USERS_ID
+    WHERE 
+        O.ORDER_DATE BETWEEN TO_DATE(#{startDate}, 'YYYY-MM-DD') 
+        AND TO_DATE(#{endDate}, 'YYYY-MM-DD') 
+	</select>
+	
+	<select id="findOrderDetails" resultType="OrderDetailsDTO">
+    SELECT 
+        O.ORDER_NO AS orderNo,
+        U.USERS_NAME AS usersName,
+        M.MEMBER_LEVEL AS memberLevel,
+        TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD') AS orderDate
+    FROM 
+        ORDER_HISTORY O
+    JOIN 
+        RESERVATION R ON O.RESERVATION_NO = R.RESERVATION_NO
+    JOIN 
+        USERS U ON R.USERS_ID = U.USERS_ID
+    JOIN 
+        MEMBERSHIP M ON U.USERS_ID = M.USERS_ID
+    WHERE 
+        O.ORDER_NO = #{orderNo}
+</select>
+
+	<select id="selRv" resultType="SuggestionDTO">
+SELECT *
+FROM (
+    SELECT 
+        R.RESERVATION_NO,
+        U.USERS_NAME,
+        T.TABLE_NO,
+        R.RESERVATION_DATE,
+        ROW_NUMBER() OVER (ORDER BY R.RESERVATION_NO ASC) AS RN
+    FROM RESERVATION R
+    JOIN USERS U ON U.USERS_ID = R.USERS_ID
+    JOIN TABLE_RESERVATION T ON R.RESERVATION_NO = T.RESERVATION_NO
+    WHERE R.RESERVATION_STATUS = 'y'
+) SUB
+WHERE SUB.RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+ORDER BY SUB.RN ASC
+	</select>
+	
+	<select id="selbentoRv" resultType="SuggestionDTO">
+   SELECT 
+        T.RESERVATION_NO,
+        T.USERS_NAME,
+        T.LUNCHBOX_DETAILS
+    FROM (
+        SELECT 
+            L.RESERVATION_NO,
+            U.USERS_NAME,
+            L.LUNCHBOX_DETAILS,
+            ROW_NUMBER() OVER (ORDER BY L.RESERVATION_NO ASC) AS RN
+        FROM LUNCHBOX_RESERVATION L
+        JOIN RESERVATION R ON R.RESERVATION_NO = L.RESERVATION_NO
+        JOIN USERS U ON U.USERS_ID = R.USERS_ID
+    ) T
+    WHERE T.RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+		
+<select id="getReservationCount" resultType="int">
+    SELECT COUNT(*)
+    FROM LUNCHBOX_RESERVATION L
+    JOIN RESERVATION R ON R.RESERVATION_NO = L.RESERVATION_NO 
+    JOIN USERS U ON U.USERS_ID = R.USERS_ID
+</select>
+
+<select id="getRvtionCount" resultType="int">
+SELECT COUNT(*)
+	    FROM RESERVATION R
+	    JOIN USERS U ON U.USERS_ID = R.USERS_ID
+	    JOIN TABLE_RESERVATION T ON R.RESERVATION_NO = T.RESERVATION_NO
+	    WHERE RESERVATION_STATUS = 'y'
+</select>
+
+	
+	<select id="findOrderItems" resultType="OrderItemDTO">
+	    SELECT 
+	    MN.MENU_NAME,
+	    MN.MENU_COUNT,
+	    P.PAYMENT_METHOD,
+	    MN.PRICE
+	FROM 
+	    ORDER_DETAILS OD
+	JOIN 
+	    MENU MN ON OD.MENU_NO = MN.MENU_NO
+	JOIN 
+	    ORDER_HISTORY OH ON OD.ORDER_NO = OH.ORDER_NO
+	JOIN 
+	    PAYMENT P ON OH.RESERVATION_NO = P.RESERVATION_NO
+	WHERE 
+	    OD.ORDER_NO = #{orderNo}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

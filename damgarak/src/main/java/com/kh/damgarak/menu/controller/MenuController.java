@@ -21,11 +21,7 @@ public class MenuController {
 	
 	
 	
-	@GetMapping("/UsersMyPage")
-    public String userMyPage(){
-    	return "users/usersMyPage";
-    }	
-    
+	
 	@GetMapping("/lunchMenu")
 	public String lunchMenuPage(HttpSession session){
 		
@@ -47,6 +43,7 @@ public class MenuController {
 		}
 		return"menu/restaurantMenu";
 	}
+	
 	@GetMapping("/restaurantMenuSelect")
 	@ResponseBody
 	public List<MenuSearchDTO> getRestaurantMenuList(
@@ -57,6 +54,7 @@ public class MenuController {
 		System.out.println(menuList);
 		return menuList;
 	}
+	
 	
 	@GetMapping("/menuList")
 	@ResponseBody

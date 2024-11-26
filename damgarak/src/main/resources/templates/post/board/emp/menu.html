@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <nav id="nav">
+    <ul>
+        <li class="active js"><a href="notice">공지사항</a></li>
+        <li class="active ts"><a href="password">비밀번호 변경</a></li>
+        <li class="active node"><a href="empInfo">직원 정보 수정</a></li>
+        <li class="active node"><a href="suggest">건의함 작성</a></li>
+        <li class="active node"><a href="mySuggest">내 건의함</a></li>
+        <li class="active node"><a href="">메인으로</a></li>
+       <li th:if="${session.userId == null}" class="active node"><a href="login">로그인</a></li>
+        <li th:if="${session.userId != null}" class="active node"><a href="/logout">로그아웃</a></li>
+        <li>담가락 식당 전화 <br>
+            010-2725-0780 <br>
+            ㈜ 담가락
+            주소 :   </li>
+    </ul>
+</nav>
+</body>
+</html>

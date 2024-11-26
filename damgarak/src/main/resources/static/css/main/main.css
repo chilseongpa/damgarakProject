@@ -1,0 +1,169 @@
+body {
+	text-align: center;
+}
+
+.section1 {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url(/static/img/main/background.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-width: 1200px;
+}
+
+.section2 {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+		url(/static/img/main/pattern.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-width: 1200px;
+}
+
+.section3 {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url(/static/img/main/background.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-width: 1200px;
+}
+
+.section4 {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url(/static/img/main/damgarakMain4.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-width: 1200px;
+}
+
+.btn-outline-secondary {
+	width: 200px;
+	color: white;
+	border-color: white;
+	margin: auto;
+}
+
+.btn-outline-secondary:hover {
+	background-color: rgba(0, 0, 0, 0.541);
+}
+
+.section2 .text-white:first-child {
+	font-size: 80px;
+	margin-top: auto;
+}
+
+.section2 .text-white:last-child {
+	font-size: 40px;
+	margin-bottom: auto;
+}
+
+.btn-outline-secondary:last-child {
+	margin-top: 20px;
+}
+
+.section2 .lead {
+	color: white;
+	font-size: 25px;
+}
+
+.img-fluid {
+	width: 300px;
+}
+
+.section3 .lead {
+	color: white;
+	font-size: 18px;
+	line-height: 50px;
+}
+
+.card-img-top {
+	align-items: center;
+	width: 80px;
+	margin: 40px;
+}
+.col-6{
+	margin: auto;
+}
+.section3 .container:first-child {
+	margin-top: 120px;
+}
+
+.card {
+	background-color: #ff55004f;
+	align-items: center;
+	justify-content: center;
+}
+
+.card:first-child {
+	margin: auto;
+}
+
+.row .row-cols-4 {
+	align-items: center;
+	justify-content: center;
+	margin-left: auto;
+}
+
+.section4 .lead {
+	color: white;
+	font-size: 60px;
+	line-height: 80px;
+	margin-bottom: 100px;
+}
+
+.card-text {
+	color: white
+}
+
+.card-title {
+	color: white;
+}
+
+.btn-primary {
+	background-color: rgb(26, 26, 26);
+	border-color: rgb(73, 73, 23);
+}
+
+.btn-primary:hover {
+	border: none;
+	background-color: #000000;
+	color: rgb(255, 255, 255);
+}
+
+.w-100 {
+	width: 400px !important;
+	margin: 40px;
+}
+
+.carousel-item {
+	height: 600px;
+	background-color: #000000c7;
+	width: 100%;
+}
+
+.section2 .lead {
+	font-size: 20px;
+}
+
+.section1 .lead {
+	color: white;
+	font-size: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 0px;
+}
+
+.section1 img {
+	margin: 0 auto;
+	padding: 0;
+	margin-bottom: 0px;
+	position: relative;
+	bottom: -120px;
+}
+body{
+	-ms-overflow-style: none;
+	}
+	
+   ::-webkit-scrollbar {
+	 display: none;
+   }
+ 

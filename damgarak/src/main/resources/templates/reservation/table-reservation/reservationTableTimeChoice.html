@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damgarak</title>
+    <link rel="stylesheet" href="static/css/reservation/table-reservation/reservationTableTimeChoice.css">
+    <script src="static/js/reservation/table-reservation/reservationTableTimeChoice.js" defer></script>
+    <link rel="stylesheet" th:href="@{/static/css/common/header.css}" />
+	<link rel="stylesheet" th:href="@{/static/css/common/footer.css}" />
+    
+</head>
+<body>
+<div>
+
+<section class="header-div">
+    <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
+</section>
+
+    <div class="pos-container">
+        <div class="main-content" data-reservation-no="${reservationNo}">
+            <section class="reservation">
+                <h2>식당 예약하기</h2>
+                <div id="calendar"></div> 
+                <input type="hidden" id="date">
+                <div>
+                </div>
+                <hr>
+                <div class="choice-timer-div">
+                    <div class="time-div-btns">
+                        <div class="btns-div">
+                            <button class="time-button" value="13:00">13:00</button>
+                            <button class="time-button" value="14:00">14:00</button>
+                            <button class="time-button" value="15:00">15:00</button>    
+                        </div>
+                        
+                        <div class="btns-div">
+                            <button class="time-button" value="16:00">16:00</button>
+                            <button class="time-button" value="17:00">17:00</button>
+                            <button class="time-button" value="18:00">18:00</button>    
+                        </div>
+                        
+                        <div class="btns-div">
+                            <button class="time-button" value="19:00">19:00</button>
+                            <button class="time-button" value="20:00">20:00</button>
+                            <button class="time-button" value="21:00">21:00</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button id="historyBtn">이전</button>
+                    <button id="cancelBtn">초기화</button>
+                    <button id="reserveBtn">예약</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    <section class="footer-div">
+    <div id="footer-div-controller" th:replace="common/footer::footer" style="position: relative; "></div>
+	</section>
+</div>
+</body>
+</html>

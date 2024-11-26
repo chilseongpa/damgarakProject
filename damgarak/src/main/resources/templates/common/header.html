@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/css/header.css">
+<title>header</title>
+</head>
+<body>
+	<header id="header">
+		<a href="/main">
+		<img src="/static/img/common/damgarak.svg" id="logoImg" alt="logo" /> <span
+			id="logoText">啗加樂</span>
+		</a>
+		<div id="navigator">
+			<ul class="nav">
+				<li><a href="#" class='headerText'>담가락</a>
+					<ul>
+						<li><a href="/intro">소개</a></li>
+						<li><a href="/partnerCompany">협력업체</a></li>
+						<li><a href="/map">오시는 길</a></li>
+					</ul></li>
+				<li><a href="#" class='headerText'>메뉴</a>
+					<ul>
+						<li><a href="/lunchMenu">도시락 메뉴</a></li>
+						<li><a href="/restaurantMenu">식당 메뉴</a></li>
+					</ul></li>
+				<div id='space'></div>
+				<li><a href="#" class='headerText'>예약</a>
+					<ul>
+
+						<li><a href="/reservationTableTimeChoice">식당 좌석 예약</a></li>
+						<li><a href="/LunchBoxReservation">도시락 예약</a></li>
+
+					</ul></li>
+				<li><a href="#" class='headerText'>고객센터</a>
+					<ul>
+						<li><a href="/pusher">실시간 문의</a></li>
+						<li><a href="#">공지사항</a></li>
+					</ul></li>
+			</ul>
+			
+	<ul id="singUpUl">
+
+    <th:block th:if="${session.userLogin == null}">
+        <li><a href="/loginPage">로그인</a></li>
+    </th:block>
+
+    <th:block th:if="${session.userLogin != null}">
+    
+        <th:block th:if="${session.userLogin != null and session.userLogin.usersType == '고객'}">
+            <li><a href="/usersMyPage">고객 마이페이지</a></li>
+        </th:block>
+
+        <th:block th:if="${session.userLogin != null and session.userLogin.employeeType == '관리자' and session.userLogin.usersType == '직원'}">
+            <li><a href="/manager/saleSheet">관리자 페이지</a></li>
+        </th:block>
+
+ <th:block th:if="${session.userLogin.employeeType != '관리자' and session.userLogin.usersType == '직원'}">
+            <li><a href="/emp/myPage">직원 페이지</a></li>
+        </th:block>
+    </th:block>
+</ul>
+		</div>
+	</header>
+</body>
+</html>

@@ -1,0 +1,81 @@
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 1200px;
+    overflow-x: hidden;
+}
+
+
+/* 푸터를 바닥에 고정시키기 위한 스타일 */
+#footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.footerMenu {
+    margin-bottom: 20px;
+}
+
+.footerMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    gap: 30px;
+    justify-content: space-around;
+}
+
+.footerMenu ul li:first-child {
+    margin-left: 0;
+}
+
+
+.footerMenu ul li {
+    display: inline-block;
+}
+
+.footerMenu ul li a {
+    color: #ddd; /* 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+    font-size: 16px; /* 폰트 크기 */
+    transition: color 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.footerMenu ul li a:hover {
+    color: #fff; /* 호버 시 링크 색상 변경 */
+}
+
+/* 푸터 정보 스타일 */
+.footerInfo {
+    font-size: 14px; /* 폰트 크기 */
+    line-height: 1.8; /* 줄 간격 */
+    color: #aaa; /* 약간 밝은 회색 */
+}
+
+.footerInfo p {
+    margin: 5px 0; /* 줄 간 간격 */
+}
+
+.footerInfo p:last-child {
+    font-size: 12px; /* 저작권 문구 폰트 크기 줄이기 */
+    color: #777; /* 약간 더 어두운 회색 */
+}
+
+/* 모바일 환경을 위한 반응형 디자인 */
+@media (max-width: 768px) {
+    .footerMenu ul {
+        flex-direction: column; /* 작은 화면에서는 세로 정렬 */
+        gap: 15px; /* 항목 간 간격 축소 */
+    }
+}

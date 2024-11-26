@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	text-align: center;
+}
+
+.waiting-section {
+	width: 60%;
+	height: 60%;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12), 0 4px 6px
+		rgba(0, 0, 0, 0.08);
+}
+
+.waiting-id {
+	margin-left: 10px;
+}
+
+.btn.btn-secondary {
+	float: right;
+	margin-bottom: 10px;
+}
+
+.waiting-id {
+	width: 100%;
+	padding-top: 30px;
+}
+
+.waiting-member {
+	float: left;
+}
+
+.nav-page-items {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	
+	margin-top: 50px;
+}
+
+
+.member-id-div p {
+	margin: 3px;
+}
+
+
+.member-id-div img {
+	background-size: cover;
+	width: 30px;
+	height: 30px;
+}
+.past-reservation {
+	margin-right: 40px;
+}
+
+.footer-div{
+	display:flex;
+	justify-content: center;
+	margin-top: 200px;
+}
+#header-div{
+	display:flex;
+	justify-content: center;
+	margin-bottom: 200px;
+	
+}
+
+
+

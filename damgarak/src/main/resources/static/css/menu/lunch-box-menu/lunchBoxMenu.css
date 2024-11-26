@@ -1,18 +1,17 @@
 @charset "UTF-8";
 
 body{
-    height: 2000px;
     margin: 0px;
     padding: 0px;
+      overflow: visible !important;
 }
 /*view-menu-section css*/
 .view-menu-section{
     height: 400px;
-   
 }
 /*search section css*/
 .search.section{
-   width: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +42,8 @@ body{
 
 /*lunch box section css*/
 .packed.lunch{
-    height: 500px;
+	margin-top: 8.4%;
+    height: 600px;
     background-image: url("../../../img/menu/lunch-box-background-img/menu_session_backgroundimg.jpg");
     background-attachment: fixed;
     background-size: cover;
@@ -52,11 +52,10 @@ body{
 
 .packed.lunch img{
     position: absolute;
-    height: 500px ; 
+    height: 455px; 
     right:0px;
     background-attachment: fixed;
     background-size: cover;
-    
 }
 .lunch-h1{
     font-size: 4em;
@@ -65,8 +64,8 @@ body{
     font-weight: bold;
     font-family: sans-serif;
     position: absolute;
-    top:80px;
-    left: 250px;
+    top:20%;
+    left: 260px;
     animation: lunchbox 2s ease-in-out;
 }
 .lunch.p{
@@ -78,38 +77,38 @@ body{
 }
 @keyframes lunchbox{
     from{
-        left: -250px;
+        left: -260px;
         opacity: 0;
     }to{
-        left: 250px;
+        left: 260px;
         opacity: 1;
     }
 }
 @keyframes lunchreturn{
     from{
-        left: 250px;
+        left: 260px;
         opacity: 1;
     }to{
-        left: -250px;
+        left: -260px;
         opacity: 0;
     } 
 }
 
 @keyframes lunchbox-a{
     from{
-        left: -270px;
+        left: -260px;
         opacity: 0;
     }to{
-        left: 270px;
+        left: 260px;
         opacity: 1;
     }
 }
 @keyframes lunchreturn-a{
     from{
-        left: 270px;
+        left: 260px;
         opacity: 1;
     }to{
-        left: -270px;
+        left: -260px;
         opacity: 0;
     } 
 }
@@ -152,8 +151,8 @@ body{
     border-radius: 10px;
     text-align: center;
     position: absolute;
-    top: 33%;
-    left: 270px;
+    top: 45%;
+    left: 260px;
     animation: lunchbox-a 2s ease-in-out;
     
     display: flex;
@@ -162,7 +161,7 @@ body{
 }
 .lunch-box-comment{
     position: absolute;
-    top: 20%;
+    top: 30%;
     left: 40%;
     color: whitesmoke;
     font-weight: bold;
@@ -264,7 +263,6 @@ body{
     
     
 }
-
     .menu-category-first {
         display: flex;
         gap: 15px;
@@ -279,7 +277,6 @@ body{
         background-color: #e6e6e6;
         margin: 0 20px;
     }
-    
     .search-container{
   	display: flex;
 	justify-content:center;
@@ -293,30 +290,29 @@ body{
 	border-radius: 10px;
 	box-sizing: border-box;	
 }
- 
-     form{
-        display: flex;
-        justify-content:center;
-        align-items: center;
-        width: 100%; 
-        height: 50%;
-    	}
+form{
+     display: flex;
+     justify-content:center;
+     align-items: center;
+     width: 100%; 
+     height: 50%;
+}	
     form label{
     font-size: 1.2em;
     }
-
-
   /* 메뉴 리스트 */
-  
+
 .menu-con {
     margin-top: 20px;
     border-top: 2px solid #333;
 }
-
 .menu-board-list > ul li{
 	display: grid;
 }
 
+/*.log-up-div input{
+	margin-left: -10px;
+}*/
 .menu-board-list {
     margin: 60px 0 0 -29px;
     list-style: none;
@@ -614,9 +610,19 @@ body{
     color: #999;
     font-size: 15px;
 }
+main{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
 
-/*삭제 여부*/
+.footer-div-controller{
+	width: 100%;
+	height: 100px;
+	position: relative;
+	margin-top: 50px;
+}
 
-/*삭제 여부*/
+
 
 

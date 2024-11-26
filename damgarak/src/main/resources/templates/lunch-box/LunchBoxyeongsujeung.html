@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="https://static.toss.im/icons/png/4x/icon-toss-logo.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>결제 성공</title>
+    <link rel="stylesheet" href="static/css/lunch-box/LunchBoxyeongsujeung.css">
+    <script src="static/js/lunch-box/LunchBoxyeongsujeung.js" defer></script>
+
+</head>
+
+<body>
+    <div class="box_section">
+        <img width="120px" src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" />
+   
+
+        <!-- 결제 상태 표시 -->
+        <div id="paymentStatus">결제 상태를 확인 중입니다...</div>
+
+        <!-- 주문한 메뉴 간단히 표시 -->
+        <div class="p-grid typography--p" style="margin-top: 20px">
+            <div class="p-grid-col text--left"><b>주문한 메뉴:</b></div>
+            <div class="p-grid-col text--right" id="orderedMenu"></div>
+        </div>
+
+        <!-- 주문번호와 결제금액 표시 -->
+        <div class="p-grid typography--p" style="margin-top: 20px">
+            <div class="p-grid-col text--left"><b>주문번호:</b></div>
+            <div class="p-grid-col text--right" id="orderId"></div>
+        </div>
+        <div class="p-grid typography--p" style="margin-top: 10px">
+            <div class="p-grid-col text--left"><b>결제금액:</b></div>
+            <div class="p-grid-col text--right" id="amount"></div>
+        </div>
+
+        <!-- 완료 버튼 -->
+        <button id="completeBtn">완료</button>
+    </div>
+</body>
+</html>
