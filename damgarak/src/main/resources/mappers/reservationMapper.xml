@@ -47,10 +47,7 @@
   )
   WHERE RN BETWEEN #{offset} + 1 AND #{offset} + #{limit}
 </select>
-    
-
-  
-  
+   
   <select id="getCountTable" resultType="_int">
   SELECT COUNT(*) 
   FROM TABLE_RESERVATION TR

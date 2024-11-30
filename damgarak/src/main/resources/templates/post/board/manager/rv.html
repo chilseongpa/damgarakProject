@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="/static/css/post/boardcss/rv&bentorv.css">
     <link rel="stylesheet" href="/static/css/common/header.css">
     <link rel="stylesheet" href="/static/css/common/footer.css">
+    <style>
+    	.title-1{
+    	margin-top: -100px;
+    	}
+    </style>
 </head>
 <body>
 	<div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
@@ -48,6 +53,25 @@
 				</tbody>
             </table>
         </div>
+        
+         <nav aria-label="Page navigation example" class="nav-page-items">
+	<ul class="pagination">
+		<li th:classappend="${pageInfo?.currentPage > 1 ? 'page-item' : 'page-item disabled'}">
+			<a class="page-link" th:href="@{/manager/rv(page=${pageInfo?.currentPage - 1})}">Previous</a>
+		</li>
+
+		<li th:each="i : ${#numbers.sequence(pageInfo?.startPage ?: 1, pageInfo?.endPage ?: 1)}"
+			th:classappend="${pageInfo?.currentPage == i ? 'page-item active' : 'page-item'}">
+			<a class="page-link" th:href="@{/manager/rv(page=${i})}" th:text="${i}">1</a>
+		</li>
+
+		<li th:classappend="${pageInfo?.currentPage < pageInfo?.maxPage ? 'page-item' : 'page-item disabled'}">
+			<a class="page-link" th:href="@{/manager/rv(page=${pageInfo?.currentPage + 1})}">Next</a>
+		</li>
+	</ul>
+</nav>
+        
+        
     </div>
 	<div th:replace="common/footer :: footer"></div>
 </body>

@@ -16,6 +16,14 @@
     <link rel="stylesheet" href="/static/css/common/footer.css">
 
     <title>명세서페이지</title>
+    
+    <style>
+    #pagination-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    </style>
 </head>
 
 <body>
@@ -58,6 +66,10 @@
                 
             </tbody>
         </table>
+        <nav id="pagination-nav">
+    <ul class="pagination"></ul>
+</nav>
+        
     </div>
     <div th:replace="common/footer :: footer"></div>
 </body>

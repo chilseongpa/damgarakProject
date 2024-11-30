@@ -30,11 +30,17 @@ margin-bottom: 100px;
 </style>
 </head>
 <body>
-   <div th:if="${errorMsg}">
-        <script th:inline="javascript">
-            alert([[${errorMsg}]]);
-        </script>
-    </div>
+
+   <div th:if="${successMsg}">
+    <script th:inline="javascript">
+        alert([[${successMsg}]]);
+    </script>
+</div>
+<div th:if="${errorMsg}">
+    <script th:inline="javascript">
+        alert([[${errorMsg}]]);
+    </script>
+</div>
     <div th:replace="common/header::header" style="position: relative; z-index: 2;"></div>
     
     
